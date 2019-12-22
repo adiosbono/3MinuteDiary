@@ -20,8 +20,8 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        let calendar = FSCalendar(frame: CGRect(x: 0, y: 0, width: 320, height: 300))
+        //캘린더 만드는 좌표를 화면 중앙으로 해야함...
+        let calendar = FSCalendar(frame: CGRect(x: 10, y: 100, width: 320, height: 300))
         calendar.dataSource = self
         calendar.delegate = self
         view.addSubview(calendar)
