@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 import FSCalendar
 
-class CalendarVC: UIViewController {
+//FSCalendar관련 딜리게이트를 포함시켜주지 않으면 에러가 난다 띠벌탱
+class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     
     //화면과 연결된 변수 및 아웃렛 정의
     fileprivate var calendar: FSCalendar!
