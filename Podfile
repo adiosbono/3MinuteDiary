@@ -3,14 +3,15 @@
 
 target '3MinuteDiary' do
   # Comment the next line if you don't want to use dynamic frameworks
+  pod 'FSCalendar'
+  pod 'Alamofire'
+  pod 'FMDB'
   use_frameworks!
 
   # Pods for 3MinuteDiary
 
   target '3MinuteDiaryTests' do
-	pod 'FSCalendar'
-	pod 'Alamofire'
-	pod 'FMDB'
+	
     inherit! :search_paths
     # Pods for testing
   end

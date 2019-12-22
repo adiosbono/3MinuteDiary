@@ -3,13 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		019AC93D9A5A6CE4B3486198C1F96FF5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBCD5169B524477639A9A41855A47F99 /* QuartzCore.framework */; };
-		029CA3B1EE02EFBBB1CCCDE446223FD8 /* Pods-3MinuteDiary-3MinuteDiaryUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 465A33E6CBE24C61875A37F956C58841 /* Pods-3MinuteDiary-3MinuteDiaryUITests-dummy.m */; };
-		02FED8683E0072825FFD4A99CB877718 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950B64BEB39CC506B65115EE95302D64 /* Foundation.framework */; };
 		0370787809FDCBCB15C2D4DD22190732 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = F2903B4CCDFD0FA17D14F409B79D5A01 /* FMDatabasePool.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		0673F3481EF6165F70E8F0990278BDC7 /* FSCalendarStickyHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 9071B2E727416C4371F7E4AED1BA0788 /* FSCalendarStickyHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		083B18F49C35728E9A7B828E73DF2EB8 /* FSCalendarDelegationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0309194A677599800B659A0F80D1A10A /* FSCalendarDelegationFactory.m */; };
@@ -24,6 +22,7 @@
 		132E0F619E4338E5D1B27E4C72076B3F /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DC239C1710201DA71656EB5F0CDC3B /* Notifications.swift */; };
 		1945CD5D63A1C164AEAAA9A33E85571E /* Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CAFC67DD95B1536D74AF8BBFB586A7A /* Alamofire-dummy.m */; };
 		1986B50C74F1697EA43F68335C93CEB3 /* MultipartFormData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F0601053AA33186A9606F0570228E13 /* MultipartFormData.swift */; };
+		19F996F7BC13F0F68A04F6A1633379AC /* Pods-3MinuteDiary-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8454B52D86728C56C2DCDF0FE3BDADBC /* Pods-3MinuteDiary-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BDE0FED974714A835CB89AD1062FF0D /* FSCalendarExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 413D10FE1C19A072414061E73C44D286 /* FSCalendarExtensions.m */; };
 		1E0C257A13260508F9FC03D637764614 /* FSCalendarStickyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8948C67C011513B5AFED463929A35C51 /* FSCalendarStickyHeader.m */; };
 		1ED6A018A50C929244C03FC6A46670F8 /* FSCalendarDelegationFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 19BB7B8D7B8094B5E0CF1A3A6535E615 /* FSCalendarDelegationFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -32,40 +31,42 @@
 		2C61B040BA6A9A7AE66C4D9BA26D5520 /* SessionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11EB2C7E8474B06FCD61F9EBAC2D76C /* SessionDelegate.swift */; };
 		2E5EC07CFD18A132E57569D00117C703 /* FSCalendarConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 82EDA40FA6663DFA119F19DACC40B6A1 /* FSCalendarConstants.m */; };
 		3571F958A3907B3A806E62D50C2550D4 /* NetworkReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DB9F9AF054829DEA75AC304BD09FDB /* NetworkReachabilityManager.swift */; };
+		36AA3DCF26B7120D9975B64DF5AF2F4D /* Pods-3MinuteDiaryTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 93F0BA76327AB0DA2C17AC5ED32F39FF /* Pods-3MinuteDiaryTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		37296B38A55A40BEF65ECFC9B0527D8E /* FMDatabase.h in Headers */ = {isa = PBXBuildFile; fileRef = ECD08D5E2FC841C7E7EF458E445DE4B8 /* FMDatabase.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3F0F6CEFD0801BEA64D1A265AE92FC05 /* FSCalendarWeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9D572E12D975C1CE5AD45A141BD87FF3 /* FSCalendarWeekdayView.m */; };
-		479CFEBA65A56F6FD8A8747BEC7A6FC4 /* Pods-3MinuteDiary-3MinuteDiaryUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2895A79E7FFB6F40A941F3DB48DFCBFA /* Pods-3MinuteDiary-3MinuteDiaryUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		487467099AB8229395A1A005DC6AD4F4 /* FSCalendarCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 563191B4755B99F87520224B63C10A8E /* FSCalendarCollectionViewLayout.m */; };
 		48DC50A48CEC3AEC56CB6C3144EF4D47 /* FSCalendarDelegationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = E59EA02FB5891742E79E292A58BC88B6 /* FSCalendarDelegationProxy.m */; };
+		491E6F3C160C4101F56105D2DE921738 /* Pods-3MinuteDiaryTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 35E68D3773DC76601F500E0D8CF80D63 /* Pods-3MinuteDiaryTests-dummy.m */; };
 		4B06E7A9994CCDB40333001E83F1FD79 /* FSCalendarCalculator.h in Headers */ = {isa = PBXBuildFile; fileRef = FA08750CBFCA36DB8F78EC375124DAA2 /* FSCalendarCalculator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4B11C48CCA7FD866A774B0E49FB595DA /* FSCalendarTransitionCoordinator.h in Headers */ = {isa = PBXBuildFile; fileRef = 286D54F54869453318F951F0433CCD85 /* FSCalendarTransitionCoordinator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4C79C31591A80E7209E52F0928F7546C /* FSCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2346A4121AB16D1A00C1656C5D791F96 /* FSCalendarCell.m */; };
+		4FB2C3EA49D6F3746200AB118EB5D295 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950B64BEB39CC506B65115EE95302D64 /* Foundation.framework */; };
 		52565719316CADB05B7C8FA79964519A /* FSCalendarCollectionViewLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 469566AB7C534DE3F58FBB8BEC198263 /* FSCalendarCollectionViewLayout.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53791F5E5F07400F92CFDFC89A432305 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0DBFCFDB1FD38212819C37F1B0A1E6A /* Validation.swift */; };
 		538F74CC22D0D13E9D79AC3ECC6DFFE7 /* FMDatabaseAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 76517CC9E9BE3651DB059D9FB397E3B2 /* FMDatabaseAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		58397081B825BF1A502B1B3C25E750D1 /* Pods-3MinuteDiary-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 768037A01AC9805632791D6B046BA08D /* Pods-3MinuteDiary-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		58AD6758D9237AFCBAE75CF5AA275C47 /* FSCalendarAppearance.h in Headers */ = {isa = PBXBuildFile; fileRef = 4EB094E01AA53AEE746ABE21D6F4EE2B /* FSCalendarAppearance.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		59FD47D8B9E4E156568E246B9D299EE1 /* Pods-3MinuteDiary-3MinuteDiaryUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AD4BAB668620C61A3BB0C5B0C1DCE4D8 /* Pods-3MinuteDiary-3MinuteDiaryUITests-dummy.m */; };
 		634E11CA470DB7ADB8F054E30E042B25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950B64BEB39CC506B65115EE95302D64 /* Foundation.framework */; };
 		64744C911253C3E01461FAD7C935C8D7 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = B208FA526F333CE3BF370AB4E600331A /* Result.swift */; };
-		6B8CFB0EFF233BC18B530308C68F183E /* Pods-3MinuteDiaryTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B85137A6797C68958E35B5530E2095FD /* Pods-3MinuteDiaryTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6A105D42DDE09480D345B67E41B7BCA5 /* Pods-3MinuteDiary-3MinuteDiaryUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 86D3FE96D84F4E8E8A9DDE699C5B58CC /* Pods-3MinuteDiary-3MinuteDiaryUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BC37BFF8C8F42F21404D42C4E6BE6E1 /* Pods-3MinuteDiary-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E1C09F32C28A7119F486FB2743407EB /* Pods-3MinuteDiary-dummy.m */; };
 		6C58288FB8A294C16676BF03E51AA34D /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 7F41C4A5D016A2DEF554C5E4B9BA268F /* FMDatabase.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0"; }; };
 		6CF04FDA8240D858280268329C2674E9 /* FSCalendarConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = AF3D01312AFBFDD665F5C7C21824BDBB /* FSCalendarConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7394E123FBD9832A5D6FD726D5D9470C /* FMDatabaseQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 1413D1D44E7BE13826A583282687EF4D /* FMDatabaseQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7664FD4F59A0C00866CBAE60B0A3AD64 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950B64BEB39CC506B65115EE95302D64 /* Foundation.framework */; };
-		798A6914E9FDB6E71AB661924E4D0748 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950B64BEB39CC506B65115EE95302D64 /* Foundation.framework */; };
 		7B2C14BA8AF4E5981ED01458225D7AA3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49F545AB76C9016ECAD7D83A1129E704 /* UIKit.framework */; };
 		7D4E0D91FE60904C9FB50F6D447B8A30 /* FMDB-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DDEC074D0729005C71D8E185AF0D513A /* FMDB-dummy.m */; };
-		7DCC181D9D53D3B7A8FB73CB603370BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950B64BEB39CC506B65115EE95302D64 /* Foundation.framework */; };
 		7EAEA451E04E5E96AFE6D1B63313F624 /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 55AAD23F07D1722D8F5FF4F0119877A1 /* FSCalendar.m */; };
 		83956E20859CDBBE7BC38ABADE0170FB /* AFError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97A01900F9EEC6EB799BA4480EF96970 /* AFError.swift */; };
 		8633C154CEC62F5ECAE687CC7ED8067E /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 26268ED4FC0127CDCF2CFF350B339F96 /* FSCalendarAppearance.m */; };
-		8655695228C63705E4CD02E2880B70A3 /* Pods-3MinuteDiaryTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 16CA45CA3C7283B3615EF7B576037539 /* Pods-3MinuteDiaryTests-dummy.m */; };
 		8AB76EF4157ADE0806FA3B4A1549EAD2 /* FSCalendar-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B112E9C4036175C28E4BBCA1AD16DB0 /* FSCalendar-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		919B72E0CE7743838A947288D10AAEA3 /* FSCalendarDynamicHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 5716822EEDCD0088F4D509CB08404A41 /* FSCalendarDynamicHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		91A96B98AD78AAD881AB6389B1368405 /* FSCalendarWeekdayView.h in Headers */ = {isa = PBXBuildFile; fileRef = 92AFD1FFBE107E37B6E462B7E9096771 /* FSCalendarWeekdayView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		931BBB8230A25161D5C37528A8F9FECF /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E19047172C7BC85EA299D3B6FCAACE4 /* SessionManager.swift */; };
 		933FDA5970AA525D6CB92BFEBA2BAB4A /* Timeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9017C077B6FB0EAF557508B91915D427 /* Timeline.swift */; };
 		98A929C8E9012AB167672714FFD2113C /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2713F073814005AAA27E5DE0403142A /* Request.swift */; };
+		9A32AA022EC0CF0B9DBACFE754E5094A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950B64BEB39CC506B65115EE95302D64 /* Foundation.framework */; };
+		A61301A3AD23375992AD66B058E06BF9 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 950B64BEB39CC506B65115EE95302D64 /* Foundation.framework */; };
 		A92CDCFE2DC0D002DE1F208C2FEAB545 /* FMDB.h in Headers */ = {isa = PBXBuildFile; fileRef = F58D8CFB93CD73FD2865A95C4599A45C /* FMDB.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AFC64B1097F7355FF423D6A73E9C7210 /* TaskDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98225682949FEE4B9917C895C23DD2E3 /* TaskDelegate.swift */; };
 		BADEDF3F5C6B8ECA687B3061C65C7E5D /* FSCalendarHeaderView.h in Headers */ = {isa = PBXBuildFile; fileRef = B1BE7E5231B3C4B60B1AAEB3FF90B7F6 /* FSCalendarHeaderView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -73,7 +74,6 @@
 		BEE6B677416CA71C981D1D3F60B18C96 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF757AFD19240DBA6246CCBFE42751FE /* Alamofire.swift */; };
 		C3C830DA8E913ECBCF786ECB939918B2 /* FSCalendarSeparatorDecorationView.h in Headers */ = {isa = PBXBuildFile; fileRef = E8B5B76A1CDC422FA660863058412239 /* FSCalendarSeparatorDecorationView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C476BDEFC2C6E6CC23C0613BC70FC1B3 /* FSCalendarCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 1B2B3D2369DB7ED1B0B785F9565CBBCD /* FSCalendarCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CD914938F20FA95E3B5301499ACFE8A0 /* Pods-3MinuteDiary-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FB15A799DE4C506B815F2BE4BA669E6C /* Pods-3MinuteDiary-dummy.m */; };
 		D192D52340F6B27DA840BE2FA9F49EE9 /* FSCalendarTransitionCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = DFFE47E17E2F1812E12879AFD3D66401 /* FSCalendarTransitionCoordinator.m */; };
 		D3D8C379C6E4FB487E5ABD6800AD7B7E /* DispatchQueue+Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEC105AEF284AD3EE06C8DD806E1E337 /* DispatchQueue+Alamofire.swift */; };
 		D65C254F5ABF2CB5ECEE50FE8F8E1A80 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98F566BABC6C3E7491D4B4FFE9E3A0FF /* Response.swift */; };
@@ -89,28 +89,49 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1AA41BD8B0EF980BAB59ECC728F808F5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EAAA1AD3A8A1B59AB91319EE40752C6D;
-			remoteInfo = Alamofire;
-		};
-		4C8CA7F470A0100BB7F6ABC11575FC0E /* PBXContainerItemProxy */ = {
+		2EC534D920F551EF62C2ECD40C4DFB8B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 8592E0E389D40AC17881400ADC67ABC0;
 			remoteInfo = FMDB;
 		};
-		810093FE32B2104D95A63C0FD7011E64 /* PBXContainerItemProxy */ = {
+		5B2A41F4445A88D4F1010FB825D8B88C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EAAA1AD3A8A1B59AB91319EE40752C6D;
+			remoteInfo = Alamofire;
+		};
+		657CD2242E904C8EF49EB1F87382E183 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = F5CBAF5F4981B191AFB6D869997D77A6;
 			remoteInfo = "Pods-3MinuteDiary";
 		};
-		C3281F91E67EE16503D1EF38F7E46C6B /* PBXContainerItemProxy */ = {
+		86EB8C89F5B9CDD76DFE9C5930F990E9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EAAA1AD3A8A1B59AB91319EE40752C6D;
+			remoteInfo = Alamofire;
+		};
+		97DD8E8582676B6D78339343B836A37C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8592E0E389D40AC17881400ADC67ABC0;
+			remoteInfo = FMDB;
+		};
+		FACEEA17A6BBF4CD79B8D8CC9B952453 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13285D54682BEAD805960F9E6EEB9949;
+			remoteInfo = FSCalendar;
+		};
+		FB128DCE07499B8F5DBB0647C369A38F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -122,115 +143,116 @@
 /* Begin PBXFileReference section */
 		01AA35F0D854086B5A4939BC87BDDE86 /* Alamofire-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Alamofire-Info.plist"; sourceTree = "<group>"; };
 		0309194A677599800B659A0F80D1A10A /* FSCalendarDelegationFactory.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarDelegationFactory.m; path = FSCalendar/FSCalendarDelegationFactory.m; sourceTree = "<group>"; };
+		044360B4B0D609A84771F840563D3F5E /* Pods-3MinuteDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-3MinuteDiary.release.xcconfig"; sourceTree = "<group>"; };
 		0669397EAF80563DD95C6DD31AF3431C /* FSCalendar.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendar.h; path = FSCalendar/FSCalendar.h; sourceTree = "<group>"; };
 		0ED2F1E790C49DC3D8D8BF07A84054B9 /* Pods_3MinuteDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_3MinuteDiary.framework; path = "Pods-3MinuteDiary.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		10C971CA5639B7F050C78DE7024E6826 /* Pods-3MinuteDiary-3MinuteDiaryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-3MinuteDiary-3MinuteDiaryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		1413D1D44E7BE13826A583282687EF4D /* FMDatabaseQueue.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = src/fmdb/FMDatabaseQueue.h; sourceTree = "<group>"; };
-		16CA45CA3C7283B3615EF7B576037539 /* Pods-3MinuteDiaryTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-3MinuteDiaryTests-dummy.m"; sourceTree = "<group>"; };
-		1931B34CFEAC60041C2ADC9CDE4E2564 /* Pods-3MinuteDiaryTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-3MinuteDiaryTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		166B03B4AB847BF3BD31EF2C1FC58A9B /* Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig"; sourceTree = "<group>"; };
 		19BB7B8D7B8094B5E0CF1A3A6535E615 /* FSCalendarDelegationFactory.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarDelegationFactory.h; path = FSCalendar/FSCalendarDelegationFactory.h; sourceTree = "<group>"; };
 		1AC42DBA13560F626AF1221370B2A969 /* FMDB.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FMDB.modulemap; sourceTree = "<group>"; };
 		1B2B3D2369DB7ED1B0B785F9565CBBCD /* FSCalendarCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarCell.h; path = FSCalendar/FSCalendarCell.h; sourceTree = "<group>"; };
-		1BB080BAD745236FDCE2B57A22B94236 /* Pods-3MinuteDiaryTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-3MinuteDiaryTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		1FEA3710F8B59DC0441F5392D50552FE /* Pods-3MinuteDiaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-3MinuteDiaryTests.release.xcconfig"; sourceTree = "<group>"; };
 		2346A4121AB16D1A00C1656C5D791F96 /* FSCalendarCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarCell.m; path = FSCalendar/FSCalendarCell.m; sourceTree = "<group>"; };
 		26268ED4FC0127CDCF2CFF350B339F96 /* FSCalendarAppearance.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarAppearance.m; path = FSCalendar/FSCalendarAppearance.m; sourceTree = "<group>"; };
 		286D54F54869453318F951F0433CCD85 /* FSCalendarTransitionCoordinator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarTransitionCoordinator.h; path = FSCalendar/FSCalendarTransitionCoordinator.h; sourceTree = "<group>"; };
-		2895A79E7FFB6F40A941F3DB48DFCBFA /* Pods-3MinuteDiary-3MinuteDiaryUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-3MinuteDiary-3MinuteDiaryUITests-umbrella.h"; sourceTree = "<group>"; };
-		29A5710C9D4A41EDC0B2DDF430D4ACD7 /* Pods-3MinuteDiary-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-3MinuteDiary-acknowledgements.markdown"; sourceTree = "<group>"; };
 		2CDF74C9E7FC10C02EE7946C3CEA4A33 /* Pods_3MinuteDiaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_3MinuteDiaryTests.framework; path = "Pods-3MinuteDiaryTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		35E68D3773DC76601F500E0D8CF80D63 /* Pods-3MinuteDiaryTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-3MinuteDiaryTests-dummy.m"; sourceTree = "<group>"; };
 		37EC6FC71CC8322FDBC3D4FF354886E8 /* FSCalendarCalculator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarCalculator.m; path = FSCalendar/FSCalendarCalculator.m; sourceTree = "<group>"; };
 		3D1B0BDE8B0CCA334F8ADA95CDF9B174 /* FMDB-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FMDB-umbrella.h"; sourceTree = "<group>"; };
 		3E7CFDDD4679D2BD80692373A71DA6BF /* FSCalendar-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FSCalendar-Info.plist"; sourceTree = "<group>"; };
 		41155BE91A55DB3866E6BFA4C4ECE7C7 /* FSCalendar.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FSCalendar.xcconfig; sourceTree = "<group>"; };
 		413D10FE1C19A072414061E73C44D286 /* FSCalendarExtensions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarExtensions.m; path = FSCalendar/FSCalendarExtensions.m; sourceTree = "<group>"; };
 		4191BD250B090A65D144F922C40AE92D /* FSCalendarCollectionView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarCollectionView.m; path = FSCalendar/FSCalendarCollectionView.m; sourceTree = "<group>"; };
-		43AD73C5A3D39CA9FEE57F31F9752CD4 /* Pods-3MinuteDiary-3MinuteDiaryUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-3MinuteDiary-3MinuteDiaryUITests.modulemap"; sourceTree = "<group>"; };
-		465A33E6CBE24C61875A37F956C58841 /* Pods-3MinuteDiary-3MinuteDiaryUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-3MinuteDiary-3MinuteDiaryUITests-dummy.m"; sourceTree = "<group>"; };
+		466330943A0EBC50879754C0651469EE /* Pods-3MinuteDiary-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-3MinuteDiary-acknowledgements.markdown"; sourceTree = "<group>"; };
 		469566AB7C534DE3F58FBB8BEC198263 /* FSCalendarCollectionViewLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarCollectionViewLayout.h; path = FSCalendar/FSCalendarCollectionViewLayout.h; sourceTree = "<group>"; };
 		49F545AB76C9016ECAD7D83A1129E704 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		4BA856C5DEF431AB2250CE2DEDAEACF9 /* FMDB-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "FMDB-Info.plist"; sourceTree = "<group>"; };
+		4C8826C0644BC31ADB70202DB51E4C96 /* Pods-3MinuteDiary-3MinuteDiaryUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-3MinuteDiary-3MinuteDiaryUITests.modulemap"; sourceTree = "<group>"; };
 		4E19047172C7BC85EA299D3B6FCAACE4 /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
 		4EB094E01AA53AEE746ABE21D6F4EE2B /* FSCalendarAppearance.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarAppearance.h; path = FSCalendar/FSCalendarAppearance.h; sourceTree = "<group>"; };
-		51066A0DAB5BCDBD315C16D9F3698AF9 /* Pods-3MinuteDiaryTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-3MinuteDiaryTests-frameworks.sh"; sourceTree = "<group>"; };
 		55AAD23F07D1722D8F5FF4F0119877A1 /* FSCalendar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendar.m; path = FSCalendar/FSCalendar.m; sourceTree = "<group>"; };
 		563191B4755B99F87520224B63C10A8E /* FSCalendarCollectionViewLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarCollectionViewLayout.m; path = FSCalendar/FSCalendarCollectionViewLayout.m; sourceTree = "<group>"; };
 		5716822EEDCD0088F4D509CB08404A41 /* FSCalendarDynamicHeader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarDynamicHeader.h; path = FSCalendar/FSCalendarDynamicHeader.h; sourceTree = "<group>"; };
-		58169A0173F9F6E8AB3D8A64AAB28391 /* Pods-3MinuteDiary-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-3MinuteDiary-acknowledgements.plist"; sourceTree = "<group>"; };
 		5978546039C5D847F22207359438E686 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = src/fmdb/FMDatabaseQueue.m; sourceTree = "<group>"; };
+		5C37BAFCAC2FD1E2B6D0CBC3F1C4AF30 /* Pods-3MinuteDiaryTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-3MinuteDiaryTests.release.xcconfig"; sourceTree = "<group>"; };
 		5C9B5DD4FE04823F174821DFBDE000CC /* FMResultSet.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = src/fmdb/FMResultSet.h; sourceTree = "<group>"; };
+		5CCF95B0E173A2350C3601FB76BC3F5A /* Pods-3MinuteDiary-3MinuteDiaryUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-3MinuteDiary-3MinuteDiaryUITests-Info.plist"; sourceTree = "<group>"; };
 		5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Alamofire.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E198D11AF2B23934611887DC0D487D0 /* FSCalendarSeparatorDecorationView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarSeparatorDecorationView.m; path = FSCalendar/FSCalendarSeparatorDecorationView.m; sourceTree = "<group>"; };
 		5F0601053AA33186A9606F0570228E13 /* MultipartFormData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MultipartFormData.swift; path = Source/MultipartFormData.swift; sourceTree = "<group>"; };
 		61DC239C1710201DA71656EB5F0CDC3B /* Notifications.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notifications.swift; path = Source/Notifications.swift; sourceTree = "<group>"; };
+		6270877D32587847D05128B73E70EB27 /* Pods-3MinuteDiary.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-3MinuteDiary.modulemap"; sourceTree = "<group>"; };
+		642F70DBBE35E8BADDED35C35777E1D1 /* Pods-3MinuteDiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-3MinuteDiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
+		681C1AD70E10539FDF73621BC9A42D7B /* Pods-3MinuteDiary-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-3MinuteDiary-acknowledgements.plist"; sourceTree = "<group>"; };
 		683BAA326779C481D0BCE01777938C71 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = src/fmdb/FMDatabaseAdditions.m; sourceTree = "<group>"; };
 		6A3ED2E3911332009BAF3D8E2AED3E2B /* FMDatabasePool.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = src/fmdb/FMDatabasePool.h; sourceTree = "<group>"; };
 		71027BC0D8F8D8C9876A4AB2F84146C1 /* FSCalendar.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = FSCalendar.modulemap; sourceTree = "<group>"; };
-		724EACB24A8F949F2D2ADCD3AA6D559B /* Pods-3MinuteDiaryTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-3MinuteDiaryTests-Info.plist"; sourceTree = "<group>"; };
+		718A8A1F662134BEDF9B9DC39527A97F /* Pods-3MinuteDiary-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-3MinuteDiary-frameworks.sh"; sourceTree = "<group>"; };
 		751E364C5557C3D372925BB8CE87A268 /* FMDB.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FMDB.xcconfig; sourceTree = "<group>"; };
-		7583AA07D61461C069B8563A4D8E5180 /* Pods-3MinuteDiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-3MinuteDiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
+		75296C1786769FFF2173E9000BC7AE8C /* Pods-3MinuteDiary-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-3MinuteDiary-Info.plist"; sourceTree = "<group>"; };
 		76517CC9E9BE3651DB059D9FB397E3B2 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = src/fmdb/FMDatabaseAdditions.h; sourceTree = "<group>"; };
-		768037A01AC9805632791D6B046BA08D /* Pods-3MinuteDiary-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-3MinuteDiary-umbrella.h"; sourceTree = "<group>"; };
 		770BB25BF351AD9E6B4448ECF58AFD18 /* FSCalendar-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FSCalendar-prefix.pch"; sourceTree = "<group>"; };
 		7B112E9C4036175C28E4BBCA1AD16DB0 /* FSCalendar-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FSCalendar-umbrella.h"; sourceTree = "<group>"; };
 		7F41C4A5D016A2DEF554C5E4B9BA268F /* FMDatabase.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = src/fmdb/FMDatabase.m; sourceTree = "<group>"; };
 		82ECF1FA4204A5E7BD9614E9C48C91A8 /* Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-umbrella.h"; sourceTree = "<group>"; };
 		82EDA40FA6663DFA119F19DACC40B6A1 /* FSCalendarConstants.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarConstants.m; path = FSCalendar/FSCalendarConstants.m; sourceTree = "<group>"; };
+		8454B52D86728C56C2DCDF0FE3BDADBC /* Pods-3MinuteDiary-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-3MinuteDiary-umbrella.h"; sourceTree = "<group>"; };
+		86D3FE96D84F4E8E8A9DDE699C5B58CC /* Pods-3MinuteDiary-3MinuteDiaryUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-3MinuteDiary-3MinuteDiaryUITests-umbrella.h"; sourceTree = "<group>"; };
 		870CC59E4EAB0BC61B7B9EB517D2C7D4 /* FMResultSet.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = src/fmdb/FMResultSet.m; sourceTree = "<group>"; };
 		8948C67C011513B5AFED463929A35C51 /* FSCalendarStickyHeader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarStickyHeader.m; path = FSCalendar/FSCalendarStickyHeader.m; sourceTree = "<group>"; };
+		8E1C09F32C28A7119F486FB2743407EB /* Pods-3MinuteDiary-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-3MinuteDiary-dummy.m"; sourceTree = "<group>"; };
 		8F650C132E4862FFDCD8D884CEE0DB19 /* FMDB-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FMDB-prefix.pch"; sourceTree = "<group>"; };
 		9017C077B6FB0EAF557508B91915D427 /* Timeline.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Timeline.swift; path = Source/Timeline.swift; sourceTree = "<group>"; };
 		9071B2E727416C4371F7E4AED1BA0788 /* FSCalendarStickyHeader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarStickyHeader.h; path = FSCalendar/FSCalendarStickyHeader.h; sourceTree = "<group>"; };
 		92AFD1FFBE107E37B6E462B7E9096771 /* FSCalendarWeekdayView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarWeekdayView.h; path = FSCalendar/FSCalendarWeekdayView.h; sourceTree = "<group>"; };
+		93F0BA76327AB0DA2C17AC5ED32F39FF /* Pods-3MinuteDiaryTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-3MinuteDiaryTests-umbrella.h"; sourceTree = "<group>"; };
 		950B64BEB39CC506B65115EE95302D64 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		95209B8BB966524BC76543F99C75F5FE /* FSCalendar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FSCalendar.framework; path = FSCalendar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97A01900F9EEC6EB799BA4480EF96970 /* AFError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AFError.swift; path = Source/AFError.swift; sourceTree = "<group>"; };
 		98225682949FEE4B9917C895C23DD2E3 /* TaskDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TaskDelegate.swift; path = Source/TaskDelegate.swift; sourceTree = "<group>"; };
 		98F566BABC6C3E7491D4B4FFE9E3A0FF /* Response.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Source/Response.swift; sourceTree = "<group>"; };
+		99A8E38E3C577EA916FBE57B462DBFA8 /* Pods-3MinuteDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-3MinuteDiary.debug.xcconfig"; sourceTree = "<group>"; };
 		9CAFC67DD95B1536D74AF8BBFB586A7A /* Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Alamofire-dummy.m"; sourceTree = "<group>"; };
 		9D572E12D975C1CE5AD45A141BD87FF3 /* FSCalendarWeekdayView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarWeekdayView.m; path = FSCalendar/FSCalendarWeekdayView.m; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A29B762FAAB28D31A02AAE24CC6B65C6 /* FSCalendarExtensions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarExtensions.h; path = FSCalendar/FSCalendarExtensions.h; sourceTree = "<group>"; };
-		A2DFFFEF19D979A2E1F5B0BA5EC45D75 /* Pods-3MinuteDiaryTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-3MinuteDiaryTests.modulemap"; sourceTree = "<group>"; };
 		A3A80BA70CFB7F75C5391BEBBBA8C9DA /* FMDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = FMDB.framework; path = FMDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A7136C59C4FBA4E321371D4E47A70A31 /* Pods-3MinuteDiary-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-3MinuteDiary-Info.plist"; sourceTree = "<group>"; };
-		A7522AA41EBB06AF3898F5CFF20354B0 /* Pods-3MinuteDiary-3MinuteDiaryUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-3MinuteDiary-3MinuteDiaryUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		AAF156FBEDBB45D1C40D87FD3C3C3831 /* Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Alamofire-prefix.pch"; sourceTree = "<group>"; };
-		AC9323B0AE1294448C66D615A22D54B4 /* Pods-3MinuteDiary-3MinuteDiaryUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-3MinuteDiary-3MinuteDiaryUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		AD4BAB668620C61A3BB0C5B0C1DCE4D8 /* Pods-3MinuteDiary-3MinuteDiaryUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-3MinuteDiary-3MinuteDiaryUITests-dummy.m"; sourceTree = "<group>"; };
 		AEC105AEF284AD3EE06C8DD806E1E337 /* DispatchQueue+Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DispatchQueue+Alamofire.swift"; path = "Source/DispatchQueue+Alamofire.swift"; sourceTree = "<group>"; };
 		AF3D01312AFBFDD665F5C7C21824BDBB /* FSCalendarConstants.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarConstants.h; path = FSCalendar/FSCalendarConstants.h; sourceTree = "<group>"; };
-		AF43CA0B48DE68277C18AC6E92B349CB /* Pods-3MinuteDiary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-3MinuteDiary.release.xcconfig"; sourceTree = "<group>"; };
-		B0CB9E702C8C65430FF19CF0436FD449 /* Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig"; sourceTree = "<group>"; };
+		AFC58D5470BA20B99A87CC0B07BBF765 /* Pods-3MinuteDiary-3MinuteDiaryUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-3MinuteDiary-3MinuteDiaryUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		B1BE7E5231B3C4B60B1AAEB3FF90B7F6 /* FSCalendarHeaderView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarHeaderView.h; path = FSCalendar/FSCalendarHeaderView.h; sourceTree = "<group>"; };
 		B208FA526F333CE3BF370AB4E600331A /* Result.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Source/Result.swift; sourceTree = "<group>"; };
-		B649EE7261F894586F9D75E414824502 /* Pods-3MinuteDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-3MinuteDiary.debug.xcconfig"; sourceTree = "<group>"; };
+		B56A425EC552EC23CB2E2BFA0B53BE37 /* Pods-3MinuteDiaryTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-3MinuteDiaryTests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		B641B7809F6B6E67659C1C146DBE9724 /* Pods-3MinuteDiary-3MinuteDiaryUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-3MinuteDiary-3MinuteDiaryUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		B70EAD61206F9D211B416DAB8EB317A6 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
-		B85137A6797C68958E35B5530E2095FD /* Pods-3MinuteDiaryTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-3MinuteDiaryTests-umbrella.h"; sourceTree = "<group>"; };
 		B8B32FD5907D861B7CEFED5DBE2DE33E /* FSCalendarHeaderView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarHeaderView.m; path = FSCalendar/FSCalendarHeaderView.m; sourceTree = "<group>"; };
 		B9F1A924F114E6660480EAA7B01DAC2E /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
 		C2713F073814005AAA27E5DE0403142A /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
+		C3920675684A446679FC4EDA1556FF00 /* Pods-3MinuteDiaryTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-3MinuteDiaryTests-Info.plist"; sourceTree = "<group>"; };
 		C876978320D63A69BA138437BBD0DF68 /* FSCalendarCollectionView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarCollectionView.h; path = FSCalendar/FSCalendarCollectionView.h; sourceTree = "<group>"; };
-		C932D5DE9ED8B228E61B0C78AAA5CDC2 /* Pods-3MinuteDiary-3MinuteDiaryUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-3MinuteDiary-3MinuteDiaryUITests-Info.plist"; sourceTree = "<group>"; };
 		CB5C98DA609EF68582972AE83A6A07ED /* Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Alamofire.xcconfig; sourceTree = "<group>"; };
 		CBCD5169B524477639A9A41855A47F99 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		CCADCB6F85B657412EBBD3EE15B920EA /* FSCalendar-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FSCalendar-dummy.m"; sourceTree = "<group>"; };
 		D855DB9C950CFF94A7D2510BE6D97560 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
-		DD02C034287C05B9E00FCA4427EA664B /* Pods-3MinuteDiary.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-3MinuteDiary.modulemap"; sourceTree = "<group>"; };
 		DDEC074D0729005C71D8E185AF0D513A /* FMDB-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FMDB-dummy.m"; sourceTree = "<group>"; };
 		DFFE47E17E2F1812E12879AFD3D66401 /* FSCalendarTransitionCoordinator.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarTransitionCoordinator.m; path = FSCalendar/FSCalendarTransitionCoordinator.m; sourceTree = "<group>"; };
+		E257184A6937BFBBE0D4F2E40110F49B /* Pods-3MinuteDiaryTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-3MinuteDiaryTests.modulemap"; sourceTree = "<group>"; };
 		E59EA02FB5891742E79E292A58BC88B6 /* FSCalendarDelegationProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarDelegationProxy.m; path = FSCalendar/FSCalendarDelegationProxy.m; sourceTree = "<group>"; };
 		E834C810BB7A96EDB75643A8B4D92416 /* Pods_3MinuteDiary_3MinuteDiaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_3MinuteDiary_3MinuteDiaryUITests.framework; path = "Pods-3MinuteDiary-3MinuteDiaryUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8B5B76A1CDC422FA660863058412239 /* FSCalendarSeparatorDecorationView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarSeparatorDecorationView.h; path = FSCalendar/FSCalendarSeparatorDecorationView.h; sourceTree = "<group>"; };
 		ECD08D5E2FC841C7E7EF458E445DE4B8 /* FMDatabase.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = src/fmdb/FMDatabase.h; sourceTree = "<group>"; };
+		EF7BDF3E1EDEEB8FB49ED1F18FDC1E8E /* Pods-3MinuteDiaryTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-3MinuteDiaryTests-acknowledgements.plist"; sourceTree = "<group>"; };
+		F01E96D64265A6CA4603173B17142D9F /* Pods-3MinuteDiary-3MinuteDiaryUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-3MinuteDiary-3MinuteDiaryUITests-frameworks.sh"; sourceTree = "<group>"; };
 		F0DBFCFDB1FD38212819C37F1B0A1E6A /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
 		F11EB2C7E8474B06FCD61F9EBAC2D76C /* SessionDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionDelegate.swift; path = Source/SessionDelegate.swift; sourceTree = "<group>"; };
 		F251501DD37647382B4B57DBB6D567A3 /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = Alamofire.modulemap; sourceTree = "<group>"; };
 		F2903B4CCDFD0FA17D14F409B79D5A01 /* FMDatabasePool.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = src/fmdb/FMDatabasePool.m; sourceTree = "<group>"; };
 		F2F12438E71D27F0AE2E54B60DCF4590 /* FSCalendarDelegationProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarDelegationProxy.h; path = FSCalendar/FSCalendarDelegationProxy.h; sourceTree = "<group>"; };
+		F36E95405FC51198F615D1487747F1E5 /* Pods-3MinuteDiary-3MinuteDiaryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-3MinuteDiary-3MinuteDiaryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		F4DB9F9AF054829DEA75AC304BD09FDB /* NetworkReachabilityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkReachabilityManager.swift; path = Source/NetworkReachabilityManager.swift; sourceTree = "<group>"; };
 		F58D8CFB93CD73FD2865A95C4599A45C /* FMDB.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = src/fmdb/FMDB.h; sourceTree = "<group>"; };
 		FA08750CBFCA36DB8F78EC375124DAA2 /* FSCalendarCalculator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarCalculator.h; path = FSCalendar/FSCalendarCalculator.h; sourceTree = "<group>"; };
-		FB15A799DE4C506B815F2BE4BA669E6C /* Pods-3MinuteDiary-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-3MinuteDiary-dummy.m"; sourceTree = "<group>"; };
 		FF757AFD19240DBA6246CCBFE42751FE /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -243,6 +265,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		16E2F2A4FFD0ECC73E3B792DADA7E5A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A61301A3AD23375992AD66B058E06BF9 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		41E857D338F96D89E73F6E28241F0A8B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -251,27 +281,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6C6A00ED451B617973F4E56144FA12B9 /* Frameworks */ = {
+		62B41ECBBBC494E669CAF1034212B135 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7DCC181D9D53D3B7A8FB73CB603370BB /* Foundation.framework in Frameworks */,
+				9A32AA022EC0CF0B9DBACFE754E5094A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8620E18BBD70D701105F9403F05D4E14 /* Frameworks */ = {
+		A580F3B12B61B20D0CA8F105A325C413 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02FED8683E0072825FFD4A99CB877718 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B7E0EC3FED844A886CB3A32BC393D267 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				798A6914E9FDB6E71AB661924E4D0748 /* Foundation.framework in Frameworks */,
+				4FB2C3EA49D6F3746200AB118EB5D295 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,6 +329,23 @@
 				C18BABFF9523A33465B5A91496FF0C3D /* iOS */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		09763A62A8AF4DCE92033D52129A42F0 /* Pods-3MinuteDiary */ = {
+			isa = PBXGroup;
+			children = (
+				6270877D32587847D05128B73E70EB27 /* Pods-3MinuteDiary.modulemap */,
+				466330943A0EBC50879754C0651469EE /* Pods-3MinuteDiary-acknowledgements.markdown */,
+				681C1AD70E10539FDF73621BC9A42D7B /* Pods-3MinuteDiary-acknowledgements.plist */,
+				8E1C09F32C28A7119F486FB2743407EB /* Pods-3MinuteDiary-dummy.m */,
+				718A8A1F662134BEDF9B9DC39527A97F /* Pods-3MinuteDiary-frameworks.sh */,
+				75296C1786769FFF2173E9000BC7AE8C /* Pods-3MinuteDiary-Info.plist */,
+				8454B52D86728C56C2DCDF0FE3BDADBC /* Pods-3MinuteDiary-umbrella.h */,
+				99A8E38E3C577EA916FBE57B462DBFA8 /* Pods-3MinuteDiary.debug.xcconfig */,
+				044360B4B0D609A84771F840563D3F5E /* Pods-3MinuteDiary.release.xcconfig */,
+			);
+			name = "Pods-3MinuteDiary";
+			path = "Target Support Files/Pods-3MinuteDiary";
 			sourceTree = "<group>";
 		};
 		179216F21CA9072EAC6805F28AE8E391 /* FSCalendar */ = {
@@ -349,27 +388,18 @@
 			path = FSCalendar;
 			sourceTree = "<group>";
 		};
-		18BC1D9964821255DBA7785F78926FBB /* Targets Support Files */ = {
+		189BC11EE07FBC597175D7E7BC555AFA /* Pods-3MinuteDiary-3MinuteDiaryUITests */ = {
 			isa = PBXGroup;
 			children = (
-				61F4901242CC7F12D7399F7FCDF00F06 /* Pods-3MinuteDiary */,
-				1FC533342643FCDC9DB8547C9373FF92 /* Pods-3MinuteDiary-3MinuteDiaryUITests */,
-				FABCE6C567D259AAAAD67C3354E61437 /* Pods-3MinuteDiaryTests */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		1FC533342643FCDC9DB8547C9373FF92 /* Pods-3MinuteDiary-3MinuteDiaryUITests */ = {
-			isa = PBXGroup;
-			children = (
-				43AD73C5A3D39CA9FEE57F31F9752CD4 /* Pods-3MinuteDiary-3MinuteDiaryUITests.modulemap */,
-				AC9323B0AE1294448C66D615A22D54B4 /* Pods-3MinuteDiary-3MinuteDiaryUITests-acknowledgements.markdown */,
-				A7522AA41EBB06AF3898F5CFF20354B0 /* Pods-3MinuteDiary-3MinuteDiaryUITests-acknowledgements.plist */,
-				465A33E6CBE24C61875A37F956C58841 /* Pods-3MinuteDiary-3MinuteDiaryUITests-dummy.m */,
-				C932D5DE9ED8B228E61B0C78AAA5CDC2 /* Pods-3MinuteDiary-3MinuteDiaryUITests-Info.plist */,
-				2895A79E7FFB6F40A941F3DB48DFCBFA /* Pods-3MinuteDiary-3MinuteDiaryUITests-umbrella.h */,
-				10C971CA5639B7F050C78DE7024E6826 /* Pods-3MinuteDiary-3MinuteDiaryUITests.debug.xcconfig */,
-				B0CB9E702C8C65430FF19CF0436FD449 /* Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig */,
+				4C8826C0644BC31ADB70202DB51E4C96 /* Pods-3MinuteDiary-3MinuteDiaryUITests.modulemap */,
+				AFC58D5470BA20B99A87CC0B07BBF765 /* Pods-3MinuteDiary-3MinuteDiaryUITests-acknowledgements.markdown */,
+				B641B7809F6B6E67659C1C146DBE9724 /* Pods-3MinuteDiary-3MinuteDiaryUITests-acknowledgements.plist */,
+				AD4BAB668620C61A3BB0C5B0C1DCE4D8 /* Pods-3MinuteDiary-3MinuteDiaryUITests-dummy.m */,
+				F01E96D64265A6CA4603173B17142D9F /* Pods-3MinuteDiary-3MinuteDiaryUITests-frameworks.sh */,
+				5CCF95B0E173A2350C3601FB76BC3F5A /* Pods-3MinuteDiary-3MinuteDiaryUITests-Info.plist */,
+				86D3FE96D84F4E8E8A9DDE699C5B58CC /* Pods-3MinuteDiary-3MinuteDiaryUITests-umbrella.h */,
+				F36E95405FC51198F615D1487747F1E5 /* Pods-3MinuteDiary-3MinuteDiaryUITests.debug.xcconfig */,
+				166B03B4AB847BF3BD31EF2C1FC58A9B /* Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig */,
 			);
 			name = "Pods-3MinuteDiary-3MinuteDiaryUITests";
 			path = "Target Support Files/Pods-3MinuteDiary-3MinuteDiaryUITests";
@@ -387,22 +417,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Alamofire";
-			sourceTree = "<group>";
-		};
-		61F4901242CC7F12D7399F7FCDF00F06 /* Pods-3MinuteDiary */ = {
-			isa = PBXGroup;
-			children = (
-				DD02C034287C05B9E00FCA4427EA664B /* Pods-3MinuteDiary.modulemap */,
-				29A5710C9D4A41EDC0B2DDF430D4ACD7 /* Pods-3MinuteDiary-acknowledgements.markdown */,
-				58169A0173F9F6E8AB3D8A64AAB28391 /* Pods-3MinuteDiary-acknowledgements.plist */,
-				FB15A799DE4C506B815F2BE4BA669E6C /* Pods-3MinuteDiary-dummy.m */,
-				A7136C59C4FBA4E321371D4E47A70A31 /* Pods-3MinuteDiary-Info.plist */,
-				768037A01AC9805632791D6B046BA08D /* Pods-3MinuteDiary-umbrella.h */,
-				B649EE7261F894586F9D75E414824502 /* Pods-3MinuteDiary.debug.xcconfig */,
-				AF43CA0B48DE68277C18AC6E92B349CB /* Pods-3MinuteDiary.release.xcconfig */,
-			);
-			name = "Pods-3MinuteDiary";
-			path = "Target Support Files/Pods-3MinuteDiary";
 			sourceTree = "<group>";
 		};
 		71B4EF62EA26AAF7CB819349FE6F5E45 /* Support Files */ = {
@@ -483,6 +497,16 @@
 			path = Alamofire;
 			sourceTree = "<group>";
 		};
+		CDB129278A99B76AB4D070AFEBDB9CFC /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				09763A62A8AF4DCE92033D52129A42F0 /* Pods-3MinuteDiary */,
+				189BC11EE07FBC597175D7E7BC555AFA /* Pods-3MinuteDiary-3MinuteDiaryUITests */,
+				F5C8768C71D8E2BD98E42CF064822D07 /* Pods-3MinuteDiaryTests */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
@@ -490,7 +514,7 @@
 				03C5C200A0787E300053CFA8F53CA094 /* Frameworks */,
 				826CAFD0A7D3294B80A030EB4B8EDC48 /* Pods */,
 				032C5ED8822D72AB55DB8DE72CD37247 /* Products */,
-				18BC1D9964821255DBA7785F78926FBB /* Targets Support Files */,
+				CDB129278A99B76AB4D070AFEBDB9CFC /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
@@ -518,18 +542,17 @@
 			path = FMDB;
 			sourceTree = "<group>";
 		};
-		FABCE6C567D259AAAAD67C3354E61437 /* Pods-3MinuteDiaryTests */ = {
+		F5C8768C71D8E2BD98E42CF064822D07 /* Pods-3MinuteDiaryTests */ = {
 			isa = PBXGroup;
 			children = (
-				A2DFFFEF19D979A2E1F5B0BA5EC45D75 /* Pods-3MinuteDiaryTests.modulemap */,
-				1931B34CFEAC60041C2ADC9CDE4E2564 /* Pods-3MinuteDiaryTests-acknowledgements.markdown */,
-				1BB080BAD745236FDCE2B57A22B94236 /* Pods-3MinuteDiaryTests-acknowledgements.plist */,
-				16CA45CA3C7283B3615EF7B576037539 /* Pods-3MinuteDiaryTests-dummy.m */,
-				51066A0DAB5BCDBD315C16D9F3698AF9 /* Pods-3MinuteDiaryTests-frameworks.sh */,
-				724EACB24A8F949F2D2ADCD3AA6D559B /* Pods-3MinuteDiaryTests-Info.plist */,
-				B85137A6797C68958E35B5530E2095FD /* Pods-3MinuteDiaryTests-umbrella.h */,
-				7583AA07D61461C069B8563A4D8E5180 /* Pods-3MinuteDiaryTests.debug.xcconfig */,
-				1FEA3710F8B59DC0441F5392D50552FE /* Pods-3MinuteDiaryTests.release.xcconfig */,
+				E257184A6937BFBBE0D4F2E40110F49B /* Pods-3MinuteDiaryTests.modulemap */,
+				B56A425EC552EC23CB2E2BFA0B53BE37 /* Pods-3MinuteDiaryTests-acknowledgements.markdown */,
+				EF7BDF3E1EDEEB8FB49ED1F18FDC1E8E /* Pods-3MinuteDiaryTests-acknowledgements.plist */,
+				35E68D3773DC76601F500E0D8CF80D63 /* Pods-3MinuteDiaryTests-dummy.m */,
+				C3920675684A446679FC4EDA1556FF00 /* Pods-3MinuteDiaryTests-Info.plist */,
+				93F0BA76327AB0DA2C17AC5ED32F39FF /* Pods-3MinuteDiaryTests-umbrella.h */,
+				642F70DBBE35E8BADDED35C35777E1D1 /* Pods-3MinuteDiaryTests.debug.xcconfig */,
+				5C37BAFCAC2FD1E2B6D0CBC3F1C4AF30 /* Pods-3MinuteDiaryTests.release.xcconfig */,
 			);
 			name = "Pods-3MinuteDiaryTests";
 			path = "Target Support Files/Pods-3MinuteDiaryTests";
@@ -538,11 +561,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		039E503BD522F38EF34383331A8455B9 /* Headers */ = {
+		0AF3F17166D0CD9887BDBF99EEE76A94 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6B8CFB0EFF233BC18B530308C68F183E /* Pods-3MinuteDiaryTests-umbrella.h in Headers */,
+				6A105D42DDE09480D345B67E41B7BCA5 /* Pods-3MinuteDiary-3MinuteDiaryUITests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -551,14 +574,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F7B74645E07C39771156A1FA413B98D4 /* Alamofire-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7AE03C7D4E39067185229893FF820F11 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				479CFEBA65A56F6FD8A8747BEC7A6FC4 /* Pods-3MinuteDiary-3MinuteDiaryUITests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,14 +601,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B4F370CDAE30EE6FA127F3E78A8510FD /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				58397081B825BF1A502B1B3C25E750D1 /* Pods-3MinuteDiary-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		DCCC73753CB120F68D482DBCD2F11BB6 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -605,6 +612,22 @@
 				219BADA8C55CF72273F5A734AA0E0EF6 /* FMDB-umbrella.h in Headers */,
 				A92CDCFE2DC0D002DE1F208C2FEAB545 /* FMDB.h in Headers */,
 				BB7ECF4DBE8D4BB38E6F2F08C326922A /* FMResultSet.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCEFEAC879314110F8A50A575C8D6E26 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				36AA3DCF26B7120D9975B64DF5AF2F4D /* Pods-3MinuteDiaryTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E27506D095598FE8CAA9A480416DD269 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19F996F7BC13F0F68A04F6A1633379AC /* Pods-3MinuteDiary-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -631,16 +654,19 @@
 		};
 		264B20130996E1F022CAD3F2E36EC566 /* Pods-3MinuteDiary-3MinuteDiaryUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4D54D0A79F015C3D994B8E0FE70CB2E7 /* Build configuration list for PBXNativeTarget "Pods-3MinuteDiary-3MinuteDiaryUITests" */;
+			buildConfigurationList = 66F9F78A1AC33C987C541B78C7F42CFB /* Build configuration list for PBXNativeTarget "Pods-3MinuteDiary-3MinuteDiaryUITests" */;
 			buildPhases = (
-				7AE03C7D4E39067185229893FF820F11 /* Headers */,
-				DB1D172B42432D6B2761EF643DAA1302 /* Sources */,
-				8620E18BBD70D701105F9403F05D4E14 /* Frameworks */,
-				A55099A9A8869A03E338F287008C3967 /* Resources */,
+				0AF3F17166D0CD9887BDBF99EEE76A94 /* Headers */,
+				D7220F47F91002C79EC50693FAC89128 /* Sources */,
+				62B41ECBBBC494E669CAF1034212B135 /* Frameworks */,
+				9007540D05317037BF1A0C83AA9E18C1 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F35CBF6397FC17477ADEEC5702FD2293 /* PBXTargetDependency */,
+				16DDAC4AFA022FDF490C34196E6854F6 /* PBXTargetDependency */,
+				1A2DADD2B130D626F8BC712DCAA59ABC /* PBXTargetDependency */,
 			);
 			name = "Pods-3MinuteDiary-3MinuteDiaryUITests";
 			productName = "Pods-3MinuteDiary-3MinuteDiaryUITests";
@@ -667,20 +693,17 @@
 		};
 		E94C7006436C84AEEDD03E9AE713B2B2 /* Pods-3MinuteDiaryTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 32016DDFE2C9E9CED1C0A6FBF0C97CBF /* Build configuration list for PBXNativeTarget "Pods-3MinuteDiaryTests" */;
+			buildConfigurationList = 14F70899F942D2D4D27B67DDC88BE01A /* Build configuration list for PBXNativeTarget "Pods-3MinuteDiaryTests" */;
 			buildPhases = (
-				039E503BD522F38EF34383331A8455B9 /* Headers */,
-				DE761A293A7F711F52E8F4D45754D770 /* Sources */,
-				6C6A00ED451B617973F4E56144FA12B9 /* Frameworks */,
-				E2B19B73E1AC7566C0CBD688C84C6949 /* Resources */,
+				DCEFEAC879314110F8A50A575C8D6E26 /* Headers */,
+				BEA106F0FC684794CB4BD8860B132218 /* Sources */,
+				A580F3B12B61B20D0CA8F105A325C413 /* Frameworks */,
+				8A4134E5F7CBDE7A66BD41A001B8D827 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				2E70E4FA97995B426B92EA9741619FC8 /* PBXTargetDependency */,
-				551561E4852512C822429C3DDFFB6B95 /* PBXTargetDependency */,
-				9E69BA3862D5A2090626DEAB592A7DCC /* PBXTargetDependency */,
-				31D95F32CFA5D57E2498A72020D1FAA1 /* PBXTargetDependency */,
+				0A21A6B96EEFAD8E84437460D3B03107 /* PBXTargetDependency */,
 			);
 			name = "Pods-3MinuteDiaryTests";
 			productName = "Pods-3MinuteDiaryTests";
@@ -707,16 +730,19 @@
 		};
 		F5CBAF5F4981B191AFB6D869997D77A6 /* Pods-3MinuteDiary */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C3E460FC721BD2CCB8D8831E9CE57EA7 /* Build configuration list for PBXNativeTarget "Pods-3MinuteDiary" */;
+			buildConfigurationList = 16CB191456ECF6BBB10E6F3504D70677 /* Build configuration list for PBXNativeTarget "Pods-3MinuteDiary" */;
 			buildPhases = (
-				B4F370CDAE30EE6FA127F3E78A8510FD /* Headers */,
-				648BA6C03E38BE6B7E6930B2072384B0 /* Sources */,
-				B7E0EC3FED844A886CB3A32BC393D267 /* Frameworks */,
-				67B9BF41E51C4119C54B9691AEAA17F2 /* Resources */,
+				E27506D095598FE8CAA9A480416DD269 /* Headers */,
+				8BEB3257CD64AB6C70BAFCB0957678E3 /* Sources */,
+				16E2F2A4FFD0ECC73E3B792DADA7E5A5 /* Frameworks */,
+				4B693DE6BD87B6E3E154649CC3BF7D9B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9165FB88847FED6441F4C8E88BB86FF3 /* PBXTargetDependency */,
+				4DFEECCF60A30AE56D23AFB1C3931672 /* PBXTargetDependency */,
+				CE1506BFF5F6AF634D2F73812BF9AE6B /* PBXTargetDependency */,
 			);
 			name = "Pods-3MinuteDiary";
 			productName = "Pods-3MinuteDiary";
@@ -733,7 +759,7 @@
 				LastUpgradeCheck = 1100;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -770,21 +796,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		67B9BF41E51C4119C54B9691AEAA17F2 /* Resources */ = {
+		4B693DE6BD87B6E3E154649CC3BF7D9B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A55099A9A8869A03E338F287008C3967 /* Resources */ = {
+		8A4134E5F7CBDE7A66BD41A001B8D827 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E2B19B73E1AC7566C0CBD688C84C6949 /* Resources */ = {
+		9007540D05317037BF1A0C83AA9E18C1 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -826,14 +852,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		648BA6C03E38BE6B7E6930B2072384B0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CD914938F20FA95E3B5301499ACFE8A0 /* Pods-3MinuteDiary-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7CA9E2A18C014A20CD8A14FD9AFD84EB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -870,168 +888,78 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DB1D172B42432D6B2761EF643DAA1302 /* Sources */ = {
+		8BEB3257CD64AB6C70BAFCB0957678E3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				029CA3B1EE02EFBBB1CCCDE446223FD8 /* Pods-3MinuteDiary-3MinuteDiaryUITests-dummy.m in Sources */,
+				6BC37BFF8C8F42F21404D42C4E6BE6E1 /* Pods-3MinuteDiary-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DE761A293A7F711F52E8F4D45754D770 /* Sources */ = {
+		BEA106F0FC684794CB4BD8860B132218 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8655695228C63705E4CD02E2880B70A3 /* Pods-3MinuteDiaryTests-dummy.m in Sources */,
+				491E6F3C160C4101F56105D2DE921738 /* Pods-3MinuteDiaryTests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D7220F47F91002C79EC50693FAC89128 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59FD47D8B9E4E156568E246B9D299EE1 /* Pods-3MinuteDiary-3MinuteDiaryUITests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		2E70E4FA97995B426B92EA9741619FC8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Alamofire;
-			target = EAAA1AD3A8A1B59AB91319EE40752C6D /* Alamofire */;
-			targetProxy = 1AA41BD8B0EF980BAB59ECC728F808F5 /* PBXContainerItemProxy */;
-		};
-		31D95F32CFA5D57E2498A72020D1FAA1 /* PBXTargetDependency */ = {
+		0A21A6B96EEFAD8E84437460D3B03107 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-3MinuteDiary";
 			target = F5CBAF5F4981B191AFB6D869997D77A6 /* Pods-3MinuteDiary */;
-			targetProxy = 810093FE32B2104D95A63C0FD7011E64 /* PBXContainerItemProxy */;
+			targetProxy = 657CD2242E904C8EF49EB1F87382E183 /* PBXContainerItemProxy */;
 		};
-		551561E4852512C822429C3DDFFB6B95 /* PBXTargetDependency */ = {
+		16DDAC4AFA022FDF490C34196E6854F6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FMDB;
 			target = 8592E0E389D40AC17881400ADC67ABC0 /* FMDB */;
-			targetProxy = 4C8CA7F470A0100BB7F6ABC11575FC0E /* PBXContainerItemProxy */;
+			targetProxy = 97DD8E8582676B6D78339343B836A37C /* PBXContainerItemProxy */;
 		};
-		9E69BA3862D5A2090626DEAB592A7DCC /* PBXTargetDependency */ = {
+		1A2DADD2B130D626F8BC712DCAA59ABC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FSCalendar;
 			target = 13285D54682BEAD805960F9E6EEB9949 /* FSCalendar */;
-			targetProxy = C3281F91E67EE16503D1EF38F7E46C6B /* PBXContainerItemProxy */;
+			targetProxy = FACEEA17A6BBF4CD79B8D8CC9B952453 /* PBXContainerItemProxy */;
+		};
+		4DFEECCF60A30AE56D23AFB1C3931672 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FMDB;
+			target = 8592E0E389D40AC17881400ADC67ABC0 /* FMDB */;
+			targetProxy = 2EC534D920F551EF62C2ECD40C4DFB8B /* PBXContainerItemProxy */;
+		};
+		9165FB88847FED6441F4C8E88BB86FF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			target = EAAA1AD3A8A1B59AB91319EE40752C6D /* Alamofire */;
+			targetProxy = 86EB8C89F5B9CDD76DFE9C5930F990E9 /* PBXContainerItemProxy */;
+		};
+		CE1506BFF5F6AF634D2F73812BF9AE6B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = FSCalendar;
+			target = 13285D54682BEAD805960F9E6EEB9949 /* FSCalendar */;
+			targetProxy = FB128DCE07499B8F5DBB0647C369A38F /* PBXContainerItemProxy */;
+		};
+		F35CBF6397FC17477ADEEC5702FD2293 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			target = EAAA1AD3A8A1B59AB91319EE40752C6D /* Alamofire */;
+			targetProxy = 5B2A41F4445A88D4F1010FB825D8B88C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		086EBD71448621F0FECE8B95CB01D39B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = AF43CA0B48DE68277C18AC6E92B349CB /* Pods-3MinuteDiary.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-3MinuteDiary/Pods-3MinuteDiary-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-3MinuteDiary/Pods-3MinuteDiary.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		1B6B8CFF4FB3D00F9B5A7408C25F5941 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1FEA3710F8B59DC0441F5392D50552FE /* Pods-3MinuteDiaryTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-3MinuteDiaryTests/Pods-3MinuteDiaryTests-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-3MinuteDiaryTests/Pods-3MinuteDiaryTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		7598AB7AECFDE276A97451E963CFF939 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B649EE7261F894586F9D75E414824502 /* Pods-3MinuteDiary.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-3MinuteDiary/Pods-3MinuteDiary-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-3MinuteDiary/Pods-3MinuteDiary.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		75BBB760DFD877E344322B54D29DFE64 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CB5C98DA609EF68582972AE83A6A07ED /* Alamofire.xcconfig */;
@@ -1067,9 +995,9 @@
 			};
 			name = Debug;
 		};
-		8FE16BDFC8B1488F55F04CA6AC56D955 /* Debug */ = {
+		9017361B42DB6D92E5F46AAFB5C5C80F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7583AA07D61461C069B8563A4D8E5180 /* Pods-3MinuteDiaryTests.debug.xcconfig */;
+			baseConfigurationReference = 5C37BAFCAC2FD1E2B6D0CBC3F1C4AF30 /* Pods-3MinuteDiaryTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -1100,10 +1028,11 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
 		939F1A8F6BCEB7F9F64D9EEE50CAE014 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1169,9 +1098,9 @@
 			};
 			name = Debug;
 		};
-		9EB55D0AAF6635C4F6ED243FFD9258D8 /* Debug */ = {
+		ADE9C430081CDEF226640A71827960D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 10C971CA5639B7F050C78DE7024E6826 /* Pods-3MinuteDiary-3MinuteDiaryUITests.debug.xcconfig */;
+			baseConfigurationReference = F36E95405FC51198F615D1487747F1E5 /* Pods-3MinuteDiary-3MinuteDiaryUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -1207,9 +1136,9 @@
 			};
 			name = Debug;
 		};
-		AEE958FDEE1E3E07835913FE728358A9 /* Release */ = {
+		B08BC7697C7A400B790140165309F336 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0CB9E702C8C65430FF19CF0436FD449 /* Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig */;
+			baseConfigurationReference = 642F70DBBE35E8BADDED35C35777E1D1 /* Pods-3MinuteDiaryTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -1222,7 +1151,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-3MinuteDiary-3MinuteDiaryUITests/Pods-3MinuteDiary-3MinuteDiaryUITests-Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-3MinuteDiaryTests/Pods-3MinuteDiaryTests-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1231,7 +1160,7 @@
 					"@loader_path/Frameworks",
 				);
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-3MinuteDiary-3MinuteDiaryUITests/Pods-3MinuteDiary-3MinuteDiaryUITests.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-3MinuteDiaryTests/Pods-3MinuteDiaryTests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -1240,11 +1169,10 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
+			name = Debug;
 		};
 		C81DDAD8031086F139932A6E83DA4CD6 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1311,6 +1239,83 @@
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		DCC455189E106F5662986C0F4B66FC70 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 044360B4B0D609A84771F840563D3F5E /* Pods-3MinuteDiary.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-3MinuteDiary/Pods-3MinuteDiary-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-3MinuteDiary/Pods-3MinuteDiary.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		DE2B92FEE092C0A7DEDEAF822ADBBEEF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99A8E38E3C577EA916FBE57B462DBFA8 /* Pods-3MinuteDiary.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-3MinuteDiary/Pods-3MinuteDiary-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-3MinuteDiary/Pods-3MinuteDiary.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -1448,6 +1453,45 @@
 			};
 			name = Debug;
 		};
+		F74E58F5A5DCDB409EE1B83F29A5A666 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 166B03B4AB847BF3BD31EF2C1FC58A9B /* Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-3MinuteDiary-3MinuteDiaryUITests/Pods-3MinuteDiary-3MinuteDiaryUITests-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-3MinuteDiary-3MinuteDiaryUITests/Pods-3MinuteDiary-3MinuteDiaryUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		F94FD07C591B17B7E61A1528AB9BCB3B /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CB5C98DA609EF68582972AE83A6A07ED /* Alamofire.xcconfig */;
@@ -1487,20 +1531,29 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		14F70899F942D2D4D27B67DDC88BE01A /* Build configuration list for PBXNativeTarget "Pods-3MinuteDiaryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B08BC7697C7A400B790140165309F336 /* Debug */,
+				9017361B42DB6D92E5F46AAFB5C5C80F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		16CB191456ECF6BBB10E6F3504D70677 /* Build configuration list for PBXNativeTarget "Pods-3MinuteDiary" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DE2B92FEE092C0A7DEDEAF822ADBBEEF /* Debug */,
+				DCC455189E106F5662986C0F4B66FC70 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1747C1FC0D7AED6F717CE32ACF418CF5 /* Build configuration list for PBXNativeTarget "FSCalendar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F4ADD52D05616E6D104F2516E44DC388 /* Debug */,
 				E108FBDCADB810F5C2998F030C92782F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		32016DDFE2C9E9CED1C0A6FBF0C97CBF /* Build configuration list for PBXNativeTarget "Pods-3MinuteDiaryTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				8FE16BDFC8B1488F55F04CA6AC56D955 /* Debug */,
-				1B6B8CFF4FB3D00F9B5A7408C25F5941 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1514,20 +1567,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4D54D0A79F015C3D994B8E0FE70CB2E7 /* Build configuration list for PBXNativeTarget "Pods-3MinuteDiary-3MinuteDiaryUITests" */ = {
+		66F9F78A1AC33C987C541B78C7F42CFB /* Build configuration list for PBXNativeTarget "Pods-3MinuteDiary-3MinuteDiaryUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9EB55D0AAF6635C4F6ED243FFD9258D8 /* Debug */,
-				AEE958FDEE1E3E07835913FE728358A9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C3E460FC721BD2CCB8D8831E9CE57EA7 /* Build configuration list for PBXNativeTarget "Pods-3MinuteDiary" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7598AB7AECFDE276A97451E963CFF939 /* Debug */,
-				086EBD71448621F0FECE8B95CB01D39B /* Release */,
+				ADE9C430081CDEF226640A71827960D4 /* Debug */,
+				F74E58F5A5DCDB409EE1B83F29A5A666 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
