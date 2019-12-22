@@ -1,0 +1,26 @@
+PODS:
+  - Alamofire (4.9.1)
+  - FMDB (2.7.5):
+    - FMDB/standard (= 2.7.5)
+  - FMDB/standard (2.7.5)
+  - FSCalendar (2.8.1)
+
+DEPENDENCIES:
+  - Alamofire
+  - FMDB
+  - FSCalendar
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - FMDB
+    - FSCalendar
+
+SPEC CHECKSUMS:
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
+  FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
+
+PODFILE CHECKSUM: ef3bb0cdbc7177f00577e9e196745bec4cc54e1f
+
+COCOAPODS: 1.8.4

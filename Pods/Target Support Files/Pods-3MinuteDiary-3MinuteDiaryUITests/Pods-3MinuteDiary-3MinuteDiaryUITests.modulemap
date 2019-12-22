@@ -1,0 +1,6 @@
+framework module Pods_3MinuteDiary_3MinuteDiaryUITests {
+  umbrella header "Pods-3MinuteDiary-3MinuteDiaryUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
