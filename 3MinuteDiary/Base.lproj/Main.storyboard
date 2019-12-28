@@ -116,7 +116,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="R1M-Sd-0Cy">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="mainCell" rowHeight="70" id="R1M-Sd-0Cy" customClass="MainCell" customModule="_MinuteDiary" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R1M-Sd-0Cy" id="ZcP-zo-PMa">
@@ -133,10 +133,10 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="125" id="VIC-Kn-2Vw">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="imageCell" rowHeight="125" id="VIC-Kn-2Vw" customClass="ImageCell" customModule="_MinuteDiary" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="98" width="414" height="125"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VIC-Kn-2Vw" id="cet-6p-fYO">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VIC-Kn-2Vw" id="cet-6p-fYO" customClass="ImageCell" customModule="_MinuteDiary" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="125"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
@@ -147,12 +147,30 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="42" id="EeO-HE-zvQ">
-                                <rect key="frame" x="0.0" y="223" width="414" height="42"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="toolBarCell" rowHeight="52" id="EeO-HE-zvQ" customClass="ToolBarCell" customModule="_MinuteDiary" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="223" width="414" height="52"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EeO-HE-zvQ" id="sr4-PU-snF">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="42"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EeO-HE-zvQ" id="sr4-PU-snF" customClass="ToolBarCell" customModule="_MinuteDiary" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ArP-YY-xKF">
+                                            <rect key="frame" x="346" y="11" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="저장"/>
+                                            <connections>
+                                                <action selector="saveButton:" destination="EeO-HE-zvQ" eventType="touchUpInside" id="mrx-Cj-vjb"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zGw-Q6-h7g">
+                                            <rect key="frame" x="28" y="11" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="취소"/>
+                                            <connections>
+                                                <action selector="cancelButton:" destination="EeO-HE-zvQ" eventType="touchUpInside" id="Vqt-ZI-Tul"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>

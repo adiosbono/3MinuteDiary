@@ -10,6 +10,8 @@
 		0431059623B5C9A700F727FD /* WriteDiaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431059523B5C9A700F727FD /* WriteDiaryVC.swift */; };
 		0431059823B5CA0600F727FD /* TableVCTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431059723B5CA0600F727FD /* TableVCTemplate.swift */; };
 		0431059B23B5CAAC00F727FD /* ToolBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431059A23B5CAAC00F727FD /* ToolBarCell.swift */; };
+		0431059D23B70A7F00F727FD /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431059C23B70A7F00F727FD /* ImageCell.swift */; };
+		0431059F23B70AAC00F727FD /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431059E23B70AAC00F727FD /* MainCell.swift */; };
 		0441A4E123ACE7E5005A2251 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0441A4E023ACE7E5005A2251 /* AppDelegate.swift */; };
 		0441A4E323ACE7E5005A2251 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0441A4E223ACE7E5005A2251 /* SceneDelegate.swift */; };
 		0441A4E523ACE7E5005A2251 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0441A4E423ACE7E5005A2251 /* ViewController.swift */; };
@@ -46,6 +48,8 @@
 		0431059523B5C9A700F727FD /* WriteDiaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDiaryVC.swift; sourceTree = "<group>"; };
 		0431059723B5CA0600F727FD /* TableVCTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableVCTemplate.swift; sourceTree = "<group>"; };
 		0431059A23B5CAAC00F727FD /* ToolBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarCell.swift; sourceTree = "<group>"; };
+		0431059C23B70A7F00F727FD /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		0431059E23B70AAC00F727FD /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 		0441A4DD23ACE7E5005A2251 /* 3MinuteDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 3MinuteDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0441A4E023ACE7E5005A2251 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0441A4E223ACE7E5005A2251 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,7 +66,6 @@
 		0441A50523ACE7E9005A2251 /* _MinuteDiaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _MinuteDiaryUITests.swift; sourceTree = "<group>"; };
 		0441A50723ACE7E9005A2251 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0441A51323AF86F9005A2251 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
-		0441A51523AF89BB005A2251 /* 3MinuteDiary-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "3MinuteDiary-Bridging-Header.h"; sourceTree = "<group>"; };
 		3E1D0C9CD38193BB5CF54644 /* Pods-3MinuteDiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3MinuteDiaryTests.debug.xcconfig"; path = "Target Support Files/Pods-3MinuteDiaryTests/Pods-3MinuteDiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4B5B4FFC3F239618D0CD043C /* Pods_3MinuteDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_3MinuteDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		509974B450A73EB0902DB92E /* Pods_3MinuteDiary_3MinuteDiaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_3MinuteDiary_3MinuteDiaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +109,8 @@
 			isa = PBXGroup;
 			children = (
 				0431059A23B5CAAC00F727FD /* ToolBarCell.swift */,
+				0431059C23B70A7F00F727FD /* ImageCell.swift */,
+				0431059E23B70AAC00F727FD /* MainCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -147,7 +152,6 @@
 				0441A4EE23ACE7E9005A2251 /* LaunchScreen.storyboard */,
 				0441A4F123ACE7E9005A2251 /* Info.plist */,
 				0441A4E923ACE7E5005A2251 /* _MinuteDiary.xcdatamodeld */,
-				0441A51523AF89BB005A2251 /* 3MinuteDiary-Bridging-Header.h */,
 			);
 			path = 3MinuteDiary;
 			sourceTree = "<group>";
@@ -434,7 +438,9 @@
 			files = (
 				0441A51423AF86F9005A2251 /* CalendarVC.swift in Sources */,
 				0441A4E523ACE7E5005A2251 /* ViewController.swift in Sources */,
+				0431059D23B70A7F00F727FD /* ImageCell.swift in Sources */,
 				0431059623B5C9A700F727FD /* WriteDiaryVC.swift in Sources */,
+				0431059F23B70AAC00F727FD /* MainCell.swift in Sources */,
 				0431059823B5CA0600F727FD /* TableVCTemplate.swift in Sources */,
 				0441A4E123ACE7E5005A2251 /* AppDelegate.swift in Sources */,
 				0441A4E323ACE7E5005A2251 /* SceneDelegate.swift in Sources */,

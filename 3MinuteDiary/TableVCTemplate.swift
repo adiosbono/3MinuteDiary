@@ -29,11 +29,11 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
 
 //테이블 행을 구성하는 메소드
 override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    <#code#>
+    
 }
 //테이블의 특정 행이 선택되었을때 호출되는 메소드
 override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    <#code#>
+    
 }
 //테이블 뷰의 섹션의 수 결정하는 메소드 따로 오버라이드 하지 않으면 기본값은 1임
 override func numberOfSections(in tableView: UITableView) -> Int {
@@ -41,11 +41,11 @@ override func numberOfSections(in tableView: UITableView) -> Int {
 }
 //각 섹션 헤더에 들어갈 뷰를 정의하는 메소드. 섹션별 타이틀을 뷰 형태로 구성하는 메소드 1080
 override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-     <#code#>
+     
 }
 //각 섹션 헤더의 높이를 결정하는 메소드
 override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-     <#code#>
+     
 }
     */
 }
