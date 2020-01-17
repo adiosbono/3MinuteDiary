@@ -85,9 +85,16 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
         calendar.appearance.borderRadius = 0.5
     }
     
+    
+    
+    
+    
     //날짜가 선택되었을 때 뭔가 할수있다
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print("\(date)")
+        var selectedDate = date.toLocalTime()
+    
+        print("selected date : \(selectedDate)")
+        print("unfixed date : \(date)")
     }
 
     //각 날짜마다 부제목을 달 수 있다.이거를 활용해서 일기 쓴날과 안쓴날을 구분할 수 있을거 같다. O/X 처럼 사용해서
@@ -107,4 +114,34 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     
     
     
+}
+
+
+
+//선택한날짜를 출력하면 항상 하루 전날로 표시되는걸 해결하기 위해 작성한 코드
+extension Date {
+    // Convert UTC (or GMT) to local time
+
+    func toLocalTime() -> Date {
+
+        let timezone = TimeZone.current
+
+        let seconds = TimeInterval(timezone.secondsFromGMT(for: self))
+
+        return Date(timeInterval: seconds, since: self)
+
+    }
+
+    // Convert local time to UTC (or GMT)
+
+    func toGlobalTime() -> Date {
+
+        let timezone = TimeZone.current
+
+        let seconds = -TimeInterval(timezone.secondsFromGMT(for: self))
+
+        return Date(timeInterval: seconds, since: self)
+
+    }
+
 }
