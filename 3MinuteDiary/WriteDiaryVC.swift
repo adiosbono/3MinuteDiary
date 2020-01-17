@@ -70,7 +70,7 @@ override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: Inde
  */
 //테이블 뷰의 섹션의 수 결정하는 메소드 따로 오버라이드 하지 않으면 기본값은 1임
 override func numberOfSections(in tableView: UITableView) -> Int {
-    return 1
+    return 2
     }
 //각 섹션 헤더에 들어갈 뷰를 정의하는 메소드. 섹션별 타이틀을 뷰 형태로 구성하는 메소드 1080
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {

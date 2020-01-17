@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 import FSCalendar
 
+
+
+
 //FSCalendar에 내장된 기능 중 쓸만한 것 모음
 /*
  //선택된 날짜 모양이 원이 아닌 다른 모양으로 하려면 아래줄에 원하는 값 대입하면 된다
@@ -57,7 +60,17 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     //화면과 연결된 변수 및 아웃렛 정의
     fileprivate var calendar: FSCalendar!
     
-
+    @IBOutlet var writeButton: UIButton!
+    //일기쓰기 버튼임
+    
+    @IBAction func writeButton(_ sender: UIButton) {
+        let WriteDiaryVC = storyboard?.instantiateViewController(identifier: "writeDiaryVC") as! WriteDiaryVC
+        
+        present(WriteDiaryVC, animated: true, completion: nil)
+        
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
