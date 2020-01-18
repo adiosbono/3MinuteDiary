@@ -132,5 +132,36 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
     }
     }
 
+//footer 사용하기 위한 것
+    //footer를 지정하는 함수
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 20))
+        //버튼을 하나 만들자
+        let button = UIButton(frame: CGRect(x: tableView.frame.size.width/2 - 50, y: 0, width: 100, height: 20))
+        button.setTitle("내용 추가하기", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        footerView.addSubview(button)
+        
+        return footerView
+    }
+    
+    //footer높이지정
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        //메뉴바에는 푸터가 필요 없으니 푸터 높이를 0으로 지정하면 안나옴!
+        if section == 0 {
+            return 0
+        }else{
+            return 20
+        }
+    }
+    //footer안의 버튼 누르면 사용될 함수
+    @objc func buttonAction(_ sender: UIButton!) {
+        print("footer Button tapped")
+    }
+    
+    
+    
+    
 }
 
