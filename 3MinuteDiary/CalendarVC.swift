@@ -61,8 +61,9 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     fileprivate var calendar: FSCalendar!
     
     @IBOutlet var writeButton: UIButton!
+    //오늘날짜 기본적으로 선택되어있게 하기 위해 선택된날짜 저장할 변수 설정
+    var selectedDate: Date?
     //일기쓰기 버튼임
-    
     @IBAction func writeButton(_ sender: UIButton) {
         let WriteDiaryVC = storyboard?.instantiateViewController(identifier: "writeDiaryVC") as! WriteDiaryVC
         
@@ -81,6 +82,15 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
         view.addSubview(calendar)
         self.calendar = calendar
         
+        //오늘에 해당하는 날짜는 기본으로 항상선택되어있는데(다른날짜를 누르더라도) 이것을 해제한다.
+        self.calendar.today = nil
+        //-----------------------------------------------------------------------------------------
+        //기본적으로 오늘에 해당하는 날짜가 선택되어 있도록 한다.(아직구현안함)
+        self.selectedDate = Date()
+        
+        //토요일과 일요일은 달력에 빨간색으로 표시되도록 하자
+        calendar.appearance.titleWeekendColor = UIColor.red
+        
         //선택된 날짜의 모양을 다른걸로 바꾼다.
         calendar.appearance.borderRadius = 0.5
     }
@@ -91,7 +101,7 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     
     //날짜가 선택되었을 때 뭔가 할수있다
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        var selectedDate = date.toLocalTime()
+        let selectedDate = date.toLocalTime()
     
         print("selected date : \(selectedDate)")
         print("unfixed date : \(date)")

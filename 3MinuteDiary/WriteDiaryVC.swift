@@ -13,9 +13,16 @@ class WriteDiaryVC: UITableViewController{
     
     //여기 빈공간에다가는 변수들을 초기화하셈
      
-     
-     
-     
+    @IBAction func cancelButton(_ sender: UIButton) {
+        print("cancelBtn2")
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    @IBAction func saveButton(_ sender: UIButton) {
+        print("saveBtn2")
+        self.presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    
      
      
 override func viewDidLoad() {
@@ -54,7 +61,7 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
                    return cell
     default:
         let cell = tableView.dequeueReusableCell(withIdentifier: "toolBarCell") as! ToolBarCell
-                   
+        cell.viewController = self.presentingViewController!
                    //여기안에 디비에서 받아온 정보를 가지고 각 셀 안의 데이터를 입력해준다.
                    
                    

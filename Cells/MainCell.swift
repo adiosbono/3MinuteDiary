@@ -12,5 +12,4 @@ import UIKit
 class MainCell : UITableViewCell {
     
     
-    
 }
