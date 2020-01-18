@@ -65,7 +65,12 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     var selectedDate: Date?
     //일기쓰기 버튼임
     @IBAction func writeButton(_ sender: UIButton) {
+        
+        //날짜를 선택하지 않았으면 기본적으로 오늘 날짜의 일기를 쓰는걸로 되고 만약에 날짜를 선택했으면 그날 날짜의 일기를 쓰는걸로 되도록 해야함.
+        print("sending date is \(self.selectedDate?.toLocalTime() ?? Date())")
+        
         let WriteDiaryVC = storyboard?.instantiateViewController(identifier: "writeDiaryVC") as! WriteDiaryVC
+        WriteDiaryVC.sendedDate = selectedDate?.toLocalTime()
         
         present(WriteDiaryVC, animated: true, completion: nil)
         
@@ -83,10 +88,11 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
         self.calendar = calendar
         
         //오늘에 해당하는 날짜는 기본으로 항상선택되어있는데(다른날짜를 누르더라도) 이것을 해제한다.
-        self.calendar.today = nil
+        //self.calendar.today = nil
         //-----------------------------------------------------------------------------------------
         //기본적으로 오늘에 해당하는 날짜가 선택되어 있도록 한다.(아직구현안함)
         self.selectedDate = Date()
+        print("오늘날짜 : \(self.selectedDate!)")
         
         //토요일과 일요일은 달력에 빨간색으로 표시되도록 하자
         calendar.appearance.titleWeekendColor = UIColor.red
@@ -105,6 +111,9 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     
         print("selected date : \(selectedDate)")
         print("unfixed date : \(date)")
+        
+        //선택한 시간을 selectedDate변수에 넣는다(로컬타임으로 고친걸로)
+        self.selectedDate = date
     }
 
     //각 날짜마다 부제목을 달 수 있다.이거를 활용해서 일기 쓴날과 안쓴날을 구분할 수 있을거 같다. O/X 처럼 사용해서

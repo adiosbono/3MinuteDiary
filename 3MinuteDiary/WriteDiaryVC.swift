@@ -12,6 +12,9 @@ import UIKit
 class WriteDiaryVC: UITableViewController{
     
     //여기 빈공간에다가는 변수들을 초기화하셈
+    
+        //이거는 전달받은 날짜 저장할 변수
+    var sendedDate: Date?
      
     @IBAction func cancelButton(_ sender: UIButton) {
         print("cancelBtn2")
@@ -27,6 +30,7 @@ class WriteDiaryVC: UITableViewController{
      
 override func viewDidLoad() {
     super.viewDidLoad()
+    print("sended date : \(self.sendedDate!)")
     }
     
 //화면이 나타날때마다 호출되는 메소드
@@ -61,7 +65,7 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
                    return cell
     default:
         let cell = tableView.dequeueReusableCell(withIdentifier: "toolBarCell") as! ToolBarCell
-        cell.viewController = self.presentingViewController!
+        
                    //여기안에 디비에서 받아온 정보를 가지고 각 셀 안의 데이터를 입력해준다.
                    
                    
