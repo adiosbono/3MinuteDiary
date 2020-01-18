@@ -11,5 +11,9 @@ import UIKit
 
 class ToolBarCell : UITableViewCell {
     
+    var selectedDate : Date?
+    
+    @IBOutlet var showDate: UILabel!
+    
     
 }

@@ -150,31 +150,41 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="toolBarCell" rowHeight="52" id="EeO-HE-zvQ" customClass="ToolBarCell" customModule="_MinuteDiary" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="223" width="414" height="52"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="toolBarCell" rowHeight="54" id="EeO-HE-zvQ" customClass="ToolBarCell" customModule="_MinuteDiary" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="223" width="414" height="54"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EeO-HE-zvQ" id="sr4-PU-snF" customClass="ToolBarCell" customModule="_MinuteDiary" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="54"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m1N-Ud-xWe">
-                                            <rect key="frame" x="29" y="11" width="35" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="취소2"/>
-                                            <connections>
-                                                <action selector="cancelButton:" destination="j3K-RP-NSr" eventType="touchUpInside" id="v1f-Nj-rAY"/>
-                                            </connections>
-                                        </button>
                                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0hB-3f-Ht0">
-                                            <rect key="frame" x="326" y="11" width="35" height="30"/>
+                                            <rect key="frame" x="329" y="11" width="30" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="저장2"/>
+                                            <state key="normal" title="저장"/>
                                             <connections>
                                                 <action selector="saveButton:" destination="j3K-RP-NSr" eventType="touchUpInside" id="IMf-xF-qxa"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m1N-Ud-xWe">
+                                            <rect key="frame" x="20" y="11" width="30" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="취소"/>
+                                            <connections>
+                                                <action selector="cancelButton:" destination="j3K-RP-NSr" eventType="touchUpInside" id="v1f-Nj-rAY"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBe-L7-xH4">
+                                            <rect key="frame" x="75" y="16" width="235" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="showDate" destination="DBe-L7-xH4" id="af2-07-vCH"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
