@@ -137,13 +137,63 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 20))
         //버튼을 하나 만들자
+        
+        switch section {
+        case 1:
         let button = UIButton(frame: CGRect(x: tableView.frame.size.width/2 - 50, y: 0, width: 100, height: 20))
         button.setTitle("내용 추가하기", for: .normal)
         button.setTitleColor(.blue, for: .normal)
-        button.addTarget(self, action: #selector(buttonAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(buttonAction1), for: .touchUpInside)
         footerView.addSubview(button)
         
-        return footerView
+            return footerView
+            
+        case 2:
+            let button = UIButton(frame: CGRect(x: tableView.frame.size.width/2 - 50, y: 0, width: 100, height: 20))
+            button.setTitle("내용 추가하기", for: .normal)
+            button.setTitleColor(.blue, for: .normal)
+            button.addTarget(self, action: #selector(buttonAction2), for: .touchUpInside)
+            footerView.addSubview(button)
+            
+            return footerView
+            
+        case 3:
+            let button = UIButton(frame: CGRect(x: tableView.frame.size.width/2 - 50, y: 0, width: 100, height: 20))
+            button.setTitle("내용 추가하기", for: .normal)
+            button.setTitleColor(.blue, for: .normal)
+            button.addTarget(self, action: #selector(buttonAction3), for: .touchUpInside)
+            footerView.addSubview(button)
+            
+            return footerView
+            
+        case 4:
+            let button = UIButton(frame: CGRect(x: tableView.frame.size.width/2 - 50, y: 0, width: 100, height: 20))
+            button.setTitle("내용 추가하기", for: .normal)
+            button.setTitleColor(.blue, for: .normal)
+            button.addTarget(self, action: #selector(buttonAction4), for: .touchUpInside)
+            footerView.addSubview(button)
+            
+            return footerView
+            
+        case 5:
+            let button = UIButton(frame: CGRect(x: tableView.frame.size.width/2 - 50, y: 0, width: 100, height: 20))
+            button.setTitle("내용 추가하기", for: .normal)
+            button.setTitleColor(.blue, for: .normal)
+            button.addTarget(self, action: #selector(buttonAction5), for: .touchUpInside)
+            footerView.addSubview(button)
+            
+            return footerView
+        
+        
+        default:
+            let button = UIButton(frame: CGRect(x: tableView.frame.size.width/2 - 50, y: 0, width: 100, height: 20))
+            button.setTitle("내용 추가하기", for: .normal)
+            button.setTitleColor(.blue, for: .normal)
+            button.addTarget(self, action: #selector(buttonAction1), for: .touchUpInside)
+            footerView.addSubview(button)
+            
+            return footerView
+        }
     }
     
     //footer높이지정
@@ -156,11 +206,21 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
         }
     }
     //footer안의 버튼 누르면 사용될 함수
-    @objc func buttonAction(_ sender: UIButton!) {
-        print("footer Button tapped")
+    @objc func buttonAction1(_ sender: UIButton!) {
+        print("나의 목표 추가 tapped")
     }
-    
-    
+    @objc func buttonAction2(_ sender: UIButton!) {
+        print("하고싶은일 추가 tapped")
+    }
+    @objc func buttonAction3(_ sender: UIButton!) {
+        print("오늘 있었던일 tapped")
+    }
+    @objc func buttonAction4(_ sender: UIButton!) {
+        print("감사할일 tapped")
+    }
+    @objc func buttonAction5(_ sender: UIButton!) {
+        print("성공법칙 tapped")
+    }
     
     
 }
