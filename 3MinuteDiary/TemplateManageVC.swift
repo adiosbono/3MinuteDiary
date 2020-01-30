@@ -31,15 +31,28 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
 //테이블 행을 구성하는 메소드
 override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     switch indexPath.section {
-    case 0 :
-        let cell = tableView.dequeueReusableCell(withIdentifier: "templateBodyCell") as! TemplateBodyCell
-        //여기에 셀 안에 들어갈 내용을 입력한다.
+        
+    case 0:
+        let cell = tableView.dequeueReusableCell(withIdentifier: "templateMenuCell") as! TemplateMenuCell
+        
+        let leftButton = UIButton(frame: CGRect(x: 10, y: 15, width: 100, height: 20))
+        leftButton.setTitle("오늘부터 반영", for: .normal)
+        leftButton.setTitleColor(.blue, for: .normal)
+        leftButton.addTarget(self, action: #selector(applyToday), for: .touchUpInside)
+        cell.addSubview(leftButton)
+        
+        let rightButton = UIButton(frame: CGRect(x: tableView.frame.size.width - 110, y: 15, width: 100, height: 20))
+        rightButton.setTitle("수정하기", for: .normal)
+        rightButton.setTitleColor(.blue, for: .normal)
+        rightButton.addTarget(self, action: #selector(edit), for: .touchUpInside)
+        cell.addSubview(rightButton)
+        
         return cell
         
     case 1 :
-    let cell = tableView.dequeueReusableCell(withIdentifier: "templateBodyCell") as! TemplateBodyCell
-    //여기에 셀 안에 들어갈 내용을 입력한다.
-    return cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "templateBodyCell") as! TemplateBodyCell
+        //여기에 셀 안에 들어갈 내용을 입력한다.
+        return cell
         
     case 2 :
     let cell = tableView.dequeueReusableCell(withIdentifier: "templateBodyCell") as! TemplateBodyCell
@@ -52,6 +65,11 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     return cell
         
     case 4 :
+    let cell = tableView.dequeueReusableCell(withIdentifier: "templateBodyCell") as! TemplateBodyCell
+    //여기에 셀 안에 들어갈 내용을 입력한다.
+    return cell
+        
+    case 5 :
     let cell = tableView.dequeueReusableCell(withIdentifier: "templateBodyCell") as! TemplateBodyCell
     //여기에 셀 안에 들어갈 내용을 입력한다.
     return cell
@@ -71,7 +89,7 @@ override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: Inde
  */
 //테이블 뷰의 섹션의 수 결정하는 메소드 따로 오버라이드 하지 않으면 기본값은 1임
 override func numberOfSections(in tableView: UITableView) -> Int {
-    return 5
+    return 6
 }
     
 
@@ -80,7 +98,7 @@ override func tableView(_ tableView: UITableView, viewForHeaderInSection section
      let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 20))
     
     switch section {
-    case 0:
+    case 1:
         //왼쪽에 들어갈 텍스트
         let label = UILabel(frame: CGRect(x: 10, y: 0, width: tableView.frame.size.width - 20, height: 20))
         label.text = "나의 목표"
@@ -88,7 +106,7 @@ override func tableView(_ tableView: UITableView, viewForHeaderInSection section
         
             return headerView
         
-    case 1:
+    case 2:
     //왼쪽에 들어갈 텍스트
     let label = UILabel(frame: CGRect(x: 10, y: 0, width: tableView.frame.size.width - 20, height: 20))
     label.text = "하고싶은일"
@@ -96,7 +114,7 @@ override func tableView(_ tableView: UITableView, viewForHeaderInSection section
     
         return headerView
         
-    case 2:
+    case 3:
     //왼쪽에 들어갈 텍스트
     let label = UILabel(frame: CGRect(x: 10, y: 0, width: tableView.frame.size.width - 20, height: 20))
     label.text = "오늘 있었던일"
@@ -104,7 +122,7 @@ override func tableView(_ tableView: UITableView, viewForHeaderInSection section
     
         return headerView
         
-    case 3:
+    case 4:
     //왼쪽에 들어갈 텍스트
     let label = UILabel(frame: CGRect(x: 10, y: 0, width: tableView.frame.size.width - 20, height: 20))
     label.text = "감사할일"
@@ -112,7 +130,7 @@ override func tableView(_ tableView: UITableView, viewForHeaderInSection section
     
         return headerView
         
-    case 4:
+    case 5:
     //왼쪽에 들어갈 텍스트
     let label = UILabel(frame: CGRect(x: 10, y: 0, width: tableView.frame.size.width - 20, height: 20))
     label.text = "성공법칙"
@@ -130,7 +148,12 @@ override func tableView(_ tableView: UITableView, viewForHeaderInSection section
 }
 //각 섹션 헤더의 높이를 결정하는 메소드
 override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-    return 20.0
+    switch section {
+    case 0:
+        return 0.0
+    default:
+        return 20.0
+    }
 }
 
     
@@ -141,7 +164,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
         //버튼을 하나 만들자
         
         switch section {
-        case 0:
+        case 1:
         let button = UIButton(frame: CGRect(x: tableView.frame.size.width/2 - 50, y: 0, width: 100, height: 20))
         button.setTitle("내용 추가하기", for: .normal)
         button.setTitleColor(.blue, for: .normal)
@@ -150,7 +173,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
         
             return footerView
             
-        case 1:
+        case 2:
             let button = UIButton(frame: CGRect(x: tableView.frame.size.width/2 - 50, y: 0, width: 100, height: 20))
             button.setTitle("내용 추가하기", for: .normal)
             button.setTitleColor(.blue, for: .normal)
@@ -159,7 +182,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
             
             return footerView
             
-        case 2:
+        case 3:
             let button = UIButton(frame: CGRect(x: tableView.frame.size.width/2 - 50, y: 0, width: 100, height: 20))
             button.setTitle("내용 추가하기", for: .normal)
             button.setTitleColor(.blue, for: .normal)
@@ -168,7 +191,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
             
             return footerView
             
-        case 3:
+        case 4:
             let button = UIButton(frame: CGRect(x: tableView.frame.size.width/2 - 50, y: 0, width: 100, height: 20))
             button.setTitle("내용 추가하기", for: .normal)
             button.setTitleColor(.blue, for: .normal)
@@ -177,7 +200,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
             
             return footerView
             
-        case 4:
+        case 5:
             let button = UIButton(frame: CGRect(x: tableView.frame.size.width/2 - 50, y: 0, width: 100, height: 20))
             button.setTitle("내용 추가하기", for: .normal)
             button.setTitleColor(.blue, for: .normal)
@@ -201,7 +224,12 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
     //footer높이지정
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         //메뉴바에는 푸터가 필요 없으니 푸터 높이를 0으로 지정하면 안나옴!
-        return 20.0
+        switch section {
+        case 0:
+            return 0.0
+        default:
+            return 20.0
+        }
     }
     //footer안의 버튼 누르면 사용될 함수
     @objc func buttonAction1(_ sender: UIButton!) {
@@ -218,5 +246,14 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
     }
     @objc func buttonAction5(_ sender: UIButton!) {
         print("템플릿 성공법칙 tapped")
+    }
+    
+    //메뉴왼쪽의 오늘부터 반영 버튼 누르면 사용될 함수
+    @objc func applyToday(_ sender: UIButton!) {
+        print("오늘부터 적용")
+    }
+    
+    @objc func edit(_ sender: UIButton!) {
+        print("에디트버튼 터치됨")
     }
 }
