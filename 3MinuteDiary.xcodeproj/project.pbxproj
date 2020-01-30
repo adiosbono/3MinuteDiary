@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0424596523DABD410075016E /* TemplateManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424596423DABD410075016E /* TemplateManageVC.swift */; };
+		0424596723E3086E0075016E /* TemplateBodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424596623E3086E0075016E /* TemplateBodyCell.swift */; };
 		0431059623B5C9A700F727FD /* WriteDiaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431059523B5C9A700F727FD /* WriteDiaryVC.swift */; };
 		0431059823B5CA0600F727FD /* TableVCTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431059723B5CA0600F727FD /* TableVCTemplate.swift */; };
 		0431059B23B5CAAC00F727FD /* ToolBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431059A23B5CAAC00F727FD /* ToolBarCell.swift */; };
@@ -45,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0424596423DABD410075016E /* TemplateManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateManageVC.swift; sourceTree = "<group>"; };
+		0424596623E3086E0075016E /* TemplateBodyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateBodyCell.swift; sourceTree = "<group>"; };
 		0431059523B5C9A700F727FD /* WriteDiaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDiaryVC.swift; sourceTree = "<group>"; };
 		0431059723B5CA0600F727FD /* TableVCTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableVCTemplate.swift; sourceTree = "<group>"; };
 		0431059A23B5CAAC00F727FD /* ToolBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarCell.swift; sourceTree = "<group>"; };
@@ -111,6 +115,7 @@
 				0431059A23B5CAAC00F727FD /* ToolBarCell.swift */,
 				0431059C23B70A7F00F727FD /* ImageCell.swift */,
 				0431059E23B70AAC00F727FD /* MainCell.swift */,
+				0424596623E3086E0075016E /* TemplateBodyCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -147,6 +152,7 @@
 				0431059723B5CA0600F727FD /* TableVCTemplate.swift */,
 				0441A51323AF86F9005A2251 /* CalendarVC.swift */,
 				0431059523B5C9A700F727FD /* WriteDiaryVC.swift */,
+				0424596423DABD410075016E /* TemplateManageVC.swift */,
 				0441A4E623ACE7E5005A2251 /* Main.storyboard */,
 				0441A4EC23ACE7E9005A2251 /* Assets.xcassets */,
 				0441A4EE23ACE7E9005A2251 /* LaunchScreen.storyboard */,
@@ -441,11 +447,13 @@
 				0431059D23B70A7F00F727FD /* ImageCell.swift in Sources */,
 				0431059623B5C9A700F727FD /* WriteDiaryVC.swift in Sources */,
 				0431059F23B70AAC00F727FD /* MainCell.swift in Sources */,
+				0424596523DABD410075016E /* TemplateManageVC.swift in Sources */,
 				0431059823B5CA0600F727FD /* TableVCTemplate.swift in Sources */,
 				0441A4E123ACE7E5005A2251 /* AppDelegate.swift in Sources */,
 				0441A4E323ACE7E5005A2251 /* SceneDelegate.swift in Sources */,
 				0441A4EB23ACE7E5005A2251 /* _MinuteDiary.xcdatamodeld in Sources */,
 				0431059B23B5CAAC00F727FD /* ToolBarCell.swift in Sources */,
+				0424596723E3086E0075016E /* TemplateBodyCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
