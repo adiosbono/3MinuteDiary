@@ -12,10 +12,16 @@ import UIKit
 class TemplateManageVC: UITableViewController{
     
     //여기 빈공간에다가는 변수들을 초기화하셈
-    
+        //수정버튼의 텍스트를 저장할 변수임
+    var editText : String!
+    var rightButton : UIButton!
     
 override func viewDidLoad() {
     super.viewDidLoad()
+    self.editText = (self.tableView.isEditing) ? "완료" : "편집"
+    self.rightButton = UIButton(frame: CGRect(x: tableView.frame.size.width - 110, y: 15, width: 100, height: 20))
+    self.rightButton.setTitle("편집", for: .normal)
+    
 }
     
 //화면이 나타날때마다 호출되는 메소드
@@ -35,16 +41,21 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     case 0:
         let cell = tableView.dequeueReusableCell(withIdentifier: "templateMenuCell") as! TemplateMenuCell
         
+        
+        
         let leftButton = UIButton(frame: CGRect(x: 10, y: 15, width: 100, height: 20))
         leftButton.setTitle("오늘부터 반영", for: .normal)
         leftButton.setTitleColor(.blue, for: .normal)
         leftButton.addTarget(self, action: #selector(applyToday), for: .touchUpInside)
         cell.addSubview(leftButton)
         
-        let rightButton = UIButton(frame: CGRect(x: tableView.frame.size.width - 110, y: 15, width: 100, height: 20))
-        rightButton.setTitle("수정하기", for: .normal)
-        rightButton.setTitleColor(.blue, for: .normal)
-        rightButton.addTarget(self, action: #selector(edit), for: .touchUpInside)
+        let middleText = UILabel(frame: CGRect(x: tableView.frame.size.width/2 - 50 , y: 15, width: 100, height: 20))
+        middleText.text = "템플릿관리"
+        cell.addSubview(middleText)
+        
+        //edit버튼임
+        self.rightButton.setTitleColor(.blue, for: .normal)
+        self.rightButton.addTarget(self, action: #selector(edit1), for: .touchUpInside)
         cell.addSubview(rightButton)
         
         return cell
@@ -82,6 +93,17 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     }
     
 }
+    
+    //테이블뷰의 각 행의 에디팅 가능한지 불가능한지를 여기서 설정할수 있다
+        //이게 왜필요하냐면 에디트 버튼 누르면 맨 위의 메뉴셀까지 에디트들어가지므로 메뉴셀을 삭제해버릴수 있기 때문(대략난감) 보기도 안좋고
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        switch indexPath.section {
+        case 0 :
+            return .none
+        default :
+            return .delete
+        }
+    }
 //테이블의 특정 행이 선택되었을때 호출되는 메소드
     /*
 override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -253,7 +275,10 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
         print("오늘부터 적용")
     }
     
-    @objc func edit(_ sender: UIButton!) {
+    @objc func edit1(_ sender: UIButton!) {
         print("에디트버튼 터치됨")
+        self.tableView.isEditing = !self.tableView.isEditing
+        self.editText = (self.tableView.isEditing) ? "완료" : "편집"
+        sender.setTitle(self.editText, for: .normal)
     }
 }
