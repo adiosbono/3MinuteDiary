@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_3MinuteDiary_3MinuteDiaryUITestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_3MinuteDiary_3MinuteDiaryUITestsVersionString[];
+FOUNDATION_EXPORT double SwiftyJSONVersionNumber;
+FOUNDATION_EXPORT const unsigned char SwiftyJSONVersionString[];
 

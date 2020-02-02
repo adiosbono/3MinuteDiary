@@ -4,23 +4,27 @@ PODS:
     - FMDB/standard (= 2.7.5)
   - FMDB/standard (2.7.5)
   - FSCalendar (2.8.1)
+  - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - Alamofire
   - FMDB
   - FSCalendar
+  - SwiftyJSON
 
 SPEC REPOS:
   trunk:
     - Alamofire
     - FMDB
     - FSCalendar
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   FMDB: 2ce00b547f966261cd18927a3ddb07cb6f3db82a
   FSCalendar: 5245140456fcbcac5824c203b98bd8068bdfee1a
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: fa0986dc981775a6de476516fc749855e66eda9c
+PODFILE CHECKSUM: 569299be328653186e0ce857d0f7975cd2521a92
 
 COCOAPODS: 1.8.4

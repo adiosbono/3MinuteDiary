@@ -6,8 +6,9 @@ target '3MinuteDiary' do
   pod 'FSCalendar'
   pod 'Alamofire'
   pod 'FMDB'
+  pod 'SwiftyJSON'
   use_frameworks!
-
+  end
   # Pods for 3MinuteDiary
 
   target '3MinuteDiaryTests' do
@@ -19,5 +20,3 @@ target '3MinuteDiary' do
   target '3MinuteDiaryUITests' do
     # Pods for testing
   end
-
-end
