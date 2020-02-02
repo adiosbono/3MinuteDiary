@@ -8,13 +8,21 @@
 
 import Foundation
 import UIKit
+import SwiftyJSON
+import FMDB
 
 class WriteDiaryVC: UITableViewController{
     
     //여기 빈공간에다가는 변수들을 초기화하셈
     
+        //db에서 일기을 읽어온 녀석을 저장할 변수
+        //순서대로 create_date, moring, night, did_backup, data임
+    var diaryData : [(String, Int, Int, Int, String)]!
         //이거는 전달받은 날짜 저장할 변수
     var sendedDate: Date?
+    
+        //db사용하기 위한 작업
+    let diaryDAO = DiaryDAO()
      
         //맨위의 저장버튼과 취소버튼임
     @IBAction func cancelButton(_ sender: UIButton) {
@@ -36,6 +44,8 @@ class WriteDiaryVC: UITableViewController{
 override func viewDidLoad() {
     super.viewDidLoad()
     print("sended date : \(self.sendedDate!)")
+    //db에서 main테이블을 읽어와서 diaryData에 저장해두고 이걸 바탕으로 셀을 만든다.
+    self.diaryData = self.diaryDAO.findMain()
     
     }
     
