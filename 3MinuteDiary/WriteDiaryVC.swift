@@ -64,13 +64,16 @@ override func viewDidLoad() {
     //db에서 main테이블을 읽어와서 diaryData에 저장해두고 이걸 바탕으로 셀을 만든다.
     
     //주의해야될 점은 findMain함수는 인자로 String값을 받는데 그 값으로 검색을 한다. 검색시에는 날짜의 형식이 년년년년-월월-일일 이므로 인자값에 넣어주기전에 형식변환을 하여 변환된 값을 넣어줘야 한다.
+    //--------------------------------------------------------------------------------
+    //잘 생각해보니까 DiaryDAO에서 findmain함수의 인자로 보낼때 굳이 이 귀찮은 변환을 계속 해서 String타입으로 보내줄게 아니라 그냥 Date 타입을 인자로 넣고 함수내에서 알아서 변환하면 되자나...그게더 편하지않나?
+    /*
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "yyyy-MM-dd"
         //이해는 잘 안되지만 왜 toGlobalTime써줘야되는지 모르갓슴
     let writingDay = dateFormatter.string(from: (self.sendedDate?.toGlobalTime())!)
     print("writingDay : \(writingDay)")
-    
-    self.diaryData = self.diaryDAO.findMain(date: writingDay)
+    */
+    self.diaryData = self.diaryDAO.findMain(date: self.sendedDate!)
     
     //여기 아래에 들어가야 할 코드 : 읽어온 일기의 data열의 정보(json형식)를 읽어와 그 내용을 각 변수에 저장해야한다.---------------------------------------
     //self.create_date = self.diaryData.
