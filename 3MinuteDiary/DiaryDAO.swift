@@ -56,19 +56,23 @@ class DiaryDAO {
     
     
     //디비의 메인테이블 목록을 읽어올 메소드 정의------------------------------------잘 작동하는지는 점검 아직 안됨
-        func findMain() -> [diaryRecord] {
+    //생각해보니까 한 날짜에 한 행의 데이터만 가져올건데 반환값을 배열로 할 이유는 없는듯(한 날짜에는 일기를 하나만 쓰니까 날짜를 검색기준으로 삼아서 검색을 해서 해당되는 값만 반환해야함) 하지만 혹시 모르는 일을 대비해서 배열로 반환하게 하고(중복되는 값이 없겠지만 있다면 뭐 그때 생각하면 된다)조회할때는 오프셋값을 0으로 해서 받아 쓰면 될듯....
+    func findMain(date: String) -> [diaryRecord] {
             //반환할 데이터를 담을 [diaryRecord] 타입의 객체 정의
             var diaryList = [diaryRecord]()
+        
+            
             
             do{
                 //카드목록을 가져올 sql작성 및 쿼리 실행
                 let sql = """
                     SELECT create_date, morning, night, did_backup, data
                     FROM main
-                    ORDER BY create_date ASC
+                    WHERE create_date = ?
+                    
     """
                 
-                let rs = try self.fmdb.executeQuery(sql, values: nil)
+                let rs = try self.fmdb.executeQuery(sql, values: [date])
 
                 //결과 집합 추출
                 while rs.next() {

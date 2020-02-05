@@ -90,8 +90,17 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
         //오늘에 해당하는 날짜는 기본으로 항상선택되어있는데(다른날짜를 누르더라도) 이것을 해제한다.
         //self.calendar.today = nil
         //-----------------------------------------------------------------------------------------
-        //기본적으로 오늘에 해당하는 날짜가 선택되어 있도록 한다.(아직구현안함)
+        
+            //아래의 네줄은 시분초까지 나오는 날짜형식을 년월일만 나오도록 바꾸기 위한것.....언제사용할거냐면 디비 검색할때!
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let today = dateFormatter.string(from: Date())
+        print("today : \(today)")
+        
+        
+        //기본적으로 오늘에 해당하는 날짜가 선택되어 있도록 한다.
         self.selectedDate = Date()
+        
         print("오늘날짜 : \(self.selectedDate!)")
         
         //토요일과 일요일은 달력에 빨간색으로 표시되도록 하자

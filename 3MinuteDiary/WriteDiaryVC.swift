@@ -18,8 +18,25 @@ class WriteDiaryVC: UITableViewController{
         //db에서 일기을 읽어온 녀석을 저장할 변수
         //순서대로 create_date, moring, night, did_backup, data임
     var diaryData : [(String, Int, Int, Int, String)]!
+    
+        //diaryData내의 변수를 저장할 변수
+    var create_date: String!
+    var morning: Int!
+    var night: Int!
+    var did_backup: Int!
+    var data: String!
         //이거는 전달받은 날짜 저장할 변수
     var sendedDate: Date?
+    
+        //JSON받을 변수(db의 data컬럼에 들어있는 정보)
+    var jsonData: JSON!
+    
+        //일기의 data행에서 각 목록에 해당하는 정보를 저장할 변수
+    var myObjective : String?
+    var wantToDo : String?
+    var whatHappened : String?
+    var gratitude : String?
+    var success : String?
     
         //db사용하기 위한 작업
     let diaryDAO = DiaryDAO()
@@ -45,8 +62,18 @@ override func viewDidLoad() {
     super.viewDidLoad()
     print("sended date : \(self.sendedDate!)")
     //db에서 main테이블을 읽어와서 diaryData에 저장해두고 이걸 바탕으로 셀을 만든다.
-    self.diaryData = self.diaryDAO.findMain()
     
+    //주의해야될 점은 findMain함수는 인자로 String값을 받는데 그 값으로 검색을 한다. 검색시에는 날짜의 형식이 년년년년-월월-일일 이므로 인자값에 넣어주기전에 형식변환을 하여 변환된 값을 넣어줘야 한다.
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd"
+        //이해는 잘 안되지만 왜 toGlobalTime써줘야되는지 모르갓슴
+    let writingDay = dateFormatter.string(from: (self.sendedDate?.toGlobalTime())!)
+    print("writingDay : \(writingDay)")
+    
+    self.diaryData = self.diaryDAO.findMain(date: writingDay)
+    
+    //여기 아래에 들어가야 할 코드 : 읽어온 일기의 data열의 정보(json형식)를 읽어와 그 내용을 각 변수에 저장해야한다.---------------------------------------
+    //self.create_date = self.diaryData.
     }
     
 //화면이 나타날때마다 호출되는 메소드
