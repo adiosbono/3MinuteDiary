@@ -77,7 +77,7 @@ class DiaryDAO {
                     
     """
                 
-                let rs = try self.fmdb.executeQuery(sql, values: [date])
+                let rs = try self.fmdb.executeQuery(sql, values: [writingDay])
 
                 //결과 집합 추출
                 while rs.next() {
@@ -87,13 +87,17 @@ class DiaryDAO {
                     let did_backup = rs.int(forColumn: "did_backup")
                     let data = rs.string(forColumn: "data")
                     
+                    
+                    
                     //diaryRecord에 들어있는순서대로 create_date, moring, night, did_backup, data
                     diaryList.append((createDate!, Int(morning), Int(night), Int(did_backup), data!))
                 }
                 
             }catch let error as NSError {
-                print("Failed from db: \(error.localizedDescription)")
+                print("Failed from db findMain: \(error.localizedDescription)")
             }
+        //디버그를 위한 아래 한줄......문제는 해당날짜에 데이터가 없어서 아무것도 반환하지 않을때도 정상적으로 아래 리턴이 이루어진다는 것임
+        print("findMain함수 실행 완료")
             return diaryList
         }
     

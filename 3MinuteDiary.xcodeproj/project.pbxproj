@@ -11,6 +11,7 @@
 		0424596523DABD410075016E /* TemplateManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424596423DABD410075016E /* TemplateManageVC.swift */; };
 		0424596723E3086E0075016E /* TemplateBodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424596623E3086E0075016E /* TemplateBodyCell.swift */; };
 		0424596923E312610075016E /* TemplateMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424596823E312610075016E /* TemplateMenuCell.swift */; };
+		0425A97C23ED7D5900B09F65 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 0425A97B23ED7D5900B09F65 /* db.sqlite */; };
 		0431059623B5C9A700F727FD /* WriteDiaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431059523B5C9A700F727FD /* WriteDiaryVC.swift */; };
 		0431059823B5CA0600F727FD /* TableVCTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431059723B5CA0600F727FD /* TableVCTemplate.swift */; };
 		0431059B23B5CAAC00F727FD /* ToolBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431059A23B5CAAC00F727FD /* ToolBarCell.swift */; };
@@ -26,7 +27,6 @@
 		0441A4FB23ACE7E9005A2251 /* _MinuteDiaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0441A4FA23ACE7E9005A2251 /* _MinuteDiaryTests.swift */; };
 		0441A50623ACE7E9005A2251 /* _MinuteDiaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0441A50523ACE7E9005A2251 /* _MinuteDiaryUITests.swift */; };
 		0441A51423AF86F9005A2251 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0441A51323AF86F9005A2251 /* CalendarVC.swift */; };
-		04C50BF823EAED1000A32BAE /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 04C50BF723EAED1000A32BAE /* db.sqlite */; };
 		105886EAF13401D602400FCF /* libPods-3MinuteDiaryTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC52A92CC7991DC331310712 /* libPods-3MinuteDiaryTests.a */; };
 		22BE91253BC738F2EFEBFA1C /* libPods-3MinuteDiaryUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95EEFDCD3873601A5C4D7ECC /* libPods-3MinuteDiaryUITests.a */; };
 		FE664EDF22C372EABF4DA5ED /* Pods_3MinuteDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5B4FFC3F239618D0CD043C /* Pods_3MinuteDiary.framework */; };
@@ -54,6 +54,7 @@
 		0424596423DABD410075016E /* TemplateManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateManageVC.swift; sourceTree = "<group>"; };
 		0424596623E3086E0075016E /* TemplateBodyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateBodyCell.swift; sourceTree = "<group>"; };
 		0424596823E312610075016E /* TemplateMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateMenuCell.swift; sourceTree = "<group>"; };
+		0425A97B23ED7D5900B09F65 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
 		0431059523B5C9A700F727FD /* WriteDiaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDiaryVC.swift; sourceTree = "<group>"; };
 		0431059723B5CA0600F727FD /* TableVCTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableVCTemplate.swift; sourceTree = "<group>"; };
 		0431059A23B5CAAC00F727FD /* ToolBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarCell.swift; sourceTree = "<group>"; };
@@ -75,7 +76,6 @@
 		0441A50523ACE7E9005A2251 /* _MinuteDiaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _MinuteDiaryUITests.swift; sourceTree = "<group>"; };
 		0441A50723ACE7E9005A2251 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0441A51323AF86F9005A2251 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
-		04C50BF723EAED1000A32BAE /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
 		17FCA218C6F3CC1A078C6D9B /* Pods-3MinuteDiaryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3MinuteDiaryUITests.debug.xcconfig"; path = "Target Support Files/Pods-3MinuteDiaryUITests/Pods-3MinuteDiaryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3E1D0C9CD38193BB5CF54644 /* Pods-3MinuteDiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3MinuteDiaryTests.debug.xcconfig"; path = "Target Support Files/Pods-3MinuteDiaryTests/Pods-3MinuteDiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		4B5B4FFC3F239618D0CD043C /* Pods_3MinuteDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_3MinuteDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -194,7 +194,7 @@
 		04C50BF423EAEC5B00A32BAE /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				04C50BF723EAED1000A32BAE /* db.sqlite */,
+				0425A97B23ED7D5900B09F65 /* db.sqlite */,
 			);
 			path = Database;
 			sourceTree = "<group>";
@@ -335,7 +335,7 @@
 				0441A4F023ACE7E9005A2251 /* LaunchScreen.storyboard in Resources */,
 				0441A4ED23ACE7E9005A2251 /* Assets.xcassets in Resources */,
 				0441A4E823ACE7E5005A2251 /* Main.storyboard in Resources */,
-				04C50BF823EAED1000A32BAE /* db.sqlite in Resources */,
+				0425A97C23ED7D5900B09F65 /* db.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

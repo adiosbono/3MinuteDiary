@@ -75,6 +75,34 @@ override func viewDidLoad() {
     */
     self.diaryData = self.diaryDAO.findMain(date: self.sendedDate!)
     
+    //배열을 반환받는데 사실 일자별로 일기는 하나씩밖에 없으니깐 배열안에는 인자가 하나밖에 없을거암. 그거를 쓰기 쉽게 지역변수에 대입해놓는다
+    if self.diaryData == nil {
+        print("findMain함수 리턴값이 없는듯...self.diaryDAO 값에서 nil 나옴")
+    }else{
+        print("findMAin함수 반환이 정상적으로 된듯...반환된 배열내 값 갯수 : \(self.diaryData.count)")
+        
+        if self.diaryData.count == 0 {
+            //조건식 값이 0이라면 아무값도 리턴된게 없으니 일기를 쓰지 않은 날이라는 것이다
+            print("일기를 안쓴 날을 고르셨습니다.")
+            
+        }else{
+        //전역변수로 선언된 녀석들에게 직접 값을 넣어준다.
+        self.create_date = self.diaryData[0].0
+        self.morning = self.diaryData[0].1
+        self.night = self.diaryData[0].2
+        self.did_backup = self.diaryData[0].3
+        self.data = self.diaryData[0].4
+        
+        //debuging purpose
+        print("create_date : \(self.create_date ?? "nil")")
+        print("morning : \(self.morning ?? 999)")
+        print("night : \(self.night ?? 999)")
+        print("did_backup : \(self.did_backup ?? 999)")
+        print("data = \(self.data ?? "nil")")
+        }
+    }
+    
+    
     //여기 아래에 들어가야 할 코드 : 읽어온 일기의 data열의 정보(json형식)를 읽어와 그 내용을 각 변수에 저장해야한다.---------------------------------------
     //self.create_date = self.diaryData.
     }
