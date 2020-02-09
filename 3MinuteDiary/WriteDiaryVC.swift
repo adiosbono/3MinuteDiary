@@ -17,7 +17,7 @@ class WriteDiaryVC: UITableViewController{
     
         //db에서 일기을 읽어온 녀석을 저장할 변수
         //순서대로 create_date, moring, night, did_backup, data임
-    var diaryData : [(String, Int, Int, Int, String)]!
+        var diaryData : [(String, Int, Int, Int, String)]!
     
         //diaryData내의 변수를 저장할 변수
         var create_date: String!
@@ -36,6 +36,9 @@ class WriteDiaryVC: UITableViewController{
         var gratitude : [String]?
         var success : [String]?
     }
+    
+        //위의 구조체를 자료형으로 하는 변수 선언(여기에 실제 내용 들어갈예정임)
+    var diaryBody : Body!
     
         //이거는 전달받은 날짜 저장할 변수
     var sendedDate: Date?
@@ -122,22 +125,22 @@ override func viewDidLoad() {
         
             if let data = self.data {
                 do{
-                    let myBody = try decoder.decode(Body.self, from: data)
-                
-                print("파싱시작")
-                if myBody.date == nil {
-                    print("date is nil")
-                }else{
-                    print("date is not nil")
-                    print("date : \(myBody.date ?? "noshit")")
-                }
-                print("파싱끝")
+                    let tempBody = try decoder.decode(Body.self, from: data)
+                print("파싱 컴플릿")
+                    self.diaryBody = tempBody
+                    print("date : \(self.diaryBody.date ?? "it was nil")")
+                    print("myObjective : \(self.diaryBody.myObjective?[0] ?? "obj was nil")")
+                    print("wantToDo : \(self.diaryBody.wantToDo?[0] ?? "wanttodo was nil")")
+                    
+                    
+                    print("whole body : \(tempBody)")
+                    
                 
                 }catch{
-                    print("unexpected error")
+                    print("파싱 error")
                 }
             }else{
-                print("shiiiit")
+                print("옵셔널 벗기기 에러")
             }
            
         
@@ -174,6 +177,24 @@ override func viewWillAppear(_ animated: Bool) {
     }
 //테이블 행의 개수를 결정하는 메소드
 override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    /*
+    switch section {
+    case 0:
+        return self.diaryBody.myObjective!.count
+    case 1:
+        return self.diaryBody.wantToDo!.count
+    case 2:
+        return self.diaryBody.whatHappened!.count
+    case 3:
+        return self.diaryBody.gratitude!.count
+    case 4:
+        return self.diaryBody.success!.count
+    default :
+        print("return default at numberOfRowsInSection")
+        return 1
+    }
+ */
     return 1
     }
 
