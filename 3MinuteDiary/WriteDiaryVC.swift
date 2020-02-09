@@ -20,26 +20,42 @@ class WriteDiaryVC: UITableViewController{
     var diaryData : [(String, Int, Int, Int, String)]!
     
         //diaryData내의 변수를 저장할 변수
-    var create_date: String!
-    var morning: Int!
-    var night: Int!
-    var did_backup: Int!
-    var data: String!
+        var create_date: String!
+        var morning: Int!
+        var night: Int!
+        var did_backup: Int!
+        var data: Data?
+    
+        //일기데이터를 파싱해서 저장할 구조체 선언(파싱할때 편하도록 특별히 프로토콜 선언함)
+    struct Body: Codable {
+        //일기의 data행에서 각 목록에 해당하는 정보를 저장할 변수
+        var date : String?
+        var myObjective : [String]?
+        var wantToDo : [String]?
+        var whatHappened : [String]?
+        var gratitude : [String]?
+        var success : [String]?
+    }
+    
         //이거는 전달받은 날짜 저장할 변수
     var sendedDate: Date?
     
         //JSON받을 변수(db의 data컬럼에 들어있는 정보)
     var jsonData: JSON!
     
-        //일기의 data행에서 각 목록에 해당하는 정보를 저장할 변수
-    var myObjective : String?
-    var wantToDo : String?
-    var whatHappened : String?
-    var gratitude : String?
-    var success : String?
+        
     
         //db사용하기 위한 작업
     let diaryDAO = DiaryDAO()
+    
+    
+        //json디코딩을 위한 선언
+    let decoder = JSONDecoder()
+    
+        //json인코딩을 위한 선언
+    let incoder = JSONEncoder()
+    
+        
      
         //맨위의 저장버튼과 취소버튼임
     @IBAction func cancelButton(_ sender: UIButton) {
@@ -91,15 +107,60 @@ override func viewDidLoad() {
         self.morning = self.diaryData[0].1
         self.night = self.diaryData[0].2
         self.did_backup = self.diaryData[0].3
-        self.data = self.diaryData[0].4
+            
+        let jsonString = self.diaryData[0].4
+            
+            
+        self.data = jsonString.data(using: .utf8)
+            
+            if self.data == nil {
+                print("data is nil")
+            }else{
+                print("data is not nil")
+            }
+            //데이터 파싱!
         
-        //debuging purpose
-        print("create_date : \(self.create_date ?? "nil")")
-        print("morning : \(self.morning ?? 999)")
-        print("night : \(self.night ?? 999)")
-        print("did_backup : \(self.did_backup ?? 999)")
-        print("data = \(self.data ?? "nil")")
+            if let data = self.data {
+                do{
+                    let myBody = try decoder.decode(Body.self, from: data)
+                
+                print("파싱시작")
+                if myBody.date == nil {
+                    print("date is nil")
+                }else{
+                    print("date is not nil")
+                    print("date : \(myBody.date ?? "noshit")")
+                }
+                print("파싱끝")
+                
+                }catch{
+                    print("unexpected error")
+                }
+            }else{
+                print("shiiiit")
+            }
+           
+        
+            
+            /*
+            if let data = self.data, let myBody = try? decoder.decode(Body.self, from: data) {
+
+                print("파싱시작")
+                print(myBody.myObjective)
+                print(myBody.wantToDo)
+                print(myBody.whatHappened)
+                print(myBody.success)
+                print(myBody.gratitude)
+                print("파싱끝")
+
+            }else{
+                print("파싱안됨")
+            }
+ */
         }
+        
+        
+
     }
     
     
