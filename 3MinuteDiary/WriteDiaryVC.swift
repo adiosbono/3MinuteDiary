@@ -128,12 +128,6 @@ override func viewDidLoad() {
                     let tempBody = try decoder.decode(Body.self, from: data)
                 print("파싱 컴플릿")
                     self.diaryBody = tempBody
-                    print("date : \(self.diaryBody.date ?? "it was nil")")
-                    print("myObjective : \(self.diaryBody.myObjective?[0] ?? "obj was nil")")
-                    print("wantToDo : \(self.diaryBody.wantToDo?[0] ?? "wanttodo was nil")")
-                    
-                    
-                    print("whole body : \(tempBody)")
                     
                 
                 }catch{
@@ -178,24 +172,49 @@ override func viewWillAppear(_ animated: Bool) {
 //테이블 행의 개수를 결정하는 메소드
 override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
-    /*
     switch section {
     case 0:
-        return self.diaryBody.myObjective!.count
+        return 1
     case 1:
-        return self.diaryBody.wantToDo!.count
+        if self.diaryData.count == 0 {
+            print("return default at numberOfRowsInSection")
+            return 1
+        }else{
+        return self.diaryBody.myObjective?.count ?? 1
+        }
     case 2:
-        return self.diaryBody.whatHappened!.count
+        if self.diaryData.count == 0 {
+            print("return default at numberOfRowsInSection")
+            return 1
+        }else{
+        return self.diaryBody.wantToDo?.count ?? 1
+        }
     case 3:
-        return self.diaryBody.gratitude!.count
+        if self.diaryData.count == 0 {
+            print("return default at numberOfRowsInSection")
+            return 1
+        }else{
+        return self.diaryBody.whatHappened?.count ?? 1
+        }
     case 4:
-        return self.diaryBody.success!.count
+        if self.diaryData.count == 0 {
+            print("return default at numberOfRowsInSection")
+            return 1
+        }else{
+        return self.diaryBody.gratitude?.count ?? 1
+        }
+    case 5:
+        if self.diaryData.count == 0 {
+            print("return default at numberOfRowsInSection")
+            return 1
+        }else{
+        return self.diaryBody.success?.count ?? 1
+        }
     default :
         print("return default at numberOfRowsInSection")
         return 1
     }
- */
-    return 1
+ 
     }
 
 //테이블 행을 구성하는 메소드
