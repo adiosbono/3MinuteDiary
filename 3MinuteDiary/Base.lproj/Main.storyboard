@@ -152,6 +152,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="mainText" destination="UYL-7e-jvX" id="PIF-I1-e4f"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="imageCell" rowHeight="125" id="VIC-Kn-2Vw" customClass="ImageCell" customModule="_MinuteDiary" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="98" width="414" height="125"/>

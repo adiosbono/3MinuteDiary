@@ -11,5 +11,6 @@ import UIKit
 
 class MainCell : UITableViewCell {
     
+    @IBOutlet var mainText: UILabel!
     
 }

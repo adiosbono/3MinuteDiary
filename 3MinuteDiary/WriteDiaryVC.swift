@@ -234,25 +234,61 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         
         print("dateFromString : \(date)")
         cell.showDate.text = date
-        
-                   
-                   //여기안에 디비에서 받아온 정보를 가지고 각 셀 안의 데이터를 입력해준다.
-                   
                    
         
                    return cell
         
     case 1:
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
-                   
+        if self.diaryData.count == 0 {
+            cell.mainText.text = ""
+        }else{
+        cell.mainText.text = self.diaryBody.myObjective![indexPath.row]
+        }
+        return cell
                    //여기안에 디비에서 받아온 정보를 가지고 각 셀 안의 데이터를 입력해준다.
-                   
-                   
         
-                   return cell
+    case 2:
+        let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
+        if self.diaryData.count == 0 {
+            cell.mainText.text = ""
+        }else{
+        cell.mainText.text = self.diaryBody.wantToDo![indexPath.row]
+        }
+        return cell
+        
+    case 3:
+        let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
+        if self.diaryData.count == 0 {
+            cell.mainText.text = ""
+        }else{
+        cell.mainText.text = self.diaryBody.whatHappened![indexPath.row]
+        }
+        return cell
+        
+    case 4:
+        let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
+        if self.diaryData.count == 0 {
+            cell.mainText.text = ""
+        }else{
+        cell.mainText.text = self.diaryBody.gratitude![indexPath.row]
+        }
+        return cell
+        
+    case 5:
+        let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
+        if self.diaryData.count == 0 {
+            cell.mainText.text = ""
+        }else{
+        cell.mainText.text = self.diaryBody.success![indexPath.row]
+        }
+        return cell
+                   
+         
     default:
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
-        
+        print("default로 MainCell을 생성하였습니다.")
+        cell.mainText.text = "default값으로 생성된 셀"
                    //여기안에 디비에서 받아온 정보를 가지고 각 셀 안의 데이터를 입력해준다.
                    
                    
