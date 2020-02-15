@@ -156,8 +156,10 @@ override func viewDidLoad() {
  */
         }
         
+        //테이블 셀의 높이를 동적으로 설정하기 위한 코드
+        //tableView.estimatedRowHeight = 70.0
+        //tableView.rowHeight 
         
-
     }
     
     

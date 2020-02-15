@@ -11,10 +11,38 @@ import UIKit
 
 class TemplateManageVC: UITableViewController{
     
+    //userdefault사용하기위한 범주를 여기에 적어놓는다
+        /*
+        키           :   값
+        myObjective : [String]배열
+        wantToDo : [String]배열
+        whatHappened : [String]배열
+        gratitude : [String]배열
+        success : [String]배열
+     
+     
+     
+        저장할땐 : UserDefaults.standard.set(status, forKey: "bloodLowAlarmStatus")
+        
+        읽어올땐 : let value = UserDefaults.standard.value(forKey: "bloodLowAlarmStatus")
+        
+
+
+        */
+    
+    
     //여기 빈공간에다가는 변수들을 초기화하셈
         //수정버튼의 텍스트를 저장할 변수임
     var editText : String!
     var rightButton : UIButton!
+    
+    
+        //템플릿 각 섹션별로 배열로 저장해놓기 위한 변수(UserDefault에 저장할때는 배열로 한방에 저장해야하기때문에 미리 모아두어야 함)
+    var myObjective : [String]?
+    var wantToDo : [String]?
+    var whatHappened : [String]?
+    var gratitude : [String]?
+    var success : [String]?
     
 override func viewDidLoad() {
     super.viewDidLoad()

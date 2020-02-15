@@ -143,14 +143,19 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYL-7e-jvX">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UYL-7e-jvX">
                                             <rect key="frame" x="20" y="11" width="374" height="48"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="UYL-7e-jvX" firstAttribute="bottom" secondItem="ZcP-zo-PMa" secondAttribute="bottomMargin" id="2nA-w0-LHR"/>
+                                        <constraint firstItem="UYL-7e-jvX" firstAttribute="top" secondItem="ZcP-zo-PMa" secondAttribute="topMargin" id="3ZS-uc-9aC"/>
+                                        <constraint firstItem="UYL-7e-jvX" firstAttribute="trailing" secondItem="ZcP-zo-PMa" secondAttribute="trailingMargin" id="ETb-yf-tde"/>
+                                        <constraint firstItem="UYL-7e-jvX" firstAttribute="leading" secondItem="ZcP-zo-PMa" secondAttribute="leadingMargin" id="cc1-TD-scK"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="mainText" destination="UYL-7e-jvX" id="PIF-I1-e4f"/>
