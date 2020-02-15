@@ -31,6 +31,9 @@ class TemplateManageVC: UITableViewController{
         */
     
     
+    //UserDefault사용하기 위한 작업
+    let plist = UserDefaults.standard
+    
     //여기 빈공간에다가는 변수들을 초기화하셈
         //수정버튼의 텍스트를 저장할 변수임
     var editText : String!
@@ -50,6 +53,57 @@ override func viewDidLoad() {
     self.rightButton = UIButton(frame: CGRect(x: tableView.frame.size.width - 110, y: 15, width: 100, height: 20))
     self.rightButton.setTitle("편집", for: .normal)
     
+    
+    //UserDefault에 테스트를 위해 기본적인 템플릿 내용을 강제로 집어넣는다.
+        //더미데이터를 둔다
+    let tempMyObjective = ["목표템플릿1", "목표템플릿2"]
+    let tempWantToDo = ["할일템플릿1", "할일템플릿2"]
+    let tempWhatHappened = ["일어난일템플릿1일어난일템플릿2일어난일템플릿3일어난일템플릿4일어난일템플릿5일어난일템플릿6일어난일템플릿7일어난일템플릿8일어난일템플릿9일어난일템플릿10일어난일템플릿11일어난일템플릿12일어난일템플릿13일어난일템플릿14일어난일템플릿15", "두번째줄일어난일템플릿12345678910"]
+    let tempGratitude = ["감사템플릿1","감사템플릿2","감사템플릿3"]
+    let tempSuccess = ["성공법칙템플릿1","성공법칙템플릿2"]
+        //더미데이터를 userdefault에 집어넣는다.
+    plist.set(tempMyObjective, forKey: "myObjective")
+    plist.set(tempWantToDo, forKey: "wantToDo")
+    plist.set(tempWhatHappened, forKey: "whatHappened")
+    plist.set(tempGratitude, forKey: "gratitude")
+    plist.set(tempSuccess, forKey: "success")
+    
+    //UserDefault로부터 데이터를 읽어와 전역변수에 대입한다.
+    if let temp1 = plist.array(forKey: "myObjective"){
+        self.myObjective = temp1 as? [String]
+        print("plist성공myObjective")
+    }else{
+        print("plist에서 myObjective를 읽어오는데 실패했습니다.")
+    }
+    
+    if let temp2 = plist.array(forKey: "wantToDo"){
+        self.wantToDo = temp2 as? [String]
+        print("plist성공wantToDo")
+    }else{
+        print("plist에서 wantToDo를 읽어오는데 실패했습니다")
+    }
+    
+    if let temp3 = plist.array(forKey: "whatHappened"){
+        self.whatHappened = temp3 as? [String]
+        print("plist성공 whatHappened")
+    }else{
+        print("plist에서 whatHappened 읽어오는데 실패했습니다")
+    }
+    
+    if let temp4 = plist.array(forKey: "gratitude"){
+        self.gratitude = temp4 as? [String]
+        print("plist성공 gratitude")
+    }else{
+        print("plist에서 gratitude 읽어오는데 실패")
+    }
+    
+    if let temp5 = plist.array(forKey: "success"){
+        self.success = temp5 as? [String]
+        print("plist성공 success")
+    }else{
+        print("plist에서 success 읽어오는거 실패")
+    }
+    
 }
     
 //화면이 나타날때마다 호출되는 메소드
@@ -59,7 +113,25 @@ override func viewWillAppear(_ animated: Bool) {
 //테이블 행의 개수를 결정하는 메소드
         //userdefault에서 현재 템플릿을 읽어와서 그 갯수를 행마다 return해줘야 함 현재는 그냥 하드코딩해놈
 override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 1
+    
+    switch section{
+    case 0:
+        return 1
+    case 1:
+        return self.myObjective?.count ?? 1
+    case 2:
+        return self.wantToDo?.count ?? 1
+    case 3:
+        return self.whatHappened?.count ?? 1
+    case 4:
+        return self.gratitude?.count ?? 1
+    case 5:
+        return self.success?.count ?? 1
+    default:
+        print("numberOfRowsInSection에서 디폴드값 사용됨")
+        return 1
+    }
+    
 }
 
 //테이블 행을 구성하는 메소드
@@ -91,26 +163,31 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     case 1 :
         let cell = tableView.dequeueReusableCell(withIdentifier: "templateBodyCell") as! TemplateBodyCell
         //여기에 셀 안에 들어갈 내용을 입력한다.
+        cell.textBody.text = self.myObjective?[indexPath.row]
         return cell
         
     case 2 :
     let cell = tableView.dequeueReusableCell(withIdentifier: "templateBodyCell") as! TemplateBodyCell
     //여기에 셀 안에 들어갈 내용을 입력한다.
+    cell.textBody.text = self.wantToDo?[indexPath.row]
     return cell
         
     case 3 :
     let cell = tableView.dequeueReusableCell(withIdentifier: "templateBodyCell") as! TemplateBodyCell
     //여기에 셀 안에 들어갈 내용을 입력한다.
+    cell.textBody.text = self.whatHappened?[indexPath.row]
     return cell
         
     case 4 :
     let cell = tableView.dequeueReusableCell(withIdentifier: "templateBodyCell") as! TemplateBodyCell
     //여기에 셀 안에 들어갈 내용을 입력한다.
+    cell.textBody.text = self.gratitude?[indexPath.row]
     return cell
         
     case 5 :
     let cell = tableView.dequeueReusableCell(withIdentifier: "templateBodyCell") as! TemplateBodyCell
     //여기에 셀 안에 들어갈 내용을 입력한다.
+    cell.textBody.text = self.success?[indexPath.row]
     return cell
         
     default :

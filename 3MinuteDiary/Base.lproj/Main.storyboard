@@ -97,15 +97,23 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="추가한 내용들어가는곳" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gH3-TM-naa">
-                                            <rect key="frame" x="20" y="19" width="374" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="추가한 내용들어가는곳" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gH3-TM-naa">
+                                            <rect key="frame" x="20" y="11" width="374" height="37"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="gH3-TM-naa" firstAttribute="leading" secondItem="L7S-Cq-N2m" secondAttribute="leadingMargin" id="2X6-Tp-HLC"/>
+                                        <constraint firstItem="gH3-TM-naa" firstAttribute="top" secondItem="L7S-Cq-N2m" secondAttribute="topMargin" id="HyQ-3T-BDf"/>
+                                        <constraint firstItem="gH3-TM-naa" firstAttribute="trailing" secondItem="L7S-Cq-N2m" secondAttribute="trailingMargin" id="bYe-1g-27J"/>
+                                        <constraint firstItem="gH3-TM-naa" firstAttribute="bottom" secondItem="L7S-Cq-N2m" secondAttribute="bottomMargin" id="if9-7U-W1G"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="textBody" destination="gH3-TM-naa" id="037-tc-Ssp"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" shouldIndentWhileEditing="NO" reuseIdentifier="templateMenuCell" rowHeight="43" id="1ZC-rs-fyr" customClass="TemplateMenuCell" customModule="_MinuteDiary" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="87" width="414" height="43"/>
