@@ -11,6 +11,5 @@ import UIKit
 
 class TemplateBodyCell: UITableViewCell {
     
-    @IBOutlet var textBody: UILabel!
-    
+
 }

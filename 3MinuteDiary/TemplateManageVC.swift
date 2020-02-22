@@ -11,6 +11,9 @@ import UIKit
 
 class TemplateManageVC: UITableViewController{
     
+    
+    
+    /*
     //userdefault사용하기위한 범주를 여기에 적어놓는다
         /*
         키           :   값
@@ -135,6 +138,8 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
 }
 
 //테이블 행을 구성하는 메소드
+    
+    /*
 override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     switch indexPath.section {
         
@@ -196,7 +201,7 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     return cell
         
     }
-    
+    */
 }
     
     //테이블뷰의 각 행의 에디팅 가능한지 불가능한지를 여기서 설정할수 있다
@@ -386,4 +391,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
         self.editText = (self.tableView.isEditing) ? "완료" : "편집"
         sender.setTitle(self.editText, for: .normal)
     }
+ 
+ 
+ */
 }
