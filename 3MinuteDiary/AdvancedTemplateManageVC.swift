@@ -24,6 +24,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         self.tableView.isEditing = !self.tableView.isEditing
         self.editText = (self.tableView.isEditing) ? "완료" : "편집"
         sender.setTitle(self.editText, for: .normal)
+        self.tableView.reloadData()
     }
     
     
@@ -208,12 +209,14 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     //각 섹션 헤더에 들어갈 뷰를 정의하는 메소드. 섹션별 타이틀을 뷰 형태로 구성하는 메소드 1080
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
          let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 20))
+        headerView.backgroundColor = .quaternarySystemFill
         
         switch section {
         case 0:
             //왼쪽에 들어갈 텍스트
             let label = UILabel(frame: CGRect(x: 10, y: 0, width: tableView.frame.size.width - 20, height: 20))
             label.text = "나의 목표"
+            //label.backgroundColor = .quaternarySystemFill
             headerView.addSubview(label)
             
                 return headerView
@@ -334,10 +337,20 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     //footer높이지정
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         //메뉴바에는 푸터가 필요 없으니 푸터 높이를 0으로 지정하면 안나옴!
+        
+        if self.tableView.isEditing == true {
+            return 20.0
+            
+        }else{
+            return 0.0
+            
+        }
+        /*
         switch section {
         default:
             return 20.0
         }
+ */
     }
     //footer안의 버튼 누르면 사용될 함수
     @objc func buttonAction1(_ sender: UIButton!) {
