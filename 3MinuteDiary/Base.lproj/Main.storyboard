@@ -131,14 +131,21 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="내용" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIT-XK-cTS">
-                                                    <rect key="frame" x="20" y="11" width="346" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내용" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIT-XK-cTS">
+                                                    <rect key="frame" x="16" y="11" width="346" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="346" id="2mh-ls-uyH"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ZIT-XK-cTS" firstAttribute="bottom" secondItem="Bfj-J8-xat" secondAttribute="bottomMargin" id="Dde-sQ-JES"/>
+                                                <constraint firstItem="ZIT-XK-cTS" firstAttribute="top" secondItem="Bfj-J8-xat" secondAttribute="topMargin" id="RLo-xg-Ezf"/>
+                                                <constraint firstItem="ZIT-XK-cTS" firstAttribute="leading" secondItem="Bfj-J8-xat" secondAttribute="leadingMargin" id="zne-6I-wuK"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="textBody" destination="ZIT-XK-cTS" id="V7b-lf-sN9"/>
