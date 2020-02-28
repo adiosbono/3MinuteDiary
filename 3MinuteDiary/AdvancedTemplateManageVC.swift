@@ -174,8 +174,9 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         case 1 :
             let cell = tableView.dequeueReusableCell(withIdentifier: "body")
             //여기에 셀 안에 들어갈 내용을 입력한다.
-            cell?.textLabel?.text = self.wantToDo?[indexPath.row]
             cell?.textLabel?.textColor = .black
+            cell?.textLabel?.text = self.wantToDo?[indexPath.row]
+        
             return cell!
             
         case 2 :
@@ -189,16 +190,19 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "body")
         //여기에 셀 안에 들어갈 내용을 입력한다.
         cell?.textLabel?.text = self.gratitude?[indexPath.row]
+        cell?.textLabel?.textColor = .black
         return cell!
             
         case 4 :
         let cell = tableView.dequeueReusableCell(withIdentifier: "body")
         //여기에 셀 안에 들어갈 내용을 입력한다.
         cell?.textLabel?.text = self.success?[indexPath.row]
+        cell?.textLabel?.textColor = .black
         return cell!
             
         default :
         let cell = tableView.dequeueReusableCell(withIdentifier: "body")
+        cell?.textLabel?.textColor = .black
         //여기에 셀 안에 들어갈 내용을 입력한다.
         return cell!
             
