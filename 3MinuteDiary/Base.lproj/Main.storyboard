@@ -119,22 +119,23 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="olK-ZU-GwA">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="olK-ZU-GwA">
                                 <rect key="frame" x="20" y="87" width="374" height="726"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="body" id="Tah-m4-X51" customClass="AdvancedTemplateBodyCell" customModule="_MinuteDiary" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="body" id="Tah-m4-X51" customClass="AdvancedTemplateBodyCell" customModule="_MinuteDiary" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tah-m4-X51" id="Bfj-J8-xat" customClass="AdvancedTemplateBodyCell" customModule="_MinuteDiary" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내용" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIT-XK-cTS">
-                                                    <rect key="frame" x="16" y="11" width="346" height="22"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZ3-dO-iUc">
+                                                    <rect key="frame" x="20" y="11" width="24.5" height="22"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="346" id="2mh-ls-uyH"/>
+                                                        <constraint firstAttribute="width" constant="346" id="EDK-oU-p5j"/>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="zB6-at-k04"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -142,13 +143,14 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="ZIT-XK-cTS" firstAttribute="bottom" secondItem="Bfj-J8-xat" secondAttribute="bottomMargin" id="Dde-sQ-JES"/>
-                                                <constraint firstItem="ZIT-XK-cTS" firstAttribute="top" secondItem="Bfj-J8-xat" secondAttribute="topMargin" id="RLo-xg-Ezf"/>
-                                                <constraint firstItem="ZIT-XK-cTS" firstAttribute="leading" secondItem="Bfj-J8-xat" secondAttribute="leadingMargin" id="zne-6I-wuK"/>
+                                                <constraint firstAttribute="trailing" secondItem="JZ3-dO-iUc" secondAttribute="trailing" constant="8" id="bav-4T-lIq"/>
+                                                <constraint firstAttribute="bottom" secondItem="JZ3-dO-iUc" secondAttribute="bottom" constant="11" id="dMy-ez-2sK"/>
+                                                <constraint firstItem="JZ3-dO-iUc" firstAttribute="leading" secondItem="Bfj-J8-xat" secondAttribute="leading" constant="20" id="dXA-bP-Yxx"/>
+                                                <constraint firstItem="JZ3-dO-iUc" firstAttribute="top" secondItem="Bfj-J8-xat" secondAttribute="top" constant="11" id="kzh-S8-N9N"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="textBody" destination="ZIT-XK-cTS" id="V7b-lf-sN9"/>
+                                            <outlet property="bioLabel" destination="JZ3-dO-iUc" id="uuI-mG-ZqM"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
