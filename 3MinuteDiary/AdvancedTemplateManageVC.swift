@@ -63,9 +63,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        //셀높이자동설정
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = UITableView.automaticDimension
+       
         
         
         //테이블뷰 딜리게이트 설정
@@ -167,40 +165,42 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         switch indexPath.section {
             
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "body") as! AdvancedTemplateBodyCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "body")
             //여기에 셀 안에 들어갈 내용을 입력한다.
-            cell.bioLabel.text = self.myObjective?[indexPath.row]
-            
-            return cell
+            cell?.textLabel?.text = self.myObjective?[indexPath.row]
+            cell?.textLabel?.textColor = .black
+            return cell!
             
         case 1 :
-            let cell = tableView.dequeueReusableCell(withIdentifier: "body") as! AdvancedTemplateBodyCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "body")
             //여기에 셀 안에 들어갈 내용을 입력한다.
-            cell.bioLabel.text = self.wantToDo?[indexPath.row]
-            return cell
+            cell?.textLabel?.text = self.wantToDo?[indexPath.row]
+            cell?.textLabel?.textColor = .black
+            return cell!
             
         case 2 :
-        let cell = tableView.dequeueReusableCell(withIdentifier: "body") as! AdvancedTemplateBodyCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "body")
         //여기에 셀 안에 들어갈 내용을 입력한다.
-        cell.bioLabel.text = self.whatHappened?[indexPath.row]
-        return cell
+        cell?.textLabel?.text = self.whatHappened?[indexPath.row]
+        cell?.textLabel?.textColor = .black
+        return cell!
             
         case 3 :
-        let cell = tableView.dequeueReusableCell(withIdentifier: "body") as! AdvancedTemplateBodyCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "body")
         //여기에 셀 안에 들어갈 내용을 입력한다.
-        cell.bioLabel.text = self.gratitude?[indexPath.row]
-        return cell
+        cell?.textLabel?.text = self.gratitude?[indexPath.row]
+        return cell!
             
         case 4 :
-        let cell = tableView.dequeueReusableCell(withIdentifier: "body") as! AdvancedTemplateBodyCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "body")
         //여기에 셀 안에 들어갈 내용을 입력한다.
-        cell.bioLabel.text = self.success?[indexPath.row]
-        return cell
+        cell?.textLabel?.text = self.success?[indexPath.row]
+        return cell!
             
         default :
-        let cell = tableView.dequeueReusableCell(withIdentifier: "body") as! AdvancedTemplateBodyCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "body")
         //여기에 셀 안에 들어갈 내용을 입력한다.
-        return cell
+        return cell!
             
         }
     }

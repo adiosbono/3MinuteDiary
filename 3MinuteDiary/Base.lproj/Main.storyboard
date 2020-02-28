@@ -124,34 +124,22 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="body" id="Tah-m4-X51" customClass="AdvancedTemplateBodyCell" customModule="_MinuteDiary" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="body" textLabel="rgi-Ic-RW6" style="IBUITableViewCellStyleDefault" id="Tah-m4-X51" customClass="AdvancedTemplateBodyCell" customModule="_MinuteDiary" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tah-m4-X51" id="Bfj-J8-xat" customClass="AdvancedTemplateBodyCell" customModule="_MinuteDiary" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bio" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZ3-dO-iUc">
-                                                    <rect key="frame" x="20" y="11" width="24.5" height="22"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="346" id="EDK-oU-p5j"/>
-                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="zB6-at-k04"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" id="rgi-Ic-RW6">
+                                                    <rect key="frame" x="20" y="0.0" width="334" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="JZ3-dO-iUc" secondAttribute="trailing" constant="8" id="bav-4T-lIq"/>
-                                                <constraint firstAttribute="bottom" secondItem="JZ3-dO-iUc" secondAttribute="bottom" constant="11" id="dMy-ez-2sK"/>
-                                                <constraint firstItem="JZ3-dO-iUc" firstAttribute="leading" secondItem="Bfj-J8-xat" secondAttribute="leading" constant="20" id="dXA-bP-Yxx"/>
-                                                <constraint firstItem="JZ3-dO-iUc" firstAttribute="top" secondItem="Bfj-J8-xat" secondAttribute="top" constant="11" id="kzh-S8-N9N"/>
-                                            </constraints>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="bioLabel" destination="JZ3-dO-iUc" id="uuI-mG-ZqM"/>
-                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
