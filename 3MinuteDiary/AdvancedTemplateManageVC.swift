@@ -136,10 +136,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         self.myTableView.reloadData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print("리로드함")
-        self.myTableView.reloadData()
-    }
+    
     
     //테이블 행의 개수를 결정하는 메소드
     //userdefault에서 현재 템플릿을 읽어와서 그 갯수를 행마다 return해줘야 함
