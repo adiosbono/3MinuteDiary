@@ -68,10 +68,20 @@
         <!--백업관리-->
         <scene sceneID="dJw-gz-mIR">
             <objects>
-                <viewController id="SRU-US-NzT" sceneMemberID="viewController">
+                <viewController id="SRU-US-NzT" customClass="BackupManageVC" customModule="_MinuteDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="v7E-9x-GRO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cmf-0e-2Vt">
+                                <rect key="frame" x="166" y="373" width="82" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="임시로 만든넘"/>
+                                <connections>
+                                    <action selector="tempAction:" destination="SRU-US-NzT" eventType="touchUpInside" id="qDf-cN-P3f"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="CVV-Hd-h74"/>
                     </view>
@@ -89,28 +99,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ghO-aN-10n">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghO-aN-10n">
                                 <rect key="frame" x="0.0" y="44" width="414" height="45"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lBh-xG-qWl">
-                                        <rect key="frame" x="22" y="8" width="82" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lBh-xG-qWl">
+                                        <rect key="frame" x="22" y="7.5" width="82" height="30"/>
                                         <state key="normal" title="오늘부터 반영"/>
                                         <connections>
                                             <action selector="applyToday:" destination="LjI-Qd-lvV" eventType="touchUpInside" id="bfD-Li-eXl"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="템플릿관리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgS-AW-n94">
-                                        <rect key="frame" x="170" y="13" width="74" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="템플릿관리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgS-AW-n94">
+                                        <rect key="frame" x="170" y="12.5" width="74" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GW0-hL-hTh">
-                                        <rect key="frame" x="334" y="7" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GW0-hL-hTh">
+                                        <rect key="frame" x="334" y="7.5" width="30" height="30"/>
                                         <state key="normal" title="편집"/>
                                         <connections>
                                             <action selector="editButton:" destination="LjI-Qd-lvV" eventType="touchUpInside" id="XEf-Vv-20S"/>
@@ -118,40 +124,103 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="GW0-hL-hTh" firstAttribute="centerY" secondItem="ghO-aN-10n" secondAttribute="centerY" id="291-lL-qeU"/>
+                                    <constraint firstItem="GW0-hL-hTh" firstAttribute="leading" secondItem="QgS-AW-n94" secondAttribute="trailing" constant="90" id="9T1-Ke-0C6"/>
+                                    <constraint firstItem="QgS-AW-n94" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="lBh-xG-qWl" secondAttribute="trailing" constant="8" symbolic="YES" id="BSY-MG-yeR"/>
+                                    <constraint firstItem="QgS-AW-n94" firstAttribute="centerY" secondItem="ghO-aN-10n" secondAttribute="centerY" id="TT4-v2-o6i"/>
+                                    <constraint firstItem="lBh-xG-qWl" firstAttribute="centerY" secondItem="ghO-aN-10n" secondAttribute="centerY" id="ToL-yO-CKa"/>
+                                    <constraint firstAttribute="trailing" secondItem="GW0-hL-hTh" secondAttribute="trailing" constant="50" id="Xxa-Ny-HlW"/>
+                                    <constraint firstItem="lBh-xG-qWl" firstAttribute="leading" secondItem="ghO-aN-10n" secondAttribute="leading" constant="22" id="nvr-T2-dan"/>
+                                </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="olK-ZU-GwA">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" layoutMarginsFollowReadableWidth="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="olK-ZU-GwA">
                                 <rect key="frame" x="20" y="87" width="374" height="726"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="separatorColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <color key="sectionIndexColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="m5T-ho-uS2">
+                                    <rect key="frame" x="0.0" y="312.5" width="374" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="body" textLabel="rgi-Ic-RW6" style="IBUITableViewCellStyleDefault" id="Tah-m4-X51">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="body" id="Tah-m4-X51" customClass="TemplateBodyCell" customModule="_MinuteDiary" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="212"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tah-m4-X51" id="Bfj-J8-xat" customClass="UITableViewCell">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Tah-m4-X51" id="Bfj-J8-xat" customClass="TemplateBodyCell" customModule="_MinuteDiary" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="212"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Titlec" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="rgi-Ic-RW6">
-                                                    <rect key="frame" x="20" y="0.0" width="334" height="44"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmh-2h-M5u">
+                                                    <rect key="frame" x="20" y="1" width="346" height="200.5"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="346" id="0Jq-cl-aC2"/>
+                                                    </constraints>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="fmh-2h-M5u" secondAttribute="bottom" constant="10.5" id="BYn-qY-5Ha"/>
+                                                <constraint firstItem="fmh-2h-M5u" firstAttribute="top" secondItem="Bfj-J8-xat" secondAttribute="top" constant="1" id="Hy8-cf-Zqf"/>
+                                                <constraint firstItem="fmh-2h-M5u" firstAttribute="leading" secondItem="Bfj-J8-xat" secondAttribute="leadingMargin" id="g7o-dA-dK3"/>
+                                                <constraint firstAttribute="trailing" secondItem="fmh-2h-M5u" secondAttribute="trailing" constant="8" id="yAK-aK-kjO"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="main" destination="fmh-2h-M5u" id="ebj-TJ-Ic7"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBody" id="jeS-dM-0qW" customClass="TemplateAddCell" customModule="_MinuteDiary" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="240" width="374" height="44.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jeS-dM-0qW" id="whk-LK-Trt" customClass="TemplateAddCell" customModule="_MinuteDiary" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="추가할 내용을 입력해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gvZ-3Y-Vub">
+                                                    <rect key="frame" x="20" y="5" width="346" height="34.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="346" id="ECj-fS-EbM"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="gvZ-3Y-Vub" secondAttribute="trailing" constant="8" id="3cb-YS-voG"/>
+                                                <constraint firstItem="gvZ-3Y-Vub" firstAttribute="centerY" secondItem="whk-LK-Trt" secondAttribute="centerY" id="Mvo-Fp-0iv"/>
+                                                <constraint firstItem="gvZ-3Y-Vub" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="whk-LK-Trt" secondAttribute="leadingMargin" id="opT-Cc-cKh"/>
+                                                <constraint firstItem="gvZ-3Y-Vub" firstAttribute="top" secondItem="whk-LK-Trt" secondAttribute="topMargin" constant="-6" id="skc-P7-ctg"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="addTextField" destination="gvZ-3Y-Vub" id="KUX-vu-PxU"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ghO-aN-10n" firstAttribute="leading" secondItem="Wd0-37-XTn" secondAttribute="leading" id="03C-7U-afu"/>
+                            <constraint firstItem="ghO-aN-10n" firstAttribute="centerX" secondItem="olK-ZU-GwA" secondAttribute="centerX" id="Ij2-sf-c8r"/>
+                            <constraint firstItem="olK-ZU-GwA" firstAttribute="top" secondItem="Wd0-37-XTn" secondAttribute="top" constant="43" id="PHI-3T-0IC"/>
+                            <constraint firstItem="olK-ZU-GwA" firstAttribute="trailing" secondItem="cFA-pk-9WA" secondAttribute="trailingMargin" id="XmA-pV-bIo"/>
+                            <constraint firstItem="ghO-aN-10n" firstAttribute="top" secondItem="Wd0-37-XTn" secondAttribute="top" id="hW1-Hl-Z4v"/>
+                            <constraint firstItem="Wd0-37-XTn" firstAttribute="bottom" secondItem="ghO-aN-10n" secondAttribute="bottom" constant="724" id="vGN-P2-qF1"/>
+                            <constraint firstItem="olK-ZU-GwA" firstAttribute="bottom" secondItem="Wd0-37-XTn" secondAttribute="bottom" id="wc3-GK-dv4"/>
+                            <constraint firstItem="olK-ZU-GwA" firstAttribute="leading" secondItem="cFA-pk-9WA" secondAttribute="leadingMargin" id="xWZ-eC-11p"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Wd0-37-XTn"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="템플릿관리" id="K3I-pu-cxg"/>
                     <connections>
-                        <outlet property="tableView" destination="olK-ZU-GwA" id="PQP-XV-bi6"/>
+                        <outlet property="myTableView" destination="olK-ZU-GwA" id="N8z-Gy-UhE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lYu-vD-B4r" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

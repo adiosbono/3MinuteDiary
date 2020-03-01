@@ -10,6 +10,6 @@ import Foundation
 import UIKit
 
 class TemplateBodyCell: UITableViewCell {
+    @IBOutlet var main: UITextView!
     
-
 }

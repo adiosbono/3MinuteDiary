@@ -11,6 +11,6 @@ import UIKit
 
 class AdvancedTemplateBodyCell: UITableViewCell {
     
-    @IBOutlet var bioLabel: UILabel!
+    
     
 }

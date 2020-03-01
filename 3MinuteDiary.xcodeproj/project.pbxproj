@@ -12,8 +12,9 @@
 		042405A82400FB96008CF790 /* AdvancedTemplateBodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042405A72400FB96008CF790 /* AdvancedTemplateBodyCell.swift */; };
 		0424596523DABD410075016E /* TemplateManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424596423DABD410075016E /* TemplateManageVC.swift */; };
 		0424596723E3086E0075016E /* TemplateBodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424596623E3086E0075016E /* TemplateBodyCell.swift */; };
-		0424596923E312610075016E /* TemplateMenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424596823E312610075016E /* TemplateMenuCell.swift */; };
+		0424596923E312610075016E /* TemplateAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424596823E312610075016E /* TemplateAddCell.swift */; };
 		0425A97C23ED7D5900B09F65 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 0425A97B23ED7D5900B09F65 /* db.sqlite */; };
+		0429446D240A58D4008631C9 /* BackupManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429446C240A58D4008631C9 /* BackupManageVC.swift */; };
 		0431059623B5C9A700F727FD /* WriteDiaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431059523B5C9A700F727FD /* WriteDiaryVC.swift */; };
 		0431059823B5CA0600F727FD /* TableVCTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431059723B5CA0600F727FD /* TableVCTemplate.swift */; };
 		0431059B23B5CAAC00F727FD /* ToolBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431059A23B5CAAC00F727FD /* ToolBarCell.swift */; };
@@ -57,8 +58,9 @@
 		042405A72400FB96008CF790 /* AdvancedTemplateBodyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTemplateBodyCell.swift; sourceTree = "<group>"; };
 		0424596423DABD410075016E /* TemplateManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateManageVC.swift; sourceTree = "<group>"; };
 		0424596623E3086E0075016E /* TemplateBodyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateBodyCell.swift; sourceTree = "<group>"; };
-		0424596823E312610075016E /* TemplateMenuCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateMenuCell.swift; sourceTree = "<group>"; };
+		0424596823E312610075016E /* TemplateAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAddCell.swift; sourceTree = "<group>"; };
 		0425A97B23ED7D5900B09F65 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
+		0429446C240A58D4008631C9 /* BackupManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupManageVC.swift; sourceTree = "<group>"; };
 		0431059523B5C9A700F727FD /* WriteDiaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDiaryVC.swift; sourceTree = "<group>"; };
 		0431059723B5CA0600F727FD /* TableVCTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableVCTemplate.swift; sourceTree = "<group>"; };
 		0431059A23B5CAAC00F727FD /* ToolBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarCell.swift; sourceTree = "<group>"; };
@@ -129,7 +131,7 @@
 				0431059E23B70AAC00F727FD /* MainCell.swift */,
 				042405A72400FB96008CF790 /* AdvancedTemplateBodyCell.swift */,
 				0424596623E3086E0075016E /* TemplateBodyCell.swift */,
-				0424596823E312610075016E /* TemplateMenuCell.swift */,
+				0424596823E312610075016E /* TemplateAddCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -169,6 +171,7 @@
 				0431059523B5C9A700F727FD /* WriteDiaryVC.swift */,
 				0424596423DABD410075016E /* TemplateManageVC.swift */,
 				042405A523F908A2008CF790 /* AdvancedTemplateManageVC.swift */,
+				0429446C240A58D4008631C9 /* BackupManageVC.swift */,
 				04222F1F23E6E8C3000008BB /* DiaryDAO.swift */,
 				0441A4E623ACE7E5005A2251 /* Main.storyboard */,
 				0441A4EC23ACE7E9005A2251 /* Assets.xcassets */,
@@ -455,11 +458,12 @@
 				042405A623F908A2008CF790 /* AdvancedTemplateManageVC.swift in Sources */,
 				0441A51423AF86F9005A2251 /* CalendarVC.swift in Sources */,
 				0441A4E523ACE7E5005A2251 /* ViewController.swift in Sources */,
-				0424596923E312610075016E /* TemplateMenuCell.swift in Sources */,
+				0424596923E312610075016E /* TemplateAddCell.swift in Sources */,
 				0431059D23B70A7F00F727FD /* ImageCell.swift in Sources */,
 				04222F2023E6E8C3000008BB /* DiaryDAO.swift in Sources */,
 				0431059623B5C9A700F727FD /* WriteDiaryVC.swift in Sources */,
 				0431059F23B70AAC00F727FD /* MainCell.swift in Sources */,
+				0429446D240A58D4008631C9 /* BackupManageVC.swift in Sources */,
 				0424596523DABD410075016E /* TemplateManageVC.swift in Sources */,
 				042405A82400FB96008CF790 /* AdvancedTemplateBodyCell.swift in Sources */,
 				0431059823B5CA0600F727FD /* TableVCTemplate.swift in Sources */,

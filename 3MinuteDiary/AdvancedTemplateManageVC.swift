@@ -21,20 +21,23 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func editButton(_ sender: UIButton) {
         print("편집버튼 클릭됨")
-        self.tableView.isEditing = !self.tableView.isEditing
-        self.editText = (self.tableView.isEditing) ? "완료" : "편집"
+        self.myTableView.isEditing = !self.myTableView.isEditing
+        self.editText = (self.myTableView.isEditing) ? "완료" : "편집"
         sender.setTitle(self.editText, for: .normal)
-        self.tableView.reloadData()
+        self.myTableView.reloadData()
     }
     
-    
+    //키보드 작동 함 좀 느린거같은느낌적인느낌? dnbonobonobononb영어는 제대로 되네
     //self.tableView.isEditing = !self.tableView.isEditing
         //self.editText = (self.tableView.isEditing) ? "완료" : "편집"
         //sender.setTitle(self.editText, for: .normal)
     
     
         //테이블뷰
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet var myTableView: UITableView!
+    
+        //테이블 셀의 높이를 저장해놀 변ㅅ
+    var heightRow: CGFloat!
     
         //UserDefault사용하기 위한 작업
     let plist = UserDefaults.standard
@@ -63,15 +66,17 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        //myTableView.estimatedRowHeight = 60
+        //myTableView.rowHeight = UITableView.automaticDimension
        
         
         
         //테이블뷰 딜리게이트 설정
-        tableView.dataSource = self
-        tableView.delegate = self
+        myTableView.dataSource = self
+        myTableView.delegate = self
         
         //완료 편집을 토글할 텍스트
-        self.editText = (self.tableView.isEditing) ? "완료" : "편집"
+        self.editText = (self.myTableView.isEditing) ? "완료" : "편집"
         
         
         
@@ -128,11 +133,12 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
 
     //화면이 나타날때마다 호출되는 메소드
     override func viewWillAppear(_ animated: Bool) {
-        self.tableView.reloadData()
+        self.myTableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.tableView.reloadData()
+        print("리로드함")
+        self.myTableView.reloadData()
     }
     
     //테이블 행의 개수를 결정하는 메소드
@@ -156,49 +162,103 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     }
     
     //테이블 행의 높이
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
-    }
     
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        /*
+        if let cell = tableView.cellForRow(at: indexPath){
+        let ccell = cell as! TemplateBodyCell
+        print("방금 제출한 셀 (섹션 : \(indexPath.section), 행 : \(indexPath.row)이고 반환한 높이는 \(ccell.main.frame.size.height + 20)")
+            return ccell.main.frame.size.height + 20
+        }else{
+            print("cell값이 nil이엇슴 반환된값:\(UITableView.automaticDimension)")
+            return UITableView.automaticDimension
+        }
+ */
+        print("heightforrowat에서 현재 셀 (섹션 : \(indexPath.section), 행 : \(indexPath.row)작업중")
+        
+        
+        return self.heightRow
+        
+    }
+ 
+
+
     //테이블 행을 구성하는 메소드
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
             
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "body")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "body") as! TemplateBodyCell
             //여기에 셀 안에 들어갈 내용을 입력한다.
-            cell?.textLabel?.text = self.myObjective?[indexPath.row]
-            cell?.textLabel?.textColor = .black
-            return cell!
+        //프로그래밍 방식을 이용하여 텍스트뷰를 만들고 이를 서브뷰로 넣은다음 cell에서 sizetofit을 호출하면 제대로 될지 확인해보자
+        /*
+        let myTextView = UITextView()
+        myTextView.frame.size
+        */
+        
+        cell.main.text = self.myObjective?[indexPath.row]
+        cell.main.translatesAutoresizingMaskIntoConstraints = true
+        cell.main.isScrollEnabled = false
+        cell.main.sizeToFit()
+        
+        print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
+        
+        self.heightRow = cell.main.frame.size.height
+            return cell
             
         case 1 :
-            let cell = tableView.dequeueReusableCell(withIdentifier: "body")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "body") as! TemplateBodyCell
             //여기에 셀 안에 들어갈 내용을 입력한다.
-            cell?.textLabel?.textColor = .black
-            cell?.textLabel?.text = self.wantToDo?[indexPath.row]
+            cell.main.text = self.wantToDo?[indexPath.row]
+        cell.main.translatesAutoresizingMaskIntoConstraints = true
+        cell.main.isScrollEnabled = false
+        cell.main.sizeToFit()
+        cell.sizeToFit()
+        print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
         
-            return cell!
+    self.heightRow = cell.main.frame.size.height
+            return cell
             
         case 2 :
-        let cell = tableView.dequeueReusableCell(withIdentifier: "body")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "body") as! TemplateBodyCell
         //여기에 셀 안에 들어갈 내용을 입력한다.
-        cell?.textLabel?.text = self.whatHappened?[indexPath.row]
-        cell?.textLabel?.textColor = .black
-        return cell!
+        cell.main.text = self.whatHappened?[indexPath.row]
+        cell.main.translatesAutoresizingMaskIntoConstraints = true
+        cell.main.isScrollEnabled = false
+        cell.main.sizeToFit()
+        //cell.sizeToFit()
+        print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
+        
+        self.heightRow = cell.main.frame.size.height
+        return cell
             
         case 3 :
-        let cell = tableView.dequeueReusableCell(withIdentifier: "body")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "body") as! TemplateBodyCell
         //여기에 셀 안에 들어갈 내용을 입력한다.
-        cell?.textLabel?.text = self.gratitude?[indexPath.row]
-        cell?.textLabel?.textColor = .black
-        return cell!
+        cell.main.text = self.gratitude?[indexPath.row]
+        cell.main.translatesAutoresizingMaskIntoConstraints = true
+        cell.main.isScrollEnabled = false
+        cell.main.sizeToFit()
+        
+        print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
+        
+        self.heightRow = cell.main.frame.size.height
+        return cell
             
         case 4 :
-        let cell = tableView.dequeueReusableCell(withIdentifier: "body")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "body") as! TemplateBodyCell
         //여기에 셀 안에 들어갈 내용을 입력한다.
-        cell?.textLabel?.text = self.success?[indexPath.row]
-        cell?.textLabel?.textColor = .black
-        return cell!
+        cell.main.text = self.success?[indexPath.row]
+        cell.main.translatesAutoresizingMaskIntoConstraints = true
+        cell.main.isScrollEnabled = false
+        cell.main.sizeToFit()
+        
+        print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
+        
+        self.heightRow = cell.main.frame.size.height
+        return cell
             
         default :
         let cell = tableView.dequeueReusableCell(withIdentifier: "body")
@@ -356,7 +416,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         //메뉴바에는 푸터가 필요 없으니 푸터 높이를 0으로 지정하면 안나옴!
         
-        if self.tableView.isEditing == true {
+        if self.myTableView.isEditing == true {
             return 20.0
             
         }else{

@@ -9,7 +9,8 @@
 import Foundation
 import UIKit
 
-class TemplateMenuCell: UITableViewCell {
+class TemplateAddCell: UITableViewCell {
     
+    @IBOutlet var addTextField: UITextField!
     
 }
