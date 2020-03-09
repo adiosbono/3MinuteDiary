@@ -119,7 +119,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fmh-2h-M5u">
-                                                    <rect key="frame" x="20" y="1" width="334" height="200.5"/>
+                                                    <rect key="frame" x="20" y="1" width="338" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -133,31 +133,25 @@
                                             <outlet property="main" destination="fmh-2h-M5u" id="ebj-TJ-Ic7"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBody" id="jeS-dM-0qW" customClass="TemplateAddCell" customModule="_MinuteDiary" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="addBody" id="jeS-dM-0qW" customClass="TemplateAddCell" customModule="_MinuteDiary" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="72" width="374" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jeS-dM-0qW" id="whk-LK-Trt" customClass="TemplateAddCell" customModule="_MinuteDiary" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="추가할 내용을 입력해 주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gvZ-3Y-Vub">
-                                                    <rect key="frame" x="-193" y="5" width="185" height="34"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="346" id="ECj-fS-EbM"/>
-                                                    </constraints>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="이거슨이거슨이거슨이거슨이거슨이거슨이이거슨 추가된셀" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nwC-nS-fVW">
+                                                    <rect key="frame" x="20" y="0.0" width="338" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                </textField>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="gvZ-3Y-Vub" secondAttribute="trailing" constant="8" id="3cb-YS-voG"/>
-                                                <constraint firstItem="gvZ-3Y-Vub" firstAttribute="centerY" secondItem="whk-LK-Trt" secondAttribute="centerY" id="Mvo-Fp-0iv"/>
-                                                <constraint firstItem="gvZ-3Y-Vub" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="whk-LK-Trt" secondAttribute="leadingMargin" id="opT-Cc-cKh"/>
-                                                <constraint firstItem="gvZ-3Y-Vub" firstAttribute="top" secondItem="whk-LK-Trt" secondAttribute="topMargin" constant="-6" id="skc-P7-ctg"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="addTextField" destination="gvZ-3Y-Vub" id="KUX-vu-PxU"/>
+                                            <outlet property="addTextView" destination="nwC-nS-fVW" id="N7q-zF-sME"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

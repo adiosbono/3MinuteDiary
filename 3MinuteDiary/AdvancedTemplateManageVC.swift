@@ -13,6 +13,10 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     
     
     //각종 변수 초기화를 여기서 하면 됨
+    
+        //푸터의 버튼(항목추가하기)누르면 토글이 되는 변수를 선언한다. 기본값은 false
+    var forAdd = false
+    
         //오늘부터 반영 버튼
     @IBAction func applyToday(_ sender: UIButton) {
         print("오늘부터 반영 클릭됨")
@@ -132,10 +136,11 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     }
 
     //화면이 나타날때마다 호출되는 메소드
+    /*
     override func viewWillAppear(_ animated: Bool) {
         self.myTableView.reloadData()
     }
-    
+    */
     
     
     //테이블 행의 개수를 결정하는 메소드
@@ -184,6 +189,18 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
 
     //테이블 행을 구성하는 메소드
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        //forAdd값을 검사하여 true면 행추가를 위한 TemplateAddCell을 반환하도록 하고 false라면 TemplateBodyCell을 반환하도록 한다.
+        if self.forAdd == true {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "addBody") as! TemplateAddCell
+            
+            
+            cell.addTextView.frame.size.width = tableView.frame.size.width - 40
+            self.heightRow = cell.addTextView.frame.size.height
+            self.forAdd = false
+            return cell
+        }else{
+        
         switch indexPath.section {
             
         case 0:
@@ -196,11 +213,13 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         */
         
         cell.main.text = self.myObjective?[indexPath.row]
-        cell.main.translatesAutoresizingMaskIntoConstraints = true
+        //cell.main.translatesAutoresizingMaskIntoConstraints = true
         cell.main.isScrollEnabled = false
-        cell.main.sizeToFit()
+        //cell.main.sizeToFit()
         
         print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
+        
+        cell.main.frame.size.width = tableView.frame.size.width - 40
         
         self.heightRow = cell.main.frame.size.height
             return cell
@@ -209,12 +228,12 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "body") as! TemplateBodyCell
             //여기에 셀 안에 들어갈 내용을 입력한다.
             cell.main.text = self.wantToDo?[indexPath.row]
-        cell.main.translatesAutoresizingMaskIntoConstraints = true
+        //cell.main.translatesAutoresizingMaskIntoConstraints = true
         cell.main.isScrollEnabled = false
         cell.main.sizeToFit()
-        cell.sizeToFit()
+        //cell.sizeToFit()
         print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
-        
+        cell.main.frame.size.width = tableView.frame.size.width - 40
     self.heightRow = cell.main.frame.size.height
             return cell
             
@@ -222,12 +241,12 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "body") as! TemplateBodyCell
         //여기에 셀 안에 들어갈 내용을 입력한다.
         cell.main.text = self.whatHappened?[indexPath.row]
-        cell.main.translatesAutoresizingMaskIntoConstraints = true
+        //cell.main.translatesAutoresizingMaskIntoConstraints = true
         cell.main.isScrollEnabled = false
         cell.main.sizeToFit()
         //cell.sizeToFit()
         print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
-        
+        cell.main.frame.size.width = tableView.frame.size.width - 40
         self.heightRow = cell.main.frame.size.height
         return cell
             
@@ -235,12 +254,12 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "body") as! TemplateBodyCell
         //여기에 셀 안에 들어갈 내용을 입력한다.
         cell.main.text = self.gratitude?[indexPath.row]
-        cell.main.translatesAutoresizingMaskIntoConstraints = true
+        //cell.main.translatesAutoresizingMaskIntoConstraints = true
         cell.main.isScrollEnabled = false
-        cell.main.sizeToFit()
+        //cell.main.sizeToFit()
         
         print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
-        
+        cell.main.frame.size.width = tableView.frame.size.width - 40
         self.heightRow = cell.main.frame.size.height
         return cell
             
@@ -248,21 +267,22 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "body") as! TemplateBodyCell
         //여기에 셀 안에 들어갈 내용을 입력한다.
         cell.main.text = self.success?[indexPath.row]
-        cell.main.translatesAutoresizingMaskIntoConstraints = true
+        //cell.main.translatesAutoresizingMaskIntoConstraints = true
         cell.main.isScrollEnabled = false
-        cell.main.sizeToFit()
+        //cell.main.sizeToFit()
         
         print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
-        
+        cell.main.frame.size.width = tableView.frame.size.width - 40
         self.heightRow = cell.main.frame.size.height
         return cell
             
         default :
-        let cell = tableView.dequeueReusableCell(withIdentifier: "body")
-        cell?.textLabel?.textColor = .black
+        let cell = tableView.dequeueReusableCell(withIdentifier: "addBody") as! TemplateAddCell
+
         //여기에 셀 안에 들어갈 내용을 입력한다.
-        return cell!
+        return cell
             
+            }
         }
     }
 
@@ -430,18 +450,23 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     //footer안의 버튼 누르면 사용될 함수
     @objc func buttonAction1(_ sender: UIButton!) {
         print("템플릿 나의 목표 추가 tapped")
+        self.forAdd = true
     }
     @objc func buttonAction2(_ sender: UIButton!) {
         print("템플릿 하고싶은일 추가 tapped")
+        self.forAdd = true
     }
     @objc func buttonAction3(_ sender: UIButton!) {
         print("템플릿 오늘 있었던일 tapped")
+        self.forAdd = true
     }
     @objc func buttonAction4(_ sender: UIButton!) {
         print("템플릿 감사할일 tapped")
+        self.forAdd = true
     }
     @objc func buttonAction5(_ sender: UIButton!) {
         print("템플릿 성공법칙 tapped")
+        self.forAdd = true
     }
     
     

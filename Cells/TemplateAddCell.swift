@@ -11,6 +11,6 @@ import UIKit
 
 class TemplateAddCell: UITableViewCell {
     
-    @IBOutlet var addTextField: UITextField!
+    @IBOutlet var addTextView: UITextView!
     
 }
