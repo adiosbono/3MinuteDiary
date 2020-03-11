@@ -16,6 +16,12 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     
         //푸터의 버튼(항목추가하기)누르면 토글이 되는 변수를 선언한다. 기본값은 false
     var forAdd = false
+        //푸터의 버튼 눌었을때 어느 섹션을 눌렀는지 확인하기 위한 변수임
+    var section0 = false
+    var section1 = false
+    var section2 = false
+    var section3 = false
+    var section4 = false
     
         //오늘부터 반영 버튼
     @IBAction func applyToday(_ sender: UIButton) {
@@ -145,10 +151,16 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     
     //테이블 행의 개수를 결정하는 메소드
     //userdefault에서 현재 템플릿을 읽어와서 그 갯수를 행마다 return해줘야 함
+        //전역변수 섹션의 값을 검사해서 이게 true이면 행을 추가하고있다는 소리이므로 그 해당하는 섹션에 대한 리턴 값에 +1을 해주어야함
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section{
         case 0:
+            if self.section0 {
+                print("걸려들엇스")
+                return (self.myObjective?.count ?? 1) + 1
+            }else{
             return self.myObjective?.count ?? 1
+            }
         case 1:
             return self.wantToDo?.count ?? 1
         case 2:
@@ -451,22 +463,34 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     @objc func buttonAction1(_ sender: UIButton!) {
         print("템플릿 나의 목표 추가 tapped")
         self.forAdd = true
+        self.section0 = true
+        
+        //테이블뷰에 셀을 추가하는 방법이 아래 네줄의 코드임
+        self.myTableView.beginUpdates()
+        //insertRows에 첫번째 인자값으로 IndexPath변수가 필요해서 이러케 함.
+        let insertIndexPath = IndexPath(row: self.myObjective?.count ?? 0, section: 0)
+        self.myTableView.insertRows(at: [insertIndexPath], with: .automatic)
+        self.myTableView.endUpdates()
     }
     @objc func buttonAction2(_ sender: UIButton!) {
         print("템플릿 하고싶은일 추가 tapped")
         self.forAdd = true
+        self.section1 = true
     }
     @objc func buttonAction3(_ sender: UIButton!) {
         print("템플릿 오늘 있었던일 tapped")
         self.forAdd = true
+        self.section2 = true
     }
     @objc func buttonAction4(_ sender: UIButton!) {
         print("템플릿 감사할일 tapped")
         self.forAdd = true
+        self.section3 = true
     }
     @objc func buttonAction5(_ sender: UIButton!) {
         print("템플릿 성공법칙 tapped")
         self.forAdd = true
+        self.section4 = true
     }
     
     
