@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		04222F2023E6E8C3000008BB /* DiaryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04222F1F23E6E8C3000008BB /* DiaryDAO.swift */; };
 		042405A623F908A2008CF790 /* AdvancedTemplateManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042405A523F908A2008CF790 /* AdvancedTemplateManageVC.swift */; };
-		042405A82400FB96008CF790 /* AdvancedTemplateBodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042405A72400FB96008CF790 /* AdvancedTemplateBodyCell.swift */; };
 		0424596523DABD410075016E /* TemplateManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424596423DABD410075016E /* TemplateManageVC.swift */; };
 		0424596723E3086E0075016E /* TemplateBodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424596623E3086E0075016E /* TemplateBodyCell.swift */; };
 		0424596923E312610075016E /* TemplateAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424596823E312610075016E /* TemplateAddCell.swift */; };
@@ -55,7 +54,6 @@
 /* Begin PBXFileReference section */
 		04222F1F23E6E8C3000008BB /* DiaryDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDAO.swift; sourceTree = "<group>"; };
 		042405A523F908A2008CF790 /* AdvancedTemplateManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTemplateManageVC.swift; sourceTree = "<group>"; };
-		042405A72400FB96008CF790 /* AdvancedTemplateBodyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTemplateBodyCell.swift; sourceTree = "<group>"; };
 		0424596423DABD410075016E /* TemplateManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateManageVC.swift; sourceTree = "<group>"; };
 		0424596623E3086E0075016E /* TemplateBodyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateBodyCell.swift; sourceTree = "<group>"; };
 		0424596823E312610075016E /* TemplateAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAddCell.swift; sourceTree = "<group>"; };
@@ -129,7 +127,6 @@
 				0431059A23B5CAAC00F727FD /* ToolBarCell.swift */,
 				0431059C23B70A7F00F727FD /* ImageCell.swift */,
 				0431059E23B70AAC00F727FD /* MainCell.swift */,
-				042405A72400FB96008CF790 /* AdvancedTemplateBodyCell.swift */,
 				0424596623E3086E0075016E /* TemplateBodyCell.swift */,
 				0424596823E312610075016E /* TemplateAddCell.swift */,
 			);
@@ -465,7 +462,6 @@
 				0431059F23B70AAC00F727FD /* MainCell.swift in Sources */,
 				0429446D240A58D4008631C9 /* BackupManageVC.swift in Sources */,
 				0424596523DABD410075016E /* TemplateManageVC.swift in Sources */,
-				042405A82400FB96008CF790 /* AdvancedTemplateBodyCell.swift in Sources */,
 				0431059823B5CA0600F727FD /* TableVCTemplate.swift in Sources */,
 				0441A4E123ACE7E5005A2251 /* AppDelegate.swift in Sources */,
 				0441A4E323ACE7E5005A2251 /* SceneDelegate.swift in Sources */,

@@ -156,8 +156,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         switch section{
         case 0:
             if self.section0 {
-                print("걸려들엇스")
-                return (self.myObjective?.count ?? 1) + 1
+            return (self.myObjective?.count ?? 1) + 1
             }else{
             return self.myObjective?.count ?? 1
             }
@@ -210,6 +209,12 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
             cell.addTextView.frame.size.width = tableView.frame.size.width - 40
             self.heightRow = cell.addTextView.frame.size.height
             self.forAdd = false
+            //전역변수 session들을 모두 false로 만들어주어야 한다.
+            self.section0 = false
+            self.section1 = false
+            self.section2 = false
+            self.section3 = false
+            self.section4 = false
             return cell
         }else{
         
@@ -471,6 +476,16 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         let insertIndexPath = IndexPath(row: self.myObjective?.count ?? 0, section: 0)
         self.myTableView.insertRows(at: [insertIndexPath], with: .automatic)
         self.myTableView.endUpdates()
+        
+        let newCell = self.myTableView.cellForRow(at: insertIndexPath)
+        if newCell == nil {
+            print("newCell is nil")
+        }else{
+            print("newCell is not nil")
+        }
+        let  nnewCell = newCell as! TemplateAddCell //굳이 이렇게 두번 안해도 되긴 함....최적화때 수정하자
+        nnewCell.addTextView.becomeFirstResponder() //키보드 활성화 하는 코드
+        
     }
     @objc func buttonAction2(_ sender: UIButton!) {
         print("템플릿 하고싶은일 추가 tapped")
