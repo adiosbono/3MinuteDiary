@@ -464,11 +464,22 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         }
  */
     }
+    
+    //테이블뷰가 에디트모드일때 들여쓰기처럼 모든셀이 움직이게끔 할지 말지 결정하는 것//작동안함
+    /*
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    */
+    
     //footer안의 버튼 누르면 사용될 함수
     @objc func buttonAction1(_ sender: UIButton!) {
         print("템플릿 나의 목표 추가 tapped")
         self.forAdd = true
         self.section0 = true
+        
+        //편집모드를 해제한다.
+        self.myTableView.isEditing = false
         
         //테이블뷰에 셀을 추가하는 방법이 아래 네줄의 코드임
         self.myTableView.beginUpdates()
