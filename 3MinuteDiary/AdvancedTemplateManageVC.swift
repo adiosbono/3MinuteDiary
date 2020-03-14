@@ -39,6 +39,9 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     }
         //편집버튼
     
+    
+    @IBOutlet var editButtonOutlet: UIButton!
+    
     @IBAction func editButton(_ sender: UIButton) {
         print("편집버튼 클릭됨")
         self.myTableView.isEditing = !self.myTableView.isEditing
@@ -505,6 +508,9 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         
         //편집모드를 해제한다.
         self.myTableView.isEditing = false
+        self.editText = (self.myTableView.isEditing) ? "완료" : "편집"
+        //완료라고 되어있는 텍스트를 편집으로 바꾼다.
+        self.editButtonOutlet.setTitle(self.editText, for: .normal)
         
         //테이블뷰에 셀을 추가하는 방법이 아래 네줄의 코드임
         self.myTableView.beginUpdates()
@@ -513,6 +519,8 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         self.insertIndexPath = insertIndexPath
         self.myTableView.insertRows(at: [insertIndexPath], with: .automatic)
         self.myTableView.endUpdates()
+        
+        
         
         let newCell = self.myTableView.cellForRow(at: insertIndexPath)
         if newCell == nil {

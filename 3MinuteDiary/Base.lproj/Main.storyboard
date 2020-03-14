@@ -195,6 +195,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="템플릿관리" id="K3I-pu-cxg"/>
                     <connections>
+                        <outlet property="editButtonOutlet" destination="GW0-hL-hTh" id="aDP-BQ-McZ"/>
                         <outlet property="myTableView" destination="olK-ZU-GwA" id="N8z-Gy-UhE"/>
                     </connections>
                 </viewController>
