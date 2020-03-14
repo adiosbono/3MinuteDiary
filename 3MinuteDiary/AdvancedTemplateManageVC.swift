@@ -8,12 +8,22 @@
 
 import Foundation
 import UIKit
-class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextViewDelegate  {
     
     
     
     //각종 변수 초기화를 여기서 하면 됨
     
+        //각 indexPath를 키로 하고 행의 높이를 값으로 하는 딕셔너리를 저장할 변수
+    var heightForCell = [IndexPath : CGFloat]()
+    
+        //항목추가하기 버튼 눌러서 새로 생긴 셀(TemplateAddCell)의 텍스트뷰 높이를 저장할 변수
+    var addCellTextViewHeight: CGFloat = 0
+    
+        //얼마나 높이가 높아졌는지 저장할 변수
+    var diffHeight: CGFloat = 0
+        //최근에 추가한 곳의 인덱스를 저장하기 위한 변수
+    var insertIndexPath : IndexPath!
         //푸터의 버튼(항목추가하기)누르면 토글이 되는 변수를 선언한다. 기본값은 false
     var forAdd = false
         //푸터의 버튼 눌었을때 어느 섹션을 눌렀는지 확인하기 위한 변수임
@@ -47,7 +57,8 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var myTableView: UITableView!
     
         //테이블 셀의 높이를 저장해놀 변ㅅ
-    var heightRow: CGFloat!
+        //이거는 이제 곧 사라질 운명임(딕셔너리로 해결할 예정임)
+    //var heightRow: CGFloat!
     
         //UserDefault사용하기 위한 작업
     let plist = UserDefaults.standard
@@ -189,10 +200,10 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
             return UITableView.automaticDimension
         }
  */
-        print("heightforrowat에서 현재 셀 (섹션 : \(indexPath.section), 행 : \(indexPath.row)작업중")
+        print("heightforrowat에서 현재 셀 (섹션 : \(indexPath.section), 행 : \(indexPath.row))작업중")
+        print("현재 셀 높이 : \(self.heightForCell[indexPath])")
         
-        
-        return self.heightRow
+        return self.heightForCell[indexPath] ?? 44.0
         
     }
  
@@ -207,14 +218,28 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
             
             
             cell.addTextView.frame.size.width = tableView.frame.size.width - 40
-            self.heightRow = cell.addTextView.frame.size.height
+            self.heightForCell[indexPath] = cell.addTextView.frame.size.height
+            
+            //기존 셀의 높이를 전역변수인 addCellTextViewHeight에 저장해둔다.
+                //addTextView.frame.size.height가 아닌 이유는 델리게이트 메서드에서 아래에 쓴 걸로 값 비교를 할 것이기 때문이다.
+            self.addCellTextViewHeight = cell.addTextView.contentSize.height
+            
+            print("frame.size.height : \(cell.addTextView.frame.size.height), contentSize.height : \(cell.addTextView.contentSize.height)")
+            
+            //텍스트뷰 딜리게이트 설정
+            cell.addTextView.delegate = self
+            
+            
+            
             self.forAdd = false
+            /*
             //전역변수 session들을 모두 false로 만들어주어야 한다.
             self.section0 = false
             self.section1 = false
             self.section2 = false
             self.section3 = false
             self.section4 = false
+ */
             return cell
         }else{
         
@@ -238,7 +263,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         
         cell.main.frame.size.width = tableView.frame.size.width - 40
         
-        self.heightRow = cell.main.frame.size.height
+        self.heightForCell[indexPath] = cell.main.frame.size.height
             return cell
             
         case 1 :
@@ -251,7 +276,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         //cell.sizeToFit()
         print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
         cell.main.frame.size.width = tableView.frame.size.width - 40
-    self.heightRow = cell.main.frame.size.height
+    self.heightForCell[indexPath] = cell.main.frame.size.height
             return cell
             
         case 2 :
@@ -264,7 +289,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         //cell.sizeToFit()
         print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
         cell.main.frame.size.width = tableView.frame.size.width - 40
-        self.heightRow = cell.main.frame.size.height
+        self.heightForCell[indexPath] = cell.main.frame.size.height
         return cell
             
         case 3 :
@@ -277,7 +302,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         
         print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
         cell.main.frame.size.width = tableView.frame.size.width - 40
-        self.heightRow = cell.main.frame.size.height
+        self.heightForCell[indexPath] = cell.main.frame.size.height
         return cell
             
         case 4 :
@@ -290,7 +315,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         
         print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
         cell.main.frame.size.width = tableView.frame.size.width - 40
-        self.heightRow = cell.main.frame.size.height
+        self.heightForCell[indexPath] = cell.main.frame.size.height
         return cell
             
         default :
@@ -485,6 +510,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         self.myTableView.beginUpdates()
         //insertRows에 첫번째 인자값으로 IndexPath변수가 필요해서 이러케 함.
         let insertIndexPath = IndexPath(row: self.myObjective?.count ?? 0, section: 0)
+        self.insertIndexPath = insertIndexPath
         self.myTableView.insertRows(at: [insertIndexPath], with: .automatic)
         self.myTableView.endUpdates()
         
@@ -519,7 +545,30 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         self.section4 = true
     }
     
-    
+    //텍스트뷰의 내용 변할때마다 호출될 딜리게이트함수임(한글짜변해도 호출됨)
+    func textViewDidChange(_ textView: UITextView) {
+        if self.addCellTextViewHeight == textView.contentSize.height{
+            print("텍스트뷰 높이 변화 없음")
+        }else{
+            print("텍스트뷰 높이 변화됨")
+            //바뀐 높이값을 계산한다. 바뀐 높이가 길어졌으면 양수, 바뀐 높이가 짧아졋으면 음수가 나올 것이다.
+            let diff = textView.contentSize.height - self.addCellTextViewHeight
+            print("diff : \(diff)")
+            //변화된 높이를 전역변수에 집어넣는다.(이걸 다시 기준으로 써야하기 때문이다)
+            self.addCellTextViewHeight = textView.contentSize.height
+            //셀 높이를 늘린다.
+            self.diffHeight = diff
+            
+            self.heightForCell[self.insertIndexPath]! += diff
+            
+            self.myTableView.beginUpdates()
+            self.myTableView.endUpdates()
+        }
+        
+        
+        
+        
+    }
     
     
     

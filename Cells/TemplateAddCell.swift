@@ -9,8 +9,20 @@
 import Foundation
 import UIKit
 
-class TemplateAddCell: UITableViewCell {
+class TemplateAddCell: UITableViewCell, UITextViewDelegate {
     
     @IBOutlet var addTextView: UITextView!
     
+  
+    /*
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.addTextView.delegate = self
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        print("텍스트뷰체인지함수호출되엇소~그렇게하지요")
+    }
+    */
 }
