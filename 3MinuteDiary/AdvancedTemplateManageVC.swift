@@ -175,13 +175,29 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
             return self.myObjective?.count ?? 1
             }
         case 1:
+            if self.section1 {
+                return (self.wantToDo?.count ?? 1) + 1
+            }else{
             return self.wantToDo?.count ?? 1
+            }
         case 2:
+            if self.section2 {
+                return (self.whatHappened?.count ?? 1) + 1
+            }else{
             return self.whatHappened?.count ?? 1
+            }
         case 3:
+            if self.section3 {
+                return (self.gratitude?.count ?? 1) + 1
+            }else{
             return self.gratitude?.count ?? 1
+            }
         case 4:
+            if self.section4 {
+                return (self.success?.count ?? 1) + 1
+            }else{
             return self.success?.count ?? 1
+            }
         default:
             print("numberOfRowsInSection에서 디폴드값 사용됨")
             return 1
@@ -522,35 +538,110 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         
         
         
-        let newCell = self.myTableView.cellForRow(at: insertIndexPath)
-        if newCell == nil {
-            print("newCell is nil")
-        }else{
-            print("newCell is not nil")
-        }
-        let  nnewCell = newCell as! TemplateAddCell //굳이 이렇게 두번 안해도 되긴 함....최적화때 수정하자
-        nnewCell.addTextView.becomeFirstResponder() //키보드 활성화 하는 코드
+        let newCell = self.myTableView.cellForRow(at: insertIndexPath) as! TemplateAddCell
+        
+        newCell.addTextView.becomeFirstResponder() //키보드 활성화 하는 코드
         
     }
     @objc func buttonAction2(_ sender: UIButton!) {
         print("템플릿 하고싶은일 추가 tapped")
         self.forAdd = true
         self.section1 = true
+        
+        //편집모드를 해제한다.
+        self.myTableView.isEditing = false
+        self.editText = (self.myTableView.isEditing) ? "완료" : "편집"
+        //완료라고 되어있는 텍스트를 편집으로 바꾼다.
+        self.editButtonOutlet.setTitle(self.editText, for: .normal)
+        
+        //테이블뷰에 셀을 추가하는 방법이 아래 네줄의 코드임
+        self.myTableView.beginUpdates()
+        //insertRows에 첫번째 인자값으로 IndexPath변수가 필요해서 이러케 함.
+        let insertIndexPath = IndexPath(row: self.wantToDo?.count ?? 0, section: 1)
+        self.insertIndexPath = insertIndexPath
+        self.myTableView.insertRows(at: [insertIndexPath], with: .automatic)
+        self.myTableView.endUpdates()
+        
+        
+        
+        let newCell = self.myTableView.cellForRow(at: insertIndexPath) as! TemplateAddCell
+        
+        newCell.addTextView.becomeFirstResponder() //키보드 활성화 하는 코드
     }
     @objc func buttonAction3(_ sender: UIButton!) {
         print("템플릿 오늘 있었던일 tapped")
         self.forAdd = true
         self.section2 = true
+        
+        //편집모드를 해제한다.
+        self.myTableView.isEditing = false
+        self.editText = (self.myTableView.isEditing) ? "완료" : "편집"
+        //완료라고 되어있는 텍스트를 편집으로 바꾼다.
+        self.editButtonOutlet.setTitle(self.editText, for: .normal)
+        
+        //테이블뷰에 셀을 추가하는 방법이 아래 네줄의 코드임
+        self.myTableView.beginUpdates()
+        //insertRows에 첫번째 인자값으로 IndexPath변수가 필요해서 이러케 함.
+        let insertIndexPath = IndexPath(row: self.whatHappened?.count ?? 0, section: 2)
+        self.insertIndexPath = insertIndexPath
+        self.myTableView.insertRows(at: [insertIndexPath], with: .automatic)
+        self.myTableView.endUpdates()
+        
+        
+        
+        let newCell = self.myTableView.cellForRow(at: insertIndexPath) as! TemplateAddCell
+        
+        newCell.addTextView.becomeFirstResponder() //키보드 활성화 하는 코드
     }
     @objc func buttonAction4(_ sender: UIButton!) {
         print("템플릿 감사할일 tapped")
         self.forAdd = true
         self.section3 = true
+        
+        //편집모드를 해제한다.
+        self.myTableView.isEditing = false
+        self.editText = (self.myTableView.isEditing) ? "완료" : "편집"
+        //완료라고 되어있는 텍스트를 편집으로 바꾼다.
+        self.editButtonOutlet.setTitle(self.editText, for: .normal)
+        
+        //테이블뷰에 셀을 추가하는 방법이 아래 네줄의 코드임
+        self.myTableView.beginUpdates()
+        //insertRows에 첫번째 인자값으로 IndexPath변수가 필요해서 이러케 함.
+        let insertIndexPath = IndexPath(row: self.gratitude?.count ?? 0, section: 3)
+        self.insertIndexPath = insertIndexPath
+        self.myTableView.insertRows(at: [insertIndexPath], with: .automatic)
+        self.myTableView.endUpdates()
+        
+        
+        
+        let newCell = self.myTableView.cellForRow(at: insertIndexPath) as! TemplateAddCell
+        
+        newCell.addTextView.becomeFirstResponder() //키보드 활성화 하는 코드
     }
     @objc func buttonAction5(_ sender: UIButton!) {
         print("템플릿 성공법칙 tapped")
         self.forAdd = true
         self.section4 = true
+        
+        //편집모드를 해제한다.
+        self.myTableView.isEditing = false
+        self.editText = (self.myTableView.isEditing) ? "완료" : "편집"
+        //완료라고 되어있는 텍스트를 편집으로 바꾼다.
+        self.editButtonOutlet.setTitle(self.editText, for: .normal)
+        
+        //테이블뷰에 셀을 추가하는 방법이 아래 네줄의 코드임
+        self.myTableView.beginUpdates()
+        //insertRows에 첫번째 인자값으로 IndexPath변수가 필요해서 이러케 함.
+        let insertIndexPath = IndexPath(row: self.success?.count ?? 0, section: 4)
+        self.insertIndexPath = insertIndexPath
+        self.myTableView.insertRows(at: [insertIndexPath], with: .automatic)
+        self.myTableView.endUpdates()
+        
+        
+        
+        let newCell = self.myTableView.cellForRow(at: insertIndexPath) as! TemplateAddCell
+        
+        newCell.addTextView.becomeFirstResponder() //키보드 활성화 하는 코드
     }
     
     //텍스트뷰의 내용 변할때마다 호출될 딜리게이트함수임(한글짜변해도 호출됨)
