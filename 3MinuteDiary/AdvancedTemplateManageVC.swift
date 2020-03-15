@@ -677,24 +677,43 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     
     @objc func keyboardWillShow(notification: NSNotification){
         
+        //인터넷에서 가져온 코드는 키보드의 높이만큼 그냥 올려버리는 구조임....내 어플에서 중요한건 그게 아니라 추가하고자 하는 섹션의 헤더가 맨 위에 올라오게끔 하는것이 첫째고 둘째는 그러고도 화면의 스크롤이 가능해야함(안보이는것 스크롤하면 전부 볼 수 있어야 함)->뷰 사이즈를 줄이는걸로 해결할 수 있을듯
+        //키보드가 올라오면 원래 화면에 보이던 뷰 위를 덮는 방식으로 이루어지는데 이렇게되면 아래에 있는 내용을 보기 위해 스크롤하면 안내려감...이유는 덮여진 아래쪽에 내용이 보이고 있다고 생각하므로 더이상 스크롤을 해도 가려진곳에 있는것을 더 올릴수는 없음 ->해결법 : 뷰 영역 자체를 줄여야 할거 같다(x,y좌표가 아니라 뷰의 height를 키보드 크기만큼 줄여야함)
+        
         let userInfo = notification.userInfo!
         var keyboardSize: CGSize!
         var offset: CGSize!
             //옵셔널 에서 뻑날까봐 강제해제하지 않고 에러메시지를 나타내도록 설정해놈....내가모르는코드는 이러케하는게 안전
         if let kkeyboardSize: CGSize = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size {
             keyboardSize = kkeyboardSize
+            print("keyboardSize height: \(kkeyboardSize.height)")
         }else{
             print("keyboardWillShow에서 keyboardSize옵셔널해제 뻑났슴")
         }
         if let ooffset: CGSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size{
             offset = ooffset
+            print("offset height: \(ooffset.height)")
         }else{
             print("keyboardWillShow에서 offset옵셔널해제 뻑낫슴")
         }
         
+        
+        
+        
         if keyboardSize.height == offset.height {
             UIView.animate(withDuration: 0.1) {() -> Void in
-                self.view.frame.origin.y -= keyboardSize.height
+                //바로 아랫줄의 코드는 키보드 높이만큼 화면을 위로 밀어버림 : 이렇게하면 스크롤을 해서 위에 있는 내용 확인이 불가능함.
+                //self.view.frame.origin.y -= keyboardSize.height
+                
+                //이거슨 해당 셀에 대한 위치정보를 담고 있는거임
+                //origin속성을 통해 추가된 셀의 화면에서의 위치(x,y)를 알수있엇슴 이제 이걸 이용하기함 하면 됨
+                let rectOfCell = self.myTableView.rectForRow(at: self.insertIndexPath)
+                print("rectOfCell / orign / x:\(rectOfCell.origin.x) y:\(rectOfCell.origin.y) height:\(rectOfCell.size.height) width:\(rectOfCell.size.width)" )
+                
+                //테이블뷰의 길이를 키보드길이마만큼 줄여주자
+                self.myTableView.frame.size.height -= keyboardSize.height
+                //self.view.frame.size.height -= keyboardSize.height
+                
             }
         }else{
             UIView.animate(withDuration: 0.1) {() -> Void in
@@ -715,6 +734,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         
         let userInfo: [AnyHashable : Any] = notification.userInfo!
         if let keyboardSize: CGSize = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size {
+            //현재코드는 키보드사이즈만큼 올렸던거 내리는거지만. 수정해서 내가 올렸던것만큼 내리도록 해야함
             self.view.frame.origin.y += keyboardSize.height
         }else{
             print("keyboardWillHide에서 keyboardSize옵셔널해제 뻑났슴")
