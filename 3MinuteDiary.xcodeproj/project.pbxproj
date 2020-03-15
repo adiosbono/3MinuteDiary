@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		04222F2023E6E8C3000008BB /* DiaryDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04222F1F23E6E8C3000008BB /* DiaryDAO.swift */; };
+		042236BA241E225900BD9C0E /* UITextField+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042236B9241E225900BD9C0E /* UITextField+Extensions.swift */; };
+		042236BC241E22D900BD9C0E /* UITextView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042236BB241E22D900BD9C0E /* UITextView+Extensions.swift */; };
 		042405A623F908A2008CF790 /* AdvancedTemplateManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042405A523F908A2008CF790 /* AdvancedTemplateManageVC.swift */; };
 		0424596523DABD410075016E /* TemplateManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424596423DABD410075016E /* TemplateManageVC.swift */; };
 		0424596723E3086E0075016E /* TemplateBodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424596623E3086E0075016E /* TemplateBodyCell.swift */; };
@@ -53,6 +55,8 @@
 
 /* Begin PBXFileReference section */
 		04222F1F23E6E8C3000008BB /* DiaryDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiaryDAO.swift; sourceTree = "<group>"; };
+		042236B9241E225900BD9C0E /* UITextField+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extensions.swift"; sourceTree = "<group>"; };
+		042236BB241E22D900BD9C0E /* UITextView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Extensions.swift"; sourceTree = "<group>"; };
 		042405A523F908A2008CF790 /* AdvancedTemplateManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTemplateManageVC.swift; sourceTree = "<group>"; };
 		0424596423DABD410075016E /* TemplateManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateManageVC.swift; sourceTree = "<group>"; };
 		0424596623E3086E0075016E /* TemplateBodyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateBodyCell.swift; sourceTree = "<group>"; };
@@ -170,6 +174,8 @@
 				042405A523F908A2008CF790 /* AdvancedTemplateManageVC.swift */,
 				0429446C240A58D4008631C9 /* BackupManageVC.swift */,
 				04222F1F23E6E8C3000008BB /* DiaryDAO.swift */,
+				042236B9241E225900BD9C0E /* UITextField+Extensions.swift */,
+				042236BB241E22D900BD9C0E /* UITextView+Extensions.swift */,
 				0441A4E623ACE7E5005A2251 /* Main.storyboard */,
 				0441A4EC23ACE7E9005A2251 /* Assets.xcassets */,
 				0441A4EE23ACE7E9005A2251 /* LaunchScreen.storyboard */,
@@ -453,8 +459,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				042405A623F908A2008CF790 /* AdvancedTemplateManageVC.swift in Sources */,
+				042236BC241E22D900BD9C0E /* UITextView+Extensions.swift in Sources */,
 				0441A51423AF86F9005A2251 /* CalendarVC.swift in Sources */,
 				0441A4E523ACE7E5005A2251 /* ViewController.swift in Sources */,
+				042236BA241E225900BD9C0E /* UITextField+Extensions.swift in Sources */,
 				0424596923E312610075016E /* TemplateAddCell.swift in Sources */,
 				0431059D23B70A7F00F727FD /* ImageCell.swift in Sources */,
 				04222F2023E6E8C3000008BB /* DiaryDAO.swift in Sources */,

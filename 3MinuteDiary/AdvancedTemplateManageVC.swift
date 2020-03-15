@@ -737,8 +737,12 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         
         let userInfo: [AnyHashable : Any] = notification.userInfo!
         if let keyboardSize: CGSize = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size {
+            
+            //테이블뷰의 크기를 원래대로 돌려놓는다
+            self.myTableView.frame.size.height += keyboardSize.height
+        
             //현재코드는 키보드사이즈만큼 올렸던거 내리는거지만. 수정해서 내가 올렸던것만큼 내리도록 해야함
-            self.view.frame.origin.y += keyboardSize.height
+            //self.view.frame.origin.y += keyboardSize.height
         }else{
             print("keyboardWillHide에서 keyboardSize옵셔널해제 뻑났슴")
         }
