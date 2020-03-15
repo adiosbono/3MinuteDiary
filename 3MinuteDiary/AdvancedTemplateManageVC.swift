@@ -93,6 +93,10 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         //myTableView.estimatedRowHeight = 60
         //myTableView.rowHeight = UITableView.automaticDimension
        
+        //내용입력할때 키보드 높이만큼 화면을 이동해야하는 경우 있으므로 그때 사용하기위한 작업
+        //selelctor인자에 들어있는 함수는 저 아래에 있음...
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: self.view.window)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: self.view.window)
         
         
         //테이블뷰 딜리게이트 설정
@@ -161,6 +165,12 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         self.myTableView.reloadData()
     }
     */
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        //아래 코드가 제대로 작동하지 않는다면 object에 nil을 넣어볼것
+        NotificationCenter.default.removeObserver(self, name:UIResponder.keyboardWillShowNotification , object: self.view.window)
+        NotificationCenter.default.removeObserver(self, name:UIResponder.keyboardWillHideNotification , object: self.view.window)
+    }
     
     
     //테이블 행의 개수를 결정하는 메소드
@@ -663,9 +673,56 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
             self.myTableView.beginUpdates()
             self.myTableView.endUpdates()
         }
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification){
         
+        let userInfo = notification.userInfo!
+        var keyboardSize: CGSize!
+        var offset: CGSize!
+            //옵셔널 에서 뻑날까봐 강제해제하지 않고 에러메시지를 나타내도록 설정해놈....내가모르는코드는 이러케하는게 안전
+        if let kkeyboardSize: CGSize = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size {
+            keyboardSize = kkeyboardSize
+        }else{
+            print("keyboardWillShow에서 keyboardSize옵셔널해제 뻑났슴")
+        }
+        if let ooffset: CGSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size{
+            offset = ooffset
+        }else{
+            print("keyboardWillShow에서 offset옵셔널해제 뻑낫슴")
+        }
         
+        if keyboardSize.height == offset.height {
+            UIView.animate(withDuration: 0.1) {() -> Void in
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }else{
+            UIView.animate(withDuration: 0.1) {() -> Void in
+                self.view.frame.origin.y += keyboardSize.height - offset.height
+            }
+        }
         
+        /*
+        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0 {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+ */
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification){
+        
+        let userInfo: [AnyHashable : Any] = notification.userInfo!
+        if let keyboardSize: CGSize = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size {
+            self.view.frame.origin.y += keyboardSize.height
+        }else{
+            print("keyboardWillHide에서 keyboardSize옵셔널해제 뻑났슴")
+        }
+        /*
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        */
         
     }
     
