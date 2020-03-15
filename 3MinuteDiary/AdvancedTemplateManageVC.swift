@@ -711,7 +711,10 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
                 print("rectOfCell / orign / x:\(rectOfCell.origin.x) y:\(rectOfCell.origin.y) height:\(rectOfCell.size.height) width:\(rectOfCell.size.width)" )
                 
                 //테이블뷰의 길이를 키보드길이마만큼 줄여주자
+                //나중에 다시 돌려놓아야된는거 잊지말자
                 self.myTableView.frame.size.height -= keyboardSize.height
+                //해당 인덱스로 스크롤해준다!
+                self.myTableView.scrollToRow(at: self.insertIndexPath, at: .top, animated: true)
                 //self.view.frame.size.height -= keyboardSize.height
                 
             }
