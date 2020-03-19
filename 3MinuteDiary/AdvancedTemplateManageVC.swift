@@ -88,10 +88,8 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
-        //myTableView.estimatedRowHeight = 60
-        //myTableView.rowHeight = UITableView.automaticDimension
+        
        
         //내용입력할때 키보드 높이만큼 화면을 이동해야하는 경우 있으므로 그때 사용하기위한 작업
         //selelctor인자에 들어있는 함수는 저 아래에 있음...
@@ -258,7 +256,18 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
             //텍스트뷰 딜리게이트 설정
             cell.addTextView.delegate = self
             
+            //키보드 위에 done 버튼 넣는 작업임
+            let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+            doneToolbar.barStyle = .default
             
+            let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+            let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: cell.addTextView, action: #selector(self.doneButtonAction))
+            
+            let items = [flexSpace, done]
+            doneToolbar.items = items
+            doneToolbar.sizeToFit()
+            
+            cell.addTextView.inputAccessoryView = doneToolbar
             
             self.forAdd = false
             /*
@@ -753,6 +762,11 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         
     }
     
-    
+    //키보드 위의 done버튼이 눌렸을때 할 작업
+    @objc func doneButtonAction()
+    {
+        print("done버튼눌림")
+        self.resignFirstResponder()
+    }
     
 }
