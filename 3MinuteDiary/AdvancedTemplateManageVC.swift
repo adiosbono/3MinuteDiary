@@ -15,7 +15,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     //각종 변수 초기화를 여기서 하면 됨
     
         //사용자가 템플릿을 만들기 위해 입력한 값을 임시로 저장해놀 변수
-    var userInput: String!
+    var userInput = ""
     
         //각 indexPath를 키로 하고 행의 높이를 값으로 하는 딕셔너리를 저장할 변수
     var heightForCell = [IndexPath : CGFloat]()
@@ -166,6 +166,8 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear 함수 호출됨")
+        
+        //테이블뷰의 길이를 재조정해주어야 함. 계속 늘어남.....
         
         //이거는 다른화면에서 넘어올때 이 함수 호출되므로 확인차 다시 불러와주는거임
         //UserDefault로부터 데이터를 읽어와 전역변수에 대입한다.
@@ -336,7 +338,8 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         cell.main.text = self.myObjective?[indexPath.row]
         //cell.main.translatesAutoresizingMaskIntoConstraints = true
         cell.main.isScrollEnabled = false
-        //cell.main.sizeToFit()
+        cell.main.sizeToFit()
+        cell.sizeToFit()
         
         print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
         
@@ -352,7 +355,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         //cell.main.translatesAutoresizingMaskIntoConstraints = true
         cell.main.isScrollEnabled = false
         cell.main.sizeToFit()
-        //cell.sizeToFit()
+        cell.sizeToFit()
         print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
         cell.main.frame.size.width = tableView.frame.size.width - 40
     self.heightForCell[indexPath] = cell.main.frame.size.height
@@ -365,7 +368,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         //cell.main.translatesAutoresizingMaskIntoConstraints = true
         cell.main.isScrollEnabled = false
         cell.main.sizeToFit()
-        //cell.sizeToFit()
+        cell.sizeToFit()
         print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
         cell.main.frame.size.width = tableView.frame.size.width - 40
         self.heightForCell[indexPath] = cell.main.frame.size.height
@@ -377,7 +380,8 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         cell.main.text = self.gratitude?[indexPath.row]
         //cell.main.translatesAutoresizingMaskIntoConstraints = true
         cell.main.isScrollEnabled = false
-        //cell.main.sizeToFit()
+        cell.main.sizeToFit()
+        cell.sizeToFit()
         
         print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
         cell.main.frame.size.width = tableView.frame.size.width - 40
@@ -390,7 +394,8 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         cell.main.text = self.success?[indexPath.row]
         //cell.main.translatesAutoresizingMaskIntoConstraints = true
         cell.main.isScrollEnabled = false
-        //cell.main.sizeToFit()
+        cell.main.sizeToFit()
+        cell.sizeToFit()
         
         print("현재 (섹션 : \(indexPath.section), 행 : \(indexPath.row))이고 텍스트뷰 높이는 \(cell.main.frame.size.height)이고 셀 높이는 \(cell.frame.size.height)")
         cell.main.frame.size.width = tableView.frame.size.width - 40
@@ -766,16 +771,24 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
                 
                 //테이블뷰의 길이를 키보드길이마만큼 줄여주자
                 //나중에 다시 돌려놓아야된는거 잊지말자
-                self.myTableView.frame.size.height -= keyboardSize.height
+                self.myTableView.frame.size.height -= offset.height
                 //해당 인덱스로 스크롤해준다!
                 self.myTableView.scrollToRow(at: self.insertIndexPath, at: .top, animated: true)
                 //self.view.frame.size.height -= keyboardSize.height
                 
             }
         }else{
+            print("else실행됨")
+            //우선 암것도 하지마셈
+            
             UIView.animate(withDuration: 0.1) {() -> Void in
-                self.view.frame.origin.y += keyboardSize.height - offset.height
+                //테이블뷰의 길이를 키보드길이만큼 줄여야 한다. 여기서 키보드 길이 기준은 offset값으로 해보자우선
+                self.myTableView.frame.size.height -= offset.height
+                //해당 인덱스로 스크롤해준다!
+                self.myTableView.scrollToRow(at: self.insertIndexPath, at: .top, animated: true)
+                //self.view.frame.origin.y += keyboardSize.height - offset.height
             }
+ 
         }
         
         /*
@@ -790,21 +803,21 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     @objc func keyboardWillHide(notification: NSNotification){
         
         let userInfo: [AnyHashable : Any] = notification.userInfo!
-        if let keyboardSize: CGSize = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size {
+        if let offset: CGSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size {
             
             //테이블뷰의 크기를 원래대로 돌려놓는다
-            self.myTableView.frame.size.height += keyboardSize.height
+            self.myTableView.frame.size.height += offset.height
         
-            //현재코드는 키보드사이즈만큼 올렸던거 내리는거지만. 수정해서 내가 올렸던것만큼 내리도록 해야함
-            //self.view.frame.origin.y += keyboardSize.height
+           
         }else{
-            print("keyboardWillHide에서 keyboardSize옵셔널해제 뻑났슴")
+            print("keyboardWillHide에서 offset옵셔널해제 뻑났슴")
         }
-        /*
+        
+        //뷰의 y좌표가 이상하케 되어있다면 이걸 다시 고쳐준다.
         if self.view.frame.origin.y != 0 {
             self.view.frame.origin.y = 0
-        */
         
+        }
     }
     
     //키보드 위의 done버튼이 눌렸을때 할 작업
@@ -828,6 +841,8 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
                 plist.synchronize()
                 //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
                 self.myObjective?.append(self.userInput)
+                //userInput원래대로 빈값을 다시 넣어주자
+                self.userInput = ""
             }else{
                 print("plist에서 myObjective를 읽어오는데 실패했습니다.")
             }
@@ -846,6 +861,8 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
                 plist.synchronize()
                 //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
                 self.wantToDo?.append(self.userInput)
+                //userInput원래대로 빈값을 다시 넣어주자
+                self.userInput = ""
             }else{
                 print("plist에서 wantTodo를 읽어오는데 실패했습니다.")
             }
@@ -864,6 +881,8 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
                 plist.synchronize()
                 //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
                 self.whatHappened?.append(self.userInput)
+                //userInput원래대로 빈값을 다시 넣어주자
+                self.userInput = ""
             }else{
                 print("plist에서 whatHappened를 읽어오는데 실패했습니다.")
             }
@@ -883,6 +902,8 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
                 plist.synchronize()
                 //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
                 self.gratitude?.append(self.userInput)
+                //userInput원래대로 빈값을 다시 넣어주자
+                self.userInput = ""
             }else{
                 print("plist에서 gratitude를 읽어오는데 실패했습니다.")
             }
@@ -903,6 +924,8 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
                 plist.synchronize()
                 //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
                 self.success?.append(self.userInput)
+                //userInput원래대로 빈값을 다시 넣어주자
+                self.userInput = ""
             }else{
                 print("plist에서 success를 읽어오는데 실패했습니다.")
             }
