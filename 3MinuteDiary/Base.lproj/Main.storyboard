@@ -140,7 +140,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" fixedFrame="YES" text="이거슨이거슨이거슨이거슨이거슨이거슨이이거슨 추가된셀" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nwC-nS-fVW">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="nwC-nS-fVW">
                                                     <rect key="frame" x="19" y="-2" width="373" height="46"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

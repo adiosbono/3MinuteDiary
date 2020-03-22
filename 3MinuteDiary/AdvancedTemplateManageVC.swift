@@ -14,6 +14,9 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     
     //각종 변수 초기화를 여기서 하면 됨
     
+        //사용자가 템플릿을 만들기 위해 입력한 값을 임시로 저장해놀 변수
+    var userInput: String!
+    
         //각 indexPath를 키로 하고 행의 높이를 값으로 하는 딕셔너리를 저장할 변수
     var heightForCell = [IndexPath : CGFloat]()
     
@@ -91,6 +94,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("viewDidLoad실행됨")
         
        
         //내용입력할때 키보드 높이만큼 화면을 이동해야하는 경우 있으므로 그때 사용하기위한 작업
@@ -162,6 +166,44 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewWillAppear(_ animated: Bool) {
         print("viewWillAppear 함수 호출됨")
+        
+        //이거는 다른화면에서 넘어올때 이 함수 호출되므로 확인차 다시 불러와주는거임
+        //UserDefault로부터 데이터를 읽어와 전역변수에 대입한다.
+        if let temp1 = plist.array(forKey: "myObjective"){
+            self.myObjective = temp1 as? [String]
+            print("plist성공myObjective")
+        }else{
+            print("plist에서 myObjective를 읽어오는데 실패했습니다.")
+        }
+        
+        if let temp2 = plist.array(forKey: "wantToDo"){
+            self.wantToDo = temp2 as? [String]
+            print("plist성공wantToDo")
+        }else{
+            print("plist에서 wantToDo를 읽어오는데 실패했습니다")
+        }
+        
+        if let temp3 = plist.array(forKey: "whatHappened"){
+            self.whatHappened = temp3 as? [String]
+            print("plist성공 whatHappened")
+        }else{
+            print("plist에서 whatHappened 읽어오는데 실패했습니다")
+        }
+        
+        if let temp4 = plist.array(forKey: "gratitude"){
+            self.gratitude = temp4 as? [String]
+            print("plist성공 gratitude")
+        }else{
+            print("plist에서 gratitude 읽어오는데 실패")
+        }
+        
+        if let temp5 = plist.array(forKey: "success"){
+            self.success = temp5 as? [String]
+            print("plist성공 success")
+        }else{
+            print("plist에서 success 읽어오는거 실패")
+        }
+        
         self.myTableView.reloadData()
     }
 
@@ -182,6 +224,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
             if self.section0 {
             return (self.myObjective?.count ?? 1) + 1
             }else{
+                print("section0 row : \(self.myObjective?.count)")
             return self.myObjective?.count ?? 1
             }
         case 1:
@@ -245,6 +288,8 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         if self.forAdd == true {
             let cell = tableView.dequeueReusableCell(withIdentifier: "addBody") as! TemplateAddCell
             
+            //맨처음에 아무 텍스트도 안들어가 잇도록 일부러 빈 값을 넣어준다(원래아무것도 안들어있긴 하지만 연속해서 두번 셀 추가할때엔 저번에 입력한 값이 바로 뜨드라...셀재활용 메커니즘때문인듯)
+            cell.addTextView.text = ""
             
             cell.addTextView.frame.size.width = tableView.frame.size.width - 40
             self.heightForCell[indexPath] = cell.addTextView.frame.size.height
@@ -263,7 +308,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
             doneToolbar.barStyle = .default
             
             let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-            let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: cell.addTextView, action: #selector(self.doneButtonAction))
+            let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneButtonAction))
             let cancel: UIBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelButtonAction))
             
             let items = [cancel, flexSpace, done]
@@ -661,6 +706,10 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     
     //텍스트뷰의 내용 변할때마다 호출될 딜리게이트함수임(한글짜변해도 호출됨)
     func textViewDidChange(_ textView: UITextView) {
+        
+        //변화된 내용을 전역변수에 저장한다
+        self.userInput = textView.text
+        //높이변화를 감지한다.
         if self.addCellTextViewHeight == textView.contentSize.height{
             print("텍스트뷰 높이 변화 없음")
         }else{
@@ -759,10 +808,121 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     }
     
     //키보드 위의 done버튼이 눌렸을때 할 작업
-    @objc func doneButtonAction()
-    {
+    @objc func doneButtonAction() {
+        print("doneButtonAction실행됨")
         //저장된 내용을 userdefault에 입력한다.
+        if self.section0 == true {
+            let plist = UserDefaults.standard
+            //우선 원래 있던 값을 읽어온다
+            if let temp = plist.array(forKey: "myObjective"){
+                //self.myObjective = temp1 as? [String]
+                print("저장하기전 plist성공myObjective 불러오는거")
+                //이제 temp에 사용자가 입력한 값을 추가하면 된다.
+                var ttemp = temp as! [String]
+                ttemp.append(self.userInput)
+                print("ttemp 개수 : \(ttemp.count)")
+                //userDefault에 저장한다 드디어
+                plist.set(ttemp, forKey: "myObjective")
+                
+                //sync꼭 해주자 시벌럼아
+                plist.synchronize()
+                //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
+                self.myObjective?.append(self.userInput)
+            }else{
+                print("plist에서 myObjective를 읽어오는데 실패했습니다.")
+            }
+        }else if self.section1 == true{
+            //우선 원래 있던 값을 읽어온다
+            let plist = UserDefaults.standard
+            if let temp = plist.array(forKey: "wantToDo"){
+                //self.myObjective = temp1 as? [String]
+                print("저장하기전 plist성공 wantToDo 불러오는거")
+                //이제 temp에 사용자가 입력한 값을 추가하면 된다.
+                var ttemp = temp as! [String]
+                ttemp.append(self.userInput)
+                //userDefault에 저장한다 드디어
+                plist.set(ttemp, forKey: "wantToDo")
+                //sync꼭 해주자 시벌럼아
+                plist.synchronize()
+                //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
+                self.wantToDo?.append(self.userInput)
+            }else{
+                print("plist에서 wantTodo를 읽어오는데 실패했습니다.")
+            }
+        }else if self.section2 == true{
+            //우선 원래 있던 값을 읽어온다
+            let plist = UserDefaults.standard
+            if let temp = plist.array(forKey: "whatHappened"){
+                //self.myObjective = temp1 as? [String]
+                print("저장하기전 plist성공 whatHappened 불러오는거")
+                //이제 temp에 사용자가 입력한 값을 추가하면 된다.
+                var ttemp = temp as! [String]
+                ttemp.append(self.userInput)
+                //userDefault에 저장한다 드디어
+                plist.set(ttemp, forKey: "whatHappened")
+                //sync꼭 해주자 시벌럼아
+                plist.synchronize()
+                //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
+                self.whatHappened?.append(self.userInput)
+            }else{
+                print("plist에서 whatHappened를 읽어오는데 실패했습니다.")
+            }
+            
+        }else if self.section3 == true{
+            //우선 원래 있던 값을 읽어온다
+            let plist = UserDefaults.standard
+            if let temp = plist.array(forKey: "gratitude"){
+                //self.myObjective = temp1 as? [String]
+                print("저장하기전 plist성공 gratitude 불러오는거")
+                //이제 temp에 사용자가 입력한 값을 추가하면 된다.
+                var ttemp = temp as! [String]
+                ttemp.append(self.userInput)
+                //userDefault에 저장한다 드디어
+                plist.set(ttemp, forKey: "gratitude")
+                //sync꼭 해주자 시벌럼아
+                plist.synchronize()
+                //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
+                self.gratitude?.append(self.userInput)
+            }else{
+                print("plist에서 gratitude를 읽어오는데 실패했습니다.")
+            }
+            
+            
+        }else if self.section4 == true{
+            //우선 원래 있던 값을 읽어온다
+            let plist = UserDefaults.standard
+            if let temp = plist.array(forKey: "success"){
+                //self.myObjective = temp1 as? [String]
+                print("저장하기전 plist성공 success 불러오는거")
+                //이제 temp에 사용자가 입력한 값을 추가하면 된다.
+                var ttemp = temp as! [String]
+                ttemp.append(self.userInput)
+                //userDefault에 저장한다 드디어
+                plist.set(ttemp, forKey: "success")
+                //sync꼭 해주자 시벌럼아
+                plist.synchronize()
+                //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
+                self.success?.append(self.userInput)
+            }else{
+                print("plist에서 success를 읽어오는데 실패했습니다.")
+            }
+            
+        }else{
+            print("섹션0부터4까지 모두 false임다이건뭔가 잘못됫슴다")
+        }
         
+        
+        //section변수들을 false로 초기화한다.
+        self.section0 = false
+        self.section1 = false
+        self.section2 = false
+        self.section3 = false
+        self.section4 = false
+        
+        //추가하려고 했던 셀을 원래대로 되돌려놓는다.
+        self.myTableView.reloadData()
+        
+        //키보드를 내린다
         self.resignFirstResponder()
     }
     
@@ -779,7 +939,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         self.myTableView.reloadData()
         
         //키보드를 내린다
-       doneButtonAction()
+        self.resignFirstResponder()
     }
     
 }
