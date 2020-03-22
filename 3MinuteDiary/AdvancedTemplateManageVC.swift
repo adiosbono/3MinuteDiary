@@ -27,6 +27,8 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         //푸터의 버튼(항목추가하기)누르면 토글이 되는 변수를 선언한다. 기본값은 false
     var forAdd = false
         //푸터의 버튼 눌었을때 어느 섹션을 눌렀는지 확인하기 위한 변수임
+        //이 변수는 userDefault에 저장이 완료 된 뒤에 false로 바뀐다.
+        //정말 주의해야할 것은 입력이 완료되지 않은 상태에서 다른 화면으로 넘어가버린 경우에는 이게 false로 바뀌어야 하고 셀도 추가하다 만거는 안보이게 해놔야 한다.
     var section0 = false
     var section1 = false
     var section2 = false
@@ -105,7 +107,6 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         self.editText = (self.myTableView.isEditing) ? "완료" : "편집"
         
         
-        
         //UserDefault에 테스트를 위해 기본적인 템플릿 내용을 강제로 집어넣는다.
             //더미데이터를 둔다
         let tempMyObjective = ["목표템플릿1", "목표템플릿2"]
@@ -158,11 +159,12 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     }
 
     //화면이 나타날때마다 호출되는 메소드
-    /*
+    
     override func viewWillAppear(_ animated: Bool) {
+        print("viewWillAppear 함수 호출됨")
         self.myTableView.reloadData()
     }
-    */
+
     
     override func viewWillDisappear(_ animated: Bool) {
         //아래 코드가 제대로 작동하지 않는다면 object에 nil을 넣어볼것
@@ -228,7 +230,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         }
  */
         print("heightforrowat에서 현재 셀 (섹션 : \(indexPath.section), 행 : \(indexPath.row))작업중")
-        print("현재 셀 높이 : \(self.heightForCell[indexPath])")
+        //print("현재 셀 높이 : \(self.heightForCell[indexPath])")
         
         return self.heightForCell[indexPath] ?? 44.0
         
@@ -262,22 +264,16 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
             
             let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
             let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: cell.addTextView, action: #selector(self.doneButtonAction))
+            let cancel: UIBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelButtonAction))
             
-            let items = [flexSpace, done]
+            let items = [cancel, flexSpace, done]
             doneToolbar.items = items
             doneToolbar.sizeToFit()
             
             cell.addTextView.inputAccessoryView = doneToolbar
             
             self.forAdd = false
-            /*
-            //전역변수 session들을 모두 false로 만들어주어야 한다.
-            self.section0 = false
-            self.section1 = false
-            self.section2 = false
-            self.section3 = false
-            self.section4 = false
- */
+            
             return cell
         }else{
         
@@ -765,8 +761,25 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     //키보드 위의 done버튼이 눌렸을때 할 작업
     @objc func doneButtonAction()
     {
-        print("done버튼눌림")
+        //저장된 내용을 userdefault에 입력한다.
+        
         self.resignFirstResponder()
+    }
+    
+    //키보드 위의 cancel 버튼이 눌렸을때 할 작업
+    @objc func cancelButtonAction(){
+        
+        //section변수들을 false로 초기화한다.
+        self.section0 = false
+        self.section1 = false
+        self.section2 = false
+        self.section3 = false
+        self.section4 = false
+        //추가하려고 했던 셀을 원래대로 되돌려놓는다.
+        self.myTableView.reloadData()
+        
+        //키보드를 내린다
+       doneButtonAction()
     }
     
 }
