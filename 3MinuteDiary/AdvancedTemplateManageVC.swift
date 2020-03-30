@@ -734,6 +734,75 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    //MARK: 에디트모드에서 에디트실행시 어떻게 작업할건지 정하는 메소드
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if(editingStyle == .delete){
+            //삭제 로직 구현
+                //UserDefault사용위한 구문 작성
+            let plist = UserDefaults.standard
+                //첫째론 전역변수에 저장한 목록을 불러와 삭제할녀석을 빼고 그녀석을 userDefault에 덮어쓰기해서 UserDefault에서 삭제하는것
+                //둘째론 화면상에 보이는 셀을 없애는것 이는 화면에 표출할 리스트에서 해당 항목 빼고 테이블 리후레시 하면 될듯
+            switch indexPath.section {
+            case 0:
+                
+                //일단 전역변수로 해당 섹션의 리스트를 가지고 있는 녀석을 불러온다. 그리고 수정한 뒤 수정한 녀셕을 userdefualt에 집어넣는다.
+                var temp = self.myObjective
+                temp?.remove(at: indexPath.row)
+                plist.set(temp, forKey: "myObjective")
+                plist.synchronize()
+                //혹시모르니 전역변수의 해당데이터도 삭제해준다.
+                self.myObjective?.remove(at: indexPath.row)
+                //userdefault에 동기화를 마쳤으니 테이블뷰를 리후레시한다.
+                self.myTableView.reloadData()
+            case 1:
+                //일단 전역변수로 해당 섹션의 리스트를 가지고 있는 녀석을 불러온다. 그리고 수정한 뒤 수정한 녀셕을 userdefualt에 집어넣는다.
+                var temp = self.wantToDo
+                temp?.remove(at: indexPath.row)
+                plist.set(temp, forKey: "wantToDo")
+                plist.synchronize()
+                //혹시모르니 전역변수의 해당데이터도 삭제해준다.
+                self.wantToDo?.remove(at: indexPath.row)
+                //userdefault에 동기화를 마쳤으니 테이블뷰를 리후레시한다.
+                self.myTableView.reloadData()
+            case 2:
+                //일단 전역변수로 해당 섹션의 리스트를 가지고 있는 녀석을 불러온다. 그리고 수정한 뒤 수정한 녀셕을 userdefualt에 집어넣는다.
+                var temp = self.whatHappened
+                temp?.remove(at: indexPath.row)
+                plist.set(temp, forKey: "whatHappened")
+                plist.synchronize()
+                //혹시모르니 전역변수의 해당데이터도 삭제해준다.
+                self.whatHappened?.remove(at: indexPath.row)
+                //userdefault에 동기화를 마쳤으니 테이블뷰를 리후레시한다.
+                self.myTableView.reloadData()
+            case 3:
+                //일단 전역변수로 해당 섹션의 리스트를 가지고 있는 녀석을 불러온다. 그리고 수정한 뒤 수정한 녀셕을 userdefualt에 집어넣는다.
+                var temp = self.gratitude
+                temp?.remove(at: indexPath.row)
+                plist.set(temp, forKey: "gratitude")
+                plist.synchronize()
+                //혹시모르니 전역변수의 해당데이터도 삭제해준다.
+                self.gratitude?.remove(at: indexPath.row)
+                //userdefault에 동기화를 마쳤으니 테이블뷰를 리후레시한다.
+                self.myTableView.reloadData()
+            case 4:
+                //일단 전역변수로 해당 섹션의 리스트를 가지고 있는 녀석을 불러온다. 그리고 수정한 뒤 수정한 녀셕을 userdefualt에 집어넣는다.
+                var temp = self.success
+                temp?.remove(at: indexPath.row)
+                plist.set(temp, forKey: "success")
+                plist.synchronize()
+                //혹시모르니 전역변수의 해당데이터도 삭제해준다.
+                self.success?.remove(at: indexPath.row)
+                //userdefault에 동기화를 마쳤으니 테이블뷰를 리후레시한다.
+                self.myTableView.reloadData()
+            default:
+                print("이거슨 디폴드값 반환이여")
+            }
+                
+        }
+    }
+    
+    
     @objc func keyboardWillShow(notification: NSNotification){
         
         //인터넷에서 가져온 코드는 키보드의 높이만큼 그냥 올려버리는 구조임....내 어플에서 중요한건 그게 아니라 추가하고자 하는 섹션의 헤더가 맨 위에 올라오게끔 하는것이 첫째고 둘째는 그러고도 화면의 스크롤이 가능해야함(안보이는것 스크롤하면 전부 볼 수 있어야 함)->뷰 사이즈를 줄이는걸로 해결할 수 있을듯
@@ -779,7 +848,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
             }
         }else{
             print("else실행됨")
-            //우선 암것도 하지마셈
+            //차이가 있는거면
             
             UIView.animate(withDuration: 0.1) {() -> Void in
                 //테이블뷰의 길이를 키보드길이만큼 줄여야 한다. 여기서 키보드 길이 기준은 offset값으로 해보자우선
