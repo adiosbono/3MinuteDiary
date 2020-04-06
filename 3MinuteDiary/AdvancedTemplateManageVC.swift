@@ -225,10 +225,11 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section{
         case 0:
+            let allZero = ((self.myObjective == nil) && (self.wantToDo == nil) && (self.whatHappened == nil) && (self.gratitude == nil) && (self.success == nil)) ? 1 : 0 //allZero는 모든값이 nil일때 1이다 다른말로하자면 하나라도 값을 제대로 가지고 있으면 0이다
             if self.section0 {
-            return (self.myObjective?.count ?? 1) + 1
+            return (self.myObjective?.count ?? allZero) + 1 //왜 이 케이스 안의 값들은 ?? 다음 1이 오는지 궁금한가? 적어도 1개는 만들어지게끔 해논것이다.
             }else{
-            return self.myObjective?.count ?? 1
+            return self.myObjective?.count ?? allZero
             }
         case 1:
             if self.section1 {
@@ -336,6 +337,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         myTextView.frame.size
         */
         
+            //바로 아래줄에서 self.myObjective를 읽어올 수 없는 경우 "편집버튼을 눌러 템플릿 내용을 추가해 주세요" 라는 글이 들어가게 되어있다. 여기를 조건분기를 해서 모든 self.wantToDO 기타 모든 녀석들을 읽어 올 수 없는 경우로 만들어야 한다.(numberOfRowsInSection에도 동일한 로직 적용해서 셀 수도 맞춰줘야겠다)
         cell.main.text = self.myObjective?[indexPath.row] ?? "편집버튼을 눌러 템플릿 내용을 추가해 주세요"
         //cell.main.translatesAutoresizingMaskIntoConstraints = true
         cell.main.isScrollEnabled = false
