@@ -113,6 +113,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         
         //UserDefault에 테스트를 위해 기본적인 템플릿 내용을 강제로 집어넣는다.
             //더미데이터를 둔다
+        /*
         let tempMyObjective = ["목표템플릿1", "목표템플릿2"]
         let tempWantToDo = ["할일템플릿1", "할일템플릿2"]
         let tempWhatHappened = ["일어난일템플릿1일어난일템플릿2일어난일템플릿3일어난일템플릿4일어난일템플릿5일어난일템플릿6일어난일템플릿7일어난일템플릿8일어난일템플릿9일어난일템플릿10일어난일템플릿11일어난일템플릿12일어난일템플릿13일어난일템플릿14일어난일템플릿15", "두번째줄일어난일템플릿12345678910"]
@@ -124,6 +125,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         plist.set(tempWhatHappened, forKey: "whatHappened")
         plist.set(tempGratitude, forKey: "gratitude")
         plist.set(tempSuccess, forKey: "success")
+        */
         
         //UserDefault로부터 데이터를 읽어와 전역변수에 대입한다.
         if let temp1 = plist.array(forKey: "myObjective"){
@@ -226,32 +228,31 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
             if self.section0 {
             return (self.myObjective?.count ?? 1) + 1
             }else{
-                print("section0 row : \(self.myObjective?.count)")
             return self.myObjective?.count ?? 1
             }
         case 1:
             if self.section1 {
-                return (self.wantToDo?.count ?? 1) + 1
+                return (self.wantToDo?.count ?? 0) + 1
             }else{
-            return self.wantToDo?.count ?? 1
+            return self.wantToDo?.count ?? 0
             }
         case 2:
             if self.section2 {
-                return (self.whatHappened?.count ?? 1) + 1
+                return (self.whatHappened?.count ?? 0) + 1
             }else{
-            return self.whatHappened?.count ?? 1
+            return self.whatHappened?.count ?? 0
             }
         case 3:
             if self.section3 {
-                return (self.gratitude?.count ?? 1) + 1
+                return (self.gratitude?.count ?? 0) + 1
             }else{
-            return self.gratitude?.count ?? 1
+            return self.gratitude?.count ?? 0
             }
         case 4:
             if self.section4 {
-                return (self.success?.count ?? 1) + 1
+                return (self.success?.count ?? 0) + 1
             }else{
-            return self.success?.count ?? 1
+            return self.success?.count ?? 0
             }
         default:
             print("numberOfRowsInSection에서 디폴드값 사용됨")
@@ -335,7 +336,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         myTextView.frame.size
         */
         
-        cell.main.text = self.myObjective?[indexPath.row]
+        cell.main.text = self.myObjective?[indexPath.row] ?? "편집버튼을 눌러 템플릿 내용을 추가해 주세요"
         //cell.main.translatesAutoresizingMaskIntoConstraints = true
         cell.main.isScrollEnabled = false
         cell.main.sizeToFit()
@@ -914,6 +915,17 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
                 self.userInput = ""
             }else{
                 print("plist에서 myObjective를 읽어오는데 실패했습니다.")
+                print("템플릿에 입력된 값이 하나도 없었나 보네요. 따라서 신규 등록을 진행합니다")
+                var temp = [String]()
+                temp.append(self.userInput)
+                print("temp개수 : \(temp.count)")
+                //UserDefault에 저장한다
+                plist.set(temp, forKey: "myObjective")
+                plist.synchronize()
+                self.myObjective = [String]()
+                self.myObjective?.append(self.userInput)
+                print("self.myObjective개수 : \(self.myObjective?.count ?? 5245252)") //5245252는 더미값
+                self.userInput = ""
             }
         }else if self.section1 == true{
             //우선 원래 있던 값을 읽어온다
@@ -934,6 +946,17 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
                 self.userInput = ""
             }else{
                 print("plist에서 wantTodo를 읽어오는데 실패했습니다.")
+                print("템플릿에 입력된 값이 하나도 없었나 보네요. 따라서 신규 등록을 진행합니다")
+                var temp = [String]()
+                temp.append(self.userInput)
+                print("temp개수 : \(temp.count)")
+                //UserDefault에 저장한다
+                plist.set(temp, forKey: "wantToDo")
+                plist.synchronize()
+                self.wantToDo = [String]()
+                self.wantToDo?.append(self.userInput)
+                print("self.wantToDo개수 : \(self.wantToDo?.count ?? 5245252)") //5245252는 더미값
+                self.userInput = ""
             }
         }else if self.section2 == true{
             //우선 원래 있던 값을 읽어온다
@@ -954,6 +977,18 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
                 self.userInput = ""
             }else{
                 print("plist에서 whatHappened를 읽어오는데 실패했습니다.")
+                print("plist에서 wantTodo를 읽어오는데 실패했습니다.")
+                print("템플릿에 입력된 값이 하나도 없었나 보네요. 따라서 신규 등록을 진행합니다")
+                var temp = [String]()
+                temp.append(self.userInput)
+                print("temp개수 : \(temp.count)")
+                //UserDefault에 저장한다
+                plist.set(temp, forKey: "whatHappened")
+                plist.synchronize()
+                self.whatHappened = [String]()
+                self.whatHappened?.append(self.userInput)
+                print("self.whatHappened개수 : \(self.whatHappened?.count ?? 5245252)") //5245252는 더미값
+                self.userInput = ""
             }
             
         }else if self.section3 == true{
@@ -975,6 +1010,19 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
                 self.userInput = ""
             }else{
                 print("plist에서 gratitude를 읽어오는데 실패했습니다.")
+                print("plist에서 whatHappened를 읽어오는데 실패했습니다.")
+                print("plist에서 wantTodo를 읽어오는데 실패했습니다.")
+                print("템플릿에 입력된 값이 하나도 없었나 보네요. 따라서 신규 등록을 진행합니다")
+                var temp = [String]()
+                temp.append(self.userInput)
+                print("temp개수 : \(temp.count)")
+                //UserDefault에 저장한다
+                plist.set(temp, forKey: "gratitude")
+                plist.synchronize()
+                self.gratitude = [String]()
+                self.gratitude?.append(self.userInput)
+                print("self.gratitude개수 : \(self.gratitude?.count ?? 5245252)") //5245252는 더미값
+                self.userInput = ""
             }
             
             
@@ -997,6 +1045,20 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
                 self.userInput = ""
             }else{
                 print("plist에서 success를 읽어오는데 실패했습니다.")
+                print("plist에서 gratitude를 읽어오는데 실패했습니다.")
+                print("plist에서 whatHappened를 읽어오는데 실패했습니다.")
+                print("plist에서 wantTodo를 읽어오는데 실패했습니다.")
+                print("템플릿에 입력된 값이 하나도 없었나 보네요. 따라서 신규 등록을 진행합니다")
+                var temp = [String]()
+                temp.append(self.userInput)
+                print("temp개수 : \(temp.count)")
+                //UserDefault에 저장한다
+                plist.set(temp, forKey: "success")
+                plist.synchronize()
+                self.success = [String]()
+                self.success?.append(self.userInput)
+                print("self.success개수 : \(self.success?.count ?? 5245252)") //5245252는 더미값
+                self.userInput = ""
             }
             
         }else{
