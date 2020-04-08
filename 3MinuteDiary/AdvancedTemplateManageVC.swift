@@ -41,6 +41,8 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         //오늘부터 반영 버튼
     @IBAction func applyToday(_ sender: UIButton) {
         print("오늘부터 반영 클릭됨")
+        //여기에는 오늘 작성했던 일기의 내용을 모두 지워서 아무 일기도 안쓴걸로 만들면 된다.
+        //팝업도 띄워서 '오늘 미리 작성해두었던 일기가 삭제됩니다. 진행하시겠습니까?' 네 아니오 팝업뜨게 한다.
     }
         //편집버튼
     

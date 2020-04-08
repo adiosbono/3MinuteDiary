@@ -15,6 +15,9 @@ class WriteDiaryVC: UITableViewController{
     
     //여기 빈공간에다가는 변수들을 초기화하셈
     
+        //UserDefault사용하기 위한 작업
+        let plist = UserDefaults.standard
+    
         //db에서 일기을 읽어온 녀석을 저장할 변수
         //순서대로 create_date, moring, night, did_backup, data임
         var diaryData : [(String, Int, Int, Int, String)]!
@@ -24,7 +27,7 @@ class WriteDiaryVC: UITableViewController{
         var morning: Int!
         var night: Int!
         var did_backup: Int!
-        var data: Data?
+        var data: Data? //String이 아님에 주의해야 한다!!!!!!!!!!!!!!!!!
     
         //일기데이터를 파싱해서 저장할 구조체 선언(파싱할때 편하도록 특별히 프로토콜 선언함)
     struct Body: Codable {
@@ -79,6 +82,7 @@ class WriteDiaryVC: UITableViewController{
      
 override func viewDidLoad() {
     super.viewDidLoad()
+        //self.sendedDate에는 직접 선택한 날짜와 동일한 날짜가 입력되어있다.
     print("sended date : \(self.sendedDate!)")
     //db에서 main테이블을 읽어와서 diaryData에 저장해두고 이걸 바탕으로 셀을 만든다.
     
@@ -92,17 +96,60 @@ override func viewDidLoad() {
     let writingDay = dateFormatter.string(from: (self.sendedDate?.toGlobalTime())!)
     print("writingDay : \(writingDay)")
     */
+        //self.sendedDate에 해당하는 날짜의 레코드를 불러온다
     self.diaryData = self.diaryDAO.findMain(date: self.sendedDate!)
     
     //배열을 반환받는데 사실 일자별로 일기는 하나씩밖에 없으니깐 배열안에는 인자가 하나밖에 없을거암. 그거를 쓰기 쉽게 지역변수에 대입해놓는다
     if self.diaryData == nil {
         print("findMain함수 리턴값이 없는듯...self.diaryDAO 값에서 nil 나옴")
+        //일기데이터가 없다는 말은 일기를 쓰지 않았다는 거니까, 템플릿을 읽어오도록 하자 토오오옷
+        
+        
     }else{
         print("findMAin함수 반환이 정상적으로 된듯...반환된 배열내 값 갯수 : \(self.diaryData.count)")
         
         if self.diaryData.count == 0 {
             //조건식 값이 0이라면 아무값도 리턴된게 없으니 일기를 쓰지 않은 날이라는 것이다
             print("일기를 안쓴 날을 고르셨습니다.")
+            //일기 안쓴날이므로 템플릿에 있는 내용을 표출해주면 된다.
+            //else문과는 달리 레코드 내의 값(create_date부터 did_backup까지)을 지금부터 일일히 설정하지 않아도 된다.
+            //우선 diaryBody역할을 할 변수를 선언하자...여기에 템플릿 내용을 다 넣은 후에 전역변수인 diaryBody에 대입한다.
+            var tempBody = Body()
+            
+            //각 섹션에 해당하는 템플릿을 읽어온다. 읽어왔을때 값이 있는 경우에만 tempBody안에 내용을 입력한다.
+            if let templateMyObjective = plist.array(forKey: "myObjective"){
+                tempBody.myObjective = templateMyObjective as? [String]
+                print("myObject의 템플릿 입력 완료")
+            }else{
+                print("myObject의 template읽어올수 없음. 템플릿에 내용을 입력하지 않았다.")
+            }
+            if let templateWantToDo = plist.array(forKey: "wantToDo"){
+                tempBody.wantToDo = templateWantToDo as? [String]
+                print("wantToDo의 템플릿 입력 완료")
+            }else{
+                print("wantToDO의 template읽어올수 없음. 템플릿에 내용을 입력하지 않았다.")
+            }
+            if let templateWhatHappened = plist.array(forKey: "whatHappened"){
+                tempBody.whatHappened = templateWhatHappened as? [String]
+                print("whatHappened의 템플릿 입력 완료")
+            }else{
+                print("whatHappened의 template읽어올수 없음. 템플릿에 내용을 입력하지 않았다.")
+            }
+            if let templateGratitude = plist.array(forKey: "gratitude"){
+                tempBody.gratitude = templateGratitude as? [String]
+                print("gratitude의 템플릿 입력 완료")
+            }else{
+                print("gratitude의 template읽어올수 없음. 템플릿에 내용을 입력하지 않았다.")
+            }
+            if let templateSuccess = plist.array(forKey: "success"){
+                tempBody.success = templateSuccess as? [String]
+                print("success의 템플릿 입력 완료")
+            }else{
+                print("success의 template읽어올수 없음. 템플릿에 내용을 입력하지 않았다.")
+            }
+            
+            //이제 tempBody녀석을 전역변수에 대입해야 한다
+            self.diaryBody = tempBody
             
         }else{
         //전역변수로 선언된 녀석들에게 직접 값을 넣어준다.
@@ -243,7 +290,13 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     case 1:
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
         if self.diaryData.count == 0 {
-            cell.mainText.text = ""
+            //diaryBody.myObjective의 값을 검사해서 값이 있으면 값을대입, 없으면 빈값 대입
+            if self.diaryBody.myObjective == nil {
+                cell.mainText.text = ""
+            }else{
+                cell.mainText.text = self.diaryBody.myObjective![indexPath.row]
+            }
+            
         }else{
         cell.mainText.text = self.diaryBody.myObjective![indexPath.row]
         }
@@ -253,7 +306,13 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     case 2:
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
         if self.diaryData.count == 0 {
-            cell.mainText.text = ""
+            
+            if self.diaryBody.wantToDo == nil {
+                cell.mainText.text = ""
+            }else{
+                cell.mainText.text = self.diaryBody.wantToDo![indexPath.row]
+            }
+            
         }else{
         cell.mainText.text = self.diaryBody.wantToDo![indexPath.row]
         }
@@ -262,7 +321,11 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     case 3:
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
         if self.diaryData.count == 0 {
-            cell.mainText.text = ""
+            if self.diaryBody.whatHappened == nil {
+                cell.mainText.text = ""
+            }else{
+                cell.mainText.text = self.diaryBody.whatHappened![indexPath.row]
+            }
         }else{
         cell.mainText.text = self.diaryBody.whatHappened![indexPath.row]
         }
@@ -271,7 +334,11 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     case 4:
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
         if self.diaryData.count == 0 {
-            cell.mainText.text = ""
+            if self.diaryBody.gratitude == nil {
+                cell.mainText.text = ""
+            }else{
+                cell.mainText.text = self.diaryBody.gratitude![indexPath.row]
+            }
         }else{
         cell.mainText.text = self.diaryBody.gratitude![indexPath.row]
         }
@@ -280,7 +347,11 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     case 5:
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
         if self.diaryData.count == 0 {
-            cell.mainText.text = ""
+            if self.diaryBody.success == nil {
+                cell.mainText.text = ""
+            }else{
+                cell.mainText.text = self.diaryBody.success![indexPath.row]
+            }
         }else{
         cell.mainText.text = self.diaryBody.success![indexPath.row]
         }
