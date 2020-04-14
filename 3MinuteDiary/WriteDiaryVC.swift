@@ -15,6 +15,29 @@ class WriteDiaryVC: UITableViewController{
     
     //여기 빈공간에다가는 변수들을 초기화하셈
     
+    //MARK: 일기 내용을 직접 입력할때 사용할 변수들
+        //사용자가 템플릿을 만들기 위해 입력한 값을 임시로 저장해놀 변수
+        var userInput = ""
+        //각 indexPath를 키로 하고 행의 높이를 값으로 하는 딕셔너리를 저장할 변수
+        var heightForCell = [IndexPath : CGFloat]()
+        //항목추가하기 버튼 눌러서 새로 생긴 셀(TemplateAddCell)의 텍스트뷰 높이를 저장할 변수
+        var addCellTextViewHeight: CGFloat = 0
+        //얼마나 높이가 높아졌는지 저장할 변수
+        var diffHeight: CGFloat = 0
+            //최근에 추가한 곳의 인덱스를 저장하기 위한 변수
+        var insertIndexPath : IndexPath!
+            //푸터의 버튼(항목추가하기)누르면 토글이 되는 변수를 선언한다. 기본값은 false
+        var forAdd = false
+            //푸터의 버튼 눌었을때 어느 섹션을 눌렀는지 확인하기 위한 변수임
+            //이 변수는 userDefault에 저장이 완료 된 뒤에 false로 바뀐다.
+            //정말 주의해야할 것은 입력이 완료되지 않은 상태에서 다른 화면으로 넘어가버린 경우에는 이게 false로 바뀌어야 하고 셀도 추가하다 만거는 안보이게 해놔야 한다.
+        var section1 = false
+        var section2 = false
+        var section3 = false
+        var section4 = false
+        var section5 = false
+    
+    //MARK: 일기 내용 작성과는 큰 관련없는 변수들
         //UserDefault사용하기 위한 작업
         let plist = UserDefaults.standard
     
@@ -82,6 +105,13 @@ class WriteDiaryVC: UITableViewController{
      
 override func viewDidLoad() {
     super.viewDidLoad()
+    
+    //내용입력할때 키보드 높이만큼 화면을 이동해야하는 경우 있으므로 그때 사용하기위한 작업
+    //selelctor인자에 들어있는 함수는 저 아래에 있음...
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: self.view.window)
+    NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: self.view.window)
+    
+    
         //self.sendedDate에는 직접 선택한 날짜와 동일한 날짜가 입력되어있다.
     print("sended date : \(self.sendedDate!)")
     //db에서 main테이블을 읽어와서 diaryData에 저장해두고 이걸 바탕으로 셀을 만든다.
@@ -218,6 +248,13 @@ override func viewDidLoad() {
 override func viewWillAppear(_ animated: Bool) {
     self.tableView.reloadData()
     }
+    
+//화면이 사라질때 호출되는 메서드
+override func viewWillDisappear(_ animated: Bool) {
+        //아래 코드가 제대로 작동하지 않는다면 object에 nil을 넣어볼것
+        NotificationCenter.default.removeObserver(self, name:UIResponder.keyboardWillShowNotification , object: self.view.window)
+        NotificationCenter.default.removeObserver(self, name:UIResponder.keyboardWillHideNotification , object: self.view.window)
+    }
 //테이블 행의 개수를 결정하는 메소드
 override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     
@@ -225,39 +262,44 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
     case 0:
         return 1
     case 1:
+        //참고시작
+        if self.section1 {
+            return (self.diaryBody.myObjective?.count ?? 0) + 1
+        }else{
+            return self.diaryBody.myObjective?.count ?? 0
+        }
+        /*
+        //참고끝
         if self.diaryData.count == 0 {
             print("return default at numberOfRowsInSection")
             return 1
         }else{
         return self.diaryBody.myObjective?.count ?? 1
         }
+ */
     case 2:
-        if self.diaryData.count == 0 {
-            print("return default at numberOfRowsInSection")
-            return 1
+        if self.section2 {
+            return (self.diaryBody.wantToDo?.count ?? 0) + 1
         }else{
-        return self.diaryBody.wantToDo?.count ?? 1
+            return self.diaryBody.wantToDo?.count ?? 0
         }
     case 3:
-        if self.diaryData.count == 0 {
-            print("return default at numberOfRowsInSection")
-            return 1
+        if self.section3 {
+            return (self.diaryBody.whatHappened?.count ?? 0) + 1
         }else{
-        return self.diaryBody.whatHappened?.count ?? 1
+            return self.diaryBody.whatHappened?.count ?? 0
         }
     case 4:
-        if self.diaryData.count == 0 {
-            print("return default at numberOfRowsInSection")
-            return 1
+        if self.section4 {
+            return (self.diaryBody.gratitude?.count ?? 0) + 1
         }else{
-        return self.diaryBody.gratitude?.count ?? 1
+            return self.diaryBody.gratitude?.count ?? 0
         }
     case 5:
-        if self.diaryData.count == 0 {
-            print("return default at numberOfRowsInSection")
-            return 1
+       if self.section5 {
+            return (self.diaryBody.success?.count ?? 0) + 1
         }else{
-        return self.diaryBody.success?.count ?? 1
+            return self.diaryBody.success?.count ?? 0
         }
     default :
         print("return default at numberOfRowsInSection")
@@ -268,6 +310,41 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
 
 //테이블 행을 구성하는 메소드
 override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    if self.forAdd == true {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "addCell") as! WriteDiaryAddCell
+        
+        //맨처음에 아무 텍스트도 안들어가 잇도록 일부러 빈 값을 넣어준다(원래아무것도 안들어있긴 하지만 연속해서 두번 셀 추가할때엔 저번에 입력한 값이 바로 뜨드라...셀재활용 메커니즘때문인듯)
+        cell.addTextView.text = ""
+        
+        cell.addTextView.frame.size.width = tableView.frame.size.width - 40
+        self.heightForCell[indexPath] = cell.addTextView.frame.size.height
+        
+        //기존 셀의 높이를 전역변수인 addCellTextViewHeight에 저장해둔다.
+            //addTextView.frame.size.height가 아닌 이유는 델리게이트 메서드에서 아래에 쓴 걸로 값 비교를 할 것이기 때문이다.
+        self.addCellTextViewHeight = cell.addTextView.contentSize.height
+        
+        print("frame.size.height : \(cell.addTextView.frame.size.height), contentSize.height : \(cell.addTextView.contentSize.height)")
+        
+        
+        
+        //키보드 위에 done 버튼 넣는 작업임
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.doneButtonAction))
+        let cancel: UIBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.cancelButtonAction))
+        
+        let items = [cancel, flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        cell.addTextView.inputAccessoryView = doneToolbar
+        
+        self.forAdd = false
+        
+        return cell
+    }else{
     switch indexPath.section {
     case 0:
         let cell = tableView.dequeueReusableCell(withIdentifier: "toolBarCell") as! ToolBarCell
@@ -367,6 +444,7 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
                    
         
                    return cell
+    }
     }
     }
 //테이블의 특정 행이 선택되었을때 호출되는 메소드
@@ -486,20 +564,378 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
     //footer안의 버튼 누르면 사용될 함수
     @objc func buttonAction1(_ sender: UIButton!) {
         print("나의 목표 추가 tapped")
+        self.forAdd = true
+        self.section1 = true
+        //테이블뷰에 셀을 추가하는 방법이 아래 네줄의 코드임
+        self.tableView.beginUpdates()
+        //insertRows에 첫번째 인자값으로 IndexPath변수가 필요해서 이러케 함.
+        let insertIndexPath = IndexPath(row: self.diaryBody.myObjective?.count ?? 0, section: 1)
+        self.insertIndexPath = insertIndexPath
+        self.tableView.insertRows(at: [insertIndexPath], with: .automatic)
+        self.tableView.endUpdates()
+        
+        let newCell = self.tableView.cellForRow(at: insertIndexPath) as! WriteDiaryAddCell
+        
+        newCell.addTextView.becomeFirstResponder() //키보드 활성화 하는 코드
     }
     @objc func buttonAction2(_ sender: UIButton!) {
         print("하고싶은일 추가 tapped")
+        self.forAdd = true
+        self.section2 = true
+        //테이블뷰에 셀을 추가하는 방법이 아래 네줄의 코드임
+        self.tableView.beginUpdates()
+        //insertRows에 첫번째 인자값으로 IndexPath변수가 필요해서 이러케 함.
+        let insertIndexPath = IndexPath(row: self.diaryBody.wantToDo?.count ?? 0, section: 2)
+        self.insertIndexPath = insertIndexPath
+        self.tableView.insertRows(at: [insertIndexPath], with: .automatic)
+        self.tableView.endUpdates()
+        
+        let newCell = self.tableView.cellForRow(at: insertIndexPath) as! WriteDiaryAddCell
+        
+        newCell.addTextView.becomeFirstResponder() //키보드 활성화 하는 코드
     }
     @objc func buttonAction3(_ sender: UIButton!) {
         print("오늘 있었던일 tapped")
+        self.forAdd = true
+        self.section3 = true
+        //테이블뷰에 셀을 추가하는 방법이 아래 네줄의 코드임
+        self.tableView.beginUpdates()
+        //insertRows에 첫번째 인자값으로 IndexPath변수가 필요해서 이러케 함.
+        let insertIndexPath = IndexPath(row: self.diaryBody.whatHappened?.count ?? 0, section: 3)
+        self.insertIndexPath = insertIndexPath
+        self.tableView.insertRows(at: [insertIndexPath], with: .automatic)
+        self.tableView.endUpdates()
+        
+        let newCell = self.tableView.cellForRow(at: insertIndexPath) as! WriteDiaryAddCell
+        
+        newCell.addTextView.becomeFirstResponder() //키보드 활성화 하는 코드
     }
     @objc func buttonAction4(_ sender: UIButton!) {
         print("감사할일 tapped")
+        self.forAdd = true
+        self.section4 = true
+        //테이블뷰에 셀을 추가하는 방법이 아래 네줄의 코드임
+        self.tableView.beginUpdates()
+        //insertRows에 첫번째 인자값으로 IndexPath변수가 필요해서 이러케 함.
+        let insertIndexPath = IndexPath(row: self.diaryBody.gratitude?.count ?? 0, section: 4)
+        self.insertIndexPath = insertIndexPath
+        self.tableView.insertRows(at: [insertIndexPath], with: .automatic)
+        self.tableView.endUpdates()
+        
+        let newCell = self.tableView.cellForRow(at: insertIndexPath) as! WriteDiaryAddCell
+        
+        newCell.addTextView.becomeFirstResponder() //키보드 활성화 하는 코드
     }
     @objc func buttonAction5(_ sender: UIButton!) {
         print("성공법칙 tapped")
+        self.forAdd = true
+        self.section5 = true
+        //테이블뷰에 셀을 추가하는 방법이 아래 네줄의 코드임
+        self.tableView.beginUpdates()
+        //insertRows에 첫번째 인자값으로 IndexPath변수가 필요해서 이러케 함.
+        let insertIndexPath = IndexPath(row: self.diaryBody.success?.count ?? 0, section: 5)
+        self.insertIndexPath = insertIndexPath
+        self.tableView.insertRows(at: [insertIndexPath], with: .automatic)
+        self.tableView.endUpdates()
+        
+        let newCell = self.tableView.cellForRow(at: insertIndexPath) as! WriteDiaryAddCell
+        
+        newCell.addTextView.becomeFirstResponder() //키보드 활성화 하는 코드
     }
     
+    @objc func keyboardWillShow(notification: NSNotification){
+           
+           //인터넷에서 가져온 코드는 키보드의 높이만큼 그냥 올려버리는 구조임....내 어플에서 중요한건 그게 아니라 추가하고자 하는 섹션의 헤더가 맨 위에 올라오게끔 하는것이 첫째고 둘째는 그러고도 화면의 스크롤이 가능해야함(안보이는것 스크롤하면 전부 볼 수 있어야 함)->뷰 사이즈를 줄이는걸로 해결할 수 있을듯
+           //키보드가 올라오면 원래 화면에 보이던 뷰 위를 덮는 방식으로 이루어지는데 이렇게되면 아래에 있는 내용을 보기 위해 스크롤하면 안내려감...이유는 덮여진 아래쪽에 내용이 보이고 있다고 생각하므로 더이상 스크롤을 해도 가려진곳에 있는것을 더 올릴수는 없음 ->해결법 : 뷰 영역 자체를 줄여야 할거 같다(x,y좌표가 아니라 뷰의 height를 키보드 크기만큼 줄여야함)
+           
+           let userInfo = notification.userInfo!
+           var keyboardSize: CGSize!
+           var offset: CGSize!
+               //옵셔널 에서 뻑날까봐 강제해제하지 않고 에러메시지를 나타내도록 설정해놈....내가모르는코드는 이러케하는게 안전
+           if let kkeyboardSize: CGSize = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.size {
+               keyboardSize = kkeyboardSize
+               print("keyboardSize height: \(kkeyboardSize.height)")
+           }else{
+               print("keyboardWillShow에서 keyboardSize옵셔널해제 뻑났슴")
+           }
+           if let ooffset: CGSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size{
+               offset = ooffset
+               print("offset height: \(ooffset.height)")
+           }else{
+               print("keyboardWillShow에서 offset옵셔널해제 뻑낫슴")
+           }
+           
+           
+           
+           
+           if keyboardSize.height == offset.height {
+               UIView.animate(withDuration: 0.1) {() -> Void in
+                   //바로 아랫줄의 코드는 키보드 높이만큼 화면을 위로 밀어버림 : 이렇게하면 스크롤을 해서 위에 있는 내용 확인이 불가능함.
+                   //self.view.frame.origin.y -= keyboardSize.height
+                   
+                   //이거슨 해당 셀에 대한 위치정보를 담고 있는거임
+                   //origin속성을 통해 추가된 셀의 화면에서의 위치(x,y)를 알수있엇슴 이제 이걸 이용하기함 하면 됨
+                   let rectOfCell = self.tableView.rectForRow(at: self.insertIndexPath)
+                   print("rectOfCell / orign / x:\(rectOfCell.origin.x) y:\(rectOfCell.origin.y) height:\(rectOfCell.size.height) width:\(rectOfCell.size.width)" )
+                   
+                   //테이블뷰의 길이를 키보드길이마만큼 줄여주자
+                   //나중에 다시 돌려놓아야된는거 잊지말자
+                   self.tableView.frame.size.height -= offset.height
+                   //해당 인덱스로 스크롤해준다!
+                   self.tableView.scrollToRow(at: self.insertIndexPath, at: .top, animated: true)
+                   //self.view.frame.size.height -= keyboardSize.height
+                   
+               }
+           }else{
+               print("else실행됨")
+               //차이가 있는거면
+               
+               UIView.animate(withDuration: 0.1) {() -> Void in
+                   //테이블뷰의 길이를 키보드길이만큼 줄여야 한다. 여기서 키보드 길이 기준은 offset값으로 해보자우선
+                   self.tableView.frame.size.height -= offset.height
+                   //해당 인덱스로 스크롤해준다!
+                   self.tableView.scrollToRow(at: self.insertIndexPath, at: .top, animated: true)
+                   //self.view.frame.origin.y += keyboardSize.height - offset.height
+               }
     
+           }
+           
+           /*
+           if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+               if self.view.frame.origin.y == 0 {
+                   self.view.frame.origin.y -= keyboardSize.height
+               }
+           }
+    */
+       }
+       
+       @objc func keyboardWillHide(notification: NSNotification){
+           
+           let userInfo: [AnyHashable : Any] = notification.userInfo!
+           if let offset: CGSize = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue.size {
+               
+               //테이블뷰의 크기를 원래대로 돌려놓는다
+               self.tableView.frame.size.height += offset.height
+           
+              
+           }else{
+               print("keyboardWillHide에서 offset옵셔널해제 뻑났슴")
+           }
+           
+           //뷰의 y좌표가 이상하케 되어있다면 이걸 다시 고쳐준다.
+           if self.view.frame.origin.y != 0 {
+               self.view.frame.origin.y = 0
+           
+           }
+       }
+    
+    //키보드 위의 cancel 버튼이 눌렸을때 할 작업
+    @objc func cancelButtonAction(){
+        
+        //section변수들을 false로 초기화한다.
+        self.section1 = false
+        self.section2 = false
+        self.section3 = false
+        self.section4 = false
+        self.section5 = false
+        //추가하려고 했던 셀을 원래대로 되돌려놓는다.
+        self.tableView.reloadData()
+        
+        //키보드를 내린다
+        self.resignFirstResponder()
+    }
+    
+    //키보드 위의 done버튼이 눌렸을때 할 작업
+    @objc func doneButtonAction() {
+        print("doneButtonAction실행됨")
+        //저장된 내용을 userdefault에 입력한다.
+        /*
+        if self.section1 == true {
+            let plist = UserDefaults.standard
+            //우선 원래 있던 값을 읽어온다
+            if let temp = plist.array(forKey: "myObjective"){
+                //self.myObjective = temp1 as? [String]
+                print("저장하기전 plist성공myObjective 불러오는거")
+                //이제 temp에 사용자가 입력한 값을 추가하면 된다.
+                var ttemp = temp as! [String]
+                ttemp.append(self.userInput)
+                print("ttemp 개수 : \(ttemp.count)")
+                //userDefault에 저장한다 드디어
+                plist.set(ttemp, forKey: "myObjective")
+                
+                //sync꼭 해주자 시벌럼아
+                plist.synchronize()
+                //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
+                self.myObjective?.append(self.userInput)
+                //userInput원래대로 빈값을 다시 넣어주자
+                self.userInput = ""
+            }else{
+                print("plist에서 myObjective를 읽어오는데 실패했습니다.")
+                print("템플릿에 입력된 값이 하나도 없었나 보네요. 따라서 신규 등록을 진행합니다")
+                var temp = [String]()
+                temp.append(self.userInput)
+                print("temp개수 : \(temp.count)")
+                //UserDefault에 저장한다
+                plist.set(temp, forKey: "myObjective")
+                plist.synchronize()
+                self.myObjective = [String]()
+                self.myObjective?.append(self.userInput)
+                print("self.myObjective개수 : \(self.myObjective?.count ?? 5245252)") //5245252는 더미값
+                self.userInput = ""
+            }
+        }else if self.section2 == true{
+            //우선 원래 있던 값을 읽어온다
+            let plist = UserDefaults.standard
+            if let temp = plist.array(forKey: "wantToDo"){
+                //self.myObjective = temp1 as? [String]
+                print("저장하기전 plist성공 wantToDo 불러오는거")
+                //이제 temp에 사용자가 입력한 값을 추가하면 된다.
+                var ttemp = temp as! [String]
+                ttemp.append(self.userInput)
+                //userDefault에 저장한다 드디어
+                plist.set(ttemp, forKey: "wantToDo")
+                //sync꼭 해주자 시벌럼아
+                plist.synchronize()
+                //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
+                self.wantToDo?.append(self.userInput)
+                //userInput원래대로 빈값을 다시 넣어주자
+                self.userInput = ""
+            }else{
+                print("plist에서 wantTodo를 읽어오는데 실패했습니다.")
+                print("템플릿에 입력된 값이 하나도 없었나 보네요. 따라서 신규 등록을 진행합니다")
+                var temp = [String]()
+                temp.append(self.userInput)
+                print("temp개수 : \(temp.count)")
+                //UserDefault에 저장한다
+                plist.set(temp, forKey: "wantToDo")
+                plist.synchronize()
+                self.wantToDo = [String]()
+                self.wantToDo?.append(self.userInput)
+                print("self.wantToDo개수 : \(self.wantToDo?.count ?? 5245252)") //5245252는 더미값
+                self.userInput = ""
+            }
+        }else if self.section3 == true{
+            //우선 원래 있던 값을 읽어온다
+            let plist = UserDefaults.standard
+            if let temp = plist.array(forKey: "whatHappened"){
+                //self.myObjective = temp1 as? [String]
+                print("저장하기전 plist성공 whatHappened 불러오는거")
+                //이제 temp에 사용자가 입력한 값을 추가하면 된다.
+                var ttemp = temp as! [String]
+                ttemp.append(self.userInput)
+                //userDefault에 저장한다 드디어
+                plist.set(ttemp, forKey: "whatHappened")
+                //sync꼭 해주자 시벌럼아
+                plist.synchronize()
+                //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
+                self.whatHappened?.append(self.userInput)
+                //userInput원래대로 빈값을 다시 넣어주자
+                self.userInput = ""
+            }else{
+                print("plist에서 whatHappened를 읽어오는데 실패했습니다.")
+                print("plist에서 wantTodo를 읽어오는데 실패했습니다.")
+                print("템플릿에 입력된 값이 하나도 없었나 보네요. 따라서 신규 등록을 진행합니다")
+                var temp = [String]()
+                temp.append(self.userInput)
+                print("temp개수 : \(temp.count)")
+                //UserDefault에 저장한다
+                plist.set(temp, forKey: "whatHappened")
+                plist.synchronize()
+                self.whatHappened = [String]()
+                self.whatHappened?.append(self.userInput)
+                print("self.whatHappened개수 : \(self.whatHappened?.count ?? 5245252)") //5245252는 더미값
+                self.userInput = ""
+            }
+            
+        }else if self.section4 == true{
+            //우선 원래 있던 값을 읽어온다
+            let plist = UserDefaults.standard
+            if let temp = plist.array(forKey: "gratitude"){
+                //self.myObjective = temp1 as? [String]
+                print("저장하기전 plist성공 gratitude 불러오는거")
+                //이제 temp에 사용자가 입력한 값을 추가하면 된다.
+                var ttemp = temp as! [String]
+                ttemp.append(self.userInput)
+                //userDefault에 저장한다 드디어
+                plist.set(ttemp, forKey: "gratitude")
+                //sync꼭 해주자 시벌럼아
+                plist.synchronize()
+                //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
+                self.gratitude?.append(self.userInput)
+                //userInput원래대로 빈값을 다시 넣어주자
+                self.userInput = ""
+            }else{
+                print("plist에서 gratitude를 읽어오는데 실패했습니다.")
+                print("plist에서 whatHappened를 읽어오는데 실패했습니다.")
+                print("plist에서 wantTodo를 읽어오는데 실패했습니다.")
+                print("템플릿에 입력된 값이 하나도 없었나 보네요. 따라서 신규 등록을 진행합니다")
+                var temp = [String]()
+                temp.append(self.userInput)
+                print("temp개수 : \(temp.count)")
+                //UserDefault에 저장한다
+                plist.set(temp, forKey: "gratitude")
+                plist.synchronize()
+                self.gratitude = [String]()
+                self.gratitude?.append(self.userInput)
+                print("self.gratitude개수 : \(self.gratitude?.count ?? 5245252)") //5245252는 더미값
+                self.userInput = ""
+            }
+            
+            
+        }else if self.section5 == true{
+            //우선 원래 있던 값을 읽어온다
+            let plist = UserDefaults.standard
+            if let temp = plist.array(forKey: "success"){
+                //self.myObjective = temp1 as? [String]
+                print("저장하기전 plist성공 success 불러오는거")
+                //이제 temp에 사용자가 입력한 값을 추가하면 된다.
+                var ttemp = temp as! [String]
+                ttemp.append(self.userInput)
+                //userDefault에 저장한다 드디어
+                plist.set(ttemp, forKey: "success")
+                //sync꼭 해주자 시벌럼아
+                plist.synchronize()
+                //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
+                self.success?.append(self.userInput)
+                //userInput원래대로 빈값을 다시 넣어주자
+                self.userInput = ""
+            }else{
+                print("plist에서 success를 읽어오는데 실패했습니다.")
+                print("plist에서 gratitude를 읽어오는데 실패했습니다.")
+                print("plist에서 whatHappened를 읽어오는데 실패했습니다.")
+                print("plist에서 wantTodo를 읽어오는데 실패했습니다.")
+                print("템플릿에 입력된 값이 하나도 없었나 보네요. 따라서 신규 등록을 진행합니다")
+                var temp = [String]()
+                temp.append(self.userInput)
+                print("temp개수 : \(temp.count)")
+                //UserDefault에 저장한다
+                plist.set(temp, forKey: "success")
+                plist.synchronize()
+                self.success = [String]()
+                self.success?.append(self.userInput)
+                print("self.success개수 : \(self.success?.count ?? 5245252)") //5245252는 더미값
+                self.userInput = ""
+            }
+            
+        }else{
+            print("섹션0부터4까지 모두 false임다이건뭔가 잘못됫슴다")
+        }
+        
+        
+        //section변수들을 false로 초기화한다.
+        self.section5 = false
+        self.section1 = false
+        self.section2 = false
+        self.section3 = false
+        self.section4 = false
+        
+        //추가하려고 했던 셀을 원래대로 되돌려놓는다.
+        self.tableView.reloadData()
+        
+        //키보드를 내린다
+        self.resignFirstResponder()
+*/
+    }
+
 }
 

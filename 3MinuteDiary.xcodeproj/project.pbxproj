@@ -16,6 +16,7 @@
 		0424596923E312610075016E /* TemplateAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424596823E312610075016E /* TemplateAddCell.swift */; };
 		0425A97C23ED7D5900B09F65 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 0425A97B23ED7D5900B09F65 /* db.sqlite */; };
 		0429446D240A58D4008631C9 /* BackupManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429446C240A58D4008631C9 /* BackupManageVC.swift */; };
+		042AF16524433D6C00F90C0D /* WriteDiaryAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042AF16424433D6C00F90C0D /* WriteDiaryAddCell.swift */; };
 		0431059623B5C9A700F727FD /* WriteDiaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431059523B5C9A700F727FD /* WriteDiaryVC.swift */; };
 		0431059823B5CA0600F727FD /* TableVCTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431059723B5CA0600F727FD /* TableVCTemplate.swift */; };
 		0431059B23B5CAAC00F727FD /* ToolBarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431059A23B5CAAC00F727FD /* ToolBarCell.swift */; };
@@ -63,6 +64,7 @@
 		0424596823E312610075016E /* TemplateAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAddCell.swift; sourceTree = "<group>"; };
 		0425A97B23ED7D5900B09F65 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
 		0429446C240A58D4008631C9 /* BackupManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupManageVC.swift; sourceTree = "<group>"; };
+		042AF16424433D6C00F90C0D /* WriteDiaryAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDiaryAddCell.swift; sourceTree = "<group>"; };
 		0431059523B5C9A700F727FD /* WriteDiaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDiaryVC.swift; sourceTree = "<group>"; };
 		0431059723B5CA0600F727FD /* TableVCTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableVCTemplate.swift; sourceTree = "<group>"; };
 		0431059A23B5CAAC00F727FD /* ToolBarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolBarCell.swift; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 				0431059E23B70AAC00F727FD /* MainCell.swift */,
 				0424596623E3086E0075016E /* TemplateBodyCell.swift */,
 				0424596823E312610075016E /* TemplateAddCell.swift */,
+				042AF16424433D6C00F90C0D /* WriteDiaryAddCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -468,6 +471,7 @@
 				04222F2023E6E8C3000008BB /* DiaryDAO.swift in Sources */,
 				0431059623B5C9A700F727FD /* WriteDiaryVC.swift in Sources */,
 				0431059F23B70AAC00F727FD /* MainCell.swift in Sources */,
+				042AF16524433D6C00F90C0D /* WriteDiaryAddCell.swift in Sources */,
 				0429446D240A58D4008631C9 /* BackupManageVC.swift in Sources */,
 				0424596523DABD410075016E /* TemplateManageVC.swift in Sources */,
 				0431059823B5CA0600F727FD /* TableVCTemplate.swift in Sources */,
