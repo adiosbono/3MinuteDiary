@@ -11,15 +11,17 @@ import UIKit
 import SwiftyJSON
 import FMDB
 
-class WriteDiaryVC: UITableViewController{
+class WriteDiaryVC: UITableViewController, UITextViewDelegate{
     
     //여기 빈공간에다가는 변수들을 초기화하셈
     
     //MARK: 일기 내용을 직접 입력할때 사용할 변수들
         //사용자가 템플릿을 만들기 위해 입력한 값을 임시로 저장해놀 변수
         var userInput = ""
-        //각 indexPath를 키로 하고 행의 높이를 값으로 하는 딕셔너리를 저장할 변수
-        var heightForCell = [IndexPath : CGFloat]()
+    
+        //현재 작성중인 셀의 높이를 저장할 변수 자료형에 주의
+        var heightForCell: CGFloat = 0
+    
         //항목추가하기 버튼 눌러서 새로 생긴 셀(TemplateAddCell)의 텍스트뷰 높이를 저장할 변수
         var addCellTextViewHeight: CGFloat = 0
         //얼마나 높이가 높아졌는지 저장할 변수
@@ -315,9 +317,9 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         
         //맨처음에 아무 텍스트도 안들어가 잇도록 일부러 빈 값을 넣어준다(원래아무것도 안들어있긴 하지만 연속해서 두번 셀 추가할때엔 저번에 입력한 값이 바로 뜨드라...셀재활용 메커니즘때문인듯)
         cell.addTextView.text = ""
-        
+        cell.addTextView.delegate = self
         cell.addTextView.frame.size.width = tableView.frame.size.width - 40
-        self.heightForCell[indexPath] = cell.addTextView.frame.size.height
+        self.heightForCell = cell.addTextView.frame.size.height
         
         //기존 셀의 높이를 전역변수인 addCellTextViewHeight에 저장해둔다.
             //addTextView.frame.size.height가 아닌 이유는 델리게이트 메서드에서 아래에 쓴 걸로 값 비교를 할 것이기 때문이다.
@@ -561,6 +563,51 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
             return 20
         }
     }
+    
+    //MARK: TextViewDelegate함수들
+    //텍스트뷰의 내용 변할때마다 호출될 딜리게이트함수임(한글짜변해도 호출됨)..
+    func textViewDidChange(_ textView: UITextView) {
+        //변화된 내용을 전역변수에 저장한다
+        self.userInput = textView.text
+        //높이변화를 감지한다.
+        if self.addCellTextViewHeight == textView.contentSize.height{
+            print("텍스트뷰 높이 변화 없음")
+        }else{
+            print("텍스트뷰 높이 변화됨")
+            //바뀐 높이값을 계산한다. 바뀐 높이가 길어졌으면 양수, 바뀐 높이가 짧아졋으면 음수가 나올 것이다.
+            let diff = textView.contentSize.height - self.addCellTextViewHeight
+            print("diff : \(diff)")
+            //변화된 높이를 전역변수에 집어넣는다.(이걸 다시 기준으로 써야하기 때문이다)
+            self.addCellTextViewHeight = textView.contentSize.height
+            //셀 높이를 늘린다. 이제와서보니깐 이게 굳이 필요한가 싶기도 함
+            self.diffHeight = diff
+            
+            //여기서는 현재 작성중인 셀의 높이값만 저장하면 되므로 이렇게 딕셔너리 값까지 사용할 필요가 없을것 같음
+            self.heightForCell += diff
+            
+            self.tableView.beginUpdates()
+            /*
+            //여기 사이에다가 테이블 셀의 높이를 증가시키는 코드를 넣으면 될까? 해보니깐 안됨 ㅋㅋㅋㅋㅋ
+                //현재 에디팅하고 있는 셀을 불러온다
+            let editingCell = self.tableView.cellForRow(at: self.insertIndexPath) as! WriteDiaryAddCell
+                //이 셀의 높이 값에 diff만큼을 더해준다
+            editingCell.frame.size.height += diff
+            */
+            self.tableView.endUpdates()
+        }
+    }
+    
+    //셀의 높이값을 반환할 함수.............이거 있으면 오토로 안되는거 아님? 리턴값을 슈퍼를 통해서 해놓으니까 되넹 헤헤헤
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        print("heightForRowAt실행됨")
+        if indexPath == self.insertIndexPath{
+            print("새로운높이 : \(self.heightForCell)")
+            return (super.tableView(tableView, heightForRowAt: indexPath) + self.heightForCell)
+        }else{
+        return super.tableView(tableView, heightForRowAt: indexPath)
+        }
+    }
+    
     //footer안의 버튼 누르면 사용될 함수
     @objc func buttonAction1(_ sender: UIButton!) {
         print("나의 목표 추가 tapped")

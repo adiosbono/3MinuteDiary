@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class TemplateManageVC: UITableViewController{
+class TemplateManageVC: UITableViewController, UITextViewDelegate{
     
     
     

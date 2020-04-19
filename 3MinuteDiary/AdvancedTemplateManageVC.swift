@@ -714,7 +714,7 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
         newCell.addTextView.becomeFirstResponder() //키보드 활성화 하는 코드
     }
     
-    //텍스트뷰의 내용 변할때마다 호출될 딜리게이트함수임(한글짜변해도 호출됨)
+    //텍스트뷰의 내용 변할때마다 호출될 딜리게이트함수임(한글짜변해도 호출됨)..
     func textViewDidChange(_ textView: UITextView) {
         
         //변화된 내용을 전역변수에 저장한다
