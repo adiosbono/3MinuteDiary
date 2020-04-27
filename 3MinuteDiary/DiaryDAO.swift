@@ -101,7 +101,35 @@ class DiaryDAO {
             return diaryList
         }
     
+    //MARK: newData 새로운일기 작성시 사용
+    func newData(writeDate: String, morning: Int, night: Int, backup: Int, data: String){
+        do{
+        let sql = """
+                    INSERT INTO main(create_date, morning, night, did_backup, data) VALUES (?, ?, ?, ?, ?)
+"""
+        try self.fmdb.executeUpdate(sql, values: [writeDate, morning, night, backup, data])
+        }catch let error as NSError {
+            print("Failed from db insertion: \(error.localizedDescription)")
+            print("diaryDAO newData 안됨 에러남 쓋")
+            //새로운일기 작성하는게 에러가 났다면 추가하는걸 하도록 하면 되지 않는가 소년이여
+            print("그렇다면 editData를 바로 실행하도록 하자")
+            editData(writeDate: writeDate, morning: morning, night: night, backup: backup, data: data)
+        }
+    }
     
-    
+    //MARK: editData 일기쓴적있을때 내용을 추가하기 위해 사용
+    func editData(writeDate: String, morning: Int, night: Int, backup: Int, data: String){
+        do{
+            let sql = """
+                    UPDATE main
+                    SET morning = ?, night = ?, did_backup = ?, data = ?
+                    WHERE create_date = ?
+"""
+            try self.fmdb.executeUpdate(sql, values: [morning, night, backup, data, writeDate])
+        }catch let error as NSError {
+            print("Failed from db insertion: \(error.localizedDescription)")
+            print("diaryDAO editData 안됨 에러남 쓋")
+        }
+    }
     
 }

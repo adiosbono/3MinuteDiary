@@ -98,8 +98,8 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
         print("today : \(today)")
         
         
-        //기본적으로 오늘에 해당하는 날짜가 선택되어 있도록 한다.
-        self.selectedDate = Date()
+        //기본적으로 오늘에 해당하는 날짜가 선택되어 있도록 한다.--------------------------------------------------------------------------------으악
+        self.selectedDate = Date().toLocalTime()
         
         print("오늘날짜 : \(self.selectedDate!)")
         

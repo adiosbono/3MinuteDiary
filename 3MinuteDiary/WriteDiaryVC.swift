@@ -40,6 +40,9 @@ class WriteDiaryVC: UITableViewController, UITextViewDelegate{
         var section5 = false
     
     //MARK: 일기 내용 작성과는 큰 관련없는 변수들
+    
+        //일기쓴날인지 아닌지를 판단하게 해주는 전역변수....결국엔 쓸모없게 되어벼렸다 걍 아무기능안함....
+        var didWriteDiary: Bool!
         //UserDefault사용하기 위한 작업
         let plist = UserDefaults.standard
     
@@ -49,9 +52,9 @@ class WriteDiaryVC: UITableViewController, UITextViewDelegate{
     
         //diaryData내의 변수를 저장할 변수
         var create_date: String!
-        var morning: Int!
-        var night: Int!
-        var did_backup: Int!
+        var morning = 0
+        var night = 0
+        var did_backup = 0
         var data: Data? //String이 아님에 주의해야 한다!!!!!!!!!!!!!!!!!
     
         //일기데이터를 파싱해서 저장할 구조체 선언(파싱할때 편하도록 특별히 프로토콜 선언함)
@@ -135,7 +138,7 @@ override func viewDidLoad() {
     if self.diaryData == nil {
         print("findMain함수 리턴값이 없는듯...self.diaryDAO 값에서 nil 나옴")
         //일기데이터가 없다는 말은 일기를 쓰지 않았다는 거니까, 템플릿을 읽어오도록 하자 토오오옷
-        
+        self.didWriteDiary = false
         
     }else{
         print("findMAin함수 반환이 정상적으로 된듯...반환된 배열내 값 갯수 : \(self.diaryData.count)")
@@ -147,6 +150,9 @@ override func viewDidLoad() {
             //else문과는 달리 레코드 내의 값(create_date부터 did_backup까지)을 지금부터 일일히 설정하지 않아도 된다.
             //우선 diaryBody역할을 할 변수를 선언하자...여기에 템플릿 내용을 다 넣은 후에 전역변수인 diaryBody에 대입한다.
             var tempBody = Body()
+            
+            //일기를 쓰지 않았으므로 전역변수에 false를 넣는다.
+            self.didWriteDiary = false
             
             //각 섹션에 해당하는 템플릿을 읽어온다. 읽어왔을때 값이 있는 경우에만 tempBody안에 내용을 입력한다.
             if let templateMyObjective = plist.array(forKey: "myObjective"){
@@ -184,6 +190,8 @@ override func viewDidLoad() {
             self.diaryBody = tempBody
             
         }else{
+            //일기를 작성한적이 있다는 분기이므로 여기선 전역변수에 true를 넣는다
+            self.didWriteDiary = true
         //전역변수로 선언된 녀석들에게 직접 값을 넣어준다.
         self.create_date = self.diaryData[0].0
         self.morning = self.diaryData[0].1
@@ -312,6 +320,7 @@ override func tableView(_ tableView: UITableView, numberOfRowsInSection section:
 
 //테이블 행을 구성하는 메소드
 override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    print("쎌폴로앳 실행됨")
     if self.forAdd == true {
         let cell = tableView.dequeueReusableCell(withIdentifier: "addCell") as! WriteDiaryAddCell
         
@@ -792,178 +801,236 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
         self.resignFirstResponder()
     }
     
-    //키보드 위의 done버튼이 눌렸을때 할 작업
+    //MARK: 키보드 위의 done버튼이 눌렸을때 할 작업
     @objc func doneButtonAction() {
         print("doneButtonAction실행됨")
         //저장된 내용을 userdefault에 입력한다.
-        /*
+        
         if self.section1 == true {
-            let plist = UserDefaults.standard
-            //우선 원래 있던 값을 읽어온다
-            if let temp = plist.array(forKey: "myObjective"){
-                //self.myObjective = temp1 as? [String]
-                print("저장하기전 plist성공myObjective 불러오는거")
-                //이제 temp에 사용자가 입력한 값을 추가하면 된다.
-                var ttemp = temp as! [String]
-                ttemp.append(self.userInput)
-                print("ttemp 개수 : \(ttemp.count)")
-                //userDefault에 저장한다 드디어
-                plist.set(ttemp, forKey: "myObjective")
+            if self.diaryBody.myObjective != nil {//일기를 쓴적이 있는 경우
+                //diaryBody의 해당에 사용자 입력을 추가한다.
+                self.diaryBody.myObjective?.append(self.userInput)
+                //date값도 지금 시각으로 수정한다.(db의 data항목 안에 들어갈 녀석임. pk로 쓰는녀석이 아니고)
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                self.diaryBody.date = dateFormat.string(from: Date())
                 
-                //sync꼭 해주자 시벌럼아
-                plist.synchronize()
-                //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
-                self.myObjective?.append(self.userInput)
-                //userInput원래대로 빈값을 다시 넣어주자
-                self.userInput = ""
-            }else{
-                print("plist에서 myObjective를 읽어오는데 실패했습니다.")
-                print("템플릿에 입력된 값이 하나도 없었나 보네요. 따라서 신규 등록을 진행합니다")
-                var temp = [String]()
-                temp.append(self.userInput)
-                print("temp개수 : \(temp.count)")
-                //UserDefault에 저장한다
-                plist.set(temp, forKey: "myObjective")
-                plist.synchronize()
-                self.myObjective = [String]()
-                self.myObjective?.append(self.userInput)
-                print("self.myObjective개수 : \(self.myObjective?.count ?? 5245252)") //5245252는 더미값
-                self.userInput = ""
+                //JSON으로 인코딩한다
+                let encoder = JSONEncoder()
+                let jsonData = try? encoder.encode(self.diaryBody)
+                let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                print("stringfiedJsonData : \(stringfiedJsonData!)")
+                //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
+                    //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                dateFormat.dateFormat = "yyyy-MM-dd"
+                let writeDate = dateFormat.string(from: self.sendedDate!)
+                print("writeDate : \(writeDate)")
+                    //대망의 디비에 넣는 구분
+                self.diaryDAO.editData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
+            }else{//일기를 쓴적이 없는 경우
+                print("일기를 처음 쓰는구먼유!")
+                //diaryBody의 해당에 사용자 입력을 추가한다.
+                self.diaryBody.myObjective = [self.userInput]
+                //date값도 지금 시각으로 수정한다.(db의 data항목 안에 들어갈 녀석임. pk로 쓰는녀석이 아니고)
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                self.diaryBody.date = dateFormat.string(from: Date())
+                
+                //JSON으로 인코딩한다
+                let encoder = JSONEncoder()
+                let jsonData = try? encoder.encode(self.diaryBody)
+                let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                print("stringfiedJsonData : \(stringfiedJsonData!)")
+                //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
+                    //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                dateFormat.dateFormat = "yyyy-MM-dd"
+                let writeDate = dateFormat.string(from: self.sendedDate!)
+                print("writeDate : \(writeDate)")
+                    //대망의 디비에 넣는 구분
+                self.diaryDAO.newData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
             }
+                self.userInput = ""
         }else if self.section2 == true{
-            //우선 원래 있던 값을 읽어온다
-            let plist = UserDefaults.standard
-            if let temp = plist.array(forKey: "wantToDo"){
-                //self.myObjective = temp1 as? [String]
-                print("저장하기전 plist성공 wantToDo 불러오는거")
-                //이제 temp에 사용자가 입력한 값을 추가하면 된다.
-                var ttemp = temp as! [String]
-                ttemp.append(self.userInput)
-                //userDefault에 저장한다 드디어
-                plist.set(ttemp, forKey: "wantToDo")
-                //sync꼭 해주자 시벌럼아
-                plist.synchronize()
-                //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
-                self.wantToDo?.append(self.userInput)
-                //userInput원래대로 빈값을 다시 넣어주자
-                self.userInput = ""
-            }else{
-                print("plist에서 wantTodo를 읽어오는데 실패했습니다.")
-                print("템플릿에 입력된 값이 하나도 없었나 보네요. 따라서 신규 등록을 진행합니다")
-                var temp = [String]()
-                temp.append(self.userInput)
-                print("temp개수 : \(temp.count)")
-                //UserDefault에 저장한다
-                plist.set(temp, forKey: "wantToDo")
-                plist.synchronize()
-                self.wantToDo = [String]()
-                self.wantToDo?.append(self.userInput)
-                print("self.wantToDo개수 : \(self.wantToDo?.count ?? 5245252)") //5245252는 더미값
-                self.userInput = ""
+            //주의할점 : 여기서는 오전 일기를 작성한것으로 판단하는 morning값을 1로 만들어줘야 한다.
+            self.morning = 1
+            if self.diaryBody.wantToDo != nil {//일기를 쓴적이 있는 경우
+                //diaryBody의 해당에 사용자 입력을 추가한다.
+                self.diaryBody.wantToDo?.append(self.userInput)
+                //date값도 지금 시각으로 수정한다.(db의 data항목 안에 들어갈 녀석임. pk로 쓰는녀석이 아니고)
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                self.diaryBody.date = dateFormat.string(from: Date())
+                
+                //JSON으로 인코딩한다
+                let encoder = JSONEncoder()
+                let jsonData = try? encoder.encode(self.diaryBody)
+                let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                print("stringfiedJsonData : \(stringfiedJsonData!)")
+                //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
+                    //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                dateFormat.dateFormat = "yyyy-MM-dd"
+                let writeDate = dateFormat.string(from: self.sendedDate!)
+                print("writeDate : \(writeDate)")
+                    //대망의 디비에 넣는 구분
+                self.diaryDAO.editData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
+            }else{//일기를 쓴적이 없는 경우
+                print("일기를 처음 쓰는구먼유!")
+                //diaryBody의 해당에 사용자 입력을 추가한다.
+                self.diaryBody.wantToDo = [self.userInput]
+                //date값도 지금 시각으로 수정한다.(db의 data항목 안에 들어갈 녀석임. pk로 쓰는녀석이 아니고)
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                self.diaryBody.date = dateFormat.string(from: Date())
+                
+                //JSON으로 인코딩한다
+                let encoder = JSONEncoder()
+                let jsonData = try? encoder.encode(self.diaryBody)
+                let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                print("stringfiedJsonData : \(stringfiedJsonData!)")
+                //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
+                    //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                dateFormat.dateFormat = "yyyy-MM-dd"
+                let writeDate = dateFormat.string(from: self.sendedDate!)
+                print("writeDate : \(writeDate)")
+                    //대망의 디비에 넣는 구분
+                self.diaryDAO.newData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
             }
+                self.userInput = ""
+                
         }else if self.section3 == true{
-            //우선 원래 있던 값을 읽어온다
-            let plist = UserDefaults.standard
-            if let temp = plist.array(forKey: "whatHappened"){
-                //self.myObjective = temp1 as? [String]
-                print("저장하기전 plist성공 whatHappened 불러오는거")
-                //이제 temp에 사용자가 입력한 값을 추가하면 된다.
-                var ttemp = temp as! [String]
-                ttemp.append(self.userInput)
-                //userDefault에 저장한다 드디어
-                plist.set(ttemp, forKey: "whatHappened")
-                //sync꼭 해주자 시벌럼아
-                plist.synchronize()
-                //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
-                self.whatHappened?.append(self.userInput)
-                //userInput원래대로 빈값을 다시 넣어주자
-                self.userInput = ""
-            }else{
-                print("plist에서 whatHappened를 읽어오는데 실패했습니다.")
-                print("plist에서 wantTodo를 읽어오는데 실패했습니다.")
-                print("템플릿에 입력된 값이 하나도 없었나 보네요. 따라서 신규 등록을 진행합니다")
-                var temp = [String]()
-                temp.append(self.userInput)
-                print("temp개수 : \(temp.count)")
-                //UserDefault에 저장한다
-                plist.set(temp, forKey: "whatHappened")
-                plist.synchronize()
-                self.whatHappened = [String]()
-                self.whatHappened?.append(self.userInput)
-                print("self.whatHappened개수 : \(self.whatHappened?.count ?? 5245252)") //5245252는 더미값
-                self.userInput = ""
-            }
-            
+            //오늘 있었던일을 쓰면 오후것도 작성한것으로 친다
+            self.night = 1
+               if self.diaryBody.whatHappened != nil {//일기를 쓴적이 있는 경우
+                    //diaryBody의 해당에 사용자 입력을 추가한다.
+                    self.diaryBody.whatHappened?.append(self.userInput)
+                    //date값도 지금 시각으로 수정한다.(db의 data항목 안에 들어갈 녀석임. pk로 쓰는녀석이 아니고)
+                    let dateFormat = DateFormatter()
+                    dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                    self.diaryBody.date = dateFormat.string(from: Date())
+                    
+                    //JSON으로 인코딩한다
+                    let encoder = JSONEncoder()
+                    let jsonData = try? encoder.encode(self.diaryBody)
+                    let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                    print("stringfiedJsonData : \(stringfiedJsonData!)")
+                    //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
+                        //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                    dateFormat.dateFormat = "yyyy-MM-dd"
+                    let writeDate = dateFormat.string(from: self.sendedDate!)
+                    print("writeDate : \(writeDate)")
+                        //대망의 디비에 넣는 구분
+                    self.diaryDAO.editData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
+                }else{//일기를 쓴적이 없는 경우
+                    print("일기를 처음 쓰는구먼유!")
+                    //diaryBody의 해당에 사용자 입력을 추가한다.
+                    self.diaryBody.whatHappened = [self.userInput]
+                    //date값도 지금 시각으로 수정한다.(db의 data항목 안에 들어갈 녀석임. pk로 쓰는녀석이 아니고)
+                    let dateFormat = DateFormatter()
+                    dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                    self.diaryBody.date = dateFormat.string(from: Date())
+                    
+                    //JSON으로 인코딩한다
+                    let encoder = JSONEncoder()
+                    let jsonData = try? encoder.encode(self.diaryBody)
+                    let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                    print("stringfiedJsonData : \(stringfiedJsonData!)")
+                    //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
+                        //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                    dateFormat.dateFormat = "yyyy-MM-dd"
+                    let writeDate = dateFormat.string(from: self.sendedDate!)
+                    print("writeDate : \(writeDate)")
+                        //대망의 디비에 넣는 구분
+                    self.diaryDAO.newData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
+                }
+                    self.userInput = ""
         }else if self.section4 == true{
-            //우선 원래 있던 값을 읽어온다
-            let plist = UserDefaults.standard
-            if let temp = plist.array(forKey: "gratitude"){
-                //self.myObjective = temp1 as? [String]
-                print("저장하기전 plist성공 gratitude 불러오는거")
-                //이제 temp에 사용자가 입력한 값을 추가하면 된다.
-                var ttemp = temp as! [String]
-                ttemp.append(self.userInput)
-                //userDefault에 저장한다 드디어
-                plist.set(ttemp, forKey: "gratitude")
-                //sync꼭 해주자 시벌럼아
-                plist.synchronize()
-                //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
-                self.gratitude?.append(self.userInput)
-                //userInput원래대로 빈값을 다시 넣어주자
-                self.userInput = ""
-            }else{
-                print("plist에서 gratitude를 읽어오는데 실패했습니다.")
-                print("plist에서 whatHappened를 읽어오는데 실패했습니다.")
-                print("plist에서 wantTodo를 읽어오는데 실패했습니다.")
-                print("템플릿에 입력된 값이 하나도 없었나 보네요. 따라서 신규 등록을 진행합니다")
-                var temp = [String]()
-                temp.append(self.userInput)
-                print("temp개수 : \(temp.count)")
-                //UserDefault에 저장한다
-                plist.set(temp, forKey: "gratitude")
-                plist.synchronize()
-                self.gratitude = [String]()
-                self.gratitude?.append(self.userInput)
-                print("self.gratitude개수 : \(self.gratitude?.count ?? 5245252)") //5245252는 더미값
-                self.userInput = ""
-            }
-            
-            
+                if self.diaryBody.gratitude != nil {//일기를 쓴적이 있는 경우
+                    //diaryBody의 해당에 사용자 입력을 추가한다.
+                    self.diaryBody.gratitude?.append(self.userInput)
+                    //date값도 지금 시각으로 수정한다.(db의 data항목 안에 들어갈 녀석임. pk로 쓰는녀석이 아니고)
+                    let dateFormat = DateFormatter()
+                    dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                    self.diaryBody.date = dateFormat.string(from: Date())
+                    
+                    //JSON으로 인코딩한다
+                    let encoder = JSONEncoder()
+                    let jsonData = try? encoder.encode(self.diaryBody)
+                    let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                    print("stringfiedJsonData : \(stringfiedJsonData!)")
+                    //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
+                        //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                    dateFormat.dateFormat = "yyyy-MM-dd"
+                    let writeDate = dateFormat.string(from: self.sendedDate!)
+                    print("writeDate : \(writeDate)")
+                        //대망의 디비에 넣는 구분
+                    self.diaryDAO.editData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
+                }else{//일기를 쓴적이 없는 경우
+                    print("일기를 처음 쓰는구먼유!")
+                    //diaryBody의 해당에 사용자 입력을 추가한다.
+                    self.diaryBody.gratitude = [self.userInput]
+                    //date값도 지금 시각으로 수정한다.(db의 data항목 안에 들어갈 녀석임. pk로 쓰는녀석이 아니고)
+                    let dateFormat = DateFormatter()
+                    dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                    self.diaryBody.date = dateFormat.string(from: Date())
+                    
+                    //JSON으로 인코딩한다
+                    let encoder = JSONEncoder()
+                    let jsonData = try? encoder.encode(self.diaryBody)
+                    let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                    print("stringfiedJsonData : \(stringfiedJsonData!)")
+                    //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
+                        //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                    dateFormat.dateFormat = "yyyy-MM-dd"
+                    let writeDate = dateFormat.string(from: self.sendedDate!)
+                    print("writeDate : \(writeDate)")
+                        //대망의 디비에 넣는 구분
+                    self.diaryDAO.newData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
+                }
+                    self.userInput = ""
         }else if self.section5 == true{
-            //우선 원래 있던 값을 읽어온다
-            let plist = UserDefaults.standard
-            if let temp = plist.array(forKey: "success"){
-                //self.myObjective = temp1 as? [String]
-                print("저장하기전 plist성공 success 불러오는거")
-                //이제 temp에 사용자가 입력한 값을 추가하면 된다.
-                var ttemp = temp as! [String]
-                ttemp.append(self.userInput)
-                //userDefault에 저장한다 드디어
-                plist.set(ttemp, forKey: "success")
-                //sync꼭 해주자 시벌럼아
-                plist.synchronize()
-                //맨마지막으로 화면에 표시할 각 섹션의 목록을 담고있는 vc내의 변수에도 추가를 해주자
-                self.success?.append(self.userInput)
-                //userInput원래대로 빈값을 다시 넣어주자
-                self.userInput = ""
-            }else{
-                print("plist에서 success를 읽어오는데 실패했습니다.")
-                print("plist에서 gratitude를 읽어오는데 실패했습니다.")
-                print("plist에서 whatHappened를 읽어오는데 실패했습니다.")
-                print("plist에서 wantTodo를 읽어오는데 실패했습니다.")
-                print("템플릿에 입력된 값이 하나도 없었나 보네요. 따라서 신규 등록을 진행합니다")
-                var temp = [String]()
-                temp.append(self.userInput)
-                print("temp개수 : \(temp.count)")
-                //UserDefault에 저장한다
-                plist.set(temp, forKey: "success")
-                plist.synchronize()
-                self.success = [String]()
-                self.success?.append(self.userInput)
-                print("self.success개수 : \(self.success?.count ?? 5245252)") //5245252는 더미값
-                self.userInput = ""
-            }
-            
+               if self.diaryBody.success != nil {//일기를 쓴적이 있는 경우
+                    //diaryBody의 해당에 사용자 입력을 추가한다.
+                    self.diaryBody.success?.append(self.userInput)
+                    //date값도 지금 시각으로 수정한다.(db의 data항목 안에 들어갈 녀석임. pk로 쓰는녀석이 아니고)
+                    let dateFormat = DateFormatter()
+                    dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                    self.diaryBody.date = dateFormat.string(from: Date())
+                    
+                    //JSON으로 인코딩한다
+                    let encoder = JSONEncoder()
+                    let jsonData = try? encoder.encode(self.diaryBody)
+                    let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                    print("stringfiedJsonData : \(stringfiedJsonData!)")
+                    //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
+                        //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                    dateFormat.dateFormat = "yyyy-MM-dd"
+                    let writeDate = dateFormat.string(from: self.sendedDate!)
+                    print("writeDate : \(writeDate)")
+                        //대망의 디비에 넣는 구분
+                    self.diaryDAO.editData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
+                }else{//일기를 쓴적이 없는 경우
+                    print("일기를 처음 쓰는구먼유!")
+                    //diaryBody의 해당에 사용자 입력을 추가한다.
+                    self.diaryBody.success = [self.userInput]
+                    //date값도 지금 시각으로 수정한다.(db의 data항목 안에 들어갈 녀석임. pk로 쓰는녀석이 아니고)
+                    let dateFormat = DateFormatter()
+                    dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                    self.diaryBody.date = dateFormat.string(from: Date())
+                    
+                    //JSON으로 인코딩한다
+                    let encoder = JSONEncoder()
+                    let jsonData = try? encoder.encode(self.diaryBody)
+                    let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                    print("stringfiedJsonData : \(stringfiedJsonData!)")
+                    //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
+                        //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                    dateFormat.dateFormat = "yyyy-MM-dd"
+                    let writeDate = dateFormat.string(from: self.sendedDate!)
+                    print("writeDate : \(writeDate)")
+                        //대망의 디비에 넣는 구분
+                    self.diaryDAO.newData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
+                }
+                    self.userInput = ""
         }else{
             print("섹션0부터4까지 모두 false임다이건뭔가 잘못됫슴다")
         }
@@ -981,7 +1048,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
         
         //키보드를 내린다
         self.resignFirstResponder()
-*/
+
     }
 
 }
