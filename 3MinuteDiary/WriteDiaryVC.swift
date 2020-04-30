@@ -99,6 +99,8 @@ class WriteDiaryVC: UITableViewController, UITextViewDelegate{
     @IBAction func saveButton(_ sender: UIButton) {
         print("saveBtn2")
         self.presentingViewController?.dismiss(animated: true, completion: nil)
+        print("캘린더리프레싱가즈아")
+        self.presentingViewController?.viewWillAppear(false)
     }
     
 

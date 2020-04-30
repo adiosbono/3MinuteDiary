@@ -57,6 +57,17 @@ import FSCalendar
 //FSCalendar관련 딜리게이트를 포함시켜주지 않으면 에러가 난다 띠벌탱
 class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     
+    //circleList를 변환해서 저장한 딕셔너리...키는 날짜(String)  값은 튜플(Int,Int)
+    var circleDictionary = [String : (Int, Int)]()
+    
+    //findMorningNight 함수의 결과값을 저장할 튜플(String, Int, Int)
+    typealias circleRecord = (String, Int, Int)
+    //일기쓴날 아래 점찍을때 쓸 자료들 모아노은녀석
+    var circleList = [circleRecord]()
+    
+    //db사용하기 위한 작업
+    let diaryDAO = DiaryDAO()
+    
     //화면과 연결된 변수 및 아웃렛 정의
     fileprivate var calendar: FSCalendar!
     
@@ -75,6 +86,19 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
         present(WriteDiaryVC, animated: true, completion: nil)
         
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        //점찍기용
+            //우선 데이터를 읽어온다
+        self.circleList = self.diaryDAO.findMorningNight()
+            //딕셔너리를 만든다. 키는 날짜이고 값은 튜플(morning, night)
+        for circle in self.circleList {
+            print("circleDictionary생성중 : \(circle)")
+            self.circleDictionary[circle.0] = (circle.1, circle.2)
+        }
+        self.calendar.reloadData()
     }
     
     override func viewDidLoad() {
@@ -108,6 +132,15 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
         
         //선택된 날짜의 모양을 다른걸로 바꾼다.
         calendar.appearance.borderRadius = 0.5
+        
+            //점찍기용
+            //우선 데이터를 읽어온다
+        self.circleList = self.diaryDAO.findMorningNight()
+            //딕셔너리를 만든다. 키는 날짜이고 값은 튜플(morning, night)
+        for circle in self.circleList {
+            print("circleDictionary생성중 : \(circle)")
+            self.circleDictionary[circle.0] = (circle.1, circle.2)
+        }
     }
     
     
@@ -138,8 +171,40 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
         return 2
     }
  */
-    
-    
+    //날짜아래 자막을 넣어주는 함수
+    func calendar(_ calendar: FSCalendar, subtitleFor date: Date) -> String? {
+        //우선 date로 들어온 인수를 조회가 가능한 형태로 바꿔줘야한다.(yyyy-MM-dd)
+        //아래의 네줄은 시분초까지 나오는 날짜형식을 년월일만 나오도록 바꾸기 위한것.....언제사용할거냐면 디비 검색할때!
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+            //nowDay안에 조회할 날짜가 들어있다.
+        let nowDay = dateFormatter.string(from: date)
+        
+        if let nowCircle = self.circleDictionary[nowDay] {
+            //if두번중첩하게 되서 지저분한데 결론은 morning, night 값이 00,10,01,11인 경우로 총 4가지로 분기하는것임
+            if nowCircle.0 == 0{ //앞자리가 0
+                if nowCircle.1 == 0{    //00
+                    print("day: \(date), 00(morning:night = \(nowCircle.0):\(nowCircle.1)")
+                    return nil
+                }else{                  //01
+                    print("day: \(date), 01(morning:night = \(nowCircle.0):\(nowCircle.1)")
+                    return "◑"
+                }
+                
+            }else{//앞자리가 1
+                if nowCircle.1 == 0{    //10
+                    print("day: \(date), 10(morning:night = \(nowCircle.0):\(nowCircle.1)")
+                    return "◐"
+                }else{                  //11
+                    print("day: \(date), 11(morning:night = \(nowCircle.0):\(nowCircle.1)")
+                    return "●"
+                }
+            }
+            
+        }else{//조회했는데 해당 값이 없기 때문에 일기 안쓴것이므로 아무것도 안해도 됨
+            return nil
+        }
+    }
     
     
 }

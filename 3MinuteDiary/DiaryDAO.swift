@@ -18,6 +18,9 @@ class DiaryDAO {
         //순서대로 create_date, moring, night, did_backup, data임 (맨마지막 data는 일기내용을 json방식으로 저장하는곳임)
     typealias diaryRecord = (String, Int, Int, Int, String)
     
+        //findMorningNight 함수의 결과값을 저장할 튜플(String, Int, Int)
+    typealias circleRecord = (String, Int, Int)
+    
     
     //디비사용위한 구문
     //SQLite 연결 및 초기화
@@ -132,4 +135,32 @@ class DiaryDAO {
         }
     }
     
+    
+    //MARK: morning과 night값을 조회할 함수
+    func findMorningNight() -> [circleRecord]{
+            //반환될 데이터 담기 위한 용도
+        var circleList = [circleRecord]()
+        
+        do{
+            let sql = """
+                    SELECT create_date, morning, night
+                    FROM main
+"""
+            let rs = try self.fmdb.executeQuery(sql, values: nil)
+            
+            while rs.next() {
+                let createDate = rs.string(forColumn: "create_date")
+                let morning = rs.int(forColumn: "morning")
+                let night = rs.int(forColumn: "night")
+                
+                //diaryRecord에 들어있는순서대로 create_date, moring, night, did_backup, data
+                circleList.append((createDate!, Int(morning), Int(night)))
+            }
+            
+        }catch let error as NSError {
+            print("Failed from db findMorningNight: \(error.localizedDescription)")
+        }
+        print("findMorningNight 함수 실행 완료")
+                   return circleList
+    }
 }
