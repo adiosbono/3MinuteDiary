@@ -146,7 +146,7 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     
     
     
-    
+    //MARK: 날짜가 선택되었을 때 실행되는 함수
     //날짜가 선택되었을 때 뭔가 할수있다
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         let selectedDate = date.toLocalTime()
@@ -156,6 +156,23 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
         
         //선택한 시간을 selectedDate변수에 넣는다(로컬타임으로 고친걸로)
         self.selectedDate = date
+        
+        //여기서부터는 '일기쓰기'버튼의 텍스트를 바꾸기 위한 작업
+            //우선 날짜형식을 바꿔주는것부터 하자
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let selectDay = dateFormatter.string(from: date)
+        
+        
+            //전역변수인 circleDictionary에 selectDay를 키로 하여 조회한다.
+        let isWritten = self.circleDictionary[selectDay]
+        
+        if isWritten == nil {//일기를 쓰지 않은 날인 경우..마찬가지로 텍스트를 바꿔줘야 한다. 왜냐면 전에 일기쓴날 누르고 일기 안쓴날 누른경우도 있을테니까
+            self.writeButton.setTitle("일기쓰기", for: .normal)
+            
+        }else{//일기를 쓴 날인 경우...텍스트를 바꿔줘야한다
+            self.writeButton.setTitle("일기보기", for: .normal)
+        }
     }
 
     //각 날짜마다 부제목을 달 수 있다.이거를 활용해서 일기 쓴날과 안쓴날을 구분할 수 있을거 같다. O/X 처럼 사용해서
@@ -205,6 +222,8 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
             return nil
         }
     }
+    
+    
     
     
 }
