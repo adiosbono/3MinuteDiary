@@ -41,6 +41,9 @@ class WriteDiaryVC: UITableViewController, UITextViewDelegate{
     
     //MARK: 일기 내용 작성과는 큰 관련없는 변수들
     
+        //푸터를 표시할지 말지 결정하는 변수
+        var showFooter = true
+    
         //일기쓴날인지 아닌지를 판단하게 해주는 전역변수....결국엔 쓸모없게 되어벼렸다 걍 아무기능안함....
         var didWriteDiary: Bool!
         //UserDefault사용하기 위한 작업
@@ -89,21 +92,31 @@ class WriteDiaryVC: UITableViewController, UITextViewDelegate{
         //json인코딩을 위한 선언
     let incoder = JSONEncoder()
     
-        
+    
+    
      
-        //맨위의 저장버튼과 취소버튼임
+        //맨위의 취소버튼임
     @IBAction func cancelButton(_ sender: UIButton) {
         print("cancelBtn2")
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
+    //맨위의 저장버튼임...텍스트는 저장인데 실제 저장하는 로직은 없음...내용을 작성할때 바로 디비에 저장되니까 그냥 화면 닫고 리프레시하는게 다임
     @IBAction func saveButton(_ sender: UIButton) {
-        print("saveBtn2")
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
-        print("캘린더리프레싱가즈아")
-        self.presentingViewController?.viewWillAppear(false)
+        if self.showFooter == false{//'수정'인경우
+            self.showFooter = true
+            self.tableView.reloadData()
+            print("리로딩로딩로딩")
+        }else{//footer보여줘야되는경우 분기점 즉 '저장'
+            //평상시 '저장'버튼의 기능임 즉 showFooter 값이 true인경우에 쓸거임
+            print("saveBtn2")
+            self.presentingViewController?.dismiss(animated: true, completion: nil)
+            print("캘린더리프레싱가즈아")
+            self.presentingViewController?.viewWillAppear(false)
+        }
+        
     }
     
-
+    
     
     
     
@@ -112,6 +125,8 @@ class WriteDiaryVC: UITableViewController, UITextViewDelegate{
      
 override func viewDidLoad() {
     super.viewDidLoad()
+   
+    
     
     //내용입력할때 키보드 높이만큼 화면을 이동해야하는 경우 있으므로 그때 사용하기위한 작업
     //selelctor인자에 들어있는 함수는 저 아래에 있음...
@@ -373,7 +388,12 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         
         print("dateFromString : \(date)")
         cell.showDate.text = date
-                   
+        //showFooter값을 확인해서 false라면 저장버튼을 수정버튼으로 바꿔주기
+        if self.showFooter == false {
+            cell.saveButton.setTitle("수정", for: .normal)
+        }else{
+            cell.saveButton.setTitle("저장", for: .normal)
+        }
         
                    return cell
         
@@ -567,11 +587,16 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
     
     //footer높이지정
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        //메뉴바에는 푸터가 필요 없으니 푸터 높이를 0으로 지정하면 안나옴!
-        if section == 0 {
+        //전달받은 showFooter값을 이용하여 이 값이 false 라면 아예 안보이게 한다.
+        if self.showFooter == false {//footer를 안보이게 해야 하는 상황
             return 0
-        }else{
-            return 20
+        }else{//footer를 보여줘야 되는 상황
+            //요거는 푸터를 표시하는 경우에 사용하는 부분임. 메뉴바에는 푸터가 필요 없으니 푸터 높이를 0으로 지정하면 안나옴!
+            if section == 0 {
+                return 0
+            }else{
+                return 20
+            }
         }
     }
     

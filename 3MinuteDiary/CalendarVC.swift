@@ -57,6 +57,9 @@ import FSCalendar
 //FSCalendar관련 딜리게이트를 포함시켜주지 않으면 에러가 난다 띠벌탱
 class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     
+    //일기쓰기 화면으로 전환할때 푸터뷰를 나타낼지 말지 알려주는 역할을 할 변수
+    var showFooter = true
+    
     //circleList를 변환해서 저장한 딕셔너리...키는 날짜(String)  값은 튜플(Int,Int)
     var circleDictionary = [String : (Int, Int)]()
     
@@ -82,7 +85,7 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
         
         let WriteDiaryVC = storyboard?.instantiateViewController(identifier: "writeDiaryVC") as! WriteDiaryVC
         WriteDiaryVC.sendedDate = selectedDate?.toLocalTime()
-        
+        WriteDiaryVC.showFooter = self.showFooter
         present(WriteDiaryVC, animated: true, completion: nil)
         
         
@@ -169,9 +172,22 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
         
         if isWritten == nil {//일기를 쓰지 않은 날인 경우..마찬가지로 텍스트를 바꿔줘야 한다. 왜냐면 전에 일기쓴날 누르고 일기 안쓴날 누른경우도 있을테니까
             self.writeButton.setTitle("일기쓰기", for: .normal)
-            
+            //일기안썻으니까 morning night 모두 0일거니깐 showFooter에 true 넣어주자
+            self.showFooter = true
         }else{//일기를 쓴 날인 경우...텍스트를 바꿔줘야한다
             self.writeButton.setTitle("일기보기", for: .normal)
+            //showFooter값을 넣어줄때 morning과 night값을 조회하여 둘다 1이면 false, 하나라도 0이면 true
+            let morning = isWritten!.0
+            let night = isWritten!.1
+            var result: Bool!
+            if morning*night == 1 {//두 값을 곱했을때 1이라는건 둘다 1이라는거니까 이건 일기를 다 쓴 날이다. footer안보이게 하자
+                print("일기를 쓴 날이다")
+                result = false
+            }else{//두 값중 하나라도 0이면 여기로 분기된다. footer를 보여줘야 된다
+                print("일기를 안쓴 날이다")
+                result = true
+            }
+            self.showFooter = result
         }
     }
 

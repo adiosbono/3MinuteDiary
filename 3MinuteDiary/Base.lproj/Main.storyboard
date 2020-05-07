@@ -287,6 +287,8 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="cancelButton" destination="m1N-Ud-xWe" id="SeA-TP-Nyh"/>
+                                    <outlet property="saveButton" destination="0hB-3f-Ht0" id="Jqf-d4-YbB"/>
                                     <outlet property="showDate" destination="DBe-L7-xH4" id="af2-07-vCH"/>
                                 </connections>
                             </tableViewCell>

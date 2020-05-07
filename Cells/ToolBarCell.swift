@@ -15,5 +15,7 @@ class ToolBarCell : UITableViewCell {
     
     @IBOutlet var showDate: UILabel!
     
+    @IBOutlet var saveButton: UIButton!
     
+    @IBOutlet var cancelButton: UIButton!
 }
