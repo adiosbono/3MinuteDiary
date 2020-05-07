@@ -41,6 +41,8 @@ class WriteDiaryVC: UITableViewController, UITextViewDelegate{
     
     //MARK: 일기 내용 작성과는 큰 관련없는 변수들
     
+        
+    
         //푸터를 표시할지 말지 결정하는 변수
         var showFooter = true
     
@@ -116,7 +118,19 @@ class WriteDiaryVC: UITableViewController, UITextViewDelegate{
         
     }
     
-    
+    //맨위의 수정버튼임
+    @IBAction func editButton(_ sender: UIButton) {
+        let toolBarIndex = IndexPath(row: 0, section: 0)
+        let editButtonIndex = tableView(self.tableView, cellForRowAt: toolBarIndex)
+        let editBTN = editButtonIndex as! ToolBarCell
+        if self.tableView.isEditing == true{//현재 에디팅중인경우(삭제버튼 보이고 있는 경우)
+            self.tableView.isEditing = false
+            editBTN.editButton.setTitle("수정", for: .normal)
+        }else{//현재 에디팅상태가아닌경우(삭제버튼 안보이고있음)
+            self.tableView.isEditing = true
+            editBTN.editButton.setTitle("수정끝", for: .normal)
+        }
+    }
     
     
     
@@ -390,7 +404,7 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         cell.showDate.text = date
         //showFooter값을 확인해서 false라면 저장버튼을 수정버튼으로 바꿔주기
         if self.showFooter == false {
-            cell.saveButton.setTitle("수정", for: .normal)
+            cell.saveButton.setTitle("내용추가", for: .normal)
         }else{
             cell.saveButton.setTitle("저장", for: .normal)
         }
@@ -644,6 +658,29 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
         }
     }
     
+    //에디트모드가 되었을때 어떤 모드를 제공할지 설정해주는 함수
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        let toolBarIndex = IndexPath(row: 0, section: 0)
+        if indexPath == toolBarIndex{
+            return .none
+        }else{
+            return .delete
+        }
+    }
+    
+    //수정시 들여쓰기 여부를 결정하는 메서드
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        let toolBarIndex = IndexPath(row: 0, section: 0)
+        if indexPath == toolBarIndex{
+            print("indentation denied")
+            return false
+        }else{
+            return true
+        }
+    }
+    
+    
+    //MARK: @objc 붙은 함수녀석들 모음
     //footer안의 버튼 누르면 사용될 함수
     @objc func buttonAction1(_ sender: UIButton!) {
         print("나의 목표 추가 tapped")

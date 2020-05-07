@@ -18,4 +18,7 @@ class ToolBarCell : UITableViewCell {
     @IBOutlet var saveButton: UIButton!
     
     @IBOutlet var cancelButton: UIButton!
+    
+    @IBOutlet var editButton: UIButton!
+    
 }
