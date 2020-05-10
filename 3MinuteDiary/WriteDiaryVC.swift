@@ -41,7 +41,8 @@ class WriteDiaryVC: UITableViewController, UITextViewDelegate{
     
     //MARK: 일기 내용 작성과는 큰 관련없는 변수들
     
-        
+        //에디트 버튼 최초 표시할때 '수정끝'으로 나오기 때문에 그걸 막기위해 설정한 변수
+        var editButtonDidSelected = false
     
         //푸터를 표시할지 말지 결정하는 변수
         var showFooter = true
@@ -123,12 +124,18 @@ class WriteDiaryVC: UITableViewController, UITextViewDelegate{
         let toolBarIndex = IndexPath(row: 0, section: 0)
         let editButtonIndex = tableView(self.tableView, cellForRowAt: toolBarIndex)
         let editBTN = editButtonIndex as! ToolBarCell
+        print("에디트버튼눌림")
+        self.editButtonDidSelected = true
         if self.tableView.isEditing == true{//현재 에디팅중인경우(삭제버튼 보이고 있는 경우)
+            
+            //editBTN.editButton.setTitle("수정", for: .normal)
+            self.tableView.reloadRows(at: [toolBarIndex], with: .automatic)
             self.tableView.isEditing = false
-            editBTN.editButton.setTitle("수정", for: .normal)
         }else{//현재 에디팅상태가아닌경우(삭제버튼 안보이고있음)
+            
+            //editBTN.editButton.setTitle("수정끝", for: .normal)
+            self.tableView.reloadRows(at: [toolBarIndex], with: .automatic)
             self.tableView.isEditing = true
-            editBTN.editButton.setTitle("수정끝", for: .normal)
         }
     }
     
@@ -140,7 +147,7 @@ class WriteDiaryVC: UITableViewController, UITextViewDelegate{
 override func viewDidLoad() {
     super.viewDidLoad()
    
-    
+    self.editButtonDidSelected = false
     
     //내용입력할때 키보드 높이만큼 화면을 이동해야하는 경우 있으므로 그때 사용하기위한 작업
     //selelctor인자에 들어있는 함수는 저 아래에 있음...
@@ -409,6 +416,13 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
             cell.saveButton.setTitle("저장", for: .normal)
         }
         
+        if self.editButtonDidSelected == true{
+        if self.tableView.isEditing == true{
+            cell.editButton.setTitle("수정", for: .normal)
+        }else{
+            cell.editButton.setTitle("수정끝", for: .normal)
+        }
+        }
                    return cell
         
     case 1:
@@ -676,6 +690,134 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
             return false
         }else{
             return true
+        }
+    }
+    
+    //각 행에서 삭제버튼을 눌렀을때 호출될 함수
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            switch indexPath.section{
+            case 0:
+                print("섹션0은 툴바니까 지워질리 없는데 어떻게 지우는버튼 누른거임? 님 어뷰징 유저임 신고 ㄱㄱ")
+            case 1:
+                self.diaryBody.myObjective?.remove(at: indexPath.row)
+                print("나의 목표 섹션의 \(indexPath.row)행을 지웠습니다.전역변수만")
+                    //여기 아래서부터는 디비에 저장할때 쓸 코드
+                //date값도 지금 시각으로 수정한다.(db의 data항목 안에 들어갈 녀석임. pk로 쓰는녀석이 아니고)
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                self.diaryBody.date = dateFormat.string(from: Date())
+                
+                //JSON으로 인코딩한다
+                let encoder = JSONEncoder()
+                let jsonData = try? encoder.encode(self.diaryBody)
+                let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                print("stringfiedJsonData : \(stringfiedJsonData!)")
+                //이제 db에 넣어주자...
+                    //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                dateFormat.dateFormat = "yyyy-MM-dd"
+                let writeDate = dateFormat.string(from: self.sendedDate!)
+                print("writeDate : \(writeDate)")
+                    //대망의 디비를 수정하는 부분
+                self.diaryDAO.updateDiaryBody(writeDate: writeDate, data: stringfiedJsonData!)
+                //화면에 보이는 선택한 행을 삭제한다
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                
+            case 2:
+                self.diaryBody.wantToDo?.remove(at: indexPath.row)
+                print("하고 싶은 일 섹션의 \(indexPath.row)행을 지웠습니다.전역변수만")
+                    //여기 아래서부터는 디비에 저장할때 쓸 코드
+                //date값도 지금 시각으로 수정한다.(db의 data항목 안에 들어갈 녀석임. pk로 쓰는녀석이 아니고)
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                self.diaryBody.date = dateFormat.string(from: Date())
+                
+                //JSON으로 인코딩한다
+                let encoder = JSONEncoder()
+                let jsonData = try? encoder.encode(self.diaryBody)
+                let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                print("stringfiedJsonData : \(stringfiedJsonData!)")
+                //이제 db에 넣어주자...
+                    //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                dateFormat.dateFormat = "yyyy-MM-dd"
+                let writeDate = dateFormat.string(from: self.sendedDate!)
+                print("writeDate : \(writeDate)")
+                    //대망의 디비를 수정하는 부분
+                self.diaryDAO.updateDiaryBody(writeDate: writeDate, data: stringfiedJsonData!)
+                //화면에 보이는 선택한 행을 삭제한다
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            case 3:
+                self.diaryBody.whatHappened?.remove(at: indexPath.row)
+                print("오늘 있었던일 섹션의 \(indexPath.row)행을 지웠습니다.전역변수만")
+                    //여기 아래서부터는 디비에 저장할때 쓸 코드
+                //date값도 지금 시각으로 수정한다.(db의 data항목 안에 들어갈 녀석임. pk로 쓰는녀석이 아니고)
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                self.diaryBody.date = dateFormat.string(from: Date())
+                
+                //JSON으로 인코딩한다
+                let encoder = JSONEncoder()
+                let jsonData = try? encoder.encode(self.diaryBody)
+                let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                print("stringfiedJsonData : \(stringfiedJsonData!)")
+                //이제 db에 넣어주자...
+                    //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                dateFormat.dateFormat = "yyyy-MM-dd"
+                let writeDate = dateFormat.string(from: self.sendedDate!)
+                print("writeDate : \(writeDate)")
+                    //대망의 디비를 수정하는 부분
+                self.diaryDAO.updateDiaryBody(writeDate: writeDate, data: stringfiedJsonData!)
+                //화면에 보이는 선택한 행을 삭제한다
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            case 4:
+                self.diaryBody.gratitude?.remove(at: indexPath.row)
+                print("감사할일 섹션의 \(indexPath.row)행을 지웠습니다.전역변수만")
+                    //여기 아래서부터는 디비에 저장할때 쓸 코드
+                //date값도 지금 시각으로 수정한다.(db의 data항목 안에 들어갈 녀석임. pk로 쓰는녀석이 아니고)
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                self.diaryBody.date = dateFormat.string(from: Date())
+                
+                //JSON으로 인코딩한다
+                let encoder = JSONEncoder()
+                let jsonData = try? encoder.encode(self.diaryBody)
+                let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                print("stringfiedJsonData : \(stringfiedJsonData!)")
+                //이제 db에 넣어주자...
+                    //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                dateFormat.dateFormat = "yyyy-MM-dd"
+                let writeDate = dateFormat.string(from: self.sendedDate!)
+                print("writeDate : \(writeDate)")
+                    //대망의 디비를 수정하는 부분
+                self.diaryDAO.updateDiaryBody(writeDate: writeDate, data: stringfiedJsonData!)
+                //화면에 보이는 선택한 행을 삭제한다
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            case 5:
+                self.diaryBody.success?.remove(at: indexPath.row)
+                print("성공법칙 섹션의 \(indexPath.row)행을 지웠습니다.전역변수만")
+                    //여기 아래서부터는 디비에 저장할때 쓸 코드
+                //date값도 지금 시각으로 수정한다.(db의 data항목 안에 들어갈 녀석임. pk로 쓰는녀석이 아니고)
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                self.diaryBody.date = dateFormat.string(from: Date())
+                
+                //JSON으로 인코딩한다
+                let encoder = JSONEncoder()
+                let jsonData = try? encoder.encode(self.diaryBody)
+                let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                print("stringfiedJsonData : \(stringfiedJsonData!)")
+                //이제 db에 넣어주자...
+                    //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                dateFormat.dateFormat = "yyyy-MM-dd"
+                let writeDate = dateFormat.string(from: self.sendedDate!)
+                print("writeDate : \(writeDate)")
+                    //대망의 디비를 수정하는 부분
+                self.diaryDAO.updateDiaryBody(writeDate: writeDate, data: stringfiedJsonData!)
+                //화면에 보이는 선택한 행을 삭제한다
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+            default:
+                print("디폴드값으로지우게?말도안되")
+            }
         }
     }
     

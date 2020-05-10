@@ -163,4 +163,20 @@ class DiaryDAO {
         print("findMorningNight 함수 실행 완료")
                    return circleList
     }
+    
+    //MARK: 일기 내용만 수정할때 쓸 함수
+    func updateDiaryBody(writeDate: String, data: String){
+        do{
+                    let sql = """
+                            UPDATE main
+                            SET data = ?
+                            WHERE create_date = ?
+        """
+                    try self.fmdb.executeUpdate(sql, values: [data, writeDate])
+                }catch let error as NSError {
+                    print("Failed from db updateDiaryBody: \(error.localizedDescription)")
+                    print("diaryDAO updateDiaryBody 안됨 에러남 쓋")
+                }
+    }
+    
 }
