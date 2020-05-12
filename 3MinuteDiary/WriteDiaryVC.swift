@@ -122,8 +122,8 @@ class WriteDiaryVC: UITableViewController, UITextViewDelegate{
     //맨위의 수정버튼임
     @IBAction func editButton(_ sender: UIButton) {
         let toolBarIndex = IndexPath(row: 0, section: 0)
-        let editButtonIndex = tableView(self.tableView, cellForRowAt: toolBarIndex)
-        let editBTN = editButtonIndex as! ToolBarCell
+        //let editButtonIndex = tableView(self.tableView, cellForRowAt: toolBarIndex)
+        //let editBTN = editButtonIndex as! ToolBarCell
         print("에디트버튼눌림")
         self.editButtonDidSelected = true
         if self.tableView.isEditing == true{//현재 에디팅중인경우(삭제버튼 보이고 있는 경우)

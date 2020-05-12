@@ -81,10 +81,10 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     @IBAction func writeButton(_ sender: UIButton) {
         
         //날짜를 선택하지 않았으면 기본적으로 오늘 날짜의 일기를 쓰는걸로 되고 만약에 날짜를 선택했으면 그날 날짜의 일기를 쓰는걸로 되도록 해야함.
-        print("sending date is \(self.selectedDate?.toLocalTime() ?? Date())")
+        print("sending date is \(self.selectedDate ?? Date())")
         
         let WriteDiaryVC = storyboard?.instantiateViewController(identifier: "writeDiaryVC") as! WriteDiaryVC
-        WriteDiaryVC.sendedDate = selectedDate?.toLocalTime()
+        WriteDiaryVC.sendedDate = self.selectedDate
         WriteDiaryVC.showFooter = self.showFooter
         present(WriteDiaryVC, animated: true, completion: nil)
         
