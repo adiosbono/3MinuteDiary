@@ -158,7 +158,7 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
         print("unfixed date : \(date)")
         
         //선택한 시간을 selectedDate변수에 넣는다(로컬타임으로 고친걸로)
-        self.selectedDate = date
+        self.selectedDate = selectedDate
         
         //여기서부터는 '일기쓰기'버튼의 텍스트를 바꾸기 위한 작업
             //우선 날짜형식을 바꿔주는것부터 하자
