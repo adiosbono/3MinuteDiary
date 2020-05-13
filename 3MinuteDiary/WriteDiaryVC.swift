@@ -105,16 +105,23 @@ class WriteDiaryVC: UITableViewController, UITextViewDelegate{
     }
     //맨위의 저장버튼임...텍스트는 저장인데 실제 저장하는 로직은 없음...내용을 작성할때 바로 디비에 저장되니까 그냥 화면 닫고 리프레시하는게 다임
     @IBAction func saveButton(_ sender: UIButton) {
-        if self.showFooter == false{//'수정'인경우
+        if self.showFooter == false{//'내용추가'인경우
             self.showFooter = true
             self.tableView.reloadData()
             print("리로딩로딩로딩")
-        }else{//footer보여줘야되는경우 분기점 즉 '저장'
+            
+        }else{//footer보여줘야되는경우 분기점 즉 '저장'인경우
             //평상시 '저장'버튼의 기능임 즉 showFooter 값이 true인경우에 쓸거임
             print("saveBtn2")
+            //self.presentingViewController?.viewWillAppear(false)
+            
+            //let temp = self.presentingViewController as! CalendarVC
+            //temp.viewWillAppear(false)
+            self.presentingViewController?.children[0].viewWillAppear(false)
             self.presentingViewController?.dismiss(animated: true, completion: nil)
             print("캘린더리프레싱가즈아")
-            self.presentingViewController?.viewWillAppear(false)
+            
+            
         }
         
     }
@@ -406,7 +413,7 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         //dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
         dateFormatter.dateFormat = "yyyy-MM-dd"
             //왠진모르겠지만 toGlobalTime안해주면...그냥 아무날짜 선택하지 않고 기본세팅 오늘날짜로 했을때 다음날짜가 일기쓰기 화면에 나옴...
-        let date = dateFormatter.string(from: (self.sendedDate?.toGlobalTime())!)
+        let date = dateFormatter.string(from: self.sendedDate!.toGlobalTime())
         
         print("dateFromString : \(date)")
         cell.showDate.text = date
@@ -750,8 +757,13 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
             print("return true")
             return true
         }else{
-            print("return false")
-            return false
+            if self.insertIndexPath != nil {
+                return true
+            }else{//nil인경우 즉 추가한게아니라 그냥 터치한경우
+                print("return false")
+                return false
+            }
+            
         }
     }
     
@@ -1110,7 +1122,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
         self.resignFirstResponder()
     }
     
-    //MARK: 키보드 위의 done버튼이 눌렸을때 할 작업
+    //MARK: 키보드 done버튼이 눌렸을때 할 작업
     @objc func doneButtonAction() {
         print("doneButtonAction실행됨")
         //저장된 내용을 userdefault에 입력한다.
@@ -1132,7 +1144,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
                 //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
                     //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
                 dateFormat.dateFormat = "yyyy-MM-dd"
-                let writeDate = dateFormat.string(from: self.sendedDate!)
+                let writeDate = dateFormat.string(from: self.sendedDate!.toGlobalTime())
                 print("writeDate : \(writeDate)")
                     //대망의 디비에 넣는 구분
                 self.diaryDAO.editData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
@@ -1153,7 +1165,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
                 //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
                     //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
                 dateFormat.dateFormat = "yyyy-MM-dd"
-                let writeDate = dateFormat.string(from: self.sendedDate!)
+                let writeDate = dateFormat.string(from: self.sendedDate!.toGlobalTime())
                 print("writeDate : \(writeDate)")
                     //대망의 디비에 넣는 구분
                 self.diaryDAO.newData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
@@ -1178,7 +1190,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
                 //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
                     //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
                 dateFormat.dateFormat = "yyyy-MM-dd"
-                let writeDate = dateFormat.string(from: self.sendedDate!)
+                let writeDate = dateFormat.string(from: self.sendedDate!.toGlobalTime())
                 print("writeDate : \(writeDate)")
                     //대망의 디비에 넣는 구분
                 self.diaryDAO.editData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
@@ -1199,7 +1211,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
                 //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
                     //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
                 dateFormat.dateFormat = "yyyy-MM-dd"
-                let writeDate = dateFormat.string(from: self.sendedDate!)
+                let writeDate = dateFormat.string(from: self.sendedDate!.toGlobalTime())
                 print("writeDate : \(writeDate)")
                     //대망의 디비에 넣는 구분
                 self.diaryDAO.newData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
@@ -1225,7 +1237,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
                     //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
                         //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
                     dateFormat.dateFormat = "yyyy-MM-dd"
-                    let writeDate = dateFormat.string(from: self.sendedDate!)
+                let writeDate = dateFormat.string(from: self.sendedDate!.toGlobalTime())
                     print("writeDate : \(writeDate)")
                         //대망의 디비에 넣는 구분
                     self.diaryDAO.editData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
@@ -1246,7 +1258,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
                     //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
                         //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
                     dateFormat.dateFormat = "yyyy-MM-dd"
-                    let writeDate = dateFormat.string(from: self.sendedDate!)
+                let writeDate = dateFormat.string(from: self.sendedDate!.toGlobalTime())
                     print("writeDate : \(writeDate)")
                         //대망의 디비에 넣는 구분
                     self.diaryDAO.newData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
@@ -1269,7 +1281,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
                     //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
                         //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
                     dateFormat.dateFormat = "yyyy-MM-dd"
-                    let writeDate = dateFormat.string(from: self.sendedDate!)
+                    let writeDate = dateFormat.string(from: self.sendedDate!.toGlobalTime())
                     print("writeDate : \(writeDate)")
                         //대망의 디비에 넣는 구분
                     self.diaryDAO.editData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
@@ -1290,7 +1302,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
                     //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
                         //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
                     dateFormat.dateFormat = "yyyy-MM-dd"
-                    let writeDate = dateFormat.string(from: self.sendedDate!)
+                    let writeDate = dateFormat.string(from: self.sendedDate!.toGlobalTime())
                     print("writeDate : \(writeDate)")
                         //대망의 디비에 넣는 구분
                     self.diaryDAO.newData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
@@ -1313,7 +1325,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
                     //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
                         //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
                     dateFormat.dateFormat = "yyyy-MM-dd"
-                    let writeDate = dateFormat.string(from: self.sendedDate!)
+                let writeDate = dateFormat.string(from: self.sendedDate!.toGlobalTime())
                     print("writeDate : \(writeDate)")
                         //대망의 디비에 넣는 구분
                     self.diaryDAO.editData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)
@@ -1334,7 +1346,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
                     //이제 db에 넣어주자...일기를 쓴적이 있는 경우니까 editData를 써야 한다!
                         //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
                     dateFormat.dateFormat = "yyyy-MM-dd"
-                    let writeDate = dateFormat.string(from: self.sendedDate!)
+                let writeDate = dateFormat.string(from: self.sendedDate!.toGlobalTime())
                     print("writeDate : \(writeDate)")
                         //대망의 디비에 넣는 구분
                     self.diaryDAO.newData(writeDate: writeDate, morning: self.morning, night: self.night, backup: self.did_backup, data: stringfiedJsonData!)

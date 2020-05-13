@@ -92,7 +92,8 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        //super.viewWillAppear(animated)
+        print("CalendarVC.swift의 viewWillAppear실행됨")
         //점찍기용
             //우선 데이터를 읽어온다
         self.circleList = self.diaryDAO.findMorningNight()
@@ -103,6 +104,21 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
         }
         self.calendar.reloadData()
     }
+    
+    func updateHaeSibara() {
+        print("업데이트해시바라 실행됨")
+        //점찍기용
+            //우선 데이터를 읽어온다
+        self.circleList = self.diaryDAO.findMorningNight()
+            //딕셔너리를 만든다. 키는 날짜이고 값은 튜플(morning, night)
+        for circle in self.circleList {
+            print("circleDictionary생성중 : \(circle)")
+            self.circleDictionary[circle.0] = (circle.1, circle.2)
+        }
+        self.calendar.reloadData()
+    }
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
