@@ -396,6 +396,7 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     }else{
     switch indexPath.section {
     case 0:
+       
         let cell = tableView.dequeueReusableCell(withIdentifier: "toolBarCell") as! ToolBarCell
         
         //날짜를 받은대로 출력하면 시분초까지 나오니까 원하는 포맷으로 설정하기
@@ -426,6 +427,21 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
                    return cell
         
     case 1:
+        let cell = tableView.dequeueReusableCell(withIdentifier: "addCell") as! WriteDiaryAddCell
+        cell.addTextView.delegate = self
+        if self.diaryData.count == 0 {
+            //diaryBody.myObjective의 값을 검사해서 값이 있으면 값을대입, 없으면 빈값 대입
+            if self.diaryBody.myObjective == nil {
+                cell.addTextView.text = ""
+            }else{
+                cell.addTextView.text = self.diaryBody.myObjective![indexPath.row]
+            }
+            
+        }else{
+        cell.addTextView.text = self.diaryBody.myObjective![indexPath.row]
+        }
+        return cell
+        /*원래있던녀석
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
         if self.diaryData.count == 0 {
             //diaryBody.myObjective의 값을 검사해서 값이 있으면 값을대입, 없으면 빈값 대입
@@ -439,9 +455,24 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         cell.mainText.text = self.diaryBody.myObjective![indexPath.row]
         }
         return cell
-                   //여기안에 디비에서 받아온 정보를 가지고 각 셀 안의 데이터를 입력해준다.
+        */
         
     case 2:
+        let cell = tableView.dequeueReusableCell(withIdentifier: "addCell") as! WriteDiaryAddCell
+        cell.addTextView.delegate = self
+        if self.diaryData.count == 0 {
+            //diaryBody.myObjective의 값을 검사해서 값이 있으면 값을대입, 없으면 빈값 대입
+            if self.diaryBody.wantToDo == nil {
+                cell.addTextView.text = ""
+            }else{
+                cell.addTextView.text = self.diaryBody.wantToDo![indexPath.row]
+            }
+            
+        }else{
+        cell.addTextView.text = self.diaryBody.wantToDo![indexPath.row]
+        }
+        return cell
+        /*
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
         if self.diaryData.count == 0 {
             
@@ -455,8 +486,23 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         cell.mainText.text = self.diaryBody.wantToDo![indexPath.row]
         }
         return cell
-        
+        */
     case 3:
+        let cell = tableView.dequeueReusableCell(withIdentifier: "addCell") as! WriteDiaryAddCell
+        cell.addTextView.delegate = self
+        if self.diaryData.count == 0 {
+            //diaryBody.myObjective의 값을 검사해서 값이 있으면 값을대입, 없으면 빈값 대입
+            if self.diaryBody.whatHappened == nil {
+                cell.addTextView.text = ""
+            }else{
+                cell.addTextView.text = self.diaryBody.whatHappened![indexPath.row]
+            }
+            
+        }else{
+        cell.addTextView.text = self.diaryBody.whatHappened![indexPath.row]
+        }
+        return cell
+        /*
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
         if self.diaryData.count == 0 {
             if self.diaryBody.whatHappened == nil {
@@ -468,8 +514,23 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         cell.mainText.text = self.diaryBody.whatHappened![indexPath.row]
         }
         return cell
-        
+        */
     case 4:
+        let cell = tableView.dequeueReusableCell(withIdentifier: "addCell") as! WriteDiaryAddCell
+        cell.addTextView.delegate = self
+        if self.diaryData.count == 0 {
+            //diaryBody.myObjective의 값을 검사해서 값이 있으면 값을대입, 없으면 빈값 대입
+            if self.diaryBody.gratitude == nil {
+                cell.addTextView.text = ""
+            }else{
+                cell.addTextView.text = self.diaryBody.gratitude![indexPath.row]
+            }
+            
+        }else{
+        cell.addTextView.text = self.diaryBody.gratitude![indexPath.row]
+        }
+        return cell
+        /*
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
         if self.diaryData.count == 0 {
             if self.diaryBody.gratitude == nil {
@@ -481,8 +542,23 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         cell.mainText.text = self.diaryBody.gratitude![indexPath.row]
         }
         return cell
-        
+        */
     case 5:
+        let cell = tableView.dequeueReusableCell(withIdentifier: "addCell") as! WriteDiaryAddCell
+        cell.addTextView.delegate = self
+        if self.diaryData.count == 0 {
+            //diaryBody.myObjective의 값을 검사해서 값이 있으면 값을대입, 없으면 빈값 대입
+            if self.diaryBody.success == nil {
+                cell.addTextView.text = ""
+            }else{
+                cell.addTextView.text = self.diaryBody.success![indexPath.row]
+            }
+            
+        }else{
+        cell.addTextView.text = self.diaryBody.success![indexPath.row]
+        }
+        return cell
+        /*
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
         if self.diaryData.count == 0 {
             if self.diaryBody.success == nil {
@@ -494,7 +570,7 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         cell.mainText.text = self.diaryBody.success![indexPath.row]
         }
         return cell
-                   
+         */
          
     default:
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
@@ -508,10 +584,11 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     }
     }
     }
-//테이블의 특정 행이 선택되었을때 호출되는 메소드
     /*
+//테이블의 특정 행이 선택되었을때 호출되는 메소드
 override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
+    self.insertIndexPath = indexPath
+    print("didSelectRowAt함수 실행됨")
     }
  */
 //테이블 뷰의 섹션의 수 결정하는 메소드 따로 오버라이드 하지 않으면 기본값은 1임
@@ -660,6 +737,24 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
             self.tableView.endUpdates()
         }
     }
+    
+    /*
+    //텍스트뷰 수정하려고 할때 실행될 메서드
+    func textViewDidBeginEditing(_ textView: UITextView) {
+    }
+    */
+    
+    //텍스트뷰 수정되기전에 실행될 메서드..이녀석에서 true를 반환하면 수정시작되고 false반환하면 수정자체가 일어나지 않음
+    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
+        if self.tableView.isEditing == true{
+            print("return true")
+            return true
+        }else{
+            print("return false")
+            return false
+        }
+    }
+    
     
     //셀의 높이값을 반환할 함수.............이거 있으면 오토로 안되는거 아님? 리턴값을 슈퍼를 통해서 해놓으니까 되넹 헤헤헤
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -929,8 +1024,10 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
            
            
            
+        if self.tableView.isEditing == false {
            
-           if keyboardSize.height == offset.height {
+            if self.insertIndexPath != nil{
+                if keyboardSize.height == offset.height {
                UIView.animate(withDuration: 0.1) {() -> Void in
                    //바로 아랫줄의 코드는 키보드 높이만큼 화면을 위로 밀어버림 : 이렇게하면 스크롤을 해서 위에 있는 내용 확인이 불가능함.
                    //self.view.frame.origin.y -= keyboardSize.height
@@ -945,10 +1042,11 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
                    self.tableView.frame.size.height -= offset.height
                    //해당 인덱스로 스크롤해준다!
                    self.tableView.scrollToRow(at: self.insertIndexPath, at: .top, animated: true)
+                self.insertIndexPath = nil
                    //self.view.frame.size.height -= keyboardSize.height
-                   
-               }
-           }else{
+                }
+               
+            }else{
                print("else실행됨")
                //차이가 있는거면
                
@@ -958,10 +1056,15 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
                    //해당 인덱스로 스크롤해준다!
                    self.tableView.scrollToRow(at: self.insertIndexPath, at: .top, animated: true)
                    //self.view.frame.origin.y += keyboardSize.height - offset.height
-               }
-    
-           }
-           
+                self.insertIndexPath = nil
+                }
+              }
+           }else{//self.insertIndexPath가 nil인경우...즉 수정모드도아닌데 셀을 눌러서 키보드 올라오게 한 경우
+            
+            }
+        }else{//self.tableView.isEditing == true인 경우에 실행된다. 즉 수정중일때 실행된다.
+            //우선 아무것도 하지 말아봐....아무것도 안하면 에러 안남
+        }
            /*
            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
                if self.view.frame.origin.y == 0 {
