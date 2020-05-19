@@ -16,6 +16,9 @@ class WriteDiaryVC: UITableViewController, UITextViewDelegate{
     //여기 빈공간에다가는 변수들을 초기화하셈
     
     //MARK: 일기 내용을 직접 입력할때 사용할 변수들
+    
+        //수정모드에서 어느부분을 수정하는지 확인하기 위해 사용하는 변수
+        var editIndexPath : IndexPath!
         //사용자가 템플릿을 만들기 위해 입력한 값을 임시로 저장해놀 변수
         var userInput = ""
     
@@ -75,7 +78,7 @@ class WriteDiaryVC: UITableViewController, UITextViewDelegate{
     }
     
         //위의 구조체를 자료형으로 하는 변수 선언(여기에 실제 내용 들어갈예정임)
-    var diaryBody : Body!
+    var diaryBody = Body()
     
         //이거는 전달받은 날짜 저장할 변수
     var sendedDate: Date?
@@ -406,7 +409,7 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     }else{
     switch indexPath.section {
     case 0:
-       
+        print("툴바셀을만들즈아")
         let cell = tableView.dequeueReusableCell(withIdentifier: "toolBarCell") as! ToolBarCell
         
         //날짜를 받은대로 출력하면 시분초까지 나오니까 원하는 포맷으로 설정하기
@@ -429,6 +432,7 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         
         if self.editButtonDidSelected == true{
         if self.tableView.isEditing == true{
+            print("이뇨석실행")
             cell.editButton.setTitle("수정", for: .normal)
         }else{
             cell.editButton.setTitle("수정끝", for: .normal)
@@ -450,6 +454,22 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         }else{
         cell.addTextView.text = self.diaryBody.myObjective![indexPath.row]
         }
+        
+        //키보드 위에 done 버튼 넣는 작업임
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.editDoneButtonAction))
+        let cancel: UIBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.editCancelButtonAction))
+        
+        let items = [cancel, flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        cell.addTextView.inputAccessoryView = doneToolbar
+        
+        
         return cell
         /*원래있던녀석
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
@@ -481,6 +501,19 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         }else{
         cell.addTextView.text = self.diaryBody.wantToDo![indexPath.row]
         }
+        //키보드 위에 done 버튼 넣는 작업임
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.editDoneButtonAction))
+        let cancel: UIBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.editCancelButtonAction))
+        
+        let items = [cancel, flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        cell.addTextView.inputAccessoryView = doneToolbar
         return cell
         /*
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
@@ -511,6 +544,19 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         }else{
         cell.addTextView.text = self.diaryBody.whatHappened![indexPath.row]
         }
+        //키보드 위에 done 버튼 넣는 작업임
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.editDoneButtonAction))
+        let cancel: UIBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.editCancelButtonAction))
+        
+        let items = [cancel, flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        cell.addTextView.inputAccessoryView = doneToolbar
         return cell
         /*
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
@@ -539,6 +585,19 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         }else{
         cell.addTextView.text = self.diaryBody.gratitude![indexPath.row]
         }
+        //키보드 위에 done 버튼 넣는 작업임
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.editDoneButtonAction))
+        let cancel: UIBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.editCancelButtonAction))
+        
+        let items = [cancel, flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        cell.addTextView.inputAccessoryView = doneToolbar
         return cell
         /*
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
@@ -567,6 +626,19 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
         }else{
         cell.addTextView.text = self.diaryBody.success![indexPath.row]
         }
+        //키보드 위에 done 버튼 넣는 작업임
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
+        doneToolbar.barStyle = .default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.editDoneButtonAction))
+        let cancel: UIBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(self.editCancelButtonAction))
+        
+        let items = [cancel, flexSpace, done]
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        cell.addTextView.inputAccessoryView = doneToolbar
         return cell
         /*
         let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! MainCell
@@ -770,7 +842,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
             
             print("return true")
             return true
-        }else{
+        }else{//테이블뷰가 에디팅상태가 아닌데 텍스트가 수정되어야 하는 경우는...새로 하나 추가한 상황인거임
             if self.insertIndexPath != nil {
                 return true
             }else{//nil인경우 즉 추가한게아니라 그냥 터치한경우
@@ -1093,6 +1165,10 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
             self.tableView.frame.size.height -= offset.height
             //해당 인덱스로 스크롤해준다!
             self.tableView.scrollToRow(at: self.insertIndexPath, at: .top, animated: true)
+            
+            //수정중인 셀의 위치를 따로 저장하기 위해 다른 전역변수에 insertIndexPath를 넣어준다.
+            self.editIndexPath = self.insertIndexPath
+            //다썼으니 비워준다.
             self.insertIndexPath = nil
             print("수정시 포커싱 잘되는구만 허허")
         }
@@ -1391,5 +1467,148 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
 
     }
 
+    //MARK: 수정모드에서 키보드위의 Done버튼 눌렸을때 실행될 함수
+    @objc func editDoneButtonAction(){
+        //현재 수정된 텍스트뷰의 내용이 반영된 일기데이터를 만든다.
+        if self.editIndexPath == nil {
+            print("editIndexPath값이 nil입니다. 뭐죵이건?")
+        }else{//self.editIndexPath의 값이 존재하는경우니까 정상적으로 저장로직을 실행한다.
+            //self.editIndexPath를 통해 어느 곳의 내용을 수정할지 파악한다.
+            switch self.editIndexPath.section{
+            
+            case 1: //myobjective
+                //해당위치에 사용자입려값을 넣는다.
+                self.diaryBody.myObjective![self.editIndexPath.row] = self.userInput
+                //최신수정일자를 기록한다.
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                self.diaryBody.date = dateFormat.string(from: Date())
+                
+                //JSON으로 인코딩한다
+                let encoder = JSONEncoder()
+                let jsonData = try? encoder.encode(self.diaryBody)
+                let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                print("EDITstringfiedJsonData : \(stringfiedJsonData!)")
+                //이제 db에 넣어주자...
+                    //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                dateFormat.dateFormat = "yyyy-MM-dd"
+                let writeDate = dateFormat.string(from: self.sendedDate!)
+                print("EDITwriteDate : \(writeDate)")
+                    //대망의 디비를 수정하는 부분
+                self.diaryDAO.updateDiaryBody(writeDate: writeDate, data: stringfiedJsonData!)
+                
+                //버그가 하나 있어서 그런데...수정버튼이 '수정끝' 이라고 보여야 되는데 '수정'으로 보이니까 강제로 바꿔주자...
+                self.editButtonDidSelected = false
+            case 2: //wantToDo
+                //해당위치에 사용자입려값을 넣는다.
+                self.diaryBody.wantToDo![self.editIndexPath.row] = self.userInput
+                //최신수정일자를 기록한다.
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                self.diaryBody.date = dateFormat.string(from: Date())
+                
+                //JSON으로 인코딩한다
+                let encoder = JSONEncoder()
+                let jsonData = try? encoder.encode(self.diaryBody)
+                let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                print("EDITstringfiedJsonData : \(stringfiedJsonData!)")
+                //이제 db에 넣어주자...
+                    //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                dateFormat.dateFormat = "yyyy-MM-dd"
+                let writeDate = dateFormat.string(from: self.sendedDate!)
+                print("EDITwriteDate : \(writeDate)")
+                    //대망의 디비를 수정하는 부분
+                self.diaryDAO.updateDiaryBody(writeDate: writeDate, data: stringfiedJsonData!)
+                
+                //버그가 하나 있어서 그런데...수정버튼이 '수정끝' 이라고 보여야 되는데 '수정'으로 보이니까 강제로 바꿔주자...
+                self.editButtonDidSelected = false
+            case 3: //whatHappened
+                //해당위치에 사용자입려값을 넣는다.
+                self.diaryBody.whatHappened![self.editIndexPath.row] = self.userInput
+                //최신수정일자를 기록한다.
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                self.diaryBody.date = dateFormat.string(from: Date())
+                
+                //JSON으로 인코딩한다
+                let encoder = JSONEncoder()
+                let jsonData = try? encoder.encode(self.diaryBody)
+                let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                print("EDITstringfiedJsonData : \(stringfiedJsonData!)")
+                //이제 db에 넣어주자...
+                    //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                dateFormat.dateFormat = "yyyy-MM-dd"
+                let writeDate = dateFormat.string(from: self.sendedDate!)
+                print("EDITwriteDate : \(writeDate)")
+                    //대망의 디비를 수정하는 부분
+                self.diaryDAO.updateDiaryBody(writeDate: writeDate, data: stringfiedJsonData!)
+                
+                //버그가 하나 있어서 그런데...수정버튼이 '수정끝' 이라고 보여야 되는데 '수정'으로 보이니까 강제로 바꿔주자...
+                self.editButtonDidSelected = false
+            case 4: //gratitude
+                //해당위치에 사용자입려값을 넣는다.
+                self.diaryBody.gratitude![self.editIndexPath.row] = self.userInput
+                //최신수정일자를 기록한다.
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                self.diaryBody.date = dateFormat.string(from: Date())
+                
+                //JSON으로 인코딩한다
+                let encoder = JSONEncoder()
+                let jsonData = try? encoder.encode(self.diaryBody)
+                let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                print("EDITstringfiedJsonData : \(stringfiedJsonData!)")
+                //이제 db에 넣어주자...
+                    //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                dateFormat.dateFormat = "yyyy-MM-dd"
+                let writeDate = dateFormat.string(from: self.sendedDate!)
+                print("EDITwriteDate : \(writeDate)")
+                    //대망의 디비를 수정하는 부분
+                self.diaryDAO.updateDiaryBody(writeDate: writeDate, data: stringfiedJsonData!)
+                
+                //버그가 하나 있어서 그런데...수정버튼이 '수정끝' 이라고 보여야 되는데 '수정'으로 보이니까 강제로 바꿔주자...
+                self.editButtonDidSelected = false
+            case 5: //success
+                //해당위치에 사용자입려값을 넣는다.
+                self.diaryBody.success![self.editIndexPath.row] = self.userInput
+                //최신수정일자를 기록한다.
+                let dateFormat = DateFormatter()
+                dateFormat.dateFormat = "yyyy.MM.dd.HH:mm"
+                self.diaryBody.date = dateFormat.string(from: Date())
+                
+                //JSON으로 인코딩한다
+                let encoder = JSONEncoder()
+                let jsonData = try? encoder.encode(self.diaryBody)
+                let stringfiedJsonData = String(data: jsonData!, encoding: .utf8) //리턴값은 옵셔널이넹
+                print("EDITstringfiedJsonData : \(stringfiedJsonData!)")
+                //이제 db에 넣어주자...
+                    //일기의 날짜는 self.sendedDate에 들어있으므로 이거를 pk로 써서 해당 db를 찾는데 써야 하므로 적절한 형변환을 시켜줘야 한다.(sendedDate는 초까지 나오니깐...)
+                dateFormat.dateFormat = "yyyy-MM-dd"
+                let writeDate = dateFormat.string(from: self.sendedDate!)
+                print("EDITwriteDate : \(writeDate)")
+                    //대망의 디비를 수정하는 부분
+                self.diaryDAO.updateDiaryBody(writeDate: writeDate, data: stringfiedJsonData!)
+                
+                //버그가 하나 있어서 그런데...수정버튼이 '수정끝' 이라고 보여야 되는데 '수정'으로 보이니까 강제로 바꿔주자...
+                self.editButtonDidSelected = false
+            default:
+                print("섹션값이 1부터 5중에 속하지가 않습니다!!!이건뭡니까")
+                
+            }//switch문 끝
+        }
+        //추가하려고 했던 셀을 원래대로 되돌려놓는다.
+        self.tableView.reloadData()
+        
+        //키보드를 내린다
+        self.resignFirstResponder()
+    }
+    //MARK: 수정모드에서 키보드위의 Cancel버튼 눌렸을때 실행될 함수
+    @objc func editCancelButtonAction(){
+        //추가하려고 했던 셀을 원래대로 되돌려놓는다.
+        self.tableView.reloadData()
+        
+        //키보드를 내린다
+        self.resignFirstResponder()
+    }
 }
 
