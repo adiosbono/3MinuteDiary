@@ -154,6 +154,9 @@ class WriteDiaryVC: UITableViewController, UITextViewDelegate{
 override func viewDidLoad() {
     super.viewDidLoad()
    
+    
+    
+    
     self.editButtonDidSelected = false
     
     //내용입력할때 키보드 높이만큼 화면을 이동해야하는 경우 있으므로 그때 사용하기위한 작업
@@ -591,11 +594,13 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     }
     }
     }
+    
     /*
 //테이블의 특정 행이 선택되었을때 호출되는 메소드
 override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    self.insertIndexPath = indexPath
+    //self.insertIndexPath = indexPath
     print("didSelectRowAt함수 실행됨")
+    print("selected row indexPath : (row: \(indexPath.row) / section: \(indexPath.section)")
     }
  */
 //테이블 뷰의 섹션의 수 결정하는 메소드 따로 오버라이드 하지 않으면 기본값은 1임
@@ -754,6 +759,15 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
     //텍스트뷰 수정되기전에 실행될 메서드..이녀석에서 true를 반환하면 수정시작되고 false반환하면 수정자체가 일어나지 않음
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         if self.tableView.isEditing == true{
+            //여기에서 터치한 텍스트뷰가 속한 셀의 IndexPath를 건져올수 없을까?
+            if let tempCell = textView.superview?.superview as? UITableViewCell {
+                self.insertIndexPath = tempCell.indexPath
+                print("textViewShouldBeginEditing에서 self.insertIndexPath에 값 쳐넣음")
+            }else{
+                print("UITableViewCell 캐스팅 실패라니 제엔장")
+            }
+            
+            
             print("return true")
             return true
         }else{
@@ -1038,7 +1052,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
            
         if self.tableView.isEditing == false {
            
-            if self.insertIndexPath != nil{
+            if self.insertIndexPath != nil{//insertIndexPath 에 값이 있는경우...즉 추가하기버튼으로 셀하나만든경우
                 if keyboardSize.height == offset.height {
                UIView.animate(withDuration: 0.1) {() -> Void in
                    //바로 아랫줄의 코드는 키보드 높이만큼 화면을 위로 밀어버림 : 이렇게하면 스크롤을 해서 위에 있는 내용 확인이 불가능함.
@@ -1072,10 +1086,15 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
                 }
               }
            }else{//self.insertIndexPath가 nil인경우...즉 수정모드도아닌데 셀을 눌러서 키보드 올라오게 한 경우
-            
+            print("unexpected editing mode....어떻게한거냐 닝겐")
             }
         }else{//self.tableView.isEditing == true인 경우에 실행된다. 즉 수정중일때 실행된다.
-            //우선 아무것도 하지 말아봐....아무것도 안하면 에러 안남
+            //핵심은 키보드 사이즈만큼 테이블뷰 크기를 줄인다음에 해당인덱스로 스크롤하는것
+            self.tableView.frame.size.height -= offset.height
+            //해당 인덱스로 스크롤해준다!
+            self.tableView.scrollToRow(at: self.insertIndexPath, at: .top, animated: true)
+            self.insertIndexPath = nil
+            print("수정시 포커싱 잘되는구만 허허")
         }
            /*
            if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {

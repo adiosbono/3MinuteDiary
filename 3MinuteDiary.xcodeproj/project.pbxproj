@@ -15,6 +15,7 @@
 		0424596723E3086E0075016E /* TemplateBodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424596623E3086E0075016E /* TemplateBodyCell.swift */; };
 		0424596923E312610075016E /* TemplateAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0424596823E312610075016E /* TemplateAddCell.swift */; };
 		0425A97C23ED7D5900B09F65 /* db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 0425A97B23ED7D5900B09F65 /* db.sqlite */; };
+		04286C99246D70AE00FAE6C7 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04286C98246D70AE00FAE6C7 /* UITableViewCell+Extensions.swift */; };
 		0429446D240A58D4008631C9 /* BackupManageVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429446C240A58D4008631C9 /* BackupManageVC.swift */; };
 		042AF16524433D6C00F90C0D /* WriteDiaryAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042AF16424433D6C00F90C0D /* WriteDiaryAddCell.swift */; };
 		0431059623B5C9A700F727FD /* WriteDiaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0431059523B5C9A700F727FD /* WriteDiaryVC.swift */; };
@@ -63,6 +64,7 @@
 		0424596623E3086E0075016E /* TemplateBodyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateBodyCell.swift; sourceTree = "<group>"; };
 		0424596823E312610075016E /* TemplateAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateAddCell.swift; sourceTree = "<group>"; };
 		0425A97B23ED7D5900B09F65 /* db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = db.sqlite; sourceTree = "<group>"; };
+		04286C98246D70AE00FAE6C7 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		0429446C240A58D4008631C9 /* BackupManageVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackupManageVC.swift; sourceTree = "<group>"; };
 		042AF16424433D6C00F90C0D /* WriteDiaryAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDiaryAddCell.swift; sourceTree = "<group>"; };
 		0431059523B5C9A700F727FD /* WriteDiaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WriteDiaryVC.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				04222F1F23E6E8C3000008BB /* DiaryDAO.swift */,
 				042236B9241E225900BD9C0E /* UITextField+Extensions.swift */,
 				042236BB241E22D900BD9C0E /* UITextView+Extensions.swift */,
+				04286C98246D70AE00FAE6C7 /* UITableViewCell+Extensions.swift */,
 				0441A4E623ACE7E5005A2251 /* Main.storyboard */,
 				0441A4EC23ACE7E9005A2251 /* Assets.xcassets */,
 				0441A4EE23ACE7E9005A2251 /* LaunchScreen.storyboard */,
@@ -479,6 +482,7 @@
 				0441A4E323ACE7E5005A2251 /* SceneDelegate.swift in Sources */,
 				0441A4EB23ACE7E5005A2251 /* _MinuteDiary.xcdatamodeld in Sources */,
 				0431059B23B5CAAC00F727FD /* ToolBarCell.swift in Sources */,
+				04286C99246D70AE00FAE6C7 /* UITableViewCell+Extensions.swift in Sources */,
 				0424596723E3086E0075016E /* TemplateBodyCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
