@@ -857,10 +857,14 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
     //셀의 높이값을 반환할 함수.............이거 있으면 오토로 안되는거 아님? 리턴값을 슈퍼를 통해서 해놓으니까 되넹 헤헤헤
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         print("heightForRowAt실행됨")
+        print("indexPath:            section\(indexPath.section)/row\(indexPath.row)")
+        print("self.insertIndexPath: section\(self.insertIndexPath?.section ?? 777)/row\(self.insertIndexPath?.row ?? 777)")
         if indexPath == self.insertIndexPath{
             print("새로운높이 : \(self.heightForCell)")
+            print("결국 셀높이는 : \(super.tableView(tableView, heightForRowAt: indexPath) + self.heightForCell)")
             return (super.tableView(tableView, heightForRowAt: indexPath) + self.heightForCell)
         }else{
+            print("else로 빠짐")
         return super.tableView(tableView, heightForRowAt: indexPath)
         }
     }
@@ -1025,6 +1029,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
         self.tableView.beginUpdates()
         //insertRows에 첫번째 인자값으로 IndexPath변수가 필요해서 이러케 함.
         let insertIndexPath = IndexPath(row: self.diaryBody.myObjective?.count ?? 0, section: 1)
+        print("insertIndexPath: section:\(insertIndexPath.section)/row:\(insertIndexPath.row)")
         self.insertIndexPath = insertIndexPath
         self.tableView.insertRows(at: [insertIndexPath], with: .automatic)
         self.tableView.endUpdates()
@@ -1140,7 +1145,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
                    self.tableView.frame.size.height -= offset.height
                    //해당 인덱스로 스크롤해준다!
                    self.tableView.scrollToRow(at: self.insertIndexPath, at: .top, animated: true)
-                self.insertIndexPath = nil
+                //self.insertIndexPath = nil
                    //self.view.frame.size.height -= keyboardSize.height
                 }
                
@@ -1154,7 +1159,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
                    //해당 인덱스로 스크롤해준다!
                    self.tableView.scrollToRow(at: self.insertIndexPath, at: .top, animated: true)
                    //self.view.frame.origin.y += keyboardSize.height - offset.height
-                self.insertIndexPath = nil
+                //self.insertIndexPath = nil
                 }
               }
            }else{//self.insertIndexPath가 nil인경우...즉 수정모드도아닌데 셀을 눌러서 키보드 올라오게 한 경우
@@ -1169,7 +1174,7 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
             //수정중인 셀의 위치를 따로 저장하기 위해 다른 전역변수에 insertIndexPath를 넣어준다.
             self.editIndexPath = self.insertIndexPath
             //다썼으니 비워준다.
-            self.insertIndexPath = nil
+            //self.insertIndexPath = nil
             print("수정시 포커싱 잘되는구만 허허")
         }
            /*

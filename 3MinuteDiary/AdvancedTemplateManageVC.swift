@@ -840,8 +840,8 @@ class AdvancedTemplateManageVC: UIViewController, UITableViewDelegate, UITableVi
                 
                 //이거슨 해당 셀에 대한 위치정보를 담고 있는거임
                 //origin속성을 통해 추가된 셀의 화면에서의 위치(x,y)를 알수있엇슴 이제 이걸 이용하기함 하면 됨
-                let rectOfCell = self.myTableView.rectForRow(at: self.insertIndexPath)
-                print("rectOfCell / orign / x:\(rectOfCell.origin.x) y:\(rectOfCell.origin.y) height:\(rectOfCell.size.height) width:\(rectOfCell.size.width)" )
+                //let rectOfCell = self.myTableView.rectForRow(at: self.insertIndexPath)
+                //print("rectOfCell / orign / x:\(rectOfCell.origin.x) y:\(rectOfCell.origin.y) height:\(rectOfCell.size.height) width:\(rectOfCell.size.width)" )
                 
                 //테이블뷰의 길이를 키보드길이마만큼 줄여주자
                 //나중에 다시 돌려놓아야된는거 잊지말자
