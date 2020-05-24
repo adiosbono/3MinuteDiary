@@ -5,6 +5,7 @@
 //  Created by Bono b Bono on 2020/05/24.
 //  Copyright © 2020 Bono b Bono. All rights reserved.
 //
+//reference: https://programmingwithswift.com/how-to-send-local-notification-with-swift-5/
 
 import Foundation
 import UIKit
@@ -14,10 +15,38 @@ class AlarmSettingVC: UITableViewController{
     
     //여기 빈공간에다가는 변수들을 초기화하셈
     
+        //로컬알람설정위한 구문
+    let userNotificationCenter = UNUserNotificationCenter.current()
+    
+    
+    
+    
+    //딜리게이트 함수들
+   
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.requestNotificationAuthorization()
+        self.sendNotification()
+    }
+    
+    //MARK: 내가만든 함수들
+     //사용자에게 허락맡는 함수
+    func requestNotificationAuthorization() {
+        //사용자에게 어떤내용을 허락맡을지 정한다
+        let authOptions = UNAuthorizationOptions.init(arrayLiteral: .alert, .badge, .sound)
+        //허락을 발생시킨다
+        self.userNotificationCenter.requestAuthorization(options: authOptions) { (success, error) in
+            if let error = error {
+                print("Error: ", error)
+            }
+        }
+    }
+        //알람보낼때 쓸 함수
+    func sendNotification() {
+        // Code here
+    }
     /*
-override func viewDidLoad() {
-    super.viewDidLoad()
-}
     
 //화면이 나타날때마다 호출되는 메소드
 override func viewWillAppear(_ animated: Bool) {
