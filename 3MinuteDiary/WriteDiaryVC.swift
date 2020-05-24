@@ -449,10 +449,12 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
                 cell.addTextView.text = ""
             }else{
                 cell.addTextView.text = self.diaryBody.myObjective![indexPath.row]
+                self.heightForCell = cell.addTextView.contentSize.height
             }
             
         }else{
         cell.addTextView.text = self.diaryBody.myObjective![indexPath.row]
+            self.heightForCell = cell.addTextView.contentSize.height
         }
         
         //키보드 위에 done 버튼 넣는 작업임
@@ -490,16 +492,19 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     case 2:
         let cell = tableView.dequeueReusableCell(withIdentifier: "addCell") as! WriteDiaryAddCell
         cell.addTextView.delegate = self
+        self.heightForCell = cell.addTextView.contentSize.height
         if self.diaryData.count == 0 {
             //diaryBody.myObjective의 값을 검사해서 값이 있으면 값을대입, 없으면 빈값 대입
             if self.diaryBody.wantToDo == nil {
                 cell.addTextView.text = ""
             }else{
                 cell.addTextView.text = self.diaryBody.wantToDo![indexPath.row]
+                self.heightForCell = cell.addTextView.contentSize.height
             }
             
         }else{
         cell.addTextView.text = self.diaryBody.wantToDo![indexPath.row]
+            self.heightForCell = cell.addTextView.contentSize.height
         }
         //키보드 위에 done 버튼 넣는 작업임
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
@@ -533,16 +538,19 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     case 3:
         let cell = tableView.dequeueReusableCell(withIdentifier: "addCell") as! WriteDiaryAddCell
         cell.addTextView.delegate = self
+        self.heightForCell = cell.addTextView.contentSize.height
         if self.diaryData.count == 0 {
             //diaryBody.myObjective의 값을 검사해서 값이 있으면 값을대입, 없으면 빈값 대입
             if self.diaryBody.whatHappened == nil {
                 cell.addTextView.text = ""
             }else{
                 cell.addTextView.text = self.diaryBody.whatHappened![indexPath.row]
+                self.heightForCell = cell.addTextView.contentSize.height
             }
             
         }else{
         cell.addTextView.text = self.diaryBody.whatHappened![indexPath.row]
+            self.heightForCell = cell.addTextView.contentSize.height
         }
         //키보드 위에 done 버튼 넣는 작업임
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
@@ -574,16 +582,19 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     case 4:
         let cell = tableView.dequeueReusableCell(withIdentifier: "addCell") as! WriteDiaryAddCell
         cell.addTextView.delegate = self
+        self.heightForCell = cell.addTextView.contentSize.height
         if self.diaryData.count == 0 {
             //diaryBody.myObjective의 값을 검사해서 값이 있으면 값을대입, 없으면 빈값 대입
             if self.diaryBody.gratitude == nil {
                 cell.addTextView.text = ""
             }else{
                 cell.addTextView.text = self.diaryBody.gratitude![indexPath.row]
+                self.heightForCell = cell.addTextView.contentSize.height
             }
             
         }else{
         cell.addTextView.text = self.diaryBody.gratitude![indexPath.row]
+            self.heightForCell = cell.addTextView.contentSize.height
         }
         //키보드 위에 done 버튼 넣는 작업임
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
@@ -615,16 +626,19 @@ override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexP
     case 5:
         let cell = tableView.dequeueReusableCell(withIdentifier: "addCell") as! WriteDiaryAddCell
         cell.addTextView.delegate = self
+        self.heightForCell = cell.addTextView.contentSize.height
         if self.diaryData.count == 0 {
             //diaryBody.myObjective의 값을 검사해서 값이 있으면 값을대입, 없으면 빈값 대입
             if self.diaryBody.success == nil {
                 cell.addTextView.text = ""
             }else{
                 cell.addTextView.text = self.diaryBody.success![indexPath.row]
+                self.heightForCell = cell.addTextView.contentSize.height
             }
             
         }else{
         cell.addTextView.text = self.diaryBody.success![indexPath.row]
+            self.heightForCell = cell.addTextView.contentSize.height
         }
         //키보드 위에 done 버튼 넣는 작업임
         let doneToolbar: UIToolbar = UIToolbar(frame: CGRect.init(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
@@ -865,7 +879,24 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
             return (super.tableView(tableView, heightForRowAt: indexPath) + self.heightForCell)
         }else{
             print("else로 빠짐")
-        return super.tableView(tableView, heightForRowAt: indexPath)
+            print("self.heightForCell값: \(self.heightForCell) / super값: \(super.tableView(tableView, heightForRowAt: indexPath))")
+            if super.tableView(tableView, heightForRowAt: indexPath) >= self.heightForCell{
+                print("리턴 슈퍼")
+                return super.tableView(tableView, heightForRowAt: indexPath)
+            }else{
+                print("리턴 heightforcell")
+                //return super.tableView(tableView, heightForRowAt: indexPath)
+                if indexPath.section == 0 {
+                    return -1.0
+                }else{
+                    return self.heightForCell
+                }
+                
+            }
+           
+                //return super.tableView(tableView, heightForRowAt: indexPath)
+            
+        
         }
     }
     
