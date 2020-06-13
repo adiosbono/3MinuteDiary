@@ -11,13 +11,13 @@ import Foundation
 import UIKit
 import UserNotifications
 
-class AlarmSettingVC: UITableViewController{
+class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
     
     //여기 빈공간에다가는 변수들을 초기화하셈
     
         //로컬알람설정위한 구문
     let userNotificationCenter = UNUserNotificationCenter.current()
-    
+        
     
     
     
@@ -26,8 +26,12 @@ class AlarmSettingVC: UITableViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         self.requestNotificationAuthorization()
+            //알람을 등록하는 메소드
         self.sendNotification()
+        self.userNotificationCenter.delegate = self
     }
     
     //MARK: 내가만든 함수들
@@ -44,7 +48,47 @@ class AlarmSettingVC: UITableViewController{
     }
         //알람보낼때 쓸 함수
     func sendNotification() {
-        // Code here
+        //새로운 알람내용 인스턴스를 만든다(알람에 포함될 내용을 저장하는 용도)
+        let notificationContent = UNMutableNotificationContent()
+        //알람내용에 값을 집어넣는다.
+        notificationContent.title = "Test"
+        notificationContent.body = "Test body"
+        //뱃지는 앱아이콘 상단에 붉은점안에 숫자로 뜨는 녀석임
+        //MARK: 뱃지를 통해서 하고싶은일 알람으로 해논게 몇갠지 알수있게 하자!
+        notificationContent.badge = NSNumber(value: 3)
+
+        // Add an attachment to the notification content
+        //알람내용에 첨부파일을 붙일수 있다(사진,소리,영상 등)
+        if let url = Bundle.main.url(forResource: "dune",
+                                        withExtension: "png") {
+            if let attachment = try? UNNotificationAttachment(identifier: "dune",
+                                                                url: url,
+                                                                options: nil) {
+                notificationContent.attachments = [attachment]
+            }
+        }
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5,
+                                                        repeats: false)
+        let request = UNNotificationRequest(identifier: "testNotification",
+                                            content: notificationContent,
+                                            trigger: trigger)
+        
+        userNotificationCenter.add(request) { (error) in
+            if let error = error {
+                print("Notification Error: ", error)
+            }
+        }
+        //MARK: 기본적으로 앱이 foreground에 있으면 설정해논 알람이 안뜬다...알람을 foreground에서도 보고싶으면 추가적인 작업이 필요함
+    }
+    
+        //앱이 foreground에서 실행중일때도 알림이 나타나게 하기위한 함수 두개
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        completionHandler()
+    }
+
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
     }
     /*
     
