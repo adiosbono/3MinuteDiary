@@ -15,12 +15,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 //MARK: 내가따로 추가한 녀석 시작
     //알람창뜬거를 실제로 사용자가 봤을때, 내리는 반응에 대해 결정하는 함수.(뭘눌렀을때 뭘 할지)
+    /*
     func userNotificationCenter(_ center: UNUserNotificationCenter,
     didReceive response: UNNotificationResponse,
     withCompletionHandler completionHandler:
        @escaping () -> Void) {
         print("notification 사용자가 확인함")
     }
+ */
     //func didReceive(_ response: UNNotificationResponse, completionHandler completion: @escaping (UNNotificationContentExtensionResponseOption) -> Void)
     /*
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {

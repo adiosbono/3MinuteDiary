@@ -17,16 +17,29 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
     
         //로컬알람설정위한 구문
     let userNotificationCenter = UNUserNotificationCenter.current()
-        
-    
-    
+        //db사용하기 위한 작업
+    let diaryDAO = DiaryDAO()
+        //오늘날짜를 저장할 함수
+    var today: String?
     
     //딜리게이트 함수들
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //오늘날짜를 저장하자
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        self.today = dateFormatter.string(from: Date())
+        print("AlarmSettingVC Today: \(self.today ?? "fuck this is nil")")
+    
+         //알람눌럿을때 특정기능수행하기 위한 커스텀 액션 정의
+        let cancelAction = UNNotificationAction(identifier: "CANCEL_ACTION", title: "Cancel", options: UNNotificationActionOptions(rawValue: 0))
+        let delayAction = UNNotificationAction(identifier: "DELAY_ACTION", title: "Remind Later", options: UNNotificationActionOptions(rawValue: 0))
+            //알람 카테고리을 정의
+        let reminderCategory = UNNotificationCategory(identifier: "REMINDER", actions: [cancelAction, delayAction], intentIdentifiers: [], options: .customDismissAction)
+            //알람 카테고리을 등록한다
+        self.userNotificationCenter.setNotificationCategories([reminderCategory])
         
         self.requestNotificationAuthorization()
             //알람을 등록하는 메소드
@@ -56,6 +69,8 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
         //뱃지는 앱아이콘 상단에 붉은점안에 숫자로 뜨는 녀석임
         //MARK: 뱃지를 통해서 하고싶은일 알람으로 해논게 몇갠지 알수있게 하자!
         notificationContent.badge = NSNumber(value: 3)
+        //알람카테고리를 설정한다
+        notificationContent.categoryIdentifier = "REMINDER"
 
         // Add an attachment to the notification content
         //알람내용에 첨부파일을 붙일수 있다(사진,소리,영상 등)
@@ -84,12 +99,27 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
     
         //앱이 foreground에서 실행중일때도 알림이 나타나게 하기위한 함수 두개
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        switch response.actionIdentifier{
+        case "CANCEL_ACTION":
+            print("cancelAction pushed")
+            break
+        case "DELAY_ACTION":
+            print("delayAction Pushed")
+            break
+        default:
+            print("제3의버튼이 눌린듯....뭐지")
+            break
+        }
+        //하고싶은일을 다 했으면 반드시 이녀석을 실행시켜줘야 한다.
         completionHandler()
     }
-
+/*
+     //이거는 알람선택하면 무조건 실행된다. 뭐를 선택하든, 선택하지 않든간에...참고로 이 함수를 써야 앱이 포어그라운드상태일때도 알람이 온다.
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("willPresent 실행됨")
         completionHandler([.alert, .badge, .sound])
     }
+ */
     /*
     
 //화면이 나타날때마다 호출되는 메소드
