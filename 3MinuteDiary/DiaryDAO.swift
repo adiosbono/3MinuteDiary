@@ -179,4 +179,29 @@ class DiaryDAO {
                 }
     }
     
+    //MARK: 해당날짜의 일기 내용(data열)만 읽어올때 쓸 함수
+    func findData(writeDate: String) -> String {
+        var result: String = "초기화"
+        do{
+                    //카드목록을 가져올 sql작성 및 쿼리 실행
+                    let sql = """
+                        SELECT data
+                        FROM main
+                        WHERE create_date = ?
+        """
+                    
+                    let rs = try self.fmdb.executeQuery(sql, values: [writeDate])
+
+                    //결과 집합 추출
+                    while rs.next() {
+                        let data = rs.string(forColumn: "data")
+                        result =  data ?? "db에서 읽어오긴 했는데 안에 내용이 없네요? 미쳣읍니까 휴먼"
+                    }
+                    
+                }catch let error as NSError {
+                    print("Failed from db findMain: \(error.localizedDescription)")
+                    result = "data를 읽어오는데 실패하였습니다 젠장"
+                }
+        return result
+    }
 }

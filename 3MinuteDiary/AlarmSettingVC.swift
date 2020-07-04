@@ -21,7 +21,22 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
     let diaryDAO = DiaryDAO()
         //오늘날짜를 저장할 함수
     var today: String?
-    
+        //하고싶은일의 목록을 저장할 배열
+    var wantToDoList: [String]?
+        //json디코딩을 위한 선언
+    let decoder = JSONDecoder()
+        //json인코딩을 위한 선언
+    let incoder = JSONEncoder()
+        //일기데이터를 파싱해서 저장할 구조체 선언(파싱할때 편하도록 특별히 프로토콜 선언함)
+    struct Body: Codable {
+        //일기의 data행에서 각 목록에 해당하는 정보를 저장할 변수
+        var date : String?
+        var myObjective : [String]?
+        var wantToDo : [String]?
+        var whatHappened : [String]?
+        var gratitude : [String]?
+        var success : [String]?
+    }
     //딜리게이트 함수들
    
     
@@ -45,10 +60,48 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
             //알람을 등록하는 메소드
         self.sendNotification()
         self.userNotificationCenter.delegate = self
+        
+        //db를 조회하여 해당하는 일자의 data컬럼을 가져온다.
+        let diaryData = diaryDAO.findData(writeDate: self.today!)
+        //가져온 data컬럼을 파싱한다
+        self.wantToDoList = parseDiaryDataForWantToDo(stringData: diaryData)
+        
+            //디버깅위한 작업...지워도됨
+        /*
+        if self.wantToDoList == nil {
+            print("wantToDoList is nil")
+        }else{
+            print("wantToDoList is not nil")
+            print("list count: \(self.wantToDoList?.count ?? 999)")
+        }
+ */
     }
     
     //MARK: 내가만든 함수들
-     //사용자에게 허락맡는 함수
+         //db에서 불러온 data를 파싱하여 '하고싶은일'만 반환하는 함수
+    func parseDiaryDataForWantToDo(stringData: String) -> [String]? {
+        var result : [String]? = nil
+        print("check incoming data: \(stringData)")
+        //우선 utf8형식으로 인코딩
+        let jsonData = stringData.data(using: .utf8)
+        //디버깅 위한 조건절
+        if jsonData == nil {
+            print("jsonData is nil....abort!!  parseDiaryDataForWantToDo")
+        }else{
+            print("jsonData is not nil...commence jsonParsing")
+            do{
+                let tempBody = try decoder.decode(Body.self, from: jsonData!)
+                print("파싱 컴플릿")
+                result = tempBody.myObjective
+            }catch{
+                print("파싱 error")
+                result = nil
+            }
+        }
+        return result
+    }
+    
+        //사용자에게 허락맡는 함수
     func requestNotificationAuthorization() {
         //사용자에게 어떤내용을 허락맡을지 정한다
         let authOptions = UNAuthorizationOptions.init(arrayLiteral: .alert, .badge, .sound)
