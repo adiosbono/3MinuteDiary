@@ -22,7 +22,7 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
         //db사용하기 위한 작업
     let diaryDAO = DiaryDAO()
         //오늘날짜를 저장할 함수
-    var today: String?
+    //var today: String?
         //하고싶은일의 목록을 저장할 배열
     var wantToDoList: [String]?
         //json디코딩을 위한 선언
@@ -70,11 +70,6 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
         self.sendNotification()
         self.userNotificationCenter.delegate = self
         
-        //db를 조회하여 해당하는 일자의 data컬럼을 가져온다.
-        let diaryData = diaryDAO.findData(writeDate: self.today!)
-        //가져온 data컬럼을 파싱한다
-        self.wantToDoList = parseDiaryDataForWantToDo(stringData: diaryData)
-        
         //UserDefault로부터 데이터를 읽어와 전역변수에 대입한다.
         if let temp = plist.string(forKey: "userSetTime"){
             self.referenceTime = temp
@@ -121,6 +116,10 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
             print("self.searchDate = \(self.searchDate!)")
         }
         
+        //db를 조회하여 해당하는 일자의 data컬럼을 가져온다.
+        let diaryData = diaryDAO.findData(writeDate: self.searchDate!)
+        //가져온 data컬럼을 파싱한다
+        self.wantToDoList = parseDiaryDataForWantToDo(stringData: diaryData)
     }
     
     //테이블 행의 개수를 결정하는 메소드
