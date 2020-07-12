@@ -7,6 +7,8 @@
 //
 //reference: https://programmingwithswift.com/how-to-send-local-notification-with-swift-5/
 
+//시각 비교 참고: https://stackoverflow.com/questions/41646542/how-do-you-compare-just-the-time-of-a-date-in-swift/56006567
+
 import Foundation
 import UIKit
 import UserNotifications
@@ -37,17 +39,24 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
         var gratitude : [String]?
         var success : [String]?
     }
-    //딜리게이트 함수들
+        //날짜조회시 사용할 기준 시각을 저장하기 위한 변수
+    var referenceTime : String?
+        //UserDefault사용하기 위한 작업
+    let plist = UserDefaults.standard
+        //조회시 사용할 날짜를 저장하기 위한 변수
+    var searchDate : String?
+    //MARK: 딜리게이트 함수들
    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //오늘날짜를 저장하자
+        /*
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         self.today = dateFormatter.string(from: Date())
         print("AlarmSettingVC Today: \(self.today ?? "fuck this is nil")")
-    
+    */
          //알람눌럿을때 특정기능수행하기 위한 커스텀 액션 정의
         let cancelAction = UNNotificationAction(identifier: "CANCEL_ACTION", title: "Cancel", options: UNNotificationActionOptions(rawValue: 0))
         let delayAction = UNNotificationAction(identifier: "DELAY_ACTION", title: "Remind Later", options: UNNotificationActionOptions(rawValue: 0))
@@ -66,15 +75,64 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
         //가져온 data컬럼을 파싱한다
         self.wantToDoList = parseDiaryDataForWantToDo(stringData: diaryData)
         
-            //디버깅위한 작업...지워도됨
-        /*
-        if self.wantToDoList == nil {
-            print("wantToDoList is nil")
+        //UserDefault로부터 데이터를 읽어와 전역변수에 대입한다.
+        if let temp = plist.string(forKey: "userSetTime"){
+            self.referenceTime = temp
+            print("plist성공 userSetTime")
         }else{
-            print("wantToDoList is not nil")
-            print("list count: \(self.wantToDoList?.count ?? 999)")
+            print("plist에서 userSetTime를 읽어오는데 실패했습니다. 기본값인 03:00을 집어넣습니다")
+            plist.set("03:00", forKey: "userSetTime")
+            plist.synchronize()
+            //UserDefault에 값을 넣었으니 그녀석을 읽어와서 전역변수에 대입한다.
+            self.referenceTime = plist.string(forKey: "userSetTime")
+               }
+        
+        //오늘날짜중 시간만 따로 떼서 비교
+        let dateFormatHM = DateFormatter()
+        dateFormatHM.dateFormat = "HH:mm"
+            //현재시스템시간을 받아 시:분 으로 만든다.
+        let nowTime = dateFormatHM.string(from: Date())
+        print("nowTime = \(nowTime)")
+            //혹시라도 self.referenceTime에 값이 안들어가는 경우를대비해 nil검사해서 nil이면 초기값 03:00을 넣어준다
+        if self.referenceTime == nil {
+            print("self.referenceTime is nil....abort time comparison....putting 03:00 to self.referenceTime")
+            self.referenceTime = "03:00"
         }
- */
+        //조건절 값이 참이면 nowTime의 시간이 self.referenceTime보다 더 미래에 있다는 것임(초가 더 많다고 생각하면 편함)
+        if(dateFormatHM.date(from: self.referenceTime!)! < dateFormatHM.date(from: nowTime)!) {
+                //지금시간이 기준시간을 넘긴경우(기본값 03:00보다 더 시간이 지난경우 예시: 08:00)
+            print("load today date")
+            let dateFormatter = DateFormatter()
+            //dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+                //왠진모르겠지만 toGlobalTime안해주면...그냥 아무날짜 선택하지 않고 기본세팅 오늘날짜로 했을때 다음날짜가 일기쓰기 화면에 나옴...
+            self.searchDate = dateFormatter.string(from: Date())
+            print("self.searchDate = \(self.searchDate!)")
+        }else{
+                //지금시간이 기준시간에 미치지 못한 경우(기본값 03:00보다 더 시간이 안지났다 예시: 02:00)
+            print("load yesterday date")
+            let dateFormatter = DateFormatter()
+            //dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+                //왠진모르겠지만 toGlobalTime안해주면...그냥 아무날짜 선택하지 않고 기본세팅 오늘날짜로 했을때 다음날짜가 일기쓰기 화면에 나옴...
+            let today = Date()
+            let yesterday = today-(86400) //60*60*24 = 86400초(하루)
+            self.searchDate = dateFormatter.string(from: yesterday)
+            print("self.searchDate = \(self.searchDate!)")
+        }
+        
+    }
+    
+    //테이블 행의 개수를 결정하는 메소드
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.wantToDoList?.count ?? 1
+    }
+    
+    //테이블 행을 구성하는 메소드....보완할거 천국이구만
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! AlarmCell
+        cell.wantToDo.text = self.wantToDoList?[indexPath.row]
+        return cell
     }
     
     //MARK: 내가만든 함수들

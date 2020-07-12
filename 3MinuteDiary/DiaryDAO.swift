@@ -21,6 +21,8 @@ class DiaryDAO {
         //findMorningNight 함수의 결과값을 저장할 튜플(String, Int, Int)
     typealias circleRecord = (String, Int, Int)
     
+        //findAlarm 함수의 결과값을 저장할 튜플(date, wantToDo, time)
+    typealias alarmRecord = (String, String, String)
     
     //디비사용위한 구문
     //SQLite 연결 및 초기화
@@ -204,4 +206,93 @@ class DiaryDAO {
                 }
         return result
     }
+    
+    
+    //MARK: alarmTime테이블의 내용을 조회(오늘날짜를 키로 하여 조회)
+    func findAlarm(writeDate: String) -> [alarmRecord] {
+        print("findAlarm searchDate : \(writeDate)")
+        var alarmList = [alarmRecord]()
+        //db조회 실시
+        do{
+                    //카드목록을 가져올 sql작성 및 쿼리 실행
+                    let sql = """
+                        SELECT date, wantToDo, time
+                        FROM alarmTime
+                        WHERE date = ?
+        """
+                    
+                    let rs = try self.fmdb.executeQuery(sql, values: [writeDate])
+
+                    //결과 집합 추출
+                    while rs.next() {
+                        let date = rs.string(forColumn: "date")
+                        let wantToDo = rs.string(forColumn: "wantToDo")
+                        let time = rs.string(forColumn: "time")
+                        alarmList.append((date!, wantToDo!, time!))
+                    }
+                    
+                }catch let error as NSError {
+                    print("Failed from db findAlarm: \(error.localizedDescription)")
+                    
+                }
+        return alarmList
+    }
+    
+    //MARK: alarmTime에 새로운 내용을 삽입
+    func insertAlarm(writeDate: String, wantToDo: String, time: String){
+        print("insertAlarm date: \(writeDate) / wantToDo : \(wantToDo) / time: \(time)")
+        //db insert 실시
+        do{
+                let sql = """
+                            INSERT INTO alarmTime(date, wantToDo, time) VALUES (?, ?, ?)
+        """
+                try self.fmdb.executeUpdate(sql, values: [writeDate, wantToDo, time])
+                }catch let error as NSError {
+                    print("Failed from alarmTime db insertion: \(error.localizedDescription)")
+                }
+    }
+    
+    //MARK: alarmTime의 '하고싶은 일'을 수정
+    func editWantToDo(writeDate: String, old: String, new: String, time: String){
+        do{
+                    let sql = """
+                            UPDATE alarmTime
+                            SET wantToDo = ?
+                            WHERE wantToDo = ? AND date = ? AND time = ?
+        """
+                    try self.fmdb.executeUpdate(sql, values: [new, old, writeDate, time])
+                }catch let error as NSError {
+                    print("Failed from db editWantToDo: \(error.localizedDescription)")
+                }
+    }
+    
+    //MARK: alarmTime의 '시각'을 수정
+    func editTime(writeDate: String, old: String, new: String, wantToDo: String){
+        do{
+                    let sql = """
+                            UPDATE alarmTime
+                            SET time = ?
+                            WHERE wantToDo = ? AND date = ? AND time = ?
+        """
+                    try self.fmdb.executeUpdate(sql, values: [new, wantToDo, writeDate, old])
+                }catch let error as NSError {
+                    print("Failed from db editTime: \(error.localizedDescription)")
+                }
+    }
+    
+    //MARK: alarmTime의 한 행을 삭제
+    func deleteAlarm(writeDate: String, wantToDo: String, time: String){
+        do{
+                    let sql = """
+                            DELETE
+                            FROM alarmTime
+                            WHERE writeDate = ? AND wantToDo = ? AND time = ?
+        """
+                    try self.fmdb.executeUpdate(sql, values: [writeDate, wantToDo, time])
+                }catch let error as NSError {
+                    print("Failed from db deleteAlarm: \(error.localizedDescription)")
+                }
+    }
+    
+    
 }
