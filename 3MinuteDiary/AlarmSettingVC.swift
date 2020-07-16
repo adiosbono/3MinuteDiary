@@ -45,6 +45,11 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
     let plist = UserDefaults.standard
         //조회시 사용할 날짜를 저장하기 위한 변수
     var searchDate : String?
+        //findAlarm 함수의 결과값을 저장할 튜플(date, wantToDo, time)
+    typealias alarmRecord = (String, String, String)
+        //findAlarm 결과값 저장할 변수
+    var alarmRecordForNow = [alarmRecord]()
+    
     //MARK: 딜리게이트 함수들
    
     
@@ -120,18 +125,44 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
         let diaryData = diaryDAO.findData(writeDate: self.searchDate!)
         //가져온 data컬럼을 파싱한다
         self.wantToDoList = parseDiaryDataForWantToDo(stringData: diaryData)
+        //alarmTime테이블을 기준날짜로 조회한다.
+        self.alarmRecordForNow = diaryDAO.findAlarm(writeDate: self.searchDate!)
+        print("alarmRecordForNow Count: \(self.alarmRecordForNow.count)")
+        if self.alarmRecordForNow.count == 0 {
+            self.alarmRecordForNow = [("dummyDate","햄벅먹기", "12:34")]
+        }
     }
     
     //테이블 행의 개수를 결정하는 메소드
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        //print("tableCell count = \(self.wantToDoList?.count)")
         return self.wantToDoList?.count ?? 1
     }
     
     //테이블 행을 구성하는 메소드....보완할거 천국이구만
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "mainCell") as! AlarmCell
+        print("section: \(indexPath.section) / row: \(indexPath.row) 생성중")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmCell") as! AlarmCell
         cell.wantToDo.text = self.wantToDoList?[indexPath.row]
+        //alarmTable에서 가져온 자료와 wantToDoList의 자료를 비교
+        for alarmWantToDo in self.alarmRecordForNow{
+            if alarmWantToDo.1.isEqual(self.wantToDoList?[indexPath.row]){
+                print("하고싶은일 일치하는것 찾음")
+                cell.TimeText.text = alarmWantToDo.2
+                print("하고싶은일 : \(alarmWantToDo.1) / 알람시각 : \(alarmWantToDo.2)")
+            }else{
+                print("하고싶은일 일치하는게 없음...TimeText에 대입하지 않을 것임...switch disable시킴")
+                //togleSW disable시킴
+                cell.toggleSW.isEnabled = false
+            }
+        }
         return cell
+    }
+    
+    //셀의 높이를 지정하는 함수
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 92.0
     }
     
     //MARK: 내가만든 함수들
@@ -149,7 +180,7 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
             do{
                 let tempBody = try decoder.decode(Body.self, from: jsonData!)
                 print("파싱 컴플릿")
-                result = tempBody.myObjective
+                result = tempBody.wantToDo
             }catch{
                 print("파싱 error")
                 result = nil

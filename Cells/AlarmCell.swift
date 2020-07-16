@@ -16,9 +16,12 @@ class AlarmCell: UITableViewCell {
     @IBOutlet var TimeText: UILabel!
     //시각수정하기 버튼 눌렸을때 실행될 함수
     @IBAction func changeTime(_ sender: UIButton) {
+        print("시각수정하기 버튼 터치됨")
+        
     }
     //맨오른쪽 토글온오프스위치 눌렸을때 실행될 함수
     @IBAction func toggleSwitch(_ sender: UISwitch) {
     }
+    @IBOutlet var toggleSW: UISwitch!
     
 }
