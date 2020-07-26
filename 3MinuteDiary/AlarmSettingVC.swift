@@ -142,8 +142,10 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
     //테이블 행을 구성하는 메소드....보완할거 천국이구만
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("section: \(indexPath.section) / row: \(indexPath.row) 생성중")
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AlarmCell") as! AlarmCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "alarmCell") as! AlarmCell
         cell.wantToDo.text = self.wantToDoList?[indexPath.row]
+        //화면전환을 위해 화면전환을 요청한 vc의 정보가 필요하므로 넘겨준다.
+        cell.originVC = self
         //alarmTable에서 가져온 자료와 wantToDoList의 자료를 비교
         for alarmWantToDo in self.alarmRecordForNow{
             if alarmWantToDo.1.isEqual(self.wantToDoList?[indexPath.row]){
