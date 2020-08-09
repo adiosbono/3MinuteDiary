@@ -72,7 +72,7 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
         
         self.requestNotificationAuthorization()
             //알람을 등록하는 메소드
-        self.sendNotification()
+        //self.sendNotification()
         self.userNotificationCenter.delegate = self
         
         //UserDefault로부터 데이터를 읽어와 전역변수에 대입한다.
@@ -203,20 +203,22 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
         }
     }
         //알람보낼때 쓸 함수
-    func sendNotification() {
+    func sendNotification(identifier: String, alarmTime: DateComponents) {
+        print("sendNotification 실행됨")
         //새로운 알람내용 인스턴스를 만든다(알람에 포함될 내용을 저장하는 용도)
         let notificationContent = UNMutableNotificationContent()
         //알람내용에 값을 집어넣는다.
-        notificationContent.title = "Test"
-        notificationContent.body = "Test body"
+        notificationContent.title = "3minuteDiary Alarm"
+        notificationContent.body = identifier
+        notificationContent.sound = .default //무슨소리가 날지 궁금함...
         //뱃지는 앱아이콘 상단에 붉은점안에 숫자로 뜨는 녀석임
         //MARK: 뱃지를 통해서 하고싶은일 알람으로 해논게 몇갠지 알수있게 하자!
-        notificationContent.badge = NSNumber(value: 3)
+        notificationContent.badge = NSNumber(value: self.wantToDoList?.count ?? 1)
         //알람카테고리를 설정한다
-        notificationContent.categoryIdentifier = "REMINDER"
-
+        notificationContent.categoryIdentifier = "3minuteDiary"
         // Add an attachment to the notification content
-        //알람내용에 첨부파일을 붙일수 있다(사진,소리,영상 등)
+        //알람내용에 첨부파일을 붙일수 있다(사진,소리,영상 등) 하지만 내 앱에선 쓸 일이 없다
+        /*
         if let url = Bundle.main.url(forResource: "dune",
                                         withExtension: "png") {
             if let attachment = try? UNNotificationAttachment(identifier: "dune",
@@ -225,13 +227,15 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
                 notificationContent.attachments = [attachment]
             }
         }
+        */
+        //바로아래것은 현재시간기준으로 얼마동안의 시간 후에 알람을 발생시킬 것인지 정하는것
+        //let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5,repeats: false)
+        //calendar를 기준으로 알람을 발생시킬지 정하는 것
+        let trigger = UNCalendarNotificationTrigger(dateMatching: alarmTime, repeats: false)
         
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5,
-                                                        repeats: false)
-        let request = UNNotificationRequest(identifier: "testNotification",
+        let request = UNNotificationRequest(identifier: identifier,
                                             content: notificationContent,
                                             trigger: trigger)
-        
         userNotificationCenter.add(request) { (error) in
             if let error = error {
                 print("Notification Error: ", error)
@@ -256,13 +260,13 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
         //하고싶은일을 다 했으면 반드시 이녀석을 실행시켜줘야 한다.
         completionHandler()
     }
-/*
+
      //이거는 알람선택하면 무조건 실행된다. 뭐를 선택하든, 선택하지 않든간에...참고로 이 함수를 써야 앱이 포어그라운드상태일때도 알람이 온다.
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         print("willPresent 실행됨")
         completionHandler([.alert, .badge, .sound])
     }
- */
+ 
     /*
     
 //화면이 나타날때마다 호출되는 메소드

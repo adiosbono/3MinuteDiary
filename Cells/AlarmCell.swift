@@ -33,6 +33,7 @@ class AlarmCell: UITableViewCell {
         //화면을 present 방식으로 전환하면서 하고싶은일을 대입해준다
         let uvc = originVC?.storyboard!.instantiateViewController(withIdentifier: "alarmTimeSetVC") as! AlarmTimeSetVC //에러난 이유는 self가 viewController가 아니기 때문임... 이걸 받아오면 됨.
         uvc.originVC = originVC
+        uvc.tempTableViewCell = tempTableViewCell
         uvc.wantToDo = tempWantToDo
         //드디어 화면전환 실시
         self.originVC?.present(uvc, animated: true, completion: nil)
