@@ -49,6 +49,8 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
     typealias alarmRecord = (String, String, String)
         //findAlarm 결과값 저장할 변수
     var alarmRecordForNow = [alarmRecord]()
+        //시스템상 등록된 알람의 identifier 목록을 저장할 변수
+    var alarmIdentifiers = [String]()
     
     //MARK: 딜리게이트 함수들
    
@@ -129,8 +131,23 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
         self.alarmRecordForNow = diaryDAO.findAlarm(writeDate: self.searchDate!)
         print("alarmRecordForNow Count: \(self.alarmRecordForNow.count)")
         if self.alarmRecordForNow.count == 0 {
+            print("alamrTime테이블에 오늘날짜로된 자료가 없어서 더미데이터를 집어넣습니다")
             self.alarmRecordForNow = [("dummyDate","햄벅먹기", "12:34")]
+        }else{
+            print("alamrTime테이블에 들어있는 자료갯수: \(self.alarmRecordForNow.count)")
         }
+        
+        //시스템에 알람이 등록되었는지 확인
+            //개헷갈렸는데... 바로아랫줄의 in 구문은 closure의 In 이고... 두번째줄의 for in 은 그냥 for in 구문이다. 즉 completionHandler 에 들어오는 함수형이 (completionHandler: @escaping ([UNNotificationRequest]) -> Void) 이므로... 인자로 [UNNotificationRequest] 가 들어오는거를 여기서는 requests 라는 녀석으로 받아서... for in 구문에서 하나씩 까고 있는 모습이다. 맨 처음에 in for in 구문이 뭔지 처음봐서 엄청 헷갈렸었음...이런 빡대가리
+        self.userNotificationCenter.getPendingNotificationRequests(completionHandler: { requests in
+            for request in requests {
+                print(request)
+                self.alarmIdentifiers.append(request.identifier)
+                print("self.alarmIdentifiers: \(self.alarmIdentifiers)")
+            }
+        })
+        //바로아래줄은 알람 없애는 구문임
+        //self.userNotificationCenter.removePendingNotificationRequests(withIdentifiers: <#T##[String]#>)
     }
     
     //테이블 행의 개수를 결정하는 메소드
@@ -152,6 +169,7 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
                 print("하고싶은일 일치하는것 찾음")
                 cell.TimeText.text = alarmWantToDo.2
                 print("하고싶은일 : \(alarmWantToDo.1) / 알람시각 : \(alarmWantToDo.2)")
+                //여기서는 미리 알람큐에서 뽑아온 identifier 목록을 참고해서 일치하는 녀석이 있으면... 토글스위치를 on상태로 만들면 된다.
             }else{
                 print("하고싶은일 일치하는게 없음...TimeText에 대입하지 않을 것임...switch disable시킴")
                 //togleSW disable시킴
