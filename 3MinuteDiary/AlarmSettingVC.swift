@@ -50,7 +50,7 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
         //findAlarm 결과값 저장할 변수
     var alarmRecordForNow = [alarmRecord]()
         //시스템상 등록된 알람의 identifier 목록을 저장할 변수
-    var alarmIdentifiers = [String]()
+    var alarmIdentifiers = [(String, String)]()
     
     //MARK: 딜리게이트 함수들
    
@@ -142,7 +142,18 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
         self.userNotificationCenter.getPendingNotificationRequests(completionHandler: { requests in
             for request in requests {
                 print(request)
-                self.alarmIdentifiers.append(request.identifier)
+                //identifier는 간단하게 기본적으로 제공되므로 편함
+                let identifier = request.identifier
+                //dateComponents는 trigger를 받아서 세부적인 클래스로 강제변환 시킨 후 읽을수 있음. 다운캐스팅 안하고 읽으려다가 개고생함
+                let tempTime = request.trigger as! UNCalendarNotificationTrigger
+                //진짜 시간은 여기에 들어있음
+                let time = tempTime.dateComponents
+                //시간과 분을 끄집어내서 사용해야한다
+                let hours : String = String(time.hour!)
+                let minutes : String = String(time.minute!)
+                print("in notificationRequest hours: \(hours) / minutes: \(minutes)")
+                let hoursAndMinutes = "\(hours):\(minutes)"
+                self.alarmIdentifiers.append((identifier, hoursAndMinutes))
                 print("self.alarmIdentifiers: \(self.alarmIdentifiers)")
             }
         })
@@ -164,11 +175,12 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
         //화면전환을 위해 화면전환을 요청한 vc의 정보가 필요하므로 넘겨준다.
         cell.originVC = self
         //alarmTable에서 가져온 자료와 wantToDoList의 자료를 비교
-        for alarmWantToDo in self.alarmRecordForNow{
-            if alarmWantToDo.1.isEqual(self.wantToDoList?[indexPath.row]){
+        for alarmWantToDo in self.alarmIdentifiers{
+            if alarmWantToDo.0.isEqual(self.wantToDoList?[indexPath.row]){
                 print("하고싶은일 일치하는것 찾음")
-                cell.TimeText.text = alarmWantToDo.2
-                print("하고싶은일 : \(alarmWantToDo.1) / 알람시각 : \(alarmWantToDo.2)")
+                //let timeNoOptional : String! = String(alarmWantToDo.1)
+                cell.TimeText.text = alarmWantToDo.1
+                print("하고싶은일 : \(alarmWantToDo.0) / 알람시각 : \(alarmWantToDo.1)")
                 //여기서는 미리 알람큐에서 뽑아온 identifier 목록을 참고해서 일치하는 녀석이 있으면... 토글스위치를 on상태로 만들면 된다.
             }else{
                 print("하고싶은일 일치하는게 없음...TimeText에 대입하지 않을 것임...switch disable시킴")
