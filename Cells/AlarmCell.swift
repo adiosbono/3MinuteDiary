@@ -40,6 +40,30 @@ class AlarmCell: UITableViewCell {
     }
     //맨오른쪽 토글온오프스위치 눌렸을때 실행될 함수
     @IBAction func toggleSwitch(_ sender: UISwitch) {
+        print("토글스위치 눌림")
+        //버튼이 속한 테이블뷰셀의 정보를 받는다.
+        var superTableViewCell: UITableViewCell?{
+            //슈펴뷰 두번쓴 이유 : 바로위의것은 컨텐츠뷰였고 거기서 한단계 더 가야 테이블뷰셀나옴
+            return sender.superview?.superview as? UITableViewCell
+        }
+        //원하는녀석으로 캐스팅
+        let tempTableViewCell = superTableViewCell as! AlarmCell
+        //하고싶은일 정보를 얻는다.
+        let tempWantToDo = tempTableViewCell.wantToDo.text //리턴값은 옵셔널이다
+        print("하고싶은일 추출 : \(tempWantToDo)")
+        //스위치가 on인지 off인지 확인하기
+        if self.toggleSW.isOn == true {//on인 경우 : 알람을 등록해야 한다.
+            print("toggleSW is on")
+        }else{//off인 경우 : 알람을 해제해야 한다
+            print("toggleSW is off")
+            //originVC(AlarmSettingVC)를 이용하여 알람제거하는 함수 호출한다
+            self.originVC?.userNotificationCenter.removePendingNotificationRequests(withIdentifiers: [tempWantToDo!])
+            print("알람제거완료")
+            //셀에서 보이는 시각을 00:00 으로 바꿔버린다.
+            self.TimeText.text = "00:00"
+            //switch를 disable한다
+            self.toggleSW.isEnabled = false
+        }
     }
     @IBOutlet var toggleSW: UISwitch!
     

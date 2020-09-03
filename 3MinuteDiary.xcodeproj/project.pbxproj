@@ -37,6 +37,8 @@
 		0441A51423AF86F9005A2251 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0441A51323AF86F9005A2251 /* CalendarVC.swift */; };
 		105886EAF13401D602400FCF /* libPods-3MinuteDiaryTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EC52A92CC7991DC331310712 /* libPods-3MinuteDiaryTests.a */; };
 		22BE91253BC738F2EFEBFA1C /* libPods-3MinuteDiaryUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95EEFDCD3873601A5C4D7ECC /* libPods-3MinuteDiaryUITests.a */; };
+		440170DE2500D86D008893A7 /* settingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440170DD2500D86D008893A7 /* settingCell.swift */; };
+		440170E02500D8BD008893A7 /* settingCellWithSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440170DF2500D8BD008893A7 /* settingCellWithSwitch.swift */; };
 		445236BB24BF41B3002CC849 /* AlarmTimeSetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445236BA24BF41B3002CC849 /* AlarmTimeSetVC.swift */; };
 		FE664EDF22C372EABF4DA5ED /* Pods_3MinuteDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5B4FFC3F239618D0CD043C /* Pods_3MinuteDiary.framework */; };
 /* End PBXBuildFile section */
@@ -95,6 +97,8 @@
 		0441A51323AF86F9005A2251 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		17FCA218C6F3CC1A078C6D9B /* Pods-3MinuteDiaryUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3MinuteDiaryUITests.debug.xcconfig"; path = "Target Support Files/Pods-3MinuteDiaryUITests/Pods-3MinuteDiaryUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		3E1D0C9CD38193BB5CF54644 /* Pods-3MinuteDiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3MinuteDiaryTests.debug.xcconfig"; path = "Target Support Files/Pods-3MinuteDiaryTests/Pods-3MinuteDiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
+		440170DD2500D86D008893A7 /* settingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingCell.swift; sourceTree = "<group>"; };
+		440170DF2500D8BD008893A7 /* settingCellWithSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingCellWithSwitch.swift; sourceTree = "<group>"; };
 		445236BA24BF41B3002CC849 /* AlarmTimeSetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTimeSetVC.swift; sourceTree = "<group>"; };
 		4B5B4FFC3F239618D0CD043C /* Pods_3MinuteDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_3MinuteDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B2246F09405E8675F96882 /* Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig"; path = "Target Support Files/Pods-3MinuteDiary-3MinuteDiaryUITests/Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 				0424596823E312610075016E /* TemplateAddCell.swift */,
 				042AF16424433D6C00F90C0D /* WriteDiaryAddCell.swift */,
 				042FBBF924964784000913AD /* AlarmCell.swift */,
+				440170DD2500D86D008893A7 /* settingCell.swift */,
+				440170DF2500D8BD008893A7 /* settingCellWithSwitch.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -491,11 +497,13 @@
 				0441A4E123ACE7E5005A2251 /* AppDelegate.swift in Sources */,
 				04189204247A9DB30000E9E5 /* AlarmSettingVC.swift in Sources */,
 				445236BB24BF41B3002CC849 /* AlarmTimeSetVC.swift in Sources */,
+				440170DE2500D86D008893A7 /* settingCell.swift in Sources */,
 				0441A4E323ACE7E5005A2251 /* SceneDelegate.swift in Sources */,
 				0441A4EB23ACE7E5005A2251 /* _MinuteDiary.xcdatamodeld in Sources */,
 				0431059B23B5CAAC00F727FD /* ToolBarCell.swift in Sources */,
 				04286C99246D70AE00FAE6C7 /* UITableViewCell+Extensions.swift in Sources */,
 				0424596723E3086E0075016E /* TemplateBodyCell.swift in Sources */,
+				440170E02500D8BD008893A7 /* settingCellWithSwitch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

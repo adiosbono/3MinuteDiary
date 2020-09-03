@@ -174,6 +174,14 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
         cell.wantToDo.text = self.wantToDoList?[indexPath.row]
         //화면전환을 위해 화면전환을 요청한 vc의 정보가 필요하므로 넘겨준다.
         cell.originVC = self
+        //아무 알람도 설정된게 없는 경우에는 아래의 for alarmWantToDo in self.alarmIdentifiers{ 구문이 실행되지 않고 이에따라서 스위치를 disable하는 초기화 구문이 실행되지 않기 때문에 아무 알람도 없는 경우를 위한 초기화구문을 작성했다.
+        if self.alarmIdentifiers.count == 0{
+            print("현재 설정된 알람이 하나도 없어서 초기화를 강제로 진행합니다")
+            cell.toggleSW.isEnabled = false
+        }else{
+            print("이미 설정되어있는 알람이 한개 이상 있으니 강제 초기화는 하지 않습니다.")
+        }
+        
         //alarmTable에서 가져온 자료와 wantToDoList의 자료를 비교
         for alarmWantToDo in self.alarmIdentifiers{
             if alarmWantToDo.0.isEqual(self.wantToDoList?[indexPath.row]){
@@ -181,6 +189,9 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
                 //let timeNoOptional : String! = String(alarmWantToDo.1)
                 cell.TimeText.text = alarmWantToDo.1
                 print("하고싶은일 : \(alarmWantToDo.0) / 알람시각 : \(alarmWantToDo.1)")
+                //토글스위치를 on상태로 해준다
+                cell.toggleSW.isEnabled = true
+                cell.toggleSW.isOn = true
                 //여기서는 미리 알람큐에서 뽑아온 identifier 목록을 참고해서 일치하는 녀석이 있으면... 토글스위치를 on상태로 만들면 된다.
             }else{
                 print("하고싶은일 일치하는게 없음...TimeText에 대입하지 않을 것임...switch disable시킴")
