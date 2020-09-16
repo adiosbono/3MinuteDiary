@@ -40,6 +40,7 @@
 		440170DE2500D86D008893A7 /* settingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440170DD2500D86D008893A7 /* settingCell.swift */; };
 		440170E02500D8BD008893A7 /* settingCellWithSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440170DF2500D8BD008893A7 /* settingCellWithSwitch.swift */; };
 		445236BB24BF41B3002CC849 /* AlarmTimeSetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445236BA24BF41B3002CC849 /* AlarmTimeSetVC.swift */; };
+		44DF463725124A8400309CEB /* LanguagePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF463625124A8400309CEB /* LanguagePickerVC.swift */; };
 		FE664EDF22C372EABF4DA5ED /* Pods_3MinuteDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5B4FFC3F239618D0CD043C /* Pods_3MinuteDiary.framework */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +101,7 @@
 		440170DD2500D86D008893A7 /* settingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingCell.swift; sourceTree = "<group>"; };
 		440170DF2500D8BD008893A7 /* settingCellWithSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingCellWithSwitch.swift; sourceTree = "<group>"; };
 		445236BA24BF41B3002CC849 /* AlarmTimeSetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTimeSetVC.swift; sourceTree = "<group>"; };
+		44DF463625124A8400309CEB /* LanguagePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePickerVC.swift; sourceTree = "<group>"; };
 		4B5B4FFC3F239618D0CD043C /* Pods_3MinuteDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_3MinuteDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B2246F09405E8675F96882 /* Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig"; path = "Target Support Files/Pods-3MinuteDiary-3MinuteDiaryUITests/Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig"; sourceTree = "<group>"; };
 		878A4B46B54B89BFBECCDDF6 /* Pods-3MinuteDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3MinuteDiary.debug.xcconfig"; path = "Target Support Files/Pods-3MinuteDiary/Pods-3MinuteDiary.debug.xcconfig"; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 		0441A4D423ACE7E5005A2251 = {
 			isa = PBXGroup;
 			children = (
+				44DF463525124A5600309CEB /* Views */,
 				04C50BF423EAEC5B00A32BAE /* Database */,
 				0431059923B5CA8E00F727FD /* Cells */,
 				0441A4DF23ACE7E5005A2251 /* 3MinuteDiary */,
@@ -230,6 +233,14 @@
 				0425A97B23ED7D5900B09F65 /* db.sqlite */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		44DF463525124A5600309CEB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				44DF463625124A8400309CEB /* LanguagePickerVC.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		708EC50112E7C4EB0B1CD2EB /* Pods */ = {
@@ -498,6 +509,7 @@
 				04189204247A9DB30000E9E5 /* AlarmSettingVC.swift in Sources */,
 				445236BB24BF41B3002CC849 /* AlarmTimeSetVC.swift in Sources */,
 				440170DE2500D86D008893A7 /* settingCell.swift in Sources */,
+				44DF463725124A8400309CEB /* LanguagePickerVC.swift in Sources */,
 				0441A4E323ACE7E5005A2251 /* SceneDelegate.swift in Sources */,
 				0441A4EB23ACE7E5005A2251 /* _MinuteDiary.xcdatamodeld in Sources */,
 				0431059B23B5CAAC00F727FD /* ToolBarCell.swift in Sources */,
