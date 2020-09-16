@@ -103,24 +103,12 @@ class BackupManageVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 alert.addAction(okAction)
             
                 //알라트팝업 가운데에 끼워넣을 뷰
-                let v = UIViewController()
-                //알라트팝업내에 추가할 피커뷰를 만들어야한다----------------------------------------------------------
-                let picker = UIPickerView()
-            picker.dataSource = self
-            picker.delegate = self
+                let v = LanguagePickerVC()
+                //LanguagePickerVC안의 피커뷰에 대한 딜리게이트를 현재 클래스로 지정한다.
+                v.PV.dataSource = self
+                v.PV.delegate = self
             
-                v.view.addSubview(picker)
-
-            print("picker.frame.size.height = \(picker.frame.size.height)")
-            print("picker.frame.size.width = \(picker.frame.size.width)")
-            print("v.view.frame.size.height = \(v.view.frame.size.height)")
-            print("v.view.frame.size.width = \(v.view.frame.size.width)")
-            print("picker.center.x \(picker.center.x)")
-            print("picker.center.y = \(picker.center.y)")
-            print("v.view.center.x = \(v.view.center.x)")
-            print("v.view.center.y = \(v.view.center.y)")
-            print("alert.view.frame.size.width = \(alert.view.frame.size.width)")
-            print("alert.view.frame.size.height = \(alert.view.frame.size.height)")
+               
                 //알림창에 뷰 컨트롤러를 등록한다
                 alert.setValue(v, forKey: "contentViewController")
             
@@ -130,7 +118,7 @@ class BackupManageVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                 alert.view.addConstraint(height)
                 //alert.view.addConstraint(width)
                 //알라트팝업을 표시한다
-            
+            /*
             // Filtering width constraints of alert base view width
             let widthConstraints = alert.view.constraints.filter({ return $0.firstAttribute == .width })
             alert.view.removeConstraints(widthConstraints)
@@ -168,7 +156,7 @@ class BackupManageVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                                                             attribute: .width,
                                                             multiplier: 1.0,
                                                             constant: 0))
-            
+            */
             
                 self.present(alert, animated: false, completion: nil)
         default:
