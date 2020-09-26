@@ -49,8 +49,14 @@ class BackupManageVC: UIViewController, UITableViewDelegate, UITableViewDataSour
    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     switch indexPath.row {
     case 0:
+        //겹치는 문제 해결을 위하여 프로토타입셀을 하나 더 만들어서 해결함
+        let cell = tableView.dequeueReusableCell(withIdentifier: "languageSelectCell") as! LanguageSelectCell
+        cell.title.text = "언어설정"
+        cell.selectedLanguage.text = plist.string(forKey: "language")
+        /*
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
         cell.title.text = "언어설정"
+        //내가 생각하기에 문제는 여기서 매번 레이블을 만들어버리니까 겹치는것이 아닐까? 해결방법은 프로토타입셀을 하나 더 만들어서 그녀석으로 설정하는것
         let selectedLanguage = UILabel()
         selectedLanguage.text = plist.string(forKey: "language")
         cell.addSubview(selectedLanguage)
@@ -58,6 +64,7 @@ class BackupManageVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         selectedLanguage.frame.size.width = 150
         selectedLanguage.center.y = cell.frame.height/2
         selectedLanguage.frame.origin.x = cell.frame.width - 100
+ */
         return cell
     case 1:
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell

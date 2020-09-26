@@ -40,6 +40,7 @@
 		440170DE2500D86D008893A7 /* settingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440170DD2500D86D008893A7 /* settingCell.swift */; };
 		440170E02500D8BD008893A7 /* settingCellWithSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440170DF2500D8BD008893A7 /* settingCellWithSwitch.swift */; };
 		445236BB24BF41B3002CC849 /* AlarmTimeSetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445236BA24BF41B3002CC849 /* AlarmTimeSetVC.swift */; };
+		4455FBE6251EC34500BB2E26 /* LanguageSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4455FBE5251EC34500BB2E26 /* LanguageSelectCell.swift */; };
 		44DF463725124A8400309CEB /* LanguagePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF463625124A8400309CEB /* LanguagePickerVC.swift */; };
 		FE664EDF22C372EABF4DA5ED /* Pods_3MinuteDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5B4FFC3F239618D0CD043C /* Pods_3MinuteDiary.framework */; };
 /* End PBXBuildFile section */
@@ -101,6 +102,7 @@
 		440170DD2500D86D008893A7 /* settingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingCell.swift; sourceTree = "<group>"; };
 		440170DF2500D8BD008893A7 /* settingCellWithSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingCellWithSwitch.swift; sourceTree = "<group>"; };
 		445236BA24BF41B3002CC849 /* AlarmTimeSetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTimeSetVC.swift; sourceTree = "<group>"; };
+		4455FBE5251EC34500BB2E26 /* LanguageSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectCell.swift; sourceTree = "<group>"; };
 		44DF463625124A8400309CEB /* LanguagePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePickerVC.swift; sourceTree = "<group>"; };
 		4B5B4FFC3F239618D0CD043C /* Pods_3MinuteDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_3MinuteDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B2246F09405E8675F96882 /* Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig"; path = "Target Support Files/Pods-3MinuteDiary-3MinuteDiaryUITests/Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -153,6 +155,7 @@
 				042FBBF924964784000913AD /* AlarmCell.swift */,
 				440170DD2500D86D008893A7 /* settingCell.swift */,
 				440170DF2500D8BD008893A7 /* settingCellWithSwitch.swift */,
+				4455FBE5251EC34500BB2E26 /* LanguageSelectCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				44DF463725124A8400309CEB /* LanguagePickerVC.swift in Sources */,
 				0441A4E323ACE7E5005A2251 /* SceneDelegate.swift in Sources */,
 				0441A4EB23ACE7E5005A2251 /* _MinuteDiary.xcdatamodeld in Sources */,
+				4455FBE6251EC34500BB2E26 /* LanguageSelectCell.swift in Sources */,
 				0431059B23B5CAAC00F727FD /* ToolBarCell.swift in Sources */,
 				04286C99246D70AE00FAE6C7 /* UITableViewCell+Extensions.swift in Sources */,
 				0424596723E3086E0075016E /* TemplateBodyCell.swift in Sources */,
