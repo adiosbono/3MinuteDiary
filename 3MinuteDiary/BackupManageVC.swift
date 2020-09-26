@@ -95,27 +95,30 @@ class BackupManageVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         case 0:
             print("언어설정 터치되었습니다")
             //기본적인 알라트팝업세팅
-                let alert = UIAlertController(title: "Select Language", message: nil, preferredStyle: .alert)
-                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: cancelHandler(alert:))
+            let alert = UIAlertController(title: "Select Language", message: nil, preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: cancelHandler(alert:))
                 //오케이액션에 핸들러가 있는데 그녀석을 쓰기 위해서는 함수를 따로 만들어야함
-                let okAction = UIAlertAction(title: "OK", style: .default, handler: okHandler(alert:))
-                alert.addAction(cancelAction)
-                alert.addAction(okAction)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: okHandler(alert:))
+            alert.addAction(cancelAction)
+            alert.addAction(okAction)
             
                 //알라트팝업 가운데에 끼워넣을 뷰
-                let v = LanguagePickerVC()
+            let v = LanguagePickerVC()
                 //LanguagePickerVC안의 피커뷰에 대한 딜리게이트를 현재 클래스로 지정한다.
-                v.PV.dataSource = self
-                v.PV.delegate = self
+            v.PV.dataSource = self
+            v.PV.delegate = self
             
                
                 //알림창에 뷰 컨트롤러를 등록한다
-                alert.setValue(v, forKey: "contentViewController")
+            alert.setValue(v, forKey: "contentViewController")
             
+            self.present(alert, animated: false, completion: nil)
+        default:
+                print("스위치문에서 디폴드값 실행됨")
             
-            var height:NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.40)
+            //var height:NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: NSLayoutConstraint.Attribute.height, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: self.view.frame.height * 0.40)
             //var width:NSLayoutConstraint = NSLayoutConstraint(item: alert.view, attribute: NSLayoutConstraint.Attribute.width, relatedBy: NSLayoutConstraint.Relation.equal, toItem: nil, attribute: NSLayoutConstraint.Attribute.notAnAttribute, multiplier: 1, constant: self.view.frame.width * 0.40)
-                alert.view.addConstraint(height)
+                //alert.view.addConstraint(height)
                 //alert.view.addConstraint(width)
                 //알라트팝업을 표시한다
             /*
@@ -158,9 +161,7 @@ class BackupManageVC: UIViewController, UITableViewDelegate, UITableViewDataSour
                                                             constant: 0))
             */
             
-                self.present(alert, animated: false, completion: nil)
-        default:
-            print("스위치문에서 디폴드값 실행됨")
+                
         }
     }
     //오케이액션에 쓸 함수 만들자
