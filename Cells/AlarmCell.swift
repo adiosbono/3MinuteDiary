@@ -16,6 +16,9 @@ class AlarmCell: UITableViewCell {
     @IBOutlet var wantToDo: UILabel!
     //시각을 크게 보여주는 레이블
     @IBOutlet var TimeText: UILabel!
+    
+    //시각수정하기버튼 텍스트 현지화 위해서...
+    @IBOutlet var changeTimeText: UIButton!
     //시각수정하기 버튼 눌렸을때 실행될 함수
     @IBAction func changeTime(_ sender: UIButton) {
         print("시각수정하기 버튼 터치됨")

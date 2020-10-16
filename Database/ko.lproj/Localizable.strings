@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  3MinuteDiary
+
+  Created by Boram Cho on 2020/09/26.
+  Copyright © 2020 Bono b Bono. All rights reserved.
+*/
+
+"Calendar" = "달력";
+"Alarm" = "알람";
+"Setting&Backup" = "설정&백업";
+"Template" = "템플릿관리";
+"changeTime" = "시각변경하기";
+//아래것은 스토리보드에 있는 녀석을 현지화한것임.... 좌측에 맨 마지막 .text 에 주의해야 함
+"pPn-vp-vE2" = "설정 & 백업";
+"8Up-Pe-W73" = "일기쓰기";
+

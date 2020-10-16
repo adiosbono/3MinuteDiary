@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--달력-->
+        <!--Calendar-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="CalendarVC" customModule="_MinuteDiary" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,9 +18,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Up-Pe-W73">
-                                <rect key="frame" x="181" y="524" width="52" height="30"/>
+                                <rect key="frame" x="169" y="524" width="76" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="일기쓰기"/>
+                                <state key="normal" title="Write Diary"/>
                                 <connections>
                                     <action selector="writeButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PsZ-9C-1jR"/>
                                 </connections>
@@ -29,7 +29,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="달력" id="6r5-KZ-h1z"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" id="6r5-KZ-h1z"/>
                     <connections>
                         <outlet property="writeButton" destination="8Up-Pe-W73" id="1uM-Y1-AP7"/>
                     </connections>
@@ -38,7 +38,7 @@
             </objects>
             <point key="canvasLocation" x="-210" y="86"/>
         </scene>
-        <!--알람-->
+        <!--Alarm-->
         <scene sceneID="y0P-fq-O3G">
             <objects>
                 <tableViewController id="Wf2-Lb-ked" customClass="AlarmSettingVC" customModule="_MinuteDiary" customModuleProvider="target" sceneMemberID="viewController">
@@ -95,6 +95,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="TimeText" destination="8V4-EP-GOf" id="XdW-4O-424"/>
+                                    <outlet property="changeTimeText" destination="iug-Ak-cfJ" id="pRC-uW-wiJ"/>
                                     <outlet property="toggleSW" destination="GoS-fa-1l2" id="D7H-pE-0Ix"/>
                                     <outlet property="wantToDo" destination="1ZF-0h-xCi" id="s35-kf-X02"/>
                                 </connections>
@@ -105,13 +106,13 @@
                             <outlet property="delegate" destination="Wf2-Lb-ked" id="Yst-GA-tAp"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="알람" id="2Jz-0y-Vmf"/>
+                    <tabBarItem key="tabBarItem" title="Alarm" id="2Jz-0y-Vmf"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3kX-p6-T8z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="573.91304347826087" y="85.714285714285708"/>
         </scene>
-        <!--설정&백업관리-->
+        <!--Setting&Backup-->
         <scene sceneID="dJw-gz-mIR">
             <objects>
                 <viewController id="SRU-US-NzT" customClass="BackupManageVC" customModule="_MinuteDiary" customModuleProvider="target" sceneMemberID="viewController">
@@ -123,8 +124,8 @@
                                 <rect key="frame" x="20" y="44" width="374" height="46"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="설정&amp;백업관리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPn-vp-vE2">
-                                        <rect key="frame" x="137" y="13" width="100" height="21"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Setting &amp; Backup" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pPn-vp-vE2">
+                                        <rect key="frame" x="137" y="13" width="132" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -220,7 +221,7 @@
                         <viewLayoutGuide key="safeArea" id="CVV-Hd-h74"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="설정&amp;백업관리" id="KdK-Tt-gUi"/>
+                    <tabBarItem key="tabBarItem" title="Setting&amp;Backup" id="KdK-Tt-gUi"/>
                     <connections>
                         <outlet property="settingTableView" destination="F5h-fy-alt" id="lF6-xC-ueb"/>
                     </connections>
@@ -301,13 +302,6 @@
                                 <rect key="frame" x="20" y="44" width="374" height="43"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="템플릿관리" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgS-AW-n94">
-                                        <rect key="frame" x="150" y="11" width="74" height="20"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GW0-hL-hTh">
                                         <rect key="frame" x="313" y="8" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -324,6 +318,13 @@
                                             <action selector="applyToday:" destination="LjI-Qd-lvV" eventType="touchUpInside" id="9P1-TJ-K7S"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Template Management" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QgS-AW-n94">
+                                        <rect key="frame" x="100" y="11" width="175" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <accessibility key="accessibilityConfiguration">
@@ -334,7 +335,7 @@
                         <viewLayoutGuide key="safeArea" id="Wd0-37-XTn"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="템플릿관리" id="K3I-pu-cxg"/>
+                    <tabBarItem key="tabBarItem" title="Template" id="K3I-pu-cxg"/>
                     <connections>
                         <outlet property="editButtonOutlet" destination="GW0-hL-hTh" id="aDP-BQ-McZ"/>
                         <outlet property="myTableView" destination="olK-ZU-GwA" id="N8z-Gy-UhE"/>

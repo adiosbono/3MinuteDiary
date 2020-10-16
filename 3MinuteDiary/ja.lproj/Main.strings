@@ -1,0 +1,87 @@
+
+/* Class = "UIButton"; normalTitle = "저장"; ObjectID = "0hB-3f-Ht0"; */
+"0hB-3f-Ht0.normalTitle" = "저장";
+
+/* Class = "UILabel"; text = "하고싶은일 내용 나타나는곳"; ObjectID = "1ZF-0h-xCi"; */
+"1ZF-0h-xCi.text" = "하고싶은일 내용 나타나는곳";
+
+/* Class = "UITabBarItem"; title = "알람"; ObjectID = "2Jz-0y-Vmf"; */
+"2Jz-0y-Vmf.title" = "알람";
+
+/* Class = "UITabBarItem"; title = "달력"; ObjectID = "6r5-KZ-h1z"; */
+"6r5-KZ-h1z.title" = "달력";
+
+/* Class = "UIButton"; normalTitle = "일기쓰기"; ObjectID = "8Up-Pe-W73"; */
+"8Up-Pe-W73.normalTitle" = "일기쓰기";
+
+/* Class = "UILabel"; text = "00:00"; ObjectID = "8V4-EP-GOf"; */
+"8V4-EP-GOf.text" = "00:00";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "DBe-L7-xH4"; */
+"DBe-L7-xH4.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "편집"; ObjectID = "GW0-hL-hTh"; */
+"GW0-hL-hTh.normalTitle" = "편집";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "IJs-19-8CB"; */
+"IJs-19-8CB.text" = "Label";
+
+/* Class = "UITabBarItem"; title = "템플릿관리"; ObjectID = "K3I-pu-cxg"; */
+"K3I-pu-cxg.title" = "템플릿관리";
+
+/* Class = "UITabBarItem"; title = "설정&백업관리"; ObjectID = "KdK-Tt-gUi"; */
+"KdK-Tt-gUi.title" = "설정&백업관리";
+
+/* Class = "UIViewController"; title = "advancedTemplateManage"; ObjectID = "LjI-Qd-lvV"; */
+"LjI-Qd-lvV.title" = "advancedTemplateManage";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "NdA-Ka-uXi"; */
+"NdA-Ka-uXi.text" = "Label";
+
+/* Class = "UILabel"; text = "템플릿관리"; ObjectID = "QgS-AW-n94"; */
+"QgS-AW-n94.text" = "템플릿관리";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "UYL-7e-jvX"; */
+"UYL-7e-jvX.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "저장"; ObjectID = "W3r-el-73b"; */
+"W3r-el-73b.normalTitle" = "저장";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "WvC-zz-KHL"; */
+"WvC-zz-KHL.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "XIx-V3-IKZ"; */
+"XIx-V3-IKZ.text" = "Label";
+
+/* Class = "UILabel"; text = "알람시각"; ObjectID = "cDH-eX-Q5A"; */
+"cDH-eX-Q5A.text" = "알람시각";
+
+/* Class = "UILabel"; text = "알람시각 편집"; ObjectID = "egL-ft-atw"; */
+"egL-ft-atw.text" = "알람시각 편집";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "fmh-2h-M5u"; */
+"fmh-2h-M5u.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UIButton"; normalTitle = "수정"; ObjectID = "hvP-WY-6oS"; */
+"hvP-WY-6oS.normalTitle" = "수정";
+
+/* Class = "UITextView"; text = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda."; ObjectID = "igC-hi-Gvh"; */
+"igC-hi-Gvh.text" = "Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.";
+
+/* Class = "UIButton"; normalTitle = "시각수정하기"; ObjectID = "iug-Ak-cfJ"; */
+"iug-Ak-cfJ.normalTitle" = "시각수정하기";
+
+/* Class = "UIButton"; normalTitle = "오늘부터 반영"; ObjectID = "lBh-xG-qWl"; */
+"lBh-xG-qWl.normalTitle" = "오늘부터 반영";
+
+/* Class = "UIButton"; normalTitle = "취소"; ObjectID = "m1N-Ud-xWe"; */
+"m1N-Ud-xWe.normalTitle" = "취소";
+
+/* Class = "UIButton"; normalTitle = "취소"; ObjectID = "mQ9-kV-ruu"; */
+"mQ9-kV-ruu.normalTitle" = "취소";
+
+/* Class = "UILabel"; text = "설정&백업관리"; ObjectID = "pPn-vp-vE2"; */
+"pPn-vp-vE2.text" = "설정&백업관리";
+
+/* Class = "UIViewController"; title = "AlarmTimeSetVC"; ObjectID = "qVi-2p-lGF"; */
+"qVi-2p-lGF.title" = "AlarmTimeSetVC";

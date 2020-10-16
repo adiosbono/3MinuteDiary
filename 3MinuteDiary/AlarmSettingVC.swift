@@ -171,6 +171,11 @@ class AlarmSettingVC: UITableViewController, UNUserNotificationCenterDelegate{
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print("section: \(indexPath.section) / row: \(indexPath.row) 생성중")
         let cell = tableView.dequeueReusableCell(withIdentifier: "alarmCell") as! AlarmCell
+        //시각수정하기 텍스트를 현지화하는 작업
+        let changeTimeLocalizedText = NSLocalizedString("changeTime", comment: "text for 'changeTime'")
+        cell.changeTimeText.setTitle(changeTimeLocalizedText, for: .normal)
+        
+        
         cell.wantToDo.text = self.wantToDoList?[indexPath.row]
         //화면전환을 위해 화면전환을 요청한 vc의 정보가 필요하므로 넘겨준다.
         cell.originVC = self
