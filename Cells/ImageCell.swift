@@ -11,6 +11,7 @@ import UIKit
 
 class ImageCell : UITableViewCell {
     
+    @IBOutlet var userImage: UIImageView!
     
     
 }

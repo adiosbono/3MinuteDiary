@@ -39,10 +39,12 @@
 		22BE91253BC738F2EFEBFA1C /* libPods-3MinuteDiaryUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95EEFDCD3873601A5C4D7ECC /* libPods-3MinuteDiaryUITests.a */; };
 		440170DE2500D86D008893A7 /* settingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440170DD2500D86D008893A7 /* settingCell.swift */; };
 		440170E02500D8BD008893A7 /* settingCellWithSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440170DF2500D8BD008893A7 /* settingCellWithSwitch.swift */; };
+		442C2F452547BD930084ECEA /* PhotoDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442C2F442547BD930084ECEA /* PhotoDAO.swift */; };
 		445236BB24BF41B3002CC849 /* AlarmTimeSetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445236BA24BF41B3002CC849 /* AlarmTimeSetVC.swift */; };
 		4455FBE6251EC34500BB2E26 /* LanguageSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4455FBE5251EC34500BB2E26 /* LanguageSelectCell.swift */; };
 		4455FC01251ED2D300BB2E26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4455FC03251ED2D300BB2E26 /* Localizable.strings */; };
 		44DF463725124A8400309CEB /* LanguagePickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44DF463625124A8400309CEB /* LanguagePickerVC.swift */; };
+		44E8CDCC254564DA0055F524 /* photos.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 44E8CDCB254564DA0055F524 /* photos.sqlite */; };
 		FE664EDF22C372EABF4DA5ED /* Pods_3MinuteDiary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4B5B4FFC3F239618D0CD043C /* Pods_3MinuteDiary.framework */; };
 /* End PBXBuildFile section */
 
@@ -102,6 +104,7 @@
 		3E1D0C9CD38193BB5CF54644 /* Pods-3MinuteDiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3MinuteDiaryTests.debug.xcconfig"; path = "Target Support Files/Pods-3MinuteDiaryTests/Pods-3MinuteDiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		440170DD2500D86D008893A7 /* settingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingCell.swift; sourceTree = "<group>"; };
 		440170DF2500D8BD008893A7 /* settingCellWithSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingCellWithSwitch.swift; sourceTree = "<group>"; };
+		442C2F442547BD930084ECEA /* PhotoDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDAO.swift; sourceTree = "<group>"; };
 		445236BA24BF41B3002CC849 /* AlarmTimeSetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTimeSetVC.swift; sourceTree = "<group>"; };
 		4455FBE5251EC34500BB2E26 /* LanguageSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectCell.swift; sourceTree = "<group>"; };
 		4455FBEA251ECFB800BB2E26 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
@@ -112,6 +115,7 @@
 		4455FC07251ED30000BB2E26 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4455FC09251ED32600BB2E26 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		44DF463625124A8400309CEB /* LanguagePickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePickerVC.swift; sourceTree = "<group>"; };
+		44E8CDCB254564DA0055F524 /* photos.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = photos.sqlite; sourceTree = "<group>"; };
 		4B5B4FFC3F239618D0CD043C /* Pods_3MinuteDiary.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_3MinuteDiary.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B2246F09405E8675F96882 /* Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig"; path = "Target Support Files/Pods-3MinuteDiary-3MinuteDiaryUITests/Pods-3MinuteDiary-3MinuteDiaryUITests.release.xcconfig"; sourceTree = "<group>"; };
 		878A4B46B54B89BFBECCDDF6 /* Pods-3MinuteDiary.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3MinuteDiary.debug.xcconfig"; path = "Target Support Files/Pods-3MinuteDiary/Pods-3MinuteDiary.debug.xcconfig"; sourceTree = "<group>"; };
@@ -208,6 +212,7 @@
 				04189203247A9DB30000E9E5 /* AlarmSettingVC.swift */,
 				445236BA24BF41B3002CC849 /* AlarmTimeSetVC.swift */,
 				04222F1F23E6E8C3000008BB /* DiaryDAO.swift */,
+				442C2F442547BD930084ECEA /* PhotoDAO.swift */,
 				042236B9241E225900BD9C0E /* UITextField+Extensions.swift */,
 				042236BB241E22D900BD9C0E /* UITextView+Extensions.swift */,
 				04286C98246D70AE00FAE6C7 /* UITableViewCell+Extensions.swift */,
@@ -242,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				0425A97B23ED7D5900B09F65 /* db.sqlite */,
+				44E8CDCB254564DA0055F524 /* photos.sqlite */,
 				4455FC03251ED2D300BB2E26 /* Localizable.strings */,
 			);
 			path = Database;
@@ -394,6 +400,7 @@
 				0441A4F023ACE7E9005A2251 /* LaunchScreen.storyboard in Resources */,
 				0441A4ED23ACE7E9005A2251 /* Assets.xcassets in Resources */,
 				0441A4E823ACE7E5005A2251 /* Main.storyboard in Resources */,
+				44E8CDCC254564DA0055F524 /* photos.sqlite in Resources */,
 				0425A97C23ED7D5900B09F65 /* db.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -516,6 +523,7 @@
 				0431059623B5C9A700F727FD /* WriteDiaryVC.swift in Sources */,
 				0431059F23B70AAC00F727FD /* MainCell.swift in Sources */,
 				042AF16524433D6C00F90C0D /* WriteDiaryAddCell.swift in Sources */,
+				442C2F452547BD930084ECEA /* PhotoDAO.swift in Sources */,
 				042FBBFA24964784000913AD /* AlarmCell.swift in Sources */,
 				0429446D240A58D4008631C9 /* BackupManageVC.swift in Sources */,
 				0424596523DABD410075016E /* TemplateManageVC.swift in Sources */,

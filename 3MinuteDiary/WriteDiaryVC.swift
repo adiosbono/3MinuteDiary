@@ -11,7 +11,7 @@ import UIKit
 import SwiftyJSON
 import FMDB
 
-class WriteDiaryVC: UITableViewController, UITextViewDelegate{
+class WriteDiaryVC: UITableViewController, UITextViewDelegate, UIImagePickerControllerDelegate & UINavigationControllerDelegate{
     
     //여기 빈공간에다가는 변수들을 초기화하셈
     
@@ -41,6 +41,7 @@ class WriteDiaryVC: UITableViewController, UITextViewDelegate{
         var section3 = false
         var section4 = false
         var section5 = false
+        var section6 = false
     
     //MARK: 일기 내용 작성과는 큰 관련없는 변수들
     
@@ -98,6 +99,8 @@ class WriteDiaryVC: UITableViewController, UITextViewDelegate{
         //json인코딩을 위한 선언
     let incoder = JSONEncoder()
     
+        //기기 내의 포토 라이브러리를 사용하기 위한 선언
+    let pickerController = UIImagePickerController()
     
     
      
@@ -303,6 +306,12 @@ override func viewDidLoad() {
     
     //여기 아래에 들어가야 할 코드 : 읽어온 일기의 data열의 정보(json형식)를 읽어와 그 내용을 각 변수에 저장해야한다.---------------------------------------
     //self.create_date = self.diaryData.
+    
+    //photolibry사용하기 위한 작업
+    self.pickerController.delegate = self
+    self.pickerController.allowsEditing = true
+    self.pickerController.mediaTypes = ["public.image"]
+    self.pickerController.sourceType = .photoLibrary
     }
     
 //화면이 나타날때마다 호출되는 메소드
@@ -691,7 +700,7 @@ override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: Inde
  */
 //테이블 뷰의 섹션의 수 결정하는 메소드 따로 오버라이드 하지 않으면 기본값은 1임
 override func numberOfSections(in tableView: UITableView) -> Int {
-    return 6
+    return 7
     }
 //각 섹션 헤더에 들어갈 뷰를 정의하는 메소드. 섹션별 타이틀을 뷰 형태로 구성하는 메소드 1080
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -709,7 +718,7 @@ override func numberOfSections(in tableView: UITableView) -> Int {
         case 5:
             return "성공법칙"
         case 6:
-            return "제약"
+            return "사진"
         default:
             return "eat my shorts"
         }
@@ -776,7 +785,15 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
             
             return footerView
         
-        
+        case 6:
+            let button = UIButton(frame: CGRect(x: tableView.frame.size.width/2 - 50, y: 0, width: 100, height: 20))
+            button.setTitle("사진 첨부하기", for: .normal)
+            button.setTitleColor(.blue, for: .normal)
+            button.addTarget(self, action: #selector(buttonAction6), for: .touchUpInside)
+            footerView.addSubview(button)
+            
+            return footerView
+            
         default:
             let button = UIButton(frame: CGRect(x: tableView.frame.size.width/2 - 50, y: 0, width: 100, height: 20))
             button.setTitle("내용 추가하기", for: .normal)
@@ -1125,6 +1142,23 @@ override func tableView(_ tableView: UITableView, heightForHeaderInSection secti
         self.tableView.beginUpdates()
         //insertRows에 첫번째 인자값으로 IndexPath변수가 필요해서 이러케 함.
         let insertIndexPath = IndexPath(row: self.diaryBody.success?.count ?? 0, section: 5)
+        self.insertIndexPath = insertIndexPath
+        self.tableView.insertRows(at: [insertIndexPath], with: .automatic)
+        self.tableView.endUpdates()
+        
+        let newCell = self.tableView.cellForRow(at: insertIndexPath) as! WriteDiaryAddCell
+        
+        newCell.addTextView.becomeFirstResponder() //키보드 활성화 하는 코드
+    }
+    
+    @objc func buttonAction6(_ sender: UIButton!) {
+        print("사진추가 tapped")
+        self.forAdd = true
+        self.section6 = true
+        //테이블뷰에 셀을 추가하는 방법이 아래 네줄의 코드임
+        self.tableView.beginUpdates()
+        //insertRows에 첫번째 인자값으로 IndexPath변수가 필요해서 이러케 함.
+        let insertIndexPath = IndexPath(row: self.diaryBody.success?.count ?? 0, section: 6)
         self.insertIndexPath = insertIndexPath
         self.tableView.insertRows(at: [insertIndexPath], with: .automatic)
         self.tableView.endUpdates()
