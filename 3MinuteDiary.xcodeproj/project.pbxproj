@@ -39,6 +39,8 @@
 		22BE91253BC738F2EFEBFA1C /* libPods-3MinuteDiaryUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 95EEFDCD3873601A5C4D7ECC /* libPods-3MinuteDiaryUITests.a */; };
 		440170DE2500D86D008893A7 /* settingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440170DD2500D86D008893A7 /* settingCell.swift */; };
 		440170E02500D8BD008893A7 /* settingCellWithSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 440170DF2500D8BD008893A7 /* settingCellWithSwitch.swift */; };
+		4405537325569CC600F3015F /* Passcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4405537225569CC600F3015F /* Passcode.swift */; };
+		4405537B2556A03600F3015F /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4405537A2556A03600F3015F /* PasscodeViewController.swift */; };
 		442C2F452547BD930084ECEA /* PhotoDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442C2F442547BD930084ECEA /* PhotoDAO.swift */; };
 		445236BB24BF41B3002CC849 /* AlarmTimeSetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445236BA24BF41B3002CC849 /* AlarmTimeSetVC.swift */; };
 		4455FBE6251EC34500BB2E26 /* LanguageSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4455FBE5251EC34500BB2E26 /* LanguageSelectCell.swift */; };
@@ -104,6 +106,8 @@
 		3E1D0C9CD38193BB5CF54644 /* Pods-3MinuteDiaryTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3MinuteDiaryTests.debug.xcconfig"; path = "Target Support Files/Pods-3MinuteDiaryTests/Pods-3MinuteDiaryTests.debug.xcconfig"; sourceTree = "<group>"; };
 		440170DD2500D86D008893A7 /* settingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingCell.swift; sourceTree = "<group>"; };
 		440170DF2500D8BD008893A7 /* settingCellWithSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingCellWithSwitch.swift; sourceTree = "<group>"; };
+		4405537225569CC600F3015F /* Passcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passcode.swift; sourceTree = "<group>"; };
+		4405537A2556A03600F3015F /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		442C2F442547BD930084ECEA /* PhotoDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDAO.swift; sourceTree = "<group>"; };
 		445236BA24BF41B3002CC849 /* AlarmTimeSetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTimeSetVC.swift; sourceTree = "<group>"; };
 		4455FBE5251EC34500BB2E26 /* LanguageSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectCell.swift; sourceTree = "<group>"; };
@@ -216,6 +220,8 @@
 				042236B9241E225900BD9C0E /* UITextField+Extensions.swift */,
 				042236BB241E22D900BD9C0E /* UITextView+Extensions.swift */,
 				04286C98246D70AE00FAE6C7 /* UITableViewCell+Extensions.swift */,
+				4405537225569CC600F3015F /* Passcode.swift */,
+				4405537A2556A03600F3015F /* PasscodeViewController.swift */,
 				0441A4E623ACE7E5005A2251 /* Main.storyboard */,
 				0441A4EC23ACE7E9005A2251 /* Assets.xcassets */,
 				0441A4EE23ACE7E9005A2251 /* LaunchScreen.storyboard */,
@@ -525,6 +531,7 @@
 				042AF16524433D6C00F90C0D /* WriteDiaryAddCell.swift in Sources */,
 				442C2F452547BD930084ECEA /* PhotoDAO.swift in Sources */,
 				042FBBFA24964784000913AD /* AlarmCell.swift in Sources */,
+				4405537325569CC600F3015F /* Passcode.swift in Sources */,
 				0429446D240A58D4008631C9 /* BackupManageVC.swift in Sources */,
 				0424596523DABD410075016E /* TemplateManageVC.swift in Sources */,
 				0431059823B5CA0600F727FD /* TableVCTemplate.swift in Sources */,
@@ -533,6 +540,7 @@
 				445236BB24BF41B3002CC849 /* AlarmTimeSetVC.swift in Sources */,
 				440170DE2500D86D008893A7 /* settingCell.swift in Sources */,
 				44DF463725124A8400309CEB /* LanguagePickerVC.swift in Sources */,
+				4405537B2556A03600F3015F /* PasscodeViewController.swift in Sources */,
 				0441A4E323ACE7E5005A2251 /* SceneDelegate.swift in Sources */,
 				0441A4EB23ACE7E5005A2251 /* _MinuteDiary.xcdatamodeld in Sources */,
 				4455FBE6251EC34500BB2E26 /* LanguageSelectCell.swift in Sources */,

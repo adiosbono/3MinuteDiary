@@ -53,18 +53,6 @@ class BackupManageVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: "languageSelectCell") as! LanguageSelectCell
         cell.title.text = "언어설정"
         cell.selectedLanguage.text = plist.string(forKey: "language")
-        /*
-        let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
-        cell.title.text = "언어설정"
-        //내가 생각하기에 문제는 여기서 매번 레이블을 만들어버리니까 겹치는것이 아닐까? 해결방법은 프로토타입셀을 하나 더 만들어서 그녀석으로 설정하는것
-        let selectedLanguage = UILabel()
-        selectedLanguage.text = plist.string(forKey: "language")
-        cell.addSubview(selectedLanguage)
-        selectedLanguage.frame.size.height = cell.frame.size.height - 10
-        selectedLanguage.frame.size.width = 150
-        selectedLanguage.center.y = cell.frame.height/2
-        selectedLanguage.frame.origin.x = cell.frame.width - 100
- */
         return cell
     case 1:
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
@@ -73,10 +61,14 @@ class BackupManageVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     case 2:
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingCellWithSwitch") as! SettingCellWithSwith
         cell.title.text = "아이클라우드 백업 활성화"
+        cell.row = indexPath.row
+        cell.backupManageViewController = self
         return cell
     case 3:
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingCellWithSwitch") as! SettingCellWithSwith
         cell.title.text = "아이클라우드 백업시 사진도 백업"
+        cell.row = indexPath.row
+        cell.backupManageViewController = self
         return cell
     case 4:
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
@@ -85,6 +77,8 @@ class BackupManageVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     case 5:
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingCellWithSwitch") as! SettingCellWithSwith
         cell.title.text = "앱 잠금설정"
+        cell.row = indexPath.row
+        cell.backupManageViewController = self
         return cell
     case 6:
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingCell") as! SettingCell
@@ -225,4 +219,31 @@ class BackupManageVC: UIViewController, UITableViewDelegate, UITableViewDataSour
         return 2
     }
     
+    //MARK: 셀 내의 토글버튼 작동시 실행되는 함수 모음
+    
+    //아이클라우드 백업 활성화 토글버튼 작동시 실행할 함수
+    func icloudBackupActivate(toggle: Bool){
+        if toggle == true {
+            print("icloudBackupActivate is true")
+        }else{
+            print("icloudBackupActivate is false")
+        }
+    }
+    //아이클라우드백업시 사진도 백업 토글버튼 작동시 실행할 함수
+    func backupPhotoToo(toggle: Bool){
+        if toggle == true {
+            print("backupPhotoToo is true")
+        }else{
+            print("backupPhotoToo is false")
+        }
+    }
+    
+    //앱 잠금설정 토글버튼 작동시 실행할 함수
+    func lockupSetting(toggle: Bool){
+        if toggle == true {
+            print("lockupSetting is true")
+        }else{
+            print("lockupSetting is false")
+        }
+    }
 }
