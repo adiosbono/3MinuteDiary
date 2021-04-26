@@ -42,6 +42,7 @@
 		4405537325569CC600F3015F /* Passcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4405537225569CC600F3015F /* Passcode.swift */; };
 		4405537B2556A03600F3015F /* PasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4405537A2556A03600F3015F /* PasscodeViewController.swift */; };
 		442C2F452547BD930084ECEA /* PhotoDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 442C2F442547BD930084ECEA /* PhotoDAO.swift */; };
+		443BEF2F25624C4E007B3C15 /* Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 443BEF2E25624C4E007B3C15 /* Pin.swift */; };
 		445236BB24BF41B3002CC849 /* AlarmTimeSetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 445236BA24BF41B3002CC849 /* AlarmTimeSetVC.swift */; };
 		4455FBE6251EC34500BB2E26 /* LanguageSelectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4455FBE5251EC34500BB2E26 /* LanguageSelectCell.swift */; };
 		4455FC01251ED2D300BB2E26 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4455FC03251ED2D300BB2E26 /* Localizable.strings */; };
@@ -109,6 +110,7 @@
 		4405537225569CC600F3015F /* Passcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passcode.swift; sourceTree = "<group>"; };
 		4405537A2556A03600F3015F /* PasscodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeViewController.swift; sourceTree = "<group>"; };
 		442C2F442547BD930084ECEA /* PhotoDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDAO.swift; sourceTree = "<group>"; };
+		443BEF2E25624C4E007B3C15 /* Pin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pin.swift; sourceTree = "<group>"; };
 		445236BA24BF41B3002CC849 /* AlarmTimeSetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmTimeSetVC.swift; sourceTree = "<group>"; };
 		4455FBE5251EC34500BB2E26 /* LanguageSelectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageSelectCell.swift; sourceTree = "<group>"; };
 		4455FBEA251ECFB800BB2E26 /* ko */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ko; path = ko.lproj/Main.strings; sourceTree = "<group>"; };
@@ -220,6 +222,7 @@
 				042236B9241E225900BD9C0E /* UITextField+Extensions.swift */,
 				042236BB241E22D900BD9C0E /* UITextView+Extensions.swift */,
 				04286C98246D70AE00FAE6C7 /* UITableViewCell+Extensions.swift */,
+				443BEF2E25624C4E007B3C15 /* Pin.swift */,
 				4405537225569CC600F3015F /* Passcode.swift */,
 				4405537A2556A03600F3015F /* PasscodeViewController.swift */,
 				0441A4E623ACE7E5005A2251 /* Main.storyboard */,
@@ -547,6 +550,7 @@
 				0431059B23B5CAAC00F727FD /* ToolBarCell.swift in Sources */,
 				04286C99246D70AE00FAE6C7 /* UITableViewCell+Extensions.swift in Sources */,
 				0424596723E3086E0075016E /* TemplateBodyCell.swift in Sources */,
+				443BEF2F25624C4E007B3C15 /* Pin.swift in Sources */,
 				440170E02500D8BD008893A7 /* settingCellWithSwitch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -9,7 +9,10 @@
 import Foundation
 import UIKit
 
-class PasscodeViewController: UIViewController {
+class PasscodeViewController:UIViewController {
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -22,5 +25,7 @@ class PasscodeViewController: UIViewController {
         view.addSubview(passcode)
         //becomeFirstResponder를 호출해주면 키보드가 올라올 것이다
         passcode.becomeFirstResponder()
+        
+        
     }
 }

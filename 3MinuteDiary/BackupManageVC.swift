@@ -242,6 +242,9 @@ class BackupManageVC: UIViewController, UITableViewDelegate, UITableViewDataSour
     func lockupSetting(toggle: Bool){
         if toggle == true {
             print("lockupSetting is true")
+            //테스트를 위해 임시로 잠금화면을 불러온다
+            let PasscodeVC = storyboard?.instantiateViewController(identifier: "passcodeViewController") as! PasscodeViewController
+            present(PasscodeVC, animated: true, completion: nil)
         }else{
             print("lockupSetting is false")
         }

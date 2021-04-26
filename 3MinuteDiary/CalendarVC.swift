@@ -102,6 +102,16 @@ class CalendarVC: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
             print("circleDictionary생성중 : \(circle)")
             self.circleDictionary[circle.0] = (circle.1, circle.2)
         }
+        //다크모드인 경우 월화수목금 색깔을 흰색으로 하고 나머지 모드인경우는 검은색으로 한다.
+        if self.traitCollection.userInterfaceStyle == .dark {
+            calendar.appearance.weekdayTextColor = UIColor.white
+            calendar.appearance.titleDefaultColor = UIColor.white
+            print("darkmode")
+        }else{//light모드일때
+            calendar.appearance.weekdayTextColor = UIColor.darkText
+            calendar.appearance.titleDefaultColor = UIColor.darkText
+            print("lightmode or whatever")
+        }
         self.calendar.reloadData()
     }
     
